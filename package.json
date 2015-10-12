@@ -1,6 +1,6 @@
 {
   "name": "open-share",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "devDependencies": {
     "babel": "^5.8.23",
     "browserify": "^11.2.0",
