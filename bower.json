@@ -1,0 +1,10 @@
+{
+  "name": "open-share",
+  "version": "0.0.0",
+  "authors": [
+      "Digital Surgeons",
+      "Adam Chambers"
+  ],
+  "main": "dist/open-share.js",
+  "license": "MIT"
+}
