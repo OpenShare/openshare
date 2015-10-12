@@ -10,6 +10,12 @@
     class OpenShare {
 
         constructor(type) {
+
+            // throw error if invalid type provided
+            if (!this[type]) {
+                throw new Error(`Open Share: ${type} is an invalid type`);
+            }
+
             this.type = type;
             this.dynamic = false;
 
@@ -42,7 +48,7 @@
 
                 // append URL encoded GET param to share URL
                 data[i] = encodeURIComponent(data[i]);
-                shareUrl += encodeURI(`${i}=${data[i]}&`);
+                shareUrl += `${i}=${data[i]}&`;
             }
 
             return shareUrl.substr(0, shareUrl.length - 1);
