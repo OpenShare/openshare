@@ -80,7 +80,7 @@
             this.validate(['url'], data);
             this.shareUrl = this.template('https://twitter.com/share?', {
                 url: data.url,
-                title: data.title,
+                text: data.text,
                 via: data.via,
                 hashtags: data.hashtags
             });
@@ -202,16 +202,16 @@
     function setData(osInstance, osElement) {
         osInstance.setData({
             url: osElement.getAttribute('data-open-share-url'),
-            title: osElement.getAttribute('data-open-share-title'),
+            text: osElement.getAttribute('data-open-share-text'),
             via: osElement.getAttribute('data-open-share-via'),
             hashtags: osElement.getAttribute('data-open-share-hashtags'),
             link: osElement.getAttribute('data-open-share-link'),
             picture: osElement.getAttribute('data-open-share-picture'),
             caption: osElement.getAttribute('data-open-share-caption'),
             description: osElement.getAttribute('data-open-share-description'),
+            title: osElement.getAttribute('data-open-share-title'),
             media: osElement.getAttribute('data-open-share-media'),
             isVideo: osElement.getAttribute('data-open-share-isVideo'),
-            text: osElement.getAttribute('data-open-share-text'),
             to: osElement.getAttribute('data-open-share-to'),
             subject: osElement.getAttribute('data-open-share-subject'),
             body: osElement.getAttribute('data-open-share-body')
