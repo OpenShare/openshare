@@ -238,7 +238,7 @@
 
             // if dynamic instance then fetch attributes again in case of updates
             if (openShare.dynamic) {
-                setData(openShare, e.target);
+                setData(openShare, e.currentTarget);
             }
 
             openShare.share(e);
