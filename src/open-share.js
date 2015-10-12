@@ -10,7 +10,14 @@
     class OpenShare {
 
         constructor(type) {
+
+            // throw error if invalid type provided
+            if (!this[type]) {
+                throw new Error(`Open Share: ${type} is an invalid type`);
+            }
+
             this.type = type;
+            this.dynamic = false;
 
             // capitalized type
             this.typeCaps = type.charAt(0).toUpperCase() + type.slice(1);
@@ -39,6 +46,8 @@
                     continue;
                 }
 
+                // append URL encoded GET param to share URL
+                data[i] = encodeURIComponent(data[i]);
                 shareUrl += `${i}=${data[i]}&`;
             }
 
@@ -173,6 +182,23 @@
     let openShares = document.querySelectorAll('[data-open-share]'),
         os;
 
+    // set all optional attributes from openshjare on open share instance
+    function setData(osInstance, osElement) {
+        osInstance.setData({
+            url: osElement.getAttribute('data-open-share-url'),
+            title: osElement.getAttribute('data-open-share-title'),
+            via: osElement.getAttribute('data-open-share-via'),
+            hashtags: osElement.getAttribute('data-open-share-hashtags'),
+            link: osElement.getAttribute('data-open-share-link'),
+            picture: osElement.getAttribute('data-open-share-picture'),
+            caption: osElement.getAttribute('data-open-share-caption'),
+            description: osElement.getAttribute('data-open-share-description'),
+            media: osElement.getAttribute('data-open-share-media'),
+            isVideo: osElement.getAttribute('data-open-share-isVideo'),
+            text: osElement.getAttribute('data-open-share-text')
+        });
+    }
+
     // loop through open share node collection
     for (os of openShares) {
 
@@ -180,23 +206,24 @@
         let type = os.getAttribute('data-open-share'),
             openShare = new OpenShare(type);
 
+        // specify if this is a dynamic instance
+        if (os.getAttribute('data-open-share-dynamic')) {
+            openShare.dynamic = true;
+        }
+
         // set all optional attributes on open share instance
-        openShare.setData({
-            url: os.getAttribute('data-open-share-url'),
-            title: os.getAttribute('data-open-share-title'),
-            via: os.getAttribute('data-open-share-via'),
-            hashtags: os.getAttribute('data-open-share-hashtags'),
-            link: os.getAttribute('data-open-share-link'),
-            picture: os.getAttribute('data-open-share-picture'),
-            caption: os.getAttribute('data-open-share-caption'),
-            description: os.getAttribute('data-open-share-description'),
-            media: os.getAttribute('data-open-share-media'),
-            isVideo: os.getAttribute('data-open-share-isVideo'),
-            text: os.getAttribute('data-open-share-text')
-        });
+        setData(openShare, os);
 
         // open share dialog on click
-        os.addEventListener('click', (e) => openShare.share(e));
+        os.addEventListener('click', (e) => {
+
+            // if dynamic instance then fetch attributes again in case of updates
+            if (openShare.dynamic) {
+                setData(openShare, e.target);
+            }
+
+            openShare.share(e);
+        });
     }
 
 })();
