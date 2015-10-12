@@ -234,11 +234,11 @@
         setData(openShare, os);
 
         // open share dialog on click
-        os.addEventListener('click', (e) => {
+        os.addEventListener('click', function(e) {
 
             // if dynamic instance then fetch attributes again in case of updates
             if (openShare.dynamic) {
-                setData(openShare, e.target);
+                setData(openShare, this);
             }
 
             openShare.share(e);
