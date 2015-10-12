@@ -31,7 +31,14 @@
 
         // open share URL defined in individual platform functions
         share(e)  {
-            window.open(this.shareUrl, 'OpenShare');
+            // open mailto links in same window
+            if (this.type === 'email') {
+                window.location = this.shareUrl;
+
+            // open social share URLs in new window
+            } else {
+                window.open(this.shareUrl, 'OpenShare');
+            }
         }
 
         // create share URL with GET params
@@ -172,6 +179,15 @@
                 title: data.title
             });
         }
+
+        // set Email share URL
+        email(data) {
+            this.validate(['to'], data);
+            this.shareUrl = this.template(`mailto:${data.to}?`, {
+                subject: data.subject,
+                body: data.body
+            });
+        }
     }
 
     /**
@@ -195,7 +211,10 @@
             description: osElement.getAttribute('data-open-share-description'),
             media: osElement.getAttribute('data-open-share-media'),
             isVideo: osElement.getAttribute('data-open-share-isVideo'),
-            text: osElement.getAttribute('data-open-share-text')
+            text: osElement.getAttribute('data-open-share-text'),
+            to: osElement.getAttribute('data-open-share-to'),
+            subject: osElement.getAttribute('data-open-share-subject'),
+            body: osElement.getAttribute('data-open-share-body')
         });
     }
 
