@@ -40,7 +40,9 @@
                     continue;
                 }
 
-                shareUrl += `${i}=${data[i]}&`;
+                // append URL encoded GET param to share URL
+                data[i] = encodeURIComponent(data[i]);
+                shareUrl += encodeURI(`${i}=${data[i]}&`);
             }
 
             return shareUrl.substr(0, shareUrl.length - 1);
