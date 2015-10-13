@@ -37,7 +37,7 @@ Initialize an OpenShare Facebook instance with `data-open-share="facebook"` and 
 | data-open-share-picture        | 
 | data-open-share-caption        | 
 | data-open-share-description    |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating			
+| data-open-share-dynamic        | Fetch new attribute values on every share			
 
 ### Twitter ####
 
@@ -49,7 +49,7 @@ Initialize an OpenShare Twitter instance with `data-open-share="twitter"` and cu
 | data-open-share-text           | 
 | data-open-share-via            | Username without @
 | data-open-share-hashtags       | Comma separated
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### Facebook ####
 
@@ -61,7 +61,7 @@ Initialize an OpenShare Facebook instance with `data-open-share="facebook"` and 
 | data-open-share-picture        | 
 | data-open-share-caption        | 
 | data-open-share-description    |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating		
+| data-open-share-dynamic        | Fetch new attribute values on every share		
 
 ### Google ####
 
@@ -70,7 +70,7 @@ Initialize an OpenShare Google instance with `data-open-share="google"` and cust
 | Attribute                      | Notes
 | ------------------------------ | ----------------------------
 | data-open-share-url            | Required
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### Pinterest ####
 
@@ -81,7 +81,7 @@ Initialize an OpenShare Pinterest instance with `data-open-share="pinterest"` an
 | data-open-share-media          | Required. URL of image to pin
 | data-open-share-url            | URL to share with image
 | data-open-share-description    |		
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating	
+| data-open-share-dynamic        | Fetch new attribute values on every share	
 
 ### LinkedIn ####
 
@@ -91,7 +91,7 @@ Initialize an OpenShare LinkedIn instance with `data-open-share="linkedIn"` and 
 | ------------------------------ | ----------------------------
 | data-open-share-url            | Required
 | data-open-share-title          | 
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### Buffer ####
 
@@ -101,7 +101,7 @@ Initialize an OpenShare Buffer instance with `data-open-share="buffer"` and cust
 | ------------------------------ | ----------------------------
 | data-open-share-url            | Required
 | data-open-share-text           |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating	
+| data-open-share-dynamic        | Fetch new attribute values on every share	
 
 
 ### Tumblr ####
@@ -113,7 +113,7 @@ Initialize an OpenShare Tubmlr instance with `data-open-share="tumblr"` and cust
 | data-open-share-url            | Required
 | data-open-share-title          |
 | data-open-share-caption        |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### Reddit ####
 
@@ -123,7 +123,7 @@ Initialize an OpenShare Reddit instance with `data-open-share="reddit"` and cust
 | ------------------------------ | ----------------------------
 | data-open-share-url            | Required
 | data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### Digg ####
 
@@ -133,7 +133,7 @@ Initialize an OpenShare Digg instance with `data-open-share="digg"` and customiz
 | ------------------------------ | ----------------------------
 | data-open-share-url            | Required
 | data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### StumbleUpon ####
 
@@ -143,7 +143,7 @@ Initialize an OpenShare Twitter instance with `data-open-share="digg"` and custo
 | ------------------------------ | ----------------------------
 | data-open-share-url            | Required
 | data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### Delicious ####
 
@@ -153,7 +153,7 @@ Initialize an OpenShare Twitter instance with `data-open-share="digg"` and custo
 | ------------------------------ | ----------------------------
 | data-open-share-url            | Required
 | data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ### Email ####
 
@@ -164,7 +164,7 @@ Initialize an OpenShare Email instance with `data-open-share="email"` and custom
 | data-open-share-to             | Required. Email address
 | data-open-share-subject        | 
 | data-open-share-body           |
-| data-open-share-dynamic        | Fetch new attribute values on every share, useful if dynamically updating
+| data-open-share-dynamic        | Fetch new attribute values on every share
 
 ## Browser Support ##
 
