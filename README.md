@@ -1,6 +1,6 @@
 # OpenShare
 
-OpenShare is social sharing for developers. A simple wrapper around popular share APIs, zero styling, maximum flexibility and a declarative API. Check out the example page to see it in action.
+OpenShare is social sharing for developers. A simple wrapper around popular share APIs, zero styling, maximum flexibility and a declarative API. [Check out the example page](http://dsurgeons.github.io/OpenShare/) to see it in action.
 
 
 ## Installation ##
