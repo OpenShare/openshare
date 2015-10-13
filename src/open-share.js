@@ -111,7 +111,6 @@
             this.shareUrl = this.template('https://pinterest.com/pin/create/bookmarklet/?', {
                 media: data.media,
                 url: data.url,
-                isVideo: data.isVideo,
                 description: data.description
             });
         }
@@ -211,7 +210,6 @@
             description: osElement.getAttribute('data-open-share-description'),
             title: osElement.getAttribute('data-open-share-title'),
             media: osElement.getAttribute('data-open-share-media'),
-            isVideo: osElement.getAttribute('data-open-share-isVideo'),
             to: osElement.getAttribute('data-open-share-to'),
             subject: osElement.getAttribute('data-open-share-subject'),
             body: osElement.getAttribute('data-open-share-body')
