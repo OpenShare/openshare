@@ -21,7 +21,7 @@ All OpenShare instances are created directly in the DOM using data attributes, h
 		
 	</button>
 
-When clicked, this button will open a Facebook Share Dialog in a new window using the information specified in the open-share data attributes. For a full list of attribute options read on.
+When clicked, this button will open a [Facebook Feed Dialog](https://developers.facebook.com/docs/sharing/reference/feed-dialog/v2.5) in a new window using the information specified in the open-share data attributes. For a full list of attribute options read on.
 
 ## API Reference
 
@@ -51,17 +51,6 @@ Initialize an OpenShare Twitter instance with `data-open-share="twitter"` and cu
 | data-open-share-hashtags       | Comma separated
 | data-open-share-dynamic        | Fetch new attribute values on every share
 
-### Facebook ####
-
-Initialize an OpenShare Facebook instance with `data-open-share="facebook"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-link           | Required
-| data-open-share-picture        | 
-| data-open-share-caption        | 
-| data-open-share-description    |
-| data-open-share-dynamic        | Fetch new attribute values on every share		
 
 ### Google ####
 
