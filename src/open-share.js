@@ -133,15 +133,6 @@
             });
         }
 
-        // set Digg share URL
-        digg(data) {
-            this.validate(['url'], data);
-            this.shareUrl = this.template('http://digg.com/submit?', {
-                url: data.url,
-                title: data.title
-            });
-        }
-
         // set Tumblr share URL
         tumblr(data) {
             this.validate(['url'], data);
@@ -156,6 +147,15 @@
         reddit(data) {
             this.validate(['url'], data);
             this.shareUrl = this.template('http://reddit.com/submit?', {
+                url: data.url,
+                title: data.title
+            });
+        }
+
+        // set Digg share URL
+        digg(data) {
+            this.validate(['url'], data);
+            this.shareUrl = this.template('http://digg.com/submit?', {
                 url: data.url,
                 title: data.title
             });

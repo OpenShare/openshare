@@ -96,14 +96,6 @@ Initialize an OpenShare Buffer instance with `data-open-share="buffer"` and cust
 | data-open-share-url            | Required
 | data-open-share-text           |	
 
-### Digg ####
-
-Initialize an OpenShare Digg instance with `data-open-share="digg"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-title          |
 
 ### Tumblr ####
 
@@ -118,6 +110,15 @@ Initialize an OpenShare Tubmlr instance with `data-open-share="tumblr"` and cust
 ### Reddit ####
 
 Initialize an OpenShare Reddit instance with `data-open-share="reddit"` and customize with the following.
+
+| Attribute                      | Notes
+| ------------------------------ | ----------------------------
+| data-open-share-url            | Required
+| data-open-share-title          |
+
+### Digg ####
+
+Initialize an OpenShare Digg instance with `data-open-share="digg"` and customize with the following.
 
 | Attribute                      | Notes
 | ------------------------------ | ----------------------------
