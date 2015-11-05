@@ -89,6 +89,15 @@ module.exports = class OpenShare {
         });
     }
 
+    // set Twitter like URL
+    twitterLike(data) {
+        this.validate(['tweetId'], data);
+        this.shareUrl = this.template('https://twitter.com/intent/favorite?', {
+            tweet_id: data.tweetId,
+            related: data.related
+        });
+    }
+
     // set Facebook share URL
     facebook(data) {
         this.validate(['link'], data);
