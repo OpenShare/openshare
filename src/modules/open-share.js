@@ -80,6 +80,15 @@ module.exports = class OpenShare {
         });
     }
 
+    // set Twitter retweet URL
+    twitterRetweet(data) {
+        this.validate(['tweetId'], data);
+        this.shareUrl = this.template('https://twitter.com/intent/retweet?', {
+            tweet_id: data.tweetId,
+            related: data.related
+        });
+    }
+
     // set Facebook share URL
     facebook(data) {
         this.validate(['link'], data);
