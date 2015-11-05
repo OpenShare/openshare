@@ -149,6 +149,14 @@ module.exports = class OpenShare {
         });
     }
 
+	// set Facebook send URL
+    facebookSend(data) {
+        this.validate(['link'], data);
+        this.shareUrl = this.template('https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&', {
+            link: data.link
+        });
+    }
+
     // set Google share URL
     google(data) {
         this.validate(['url'], data);
