@@ -57,16 +57,47 @@ module.exports = class OpenShare {
 
     // test for valid required properties
     validate(req, obj) {
-        let i = null;
 
-        // throw error if required property invalid
-        for (i of req) {
-            if (!obj[i]) {
-                throw new Error(`Open Share ${this.typeCaps}: missing ${i} attribute`);
+        req.forEach((val) => {
+
+            // check for OR values
+            if (val.includes('|')) {
+
+                var error = true;
+                val = val.split('|');
+
+                val.forEach((childVal) => {
+                    if (obj[childVal]) {
+                        error = false;
+                    }
+                });
+
+                if (error) {
+                    this.missingOptions(val);
+                }
+
+            } else if (!obj[val]) {
+                this.missingOptions(val);
             }
-        }
+        });
 
         return true;
+    }
+
+    missingOptions(options) {
+        let errorMsg = `Open Share ${this.typeCaps}: missing `;
+
+        if (Array.isArray(options)) {
+            options.forEach((option) => {
+                errorMsg += `${option} or `;
+            });
+
+            errorMsg = errorMsg.substring(0, errorMsg.length - 4);
+        } else if (typeof options === 'string') {
+            errorMsg += `${options} attribute`;
+        }
+
+        throw new Error(errorMsg);
     }
 
     // set Twitter share URL
@@ -95,6 +126,15 @@ module.exports = class OpenShare {
         this.shareUrl = this.template('https://twitter.com/intent/favorite?', {
             tweet_id: data.tweetId,
             related: data.related
+        });
+    }
+
+    // set Twitter follow URL
+    twitterFollow(data) {
+        this.validate(['screenName|userId'], data);
+        this.shareUrl = this.template('https://twitter.com/intent/user?', {
+            screen_name: data.screenName,
+            user_id: data.userId
         });
     }
 
