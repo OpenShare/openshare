@@ -48,6 +48,8 @@ module.exports = class DataAttr {
             hashtags: osElement.getAttribute('data-open-share-hashtags'),
             tweetId: osElement.getAttribute('data-open-share-tweet-id'),
             related: osElement.getAttribute('data-open-share-related'),
+            screenName: osElement.getAttribute('data-open-share-screen-name'),
+            userId: osElement.getAttribute('data-open-share-user-id'),
             link: osElement.getAttribute('data-open-share-link'),
             picture: osElement.getAttribute('data-open-share-picture'),
             caption: osElement.getAttribute('data-open-share-caption'),

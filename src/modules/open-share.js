@@ -57,11 +57,21 @@ module.exports = class OpenShare {
 
     // test for valid required properties
     validate(req, obj) {
-        let i = null;
+        let i;
 
         // throw error if required property invalid
         for (i of req) {
-            if (!obj[i]) {
+
+            // check for OR values
+            if (i.includes('|')) {
+
+                i = i.split('|');
+
+                if (!obj[i[0]] || !obj[i[1]]) {
+                    throw new Error(`Open Share ${this.typeCaps}: missing ${i[0]} or ${i[1]} attributes`);
+                }
+
+            } else if (!obj[i]) {
                 throw new Error(`Open Share ${this.typeCaps}: missing ${i} attribute`);
             }
         }
@@ -95,6 +105,15 @@ module.exports = class OpenShare {
         this.shareUrl = this.template('https://twitter.com/intent/favorite?', {
             tweet_id: data.tweetId,
             related: data.related
+        });
+    }
+
+    // set Twitter follow URL
+    twitterFollow(data) {
+        this.validate(['screenName|userId'], data);
+        this.shareUrl = this.template('https://twitter.com/intent/user?', {
+            screen_name: data.screenName,
+            user_id: data.userId
         });
     }
 
