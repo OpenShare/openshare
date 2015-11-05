@@ -73,18 +73,18 @@ module.exports = class OpenShare {
                 });
 
                 if (error) {
-                    this.throwError(val);
+                    this.missingOptions(val);
                 }
 
             } else if (!obj[val]) {
-                this.throwError(val);
+                this.missingOptions(val);
             }
         });
 
         return true;
     }
 
-    throwError(options) {
+    missingOptions(options) {
         let errorMsg = `Open Share ${this.typeCaps}: missing `;
 
         if (Array.isArray(options)) {
