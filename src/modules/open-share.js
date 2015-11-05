@@ -57,26 +57,47 @@ module.exports = class OpenShare {
 
     // test for valid required properties
     validate(req, obj) {
-        let i;
 
-        // throw error if required property invalid
-        for (i of req) {
+        req.forEach((val) => {
 
             // check for OR values
-            if (i.includes('|')) {
+            if (val.includes('|')) {
 
-                i = i.split('|');
+                var error = true;
+                val = val.split('|');
 
-                if (!obj[i[0]] || !obj[i[1]]) {
-                    throw new Error(`Open Share ${this.typeCaps}: missing ${i[0]} or ${i[1]} attributes`);
+                val.forEach((childVal) => {
+                    if (obj[childVal]) {
+                        error = false;
+                    }
+                });
+
+                if (error) {
+                    this.throwError(val);
                 }
 
-            } else if (!obj[i]) {
-                throw new Error(`Open Share ${this.typeCaps}: missing ${i} attribute`);
+            } else if (!obj[val]) {
+                this.throwError(val);
             }
-        }
+        });
 
         return true;
+    }
+
+    throwError(options) {
+        let errorMsg = `Open Share ${this.typeCaps}: missing `;
+
+        if (Array.isArray(options)) {
+            options.forEach((option) => {
+                errorMsg += `${option} or `;
+            });
+
+            errorMsg = errorMsg.substring(0, errorMsg.length - 4);
+        } else if (typeof options === 'string') {
+            errorMsg += `${options} attribute`;
+        }
+
+        throw new Error(errorMsg);
     }
 
     // set Twitter share URL
