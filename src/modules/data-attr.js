@@ -1,7 +1,6 @@
 /**
 * Configure data attribute API
 */
-
 module.exports = class DataAttr {
 
     constructor(OpenShare) {

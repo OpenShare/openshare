@@ -146,33 +146,6 @@ module.exports = class OpenShare {
         });
     }
 
-    // set Digg share URL
-    digg(data) {
-        this.validate(['url'], data);
-        this.shareUrl = this.template('http://digg.com/submit?', {
-            url: data.url,
-            title: data.title
-        });
-    }
-
-    // set StumbleUpon share URL
-    stumbleUpon(data) {
-        this.validate(['url'], data);
-        this.shareUrl = this.template('http://www.stumbleupon.com/submit?', {
-            url: data.url,
-            title: data.title
-        });
-    }
-
-    // set Delicious share URL
-    delicious(data) {
-        this.validate(['url'], data);
-        this.shareUrl = this.template('https://delicious.com/save?v=5&provider=Open%20Share&noui&jump=close&', {
-            url: data.url,
-            title: data.title
-        });
-    }
-
     // set Email share URL
     email(data) {
         this.validate(['to'], data);
