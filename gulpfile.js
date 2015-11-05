@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify');
 
 gulp.task('default', function() {
-    return browserify('src/open-share.js')
+    return browserify('src/index.js')
             .bundle()
             .pipe(source('open-share.js'))
             .pipe(buffer())
