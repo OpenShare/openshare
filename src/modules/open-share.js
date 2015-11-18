@@ -214,8 +214,17 @@ module.exports = class OpenShare {
 
     // set Email share URL
     email(data) {
-        this.validate(['to'], data);
-        this.shareUrl = this.template(`mailto:${data.to}?`, {
+
+        var url = `mailto:`;
+
+        // if to address specified then add to URL
+        if (data.to !== null) {
+            url += `${data.to}`;
+        }
+
+        url += `?`;
+
+        this.shareUrl = this.template(url, {
             subject: data.subject,
             body: data.body
         });
