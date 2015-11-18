@@ -18,7 +18,21 @@ module.exports = class DataAttr {
     initializeNode(os) {
         // initialize open share object with type attribute
         let type = os.getAttribute('data-open-share'),
-            openShare = new this.OpenShare(type);
+            dash = type.indexOf('-'),
+            openShare;
+
+        // type contains a dash
+        // transform to camelcase for function reference
+        if (dash > -1) {
+            console.log(type);
+            let nextChar = type.substr(dash + 1, 1),
+                group = type.substr(dash, 2);
+
+            type = type.replace(group, nextChar.toUpperCase());
+            console.log(type);
+        }
+
+        openShare = new this.OpenShare(type);
 
         // specify if this is a dynamic instance
         if (os.getAttribute('data-open-share-dynamic')) {
