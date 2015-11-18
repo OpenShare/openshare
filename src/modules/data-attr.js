@@ -23,13 +23,12 @@ module.exports = class DataAttr {
 
         // type contains a dash
         // transform to camelcase for function reference
+        // TODO: only supports single dash, should should support multiple
         if (dash > -1) {
-            console.log(type);
             let nextChar = type.substr(dash + 1, 1),
                 group = type.substr(dash, 2);
 
             type = type.replace(group, nextChar.toUpperCase());
-            console.log(type);
         }
 
         openShare = new this.OpenShare(type);
