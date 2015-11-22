@@ -176,7 +176,7 @@ module.exports = class OpenShare {
     }
 
     // set LinkedIn share URL
-    linkedIn(data) {
+    linkedin(data) {
         this.validate(['url'], data);
         this.shareUrl = this.template('http://www.linkedin.com/shareArticle?', {
             url: data.url,
@@ -209,6 +209,14 @@ module.exports = class OpenShare {
         this.shareUrl = this.template('http://reddit.com/submit?', {
             url: data.url,
             title: data.title
+        });
+    }
+
+    // set WhatsApp share URL
+    whatsapp(data) {
+        this.validate(['text'], data);
+        this.shareUrl = this.template('whatsapp://send?', {
+            text: data.text
         });
     }
 
