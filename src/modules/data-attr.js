@@ -6,13 +6,10 @@ module.exports = class DataAttr {
     constructor(OpenShare) {
         this.OpenShare = OpenShare;
 
-        let nodes = document.querySelectorAll('[data-open-share]'),
-            os;
+        let nodes = document.querySelectorAll('[data-open-share]');
 
         // loop through open share node collection
-        for (os of nodes) {
-            this.initializeNode(os);
-        }
+        [].forEach.call(nodes, this.initializeNode.bind(this));
     }
 
     initializeNode(os) {
