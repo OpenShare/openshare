@@ -10,6 +10,7 @@ module.exports = class OpenShare {
             throw new Error(`Open Share: ${type} is an invalid type`);
         }
 
+        this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         this.type = type;
         this.dynamic = false;
 
@@ -217,6 +218,14 @@ module.exports = class OpenShare {
         this.validate(['text'], data);
         this.shareUrl = this.template('whatsapp://send?', {
             text: data.text
+        });
+    }
+
+    // set sms share URL
+    sms(data) {
+        this.validate(['body'], data);
+        this.shareUrl = this.template(this.ios ? 'sms:' : 'sms:?', {
+            body: data.body
         });
     }
 
