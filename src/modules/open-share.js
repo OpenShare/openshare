@@ -224,7 +224,7 @@ module.exports = class OpenShare {
     // set sms share URL
     sms(data) {
         this.validate(['body'], data);
-        this.shareUrl = this.template(this.ios ? 'sms:' : 'sms:?', {
+        this.shareUrl = this.template(this.ios ? 'sms:&' : 'sms:?', {
             body: data.body
         });
     }
