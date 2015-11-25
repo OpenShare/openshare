@@ -6,19 +6,33 @@ module.exports = class DataAttr {
     constructor(OpenShare) {
         this.OpenShare = OpenShare;
 
-        let nodes = document.querySelectorAll('[data-open-share]'),
-            os;
+        document.addEventListener('open-share-init', this.init.bind(this));
+        this.init();
+    }
 
+    init() {
         // loop through open share node collection
-        for (os of nodes) {
-            this.initializeNode(os);
-        }
+        let nodes = document.querySelectorAll('[data-open-share]:not([data-open-share-node])');
+        [].forEach.call(nodes, this.initializeNode.bind(this));
     }
 
     initializeNode(os) {
         // initialize open share object with type attribute
         let type = os.getAttribute('data-open-share'),
-            openShare = new this.OpenShare(type);
+            dash = type.indexOf('-'),
+            openShare;
+
+        // type contains a dash
+        // transform to camelcase for function reference
+        // TODO: only supports single dash, should should support multiple
+        if (dash > -1) {
+            let nextChar = type.substr(dash + 1, 1),
+                group = type.substr(dash, 2);
+
+            type = type.replace(group, nextChar.toUpperCase());
+        }
+
+        openShare = new this.OpenShare(type);
 
         // specify if this is a dynamic instance
         if (os.getAttribute('data-open-share-dynamic')) {
@@ -38,6 +52,8 @@ module.exports = class DataAttr {
 
             openShare.share(e);
         });
+
+        os.setAttribute('data-open-share-node', type);
     }
 
     setData(osInstance, osElement) {

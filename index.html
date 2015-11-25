@@ -77,6 +77,14 @@
         background: #5f99cf;
     }
 
+    .whatsapp {
+        background: #73cd55;
+    }
+
+    .sms {
+        background: #68c12a;
+    }
+
     .email {
         background: #cccccc;
     }
@@ -98,7 +106,7 @@
     </a>
 
     <a class="open-share-link twitter"
-        data-open-share="twitterRetweet"
+        data-open-share="twitter-retweet"
         data-open-share-tweet-id="653584929289293824"
         data-open-share-related="digitalsurgeons,chambaz,audiocrawl">
 
@@ -107,7 +115,7 @@
     </a>
 
     <a class="open-share-link twitter"
-        data-open-share="twitterLike"
+        data-open-share="twitter-like"
         data-open-share-tweet-id="653584929289293824"
         data-open-share-related="digitalsurgeons,chambaz,audiocrawl">
 
@@ -116,7 +124,7 @@
     </a>
 
     <a class="open-share-link twitter"
-        data-open-share="twitterFollow"
+        data-open-share="twitter-follow"
         data-open-share-screen-name="digitalsurgeons"
         data-open-share-user-id="18189130">
 
@@ -133,6 +141,14 @@
 
         <span class="fa fa-facebook"></span>
         Share
+    </a>
+
+	<a class="open-share-link facebook"
+        data-open-share="facebook-send"
+        data-open-share-link="http://digitalsurgeons.com">
+
+        <span class="fa fa-facebook"></span>
+        Send
     </a>
 
     <a class="open-share-link google"
@@ -153,8 +169,8 @@
         Pin
     </a>
 
-    <a class="open-share-link linkedIn"
-        data-open-share="linkedIn"
+    <a class="open-share-link linkedin"
+        data-open-share="linkedin"
         data-open-share-url="http://digitalsurgeons.com"
         data-open-share-title="Digital Surgeons">
 
@@ -190,6 +206,22 @@
         Share
     </a>
 
+    <a class="open-share-link whatsapp"
+        data-open-share="whatsapp"
+        data-open-share-text="Digital Surgeons">
+
+        <span class="fa fa-whatsapp"></span>
+        Send
+    </a>
+
+    <a class="open-share-link sms"
+        data-open-share="sms"
+        data-open-share-body="Digital Surgeons">
+
+        <span class="fa fa-comment"></span>
+        Text
+    </a>
+
     <a class="open-share-link email"
         data-open-share="email"
         data-open-share-to="techroom@digitalsurgeons.com"
@@ -201,5 +233,17 @@
     </a>
 
     <script src="dist/open-share.js"></script>
+    <script>
+    var openShare = document.createElement('a');
+    openShare.setAttribute('data-open-share', 'twitter');
+    openShare.setAttribute('data-open-share-url', 'http://digitalsurgeons.com');
+    openShare.setAttribute('data-open-share-via', 'digitalsurgeons');
+    openShare.setAttribute('data-open-share-text', 'Digital Surgeons');
+    openShare.setAttribute('data-open-share-hashtags', 'forwardobsessed');
+    openShare.classList.add('open-share-link', 'twitter');
+    openShare.innerHTML = '<span class="fa fa-twitter"></span> Dynamic Twitter!';
+    document.body.appendChild(openShare);
+    document.dispatchEvent(new Event('open-share-init'));
+    </script>
 </body>
 </html>
