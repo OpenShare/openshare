@@ -10,6 +10,7 @@ module.exports = class OpenShare {
             throw new Error(`Open Share: ${type} is an invalid type`);
         }
 
+        this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         this.type = type;
         this.dynamic = false;
 
@@ -176,7 +177,7 @@ module.exports = class OpenShare {
     }
 
     // set LinkedIn share URL
-    linkedIn(data) {
+    linkedin(data) {
         this.validate(['url'], data);
         this.shareUrl = this.template('http://www.linkedin.com/shareArticle?', {
             url: data.url,
@@ -212,10 +213,35 @@ module.exports = class OpenShare {
         });
     }
 
+    // set WhatsApp share URL
+    whatsapp(data) {
+        this.validate(['text'], data);
+        this.shareUrl = this.template('whatsapp://send?', {
+            text: data.text
+        });
+    }
+
+    // set sms share URL
+    sms(data) {
+        this.validate(['body'], data);
+        this.shareUrl = this.template(this.ios ? 'sms:&' : 'sms:?', {
+            body: data.body
+        });
+    }
+
     // set Email share URL
     email(data) {
-        this.validate(['to'], data);
-        this.shareUrl = this.template(`mailto:${data.to}?`, {
+
+        var url = `mailto:`;
+
+        // if to address specified then add to URL
+        if (data.to !== null) {
+            url += `${data.to}`;
+        }
+
+        url += `?`;
+
+        this.shareUrl = this.template(url, {
             subject: data.subject,
             body: data.body
         });
