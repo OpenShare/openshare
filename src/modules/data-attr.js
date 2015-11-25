@@ -6,9 +6,13 @@ module.exports = class DataAttr {
     constructor(OpenShare) {
         this.OpenShare = OpenShare;
 
-        let nodes = document.querySelectorAll('[data-open-share]');
+        document.addEventListener('open-share-init', this.init.bind(this));
+        this.init();
+    }
 
+    init() {
         // loop through open share node collection
+        let nodes = document.querySelectorAll('[data-open-share]:not([data-open-share-node])');
         [].forEach.call(nodes, this.initializeNode.bind(this));
     }
 
@@ -48,6 +52,8 @@ module.exports = class DataAttr {
 
             openShare.share(e);
         });
+
+        os.setAttribute('data-open-share-node', type);
     }
 
     setData(osInstance, osElement) {

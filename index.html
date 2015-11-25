@@ -233,5 +233,17 @@
     </a>
 
     <script src="dist/open-share.js"></script>
+    <script>
+    var openShare = document.createElement('a');
+    openShare.setAttribute('data-open-share', 'twitter');
+    openShare.setAttribute('data-open-share-url', 'http://digitalsurgeons.com');
+    openShare.setAttribute('data-open-share-via', 'digitalsurgeons');
+    openShare.setAttribute('data-open-share-text', 'Digital Surgeons');
+    openShare.setAttribute('data-open-share-hashtags', 'forwardobsessed');
+    openShare.classList.add('open-share-link', 'twitter');
+    openShare.innerHTML = '<span class="fa fa-twitter"></span> Dynamic Twitter!';
+    document.body.appendChild(openShare);
+    document.dispatchEvent(new Event('open-share-init'));
+    </script>
 </body>
 </html>
