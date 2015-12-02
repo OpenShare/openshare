@@ -27,7 +27,20 @@ module.exports = class OpenShare {
     // open share URL defined in individual platform functions
     share(e)  {
         // open mailto links in same window
-        if (this.type === 'email') {
+        if (this.ios) {
+
+            window.location = this.iosShareUrl;
+
+            setTimeout(() => {
+                // If the user is still here, open the App Store
+                if (!document.webkitHidden) {
+
+                    // Replace the Apple ID following '/id'
+                    window.open(this.shareUrl, 'OpenShare');
+                }
+            }, 25);
+
+        } else if (this.type === 'email') {
             window.location = this.shareUrl;
 
         // open social share URLs in new window
@@ -103,7 +116,36 @@ module.exports = class OpenShare {
 
     // set Twitter share URL
     twitter(data) {
-        this.validate(['url'], data);
+        this.validate(['url|text'], data);
+
+        if (this.ios) {
+
+            let message = ``;
+
+            if (data.text) {
+                message += data.text;
+            }
+
+            if (data.url) {
+                message += ` - ${data.url}`;
+            }
+
+            if (data.hashtags) {
+                let tags = data.hashtags.split(',');
+                tags.forEach(function(tag) {
+                    message += ` #${tag}`;
+                });
+            }
+
+            if (data.via) {
+                message += ` via ${data.via}`;
+            }
+
+            this.iosShareUrl = this.template('twitter://post?', {
+                message: message
+            });
+        }
+
         this.shareUrl = this.template('https://twitter.com/share?', {
             url: data.url,
             text: data.text,
