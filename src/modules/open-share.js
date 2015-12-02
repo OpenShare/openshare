@@ -159,6 +159,14 @@ module.exports = class OpenShare {
     // set Twitter retweet URL
     twitterRetweet(data) {
         this.validate(['tweetId'], data);
+
+        // if iOS user and ios data attribute defined
+        if (this.ios && data.ios) {
+            this.iosShareUrl = this.template('twitter://status?', {
+                id: data.tweetId
+            });
+        }
+
         this.shareUrl = this.template('https://twitter.com/intent/retweet?', {
             tweet_id: data.tweetId,
             related: data.related
