@@ -26,20 +26,20 @@ module.exports = class OpenShare {
 
     // open share URL defined in individual platform functions
     share(e)  {
-        // open mailto links in same window
-        if (this.ios) {
+        // if iOS share URL has been set then use timeout hack
+        // test for native app and fall back to web
+        if (this.iosShareUrl) {
 
             window.location = this.iosShareUrl;
 
             setTimeout(() => {
-                // If the user is still here, open the App Store
+                // if the user is still here, fall back to web
                 if (!document.webkitHidden) {
-
-                    // Replace the Apple ID following '/id'
                     window.open(this.shareUrl, 'OpenShare');
                 }
             }, 25);
 
+        // open mailto links in same window
         } else if (this.type === 'email') {
             window.location = this.shareUrl;
 
@@ -118,7 +118,9 @@ module.exports = class OpenShare {
     twitter(data) {
         this.validate(['url|text'], data);
 
-        if (this.ios) {
+        // if iOS user and ios data attribute defined
+        // build iOS URL scheme as single string
+        if (this.ios && data.ios) {
 
             let message = ``;
 
