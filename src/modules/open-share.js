@@ -31,12 +31,15 @@ module.exports = class OpenShare {
         if (this.iosShareUrl) {
 
             window.location = this.iosShareUrl;
+            var start = (new Date()).valueOf();
 
             setTimeout(() => {
                 // if the user is still here, fall back to web
-                if (!document.webkitHidden) {
-                    window.open(this.shareUrl, 'OpenShare');
+                if (end - start > 1000) {
+                    return;
                 }
+
+                window.open(this.shareUrl, 'OpenShare');
             }, 25);
 
         // open mailto links in same window
@@ -176,6 +179,14 @@ module.exports = class OpenShare {
     // set Twitter like URL
     twitterLike(data) {
         this.validate(['tweetId'], data);
+
+        // if iOS user and ios data attribute defined
+        if (this.ios && data.ios) {
+            this.iosShareUrl = this.template('twitter://status?', {
+                id: data.tweetId
+            });
+        }
+
         this.shareUrl = this.template('https://twitter.com/intent/favorite?', {
             tweet_id: data.tweetId,
             related: data.related
@@ -185,6 +196,18 @@ module.exports = class OpenShare {
     // set Twitter follow URL
     twitterFollow(data) {
         this.validate(['screenName|userId'], data);
+
+        // if iOS user and ios data attribute defined
+        if (this.ios && data.ios) {
+            let iosData = data.screenName ? {
+                'screen_name': data.screenName
+            } : {
+                'id': data.userId
+            };
+
+            this.iosShareUrl = this.template('twitter://user?', iosData);
+        }
+
         this.shareUrl = this.template('https://twitter.com/intent/user?', {
             screen_name: data.screenName,
             user_id: data.userId
