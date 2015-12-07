@@ -82,4 +82,15 @@ module.exports = class Count {
         };
     }
 
+    // linkedin count data
+    linkedin(url) {
+        return {
+            jsonp: true,
+            url: `http://www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
+            transform: function(data) {
+                return data.count;
+            }
+        };
+    }
+
 };
