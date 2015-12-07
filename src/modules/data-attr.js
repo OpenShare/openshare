@@ -24,7 +24,7 @@ module.exports = class DataAttr {
     initializeCountNode(os) {
         // initialize open share object with type attribute
         let type = os.getAttribute('data-open-share-count'),
-            count = new this.Count(type);
+            count = new this.Count(type, os.getAttribute('data-open-share-count-url'));
 
         count.getCount(os);
         os.setAttribute('data-open-share-node', type);

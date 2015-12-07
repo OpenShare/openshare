@@ -3,14 +3,19 @@
 */
 module.exports = class Count {
 
-    constructor(type) {
+    constructor(type, url) {
 
         // throw error if invalid type provided
         if (!this[type]) {
             throw new Error(`Open Share: ${type} is an invalid count type`);
         }
 
-        this.countData = this[type]();
+        // throw error if no url provided
+        if (!url) {
+            throw new Error(`Open Share: no url provided for count`);
+        }
+
+        this.countData = this[type](url);
     }
 
     getCount(os) {
@@ -29,9 +34,9 @@ module.exports = class Count {
         xhr.send();
     }
 
-    facebook(data) {
+    facebook(url) {
         return {
-            url: 'http://graph.facebook.com/?id=http://digitalsurgeons.com',
+            url: `http://graph.facebook.com/?id=${url}`,
             transform: function(xhr) {
                 return JSON.parse(xhr.responseText).shares;
             }
