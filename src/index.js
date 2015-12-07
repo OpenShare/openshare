@@ -5,7 +5,8 @@
     // require('babel/polyfill');
 
     var OpenShare = require('./modules/open-share'),
-        DataAttr = require('./modules/data-attr');
+        DataAttr = require('./modules/data-attr'),
+        Count = require('./modules/count');
 
-    new DataAttr(OpenShare);
+    new DataAttr(OpenShare, Count);
 })();

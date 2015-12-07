@@ -19,6 +19,18 @@
         padding: 20px;
     }
 
+    .open-share-count {
+        background: #333;
+        color: #fff;
+        display: inline-block;
+        font-size: 12px;
+        padding: 5px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
     .open-share-title {
         font-size: 40px;
         text-align: center;
@@ -145,6 +157,7 @@
 
         <span class="fa fa-facebook"></span>
         Share
+        <span data-open-share-count="facebook" class="open-share-count"></span>
     </a>
 
 	<a class="open-share-link facebook"

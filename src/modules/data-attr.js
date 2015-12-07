@@ -3,8 +3,9 @@
 */
 module.exports = class DataAttr {
 
-    constructor(OpenShare) {
+    constructor(OpenShare, Count) {
         this.OpenShare = OpenShare;
+        this.Count = Count;
 
         document.addEventListener('open-share-init', this.init.bind(this));
         this.init();
@@ -12,11 +13,24 @@ module.exports = class DataAttr {
 
     init() {
         // loop through open share node collection
-        let nodes = document.querySelectorAll('[data-open-share]:not([data-open-share-node])');
-        [].forEach.call(nodes, this.initializeNode.bind(this));
+        let shareNodes = document.querySelectorAll('[data-open-share]:not([data-open-share-node])');
+        [].forEach.call(shareNodes, this.initializeShareNode.bind(this));
+
+        // loop through count node collection
+        let countNodes = document.querySelectorAll('[data-open-share-count]:not([data-open-share-node])');
+        [].forEach.call(countNodes, this.initializeCountNode.bind(this));
     }
 
-    initializeNode(os) {
+    initializeCountNode(os) {
+        // initialize open share object with type attribute
+        let type = os.getAttribute('data-open-share-count'),
+            count = new this.Count(type);
+
+        count.getCount(os);
+        os.setAttribute('data-open-share-node', type);
+    }
+
+    initializeShareNode(os) {
         // initialize open share object with type attribute
         let type = os.getAttribute('data-open-share'),
             dash = type.indexOf('-'),
