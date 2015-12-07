@@ -34,13 +34,15 @@ module.exports = class OpenShare {
             var start = (new Date()).valueOf();
 
             setTimeout(() => {
+                var end = (new Date()).valueOf();
+
                 // if the user is still here, fall back to web
-                if (end - start > 1000) {
+                if (end - start > 3000) {
                     return;
                 }
 
                 window.open(this.shareUrl, 'OpenShare');
-            }, 25);
+            }, 2000);
 
         // open mailto links in same window
         } else if (this.type === 'email') {
@@ -151,12 +153,7 @@ module.exports = class OpenShare {
             });
         }
 
-        this.shareUrl = this.template('https://twitter.com/share?', {
-            url: data.url,
-            text: data.text,
-            via: data.via,
-            hashtags: data.hashtags
-        });
+        this.shareUrl = this.template('https://twitter.com/share?', data);
     }
 
     // set Twitter retweet URL
@@ -217,91 +214,61 @@ module.exports = class OpenShare {
     // set Facebook share URL
     facebook(data) {
         this.validate(['link|caption'], data);
-        this.shareUrl = this.template('https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&', {
-            link: data.link,
-            picture: data.picture,
-            caption: data.caption,
-            description: data.description
-        });
+        this.shareUrl = this.template('https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&', data);
     }
 
 	// set Facebook send URL
     facebookSend(data) {
         this.validate(['link'], data);
-        this.shareUrl = this.template('https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&', {
-            link: data.link
-        });
+        this.shareUrl = this.template('https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&', data);
     }
 
     // set Google share URL
     google(data) {
         this.validate(['url'], data);
-        this.shareUrl = this.template('https://plus.google.com/share?', {
-            url: data.url
-        });
+        this.shareUrl = this.template('https://plus.google.com/share?', data);
     }
 
     // set Pinterest share URL
     pinterest(data) {
         this.validate(['media'], data);
-        this.shareUrl = this.template('https://pinterest.com/pin/create/bookmarklet/?', {
-            media: data.media,
-            url: data.url,
-            description: data.description
-        });
+        this.shareUrl = this.template('https://pinterest.com/pin/create/bookmarklet/?', data);
     }
 
     // set LinkedIn share URL
     linkedin(data) {
         this.validate(['url'], data);
-        this.shareUrl = this.template('http://www.linkedin.com/shareArticle?', {
-            url: data.url,
-            title: data.title
-        });
+        this.shareUrl = this.template('http://www.linkedin.com/shareArticle?', data);
     }
 
     // set Buffer share URL
     buffer(data) {
         this.validate(['url'], data);
-        this.shareUrl = this.template('http://bufferapp.com/add?', {
-            url: data.url,
-            text: data.text
-        });
+        this.shareUrl = this.template('http://bufferapp.com/add?', data);
     }
 
     // set Tumblr share URL
     tumblr(data) {
         this.validate(['url'], data);
-        this.shareUrl = this.template('https://www.tumblr.com/widgets/share/tool?', {
-            url: data.url,
-            title: data.title,
-            caption: data.caption
-        });
+        this.shareUrl = this.template('https://www.tumblr.com/widgets/share/tool?', data);
     }
 
     // set Reddit share URL
     reddit(data) {
         this.validate(['url'], data);
-        this.shareUrl = this.template('http://reddit.com/submit?', {
-            url: data.url,
-            title: data.title
-        });
+        this.shareUrl = this.template('http://reddit.com/submit?', data);
     }
 
     // set WhatsApp share URL
     whatsapp(data) {
         this.validate(['text'], data);
-        this.shareUrl = this.template('whatsapp://send?', {
-            text: data.text
-        });
+        this.shareUrl = this.template('whatsapp://send?', data);
     }
 
     // set sms share URL
     sms(data) {
         this.validate(['body'], data);
-        this.shareUrl = this.template(this.ios ? 'sms:&' : 'sms:?', {
-            body: data.body
-        });
+        this.shareUrl = this.template(this.ios ? 'sms:&' : 'sms:?', data);
     }
 
     // set Email share URL
