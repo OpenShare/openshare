@@ -216,7 +216,7 @@ module.exports = class OpenShare {
 
     // set Facebook share URL
     facebook(data) {
-        this.validate(['link'], data);
+        this.validate(['link|caption'], data);
         this.shareUrl = this.template('https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&', {
             link: data.link,
             picture: data.picture,
