@@ -93,4 +93,21 @@ module.exports = class Count {
         };
     }
 
+    // reddit count data
+    reddit(url) {
+        return {
+            url: `https://www.reddit.com/api/info.json?url=${url}`,
+            transform: function(xhr) {
+                let posts = JSON.parse(xhr.responseText).data.children,
+                    ups = 0;
+
+                posts.forEach((post) => {
+                    ups += Number(post.data.ups);
+                });
+
+                return ups;
+            }
+        };
+    }
+
 };
