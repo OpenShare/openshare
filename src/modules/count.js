@@ -20,13 +20,7 @@ module.exports = class Count {
 
     // fetch count either AJAX or JSONP
     getCount(os) {
-        if (this.countData.type === 'jsonp') {
-            this.jsonp(os);
-        } else if (this.countData.type === 'post') {
-            this.post(os);
-        } else {
-            this.get(os);
-        }
+        this[this.countData.type](os);
     }
 
     // handle JSONP requests
