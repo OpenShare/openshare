@@ -20,8 +20,10 @@ module.exports = class Count {
 
     // fetch count either AJAX or JSONP
     getCount(os) {
-        if (this.countData.jsonp) {
+        if (this.countData.type === 'jsonp') {
             this.jsonp(os);
+        } else if (this.countData.type === 'post') {
+            this.post(os);
         } else {
             this.get(os);
         }
@@ -43,7 +45,7 @@ module.exports = class Count {
         return;
     }
 
-    // handle AJAX request
+    // handle AJAX GET request
     get(os) {
         let xhr = new XMLHttpRequest();
 
@@ -61,9 +63,29 @@ module.exports = class Count {
         xhr.send();
     }
 
+    // handle AJAX POST request
+    post(os) {
+        let xhr = new XMLHttpRequest();
+
+        // on success pass response to transform function
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== XMLHttpRequest.DONE ||
+                xhr.status !== 200) {
+                return;
+            }
+
+            os.innerHTML = this.countData.transform(xhr);
+        };
+
+        xhr.open('POST', this.countData.url);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.send(JSON.stringify(this.countData.data));
+    }
+
     // facebook count data
     facebook(url) {
         return {
+            type: 'get',
             url: `http://graph.facebook.com/?id=${url}`,
             transform: function(xhr) {
                 return JSON.parse(xhr.responseText).shares;
@@ -74,7 +96,7 @@ module.exports = class Count {
     // pinterest count data
     pinterest(url) {
         return {
-            jsonp: true,
+            type: 'jsonp',
             url: `http://api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
             transform: function(data) {
                 return data.count;
@@ -85,7 +107,7 @@ module.exports = class Count {
     // linkedin count data
     linkedin(url) {
         return {
-            jsonp: true,
+            type: 'jsonp',
             url: `http://www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
             transform: function(data) {
                 return data.count;
@@ -96,6 +118,7 @@ module.exports = class Count {
     // reddit count data
     reddit(url) {
         return {
+            type: 'get',
             url: `https://www.reddit.com/api/info.json?url=${url}`,
             transform: function(xhr) {
                 let posts = JSON.parse(xhr.responseText).data.children,
@@ -106,6 +129,31 @@ module.exports = class Count {
                 });
 
                 return ups;
+            }
+        };
+    }
+
+    // linkedin count data
+    google(url) {
+        return {
+            type: 'post',
+            data: {
+                method: 'pos.plusones.get',
+                id: 'p',
+                params: {
+                    nolog: true,
+                    id: url,
+                    source: 'widget',
+                    userId: '@viewer',
+                    groupId: '@self'
+                },
+                jsonrpc: '2.0',
+                key: 'p',
+                apiVersion: 'v1'
+            },
+            url: `https://clients6.google.com/rpc`,
+            transform: function(xhr) {
+                return JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
             }
         };
     }
