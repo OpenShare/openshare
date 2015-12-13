@@ -14,12 +14,20 @@ module.exports = class Count {
             throw new Error(`Open Share: no url provided for count`);
         }
 
+        this.type = type;
+
         // store count URL and transform function
         this.countData = this[type](url);
     }
 
     // fetch count either AJAX or JSONP
     getCount(os) {
+        var count = this.storeGet(this.type);
+
+        if (count) {
+            os.innerHTML = count;
+        }
+
         this[this.countData.type](os);
     }
 
@@ -28,7 +36,8 @@ module.exports = class Count {
         // define random callback and assign transform function
         let callback = `jsonp_${Math.random().toString().substr(-10)}`;
         window[callback] = (data) => {
-            os.innerHTML = this.countData.transform(data);
+            let count = this.countData.transform(data);
+            os.innerHTML = count;
         };
 
         // append JSONP script tag to page
@@ -50,7 +59,11 @@ module.exports = class Count {
                 return;
             }
 
-            os.innerHTML = this.countData.transform(xhr);
+            let count = this.countData.transform(xhr);
+
+            if (count) {
+                os.innerHTML = count;
+            }
         };
 
         xhr.open('GET', this.countData.url);
@@ -68,7 +81,11 @@ module.exports = class Count {
                 return;
             }
 
-            os.innerHTML = this.countData.transform(xhr);
+            let count = this.countData.transform(xhr);
+
+            if (count) {
+                os.innerHTML = count;
+            }
         };
 
         xhr.open('POST', this.countData.url);
@@ -76,13 +93,31 @@ module.exports = class Count {
         xhr.send(JSON.stringify(this.countData.data));
     }
 
+    storeSet(type, count = 0) {
+        if (!window.localStorage || !type) {
+            return;
+        }
+
+        localStorage.setItem(`OpenShare-${type}`, count);
+    }
+
+    storeGet(type) {
+        if (!window.localStorage || !type) {
+            return;
+        }
+
+        return localStorage.getItem(`OpenShare-${type}`);
+    }
+
     // facebook count data
     facebook(url) {
         return {
             type: 'get',
             url: `http://graph.facebook.com/?id=${url}`,
-            transform: function(xhr) {
-                return JSON.parse(xhr.responseText).shares;
+            transform: (xhr) => {
+                let count = JSON.parse(xhr.responseText).shares;
+                this.storeSet(this.type, count);
+                return count;
             }
         };
     }
@@ -92,8 +127,10 @@ module.exports = class Count {
         return {
             type: 'jsonp',
             url: `http://api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
-            transform: function(data) {
-                return data.count;
+            transform: (data) => {
+                let count = data.count;
+                this.storeSet(this.type, count);
+                return count;
             }
         };
     }
@@ -103,8 +140,10 @@ module.exports = class Count {
         return {
             type: 'jsonp',
             url: `http://www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
-            transform: function(data) {
-                return data.count;
+            transform: (data) => {
+                let count = data.count;
+                this.storeSet(this.type, count);
+                return count;
             }
         };
     }
@@ -114,13 +153,15 @@ module.exports = class Count {
         return {
             type: 'get',
             url: `https://www.reddit.com/api/info.json?url=${url}`,
-            transform: function(xhr) {
+            transform: (xhr) => {
                 let posts = JSON.parse(xhr.responseText).data.children,
                     ups = 0;
 
                 posts.forEach((post) => {
                     ups += Number(post.data.ups);
                 });
+
+                this.storeSet(this.type, ups);
 
                 return ups;
             }
@@ -146,8 +187,10 @@ module.exports = class Count {
                 apiVersion: 'v1'
             },
             url: `https://clients6.google.com/rpc`,
-            transform: function(xhr) {
-                return JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
+            transform: (xhr) => {
+                let count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
+                this.storeSet(this.type, count);
+                return count;
             }
         };
     }
