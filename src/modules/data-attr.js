@@ -12,12 +12,21 @@ module.exports = class DataAttr {
     }
 
     init() {
+        this.initializeNodes();
+
+        // check for mutation observers before using, IE11 only
+        if (window.MutationObserver !== undefined) {
+            this.initializeWatcher(document.querySelectorAll('[data-open-share-watch]'));
+        }
+    }
+
+    initializeNodes(container = document) {
         // loop through open share node collection
-        let shareNodes = document.querySelectorAll('[data-open-share]:not([data-open-share-node])');
+        let shareNodes = container.querySelectorAll('[data-open-share]:not([data-open-share-node])');
         [].forEach.call(shareNodes, this.initializeShareNode.bind(this));
 
         // loop through count node collection
-        let countNodes = document.querySelectorAll('[data-open-share-count]:not([data-open-share-node])');
+        let countNodes = container.querySelectorAll('[data-open-share-count]:not([data-open-share-node])');
         [].forEach.call(countNodes, this.initializeCountNode.bind(this));
     }
 
@@ -68,6 +77,19 @@ module.exports = class DataAttr {
         });
 
         os.setAttribute('data-open-share-node', type);
+    }
+
+    initializeWatcher(watcher) {
+        [].forEach.call(watcher, (w) => {
+            var observer = new MutationObserver((mutations) => {
+                // target will match between all mutations so just use first
+                this.initializeNodes(mutations[0].target);
+            });
+
+            observer.observe(w, {
+                childList: true
+            });
+        });
     }
 
     setData(osInstance, osElement) {
