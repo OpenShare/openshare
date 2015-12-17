@@ -3,20 +3,43 @@
 */
 module.exports = class DataAttr {
 
-    constructor(OpenShare) {
+    constructor(OpenShare, Count) {
         this.OpenShare = OpenShare;
+        this.Count = Count;
 
         document.addEventListener('open-share-init', this.init.bind(this));
         this.init();
     }
 
     init() {
-        // loop through open share node collection
-        let nodes = document.querySelectorAll('[data-open-share]:not([data-open-share-node])');
-        [].forEach.call(nodes, this.initializeNode.bind(this));
+        this.initializeNodes();
+
+        // check for mutation observers before using, IE11 only
+        if (window.MutationObserver !== undefined) {
+            this.initializeWatcher(document.querySelectorAll('[data-open-share-watch]'));
+        }
     }
 
-    initializeNode(os) {
+    initializeNodes(container = document) {
+        // loop through open share node collection
+        let shareNodes = container.querySelectorAll('[data-open-share]:not([data-open-share-node])');
+        [].forEach.call(shareNodes, this.initializeShareNode.bind(this));
+
+        // loop through count node collection
+        let countNodes = container.querySelectorAll('[data-open-share-count]:not([data-open-share-node])');
+        [].forEach.call(countNodes, this.initializeCountNode.bind(this));
+    }
+
+    initializeCountNode(os) {
+        // initialize open share object with type attribute
+        let type = os.getAttribute('data-open-share-count'),
+            count = new this.Count(type, os.getAttribute('data-open-share-count-url'));
+
+        count.getCount(os);
+        os.setAttribute('data-open-share-node', type);
+    }
+
+    initializeShareNode(os) {
         // initialize open share object with type attribute
         let type = os.getAttribute('data-open-share'),
             dash = type.indexOf('-'),
@@ -56,12 +79,26 @@ module.exports = class DataAttr {
         os.setAttribute('data-open-share-node', type);
     }
 
+    initializeWatcher(watcher) {
+        [].forEach.call(watcher, (w) => {
+            var observer = new MutationObserver((mutations) => {
+                // target will match between all mutations so just use first
+                this.initializeNodes(mutations[0].target);
+            });
+
+            observer.observe(w, {
+                childList: true
+            });
+        });
+    }
+
     setData(osInstance, osElement) {
         osInstance.setData({
             url: osElement.getAttribute('data-open-share-url'),
             text: osElement.getAttribute('data-open-share-text'),
             via: osElement.getAttribute('data-open-share-via'),
             hashtags: osElement.getAttribute('data-open-share-hashtags'),
+            ios: osElement.getAttribute('data-open-share-ios'),
             tweetId: osElement.getAttribute('data-open-share-tweet-id'),
             related: osElement.getAttribute('data-open-share-related'),
             screenName: osElement.getAttribute('data-open-share-screen-name'),
