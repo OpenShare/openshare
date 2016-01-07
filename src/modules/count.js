@@ -40,6 +40,8 @@ module.exports = class Count {
 	count(os) {
 		if (!Array.isArray(this.type)) {
 			this.getCount(os);
+		} else {
+			this.getCounts(os);
 		}
 	}
 
@@ -51,9 +53,12 @@ module.exports = class Count {
 			os.innerHTML = count;
 		}
 
-		console.log(this);
-
 		this[this.countData.type](os);
+	}
+
+	// fetch multiple counts and aggregate
+	getCounts(os) {
+		console.log('Aggregate multiple counts now');
 	}
 
 	// handle JSONP requests
