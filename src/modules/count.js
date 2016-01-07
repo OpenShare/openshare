@@ -4,8 +4,20 @@
 module.exports = class Count {
 
 	constructor(type, url) {
+
+		// if type is comma separate list create array
+		if (type.includes(',')) {
+			type = type.split(',');
+
+			// check each type supplied is valid
+			type.forEach((t) => {
+				if (!this[t]) {
+					throw new Error(`Open Share: ${type} is an invalid count type`);
+				}
+			});
+
 		// throw error if invalid type provided
-		if (!this[type]) {
+		} else if (!this[type]) {
 			throw new Error(`Open Share: ${type} is an invalid count type`);
 		}
 
@@ -16,8 +28,19 @@ module.exports = class Count {
 
 		this.type = type;
 
-		// store count URL and transform function
-		this.countData = this[type](url);
+		if (!Array.isArray(this.type)) {
+			// store count URL and transform function
+			this.countData = this[type](url);
+		}
+
+	}
+
+	// handle calling getCount / getCounts
+	// depending on number of types
+	count(os) {
+		if (!Array.isArray(this.type)) {
+			this.getCount(os);
+		}
 	}
 
 	// fetch count either AJAX or JSONP
@@ -27,6 +50,8 @@ module.exports = class Count {
 		if (count) {
 			os.innerHTML = count;
 		}
+
+		console.log(this);
 
 		this[this.countData.type](os);
 	}

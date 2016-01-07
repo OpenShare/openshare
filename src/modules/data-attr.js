@@ -35,7 +35,7 @@ module.exports = class DataAttr {
 		let type = os.getAttribute('data-open-share-count'),
 			count = new this.Count(type, os.getAttribute('data-open-share-count-url'));
 
-		count.getCount(os);
+		count.count(os);
 		os.setAttribute('data-open-share-node', type);
 	}
 
