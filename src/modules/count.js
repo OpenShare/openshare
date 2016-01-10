@@ -12,7 +12,7 @@ module.exports = class Count {
 
 		// if type is comma separate list create array
 		if (type.includes(',')) {
-			this.typeArr = type.type.split(',');
+			this.typeArr = type.split(',');
 			this.countData = [];
 
 			// check each type supplied is valid
@@ -56,7 +56,7 @@ module.exports = class Count {
 			this.os.innerHTML = count;
 		}
 
-		this[this.countData.type](this.os);
+		this[this.countData.type](this.countData);
 	}
 
 	// fetch multiple counts and aggregate
@@ -72,7 +72,7 @@ module.exports = class Count {
 				this.os.innerHTML = count;
 			}
 
-			this[this.countData.type]((num) => {
+			this[countData.type](countData, (num) => {
 				this.total.push(num);
 
 				// total counts length now equals type array length\
@@ -90,28 +90,28 @@ module.exports = class Count {
 			});
 		});
 
-		os.innerHTML = total;
+		this.os.innerHTML = total;
 	}
 
 	// handle JSONP requests
-	jsonp() {
+	jsonp(countData) {
 		// define random callback and assign transform function
 		let callback = `jsonp_${Math.random().toString().substr(-10)}`;
 		window[callback] = (data) => {
-			let count = this.countData.transform(data);
+			let count = countData.transform(data);
 			this.os.innerHTML = count;
 		};
 
 		// append JSONP script tag to page
 		let script = document.createElement('script');
-		script.src = this.countData.url.replace('callback=?', `callback=${callback}`);
+		script.src = countData.url.replace('callback=?', `callback=${callback}`);
 		document.getElementsByTagName('head')[0].appendChild(script);
 
 		return;
 	}
 
 	// handle AJAX GET request
-	get() {
+	get(countData) {
 		let xhr = new XMLHttpRequest();
 
 		// on success pass response to transform function
@@ -121,19 +121,19 @@ module.exports = class Count {
 				return;
 			}
 
-			let count = this.countData.transform(xhr);
+			let count = countData.transform(xhr);
 
 			if (count) {
 				this.os.innerHTML = count;
 			}
 		};
 
-		xhr.open('GET', this.countData.url);
+		xhr.open('GET', countData.url);
 		xhr.send();
 	}
 
 	// handle AJAX POST request
-	post() {
+	post(countData) {
 		let xhr = new XMLHttpRequest();
 
 		// on success pass response to transform function
@@ -143,16 +143,16 @@ module.exports = class Count {
 				return;
 			}
 
-			let count = this.countData.transform(xhr);
+			let count = countData.transform(xhr);
 
 			if (count) {
 				this.os.innerHTML = count;
 			}
 		};
 
-		xhr.open('POST', this.countData.url);
+		xhr.open('POST', countData.url);
 		xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-		xhr.send(JSON.stringify(this.countData.data));
+		xhr.send(JSON.stringify(countData.data));
 	}
 
 	storeSet(type, count = 0) {
