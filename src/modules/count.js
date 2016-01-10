@@ -5,40 +5,41 @@ module.exports = class Count {
 
 	constructor(type, url) {
 
+		// throw error if no url provided
+		if (!url) {
+			throw new Error(`Open Share: no url provided for count`);
+		}
+
 		// if type is comma separate list create array
 		if (type.includes(',')) {
 			type = type.split(',');
+			this.countData = [];
 
 			// check each type supplied is valid
 			type.forEach((t) => {
 				if (!this[t]) {
 					throw new Error(`Open Share: ${type} is an invalid count type`);
 				}
+
+				this.countData.push(this[t](url));
 			});
 
 		// throw error if invalid type provided
 		} else if (!this[type]) {
 			throw new Error(`Open Share: ${type} is an invalid count type`);
-		}
 
-		// throw error if no url provided
-		if (!url) {
-			throw new Error(`Open Share: no url provided for count`);
-		}
-
-		this.type = type;
-
-		if (!Array.isArray(this.type)) {
-			// store count URL and transform function
+		// single count
+		// store count URL and transform function
+		} else {
+			this.type = type;
 			this.countData = this[type](url);
 		}
-
 	}
 
 	// handle calling getCount / getCounts
 	// depending on number of types
 	count(os) {
-		if (!Array.isArray(this.type)) {
+		if (!Array.isArray(this.countData)) {
 			this.getCount(os);
 		} else {
 			this.getCounts(os);
@@ -59,6 +60,22 @@ module.exports = class Count {
 	// fetch multiple counts and aggregate
 	getCounts(os) {
 		console.log('Aggregate multiple counts now');
+
+		let total = 0;
+
+		this.countData.forEach((countData) => {
+			var count = this.storeGet(this.type);
+
+			if (count) {
+				total += count;
+			} else {
+				this[this.countData.type]((num) => {
+					total += num;
+				});
+			}
+		});
+
+		os.innerHTML = total;
 	}
 
 	// handle JSONP requests
