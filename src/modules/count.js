@@ -12,11 +12,11 @@ module.exports = class Count {
 
 		// if type is comma separate list create array
 		if (type.includes(',')) {
-			type = type.split(',');
+			this.typeArr = type.type.split(',');
 			this.countData = [];
 
 			// check each type supplied is valid
-			type.forEach((t) => {
+			this.typeArr.forEach((t) => {
 				if (!this[t]) {
 					throw new Error(`Open Share: ${type} is an invalid count type`);
 				}
@@ -39,52 +39,67 @@ module.exports = class Count {
 	// handle calling getCount / getCounts
 	// depending on number of types
 	count(os) {
+		this.os = os;
+
 		if (!Array.isArray(this.countData)) {
-			this.getCount(os);
+			this.getCount();
 		} else {
-			this.getCounts(os);
+			this.getCounts();
 		}
 	}
 
 	// fetch count either AJAX or JSONP
-	getCount(os) {
+	getCount() {
 		var count = this.storeGet(this.type);
 
 		if (count) {
-			os.innerHTML = count;
+			this.os.innerHTML = count;
 		}
 
-		this[this.countData.type](os);
+		this[this.countData.type](this.os);
 	}
 
 	// fetch multiple counts and aggregate
-	getCounts(os) {
+	getCounts() {
 		console.log('Aggregate multiple counts now');
 
-		let total = 0;
+		this.total = [];
 
 		this.countData.forEach((countData) => {
 			var count = this.storeGet(this.type);
 
 			if (count) {
-				total += count;
-			} else {
-				this[this.countData.type]((num) => {
-					total += num;
-				});
+				this.os.innerHTML = count;
 			}
+
+			this[this.countData.type]((num) => {
+				this.total.push(num);
+
+				// total counts length now equals type array length\
+				// so aggregate, store and insert into DOM
+				if (this.total.length === this.typeArr.length) {
+					let tot = 0;
+
+					this.total.forEach((t) => {
+						tot += t;
+					});
+
+					this.storeSet(this.type, tot);
+					this.os.innerHTML = tot;
+				}
+			});
 		});
 
 		os.innerHTML = total;
 	}
 
 	// handle JSONP requests
-	jsonp(os) {
+	jsonp() {
 		// define random callback and assign transform function
 		let callback = `jsonp_${Math.random().toString().substr(-10)}`;
 		window[callback] = (data) => {
 			let count = this.countData.transform(data);
-			os.innerHTML = count;
+			this.os.innerHTML = count;
 		};
 
 		// append JSONP script tag to page
@@ -96,7 +111,7 @@ module.exports = class Count {
 	}
 
 	// handle AJAX GET request
-	get(os) {
+	get() {
 		let xhr = new XMLHttpRequest();
 
 		// on success pass response to transform function
@@ -109,7 +124,7 @@ module.exports = class Count {
 			let count = this.countData.transform(xhr);
 
 			if (count) {
-				os.innerHTML = count;
+				this.os.innerHTML = count;
 			}
 		};
 
@@ -118,7 +133,7 @@ module.exports = class Count {
 	}
 
 	// handle AJAX POST request
-	post(os) {
+	post() {
 		let xhr = new XMLHttpRequest();
 
 		// on success pass response to transform function
@@ -131,7 +146,7 @@ module.exports = class Count {
 			let count = this.countData.transform(xhr);
 
 			if (count) {
-				os.innerHTML = count;
+				this.os.innerHTML = count;
 			}
 		};
 
