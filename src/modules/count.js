@@ -12,7 +12,8 @@ module.exports = class Count {
 
 		// if type is comma separate list create array
 		if (type.includes(',')) {
-			this.typeArr = type.split(',');
+			this.type = type;
+			this.typeArr = this.type.split(',');
 			this.countData = [];
 
 			// check each type supplied is valid
@@ -61,21 +62,20 @@ module.exports = class Count {
 
 	// fetch multiple counts and aggregate
 	getCounts() {
-		console.log('Aggregate multiple counts now');
-
 		this.total = [];
 
-		this.countData.forEach((countData) => {
-			var count = this.storeGet(this.type);
+		var count = this.storeGet(this.type);
 
-			if (count) {
-				this.os.innerHTML = count;
-			}
+		if (count) {
+			this.os.innerHTML = count;
+		}
+
+		this.countData.forEach((countData) => {
 
 			this[countData.type](countData, (num) => {
 				this.total.push(num);
 
-				// total counts length now equals type array length\
+				// total counts length now equals type array length
 				// so aggregate, store and insert into DOM
 				if (this.total.length === this.typeArr.length) {
 					let tot = 0;
@@ -94,12 +94,17 @@ module.exports = class Count {
 	}
 
 	// handle JSONP requests
-	jsonp(countData) {
+	jsonp(countData, cb) {
 		// define random callback and assign transform function
 		let callback = `jsonp_${Math.random().toString().substr(-10)}`;
 		window[callback] = (data) => {
-			let count = countData.transform(data);
-			this.os.innerHTML = count;
+			let count = countData.transform(data) || 0;
+
+			if (cb && typeof cb === 'function') {
+				cb(count);
+			} else {
+				this.os.innerHTML = count;
+			}
 		};
 
 		// append JSONP script tag to page
@@ -111,7 +116,7 @@ module.exports = class Count {
 	}
 
 	// handle AJAX GET request
-	get(countData) {
+	get(countData, cb) {
 		let xhr = new XMLHttpRequest();
 
 		// on success pass response to transform function
@@ -121,9 +126,11 @@ module.exports = class Count {
 				return;
 			}
 
-			let count = countData.transform(xhr);
+			let count = countData.transform(xhr) || 0;
 
-			if (count) {
+			if (cb && typeof cb === 'function') {
+				cb(count);
+			} else {
 				this.os.innerHTML = count;
 			}
 		};
@@ -133,7 +140,7 @@ module.exports = class Count {
 	}
 
 	// handle AJAX POST request
-	post(countData) {
+	post(countData, cb) {
 		let xhr = new XMLHttpRequest();
 
 		// on success pass response to transform function
@@ -143,9 +150,11 @@ module.exports = class Count {
 				return;
 			}
 
-			let count = countData.transform(xhr);
+			let count = countData.transform(xhr) || 0;
 
-			if (count) {
+			if (cb && typeof cb === 'function') {
+				cb(count);
+			} else {
 				this.os.innerHTML = count;
 			}
 		};
