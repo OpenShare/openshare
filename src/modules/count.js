@@ -90,7 +90,7 @@ module.exports = class Count {
 			});
 		});
 
-		this.os.innerHTML = total;
+		this.os.innerHTML = this.total;
 	}
 
 	// handle JSONP requests
