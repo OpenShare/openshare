@@ -74,55 +74,8 @@ module.exports = class OpenShare {
 		return shareUrl.substr(0, shareUrl.length - 1);
 	}
 
-	// test for valid required properties
-	validate(req, obj) {
-
-		req.forEach((val) => {
-
-			// check for OR values
-			if (val.indexOf('|') > -1) {
-
-				var error = true;
-				val = val.split('|');
-
-				val.forEach((childVal) => {
-					if (obj[childVal]) {
-						error = false;
-					}
-				});
-
-				if (error) {
-					this.missingOptions(val);
-				}
-
-			} else if (!obj[val]) {
-				this.missingOptions(val);
-			}
-		});
-
-		return true;
-	}
-
-	missingOptions(options) {
-		let errorMsg = `Open Share ${this.typeCaps}: missing `;
-
-		if (Array.isArray(options)) {
-			options.forEach((option) => {
-				errorMsg += `${option} or `;
-			});
-
-			errorMsg = errorMsg.substring(0, errorMsg.length - 4);
-		} else if (typeof options === 'string') {
-			errorMsg += `${options} attribute`;
-		}
-
-		throw new Error(errorMsg);
-	}
-
 	// set Twitter share URL
 	twitter(data) {
-		this.validate(['url|text'], data);
-
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
 		if (this.ios && data.ios) {
@@ -158,8 +111,6 @@ module.exports = class OpenShare {
 
 	// set Twitter retweet URL
 	twitterRetweet(data) {
-		this.validate(['tweetId'], data);
-
 		// if iOS user and ios data attribute defined
 		if (this.ios && data.ios) {
 			this.iosShareUrl = this.template('twitter://status?', {
@@ -175,8 +126,6 @@ module.exports = class OpenShare {
 
 	// set Twitter like URL
 	twitterLike(data) {
-		this.validate(['tweetId'], data);
-
 		// if iOS user and ios data attribute defined
 		if (this.ios && data.ios) {
 			this.iosShareUrl = this.template('twitter://status?', {
@@ -192,8 +141,6 @@ module.exports = class OpenShare {
 
 	// set Twitter follow URL
 	twitterFollow(data) {
-		this.validate(['screenName|userId'], data);
-
 		// if iOS user and ios data attribute defined
 		if (this.ios && data.ios) {
 			let iosData = data.screenName ? {
@@ -213,61 +160,51 @@ module.exports = class OpenShare {
 
 	// set Facebook share URL
 	facebook(data) {
-		this.validate(['link|caption'], data);
 		this.shareUrl = this.template('https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&', data);
 	}
 
 	// set Facebook send URL
 	facebookSend(data) {
-		this.validate(['link'], data);
 		this.shareUrl = this.template('https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&', data);
 	}
 
 	// set Google share URL
 	google(data) {
-		this.validate(['url'], data);
 		this.shareUrl = this.template('https://plus.google.com/share?', data);
 	}
 
 	// set Pinterest share URL
 	pinterest(data) {
-		this.validate(['media'], data);
 		this.shareUrl = this.template('https://pinterest.com/pin/create/bookmarklet/?', data);
 	}
 
 	// set LinkedIn share URL
 	linkedin(data) {
-		this.validate(['url'], data);
 		this.shareUrl = this.template('http://www.linkedin.com/shareArticle?', data);
 	}
 
 	// set Buffer share URL
 	buffer(data) {
-		this.validate(['url'], data);
 		this.shareUrl = this.template('http://bufferapp.com/add?', data);
 	}
 
 	// set Tumblr share URL
 	tumblr(data) {
-		this.validate(['url'], data);
 		this.shareUrl = this.template('https://www.tumblr.com/widgets/share/tool?', data);
 	}
 
 	// set Reddit share URL
 	reddit(data) {
-		this.validate(['url'], data);
 		this.shareUrl = this.template('http://reddit.com/submit?', data);
 	}
 
 	// set WhatsApp share URL
 	whatsapp(data) {
-		this.validate(['text'], data);
 		this.shareUrl = this.template('whatsapp://send?', data);
 	}
 
 	// set sms share URL
 	sms(data) {
-		this.validate(['body'], data);
 		this.shareUrl = this.template(this.ios ? 'sms:&' : 'sms:?', data);
 	}
 
