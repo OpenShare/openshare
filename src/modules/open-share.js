@@ -80,7 +80,7 @@ module.exports = class OpenShare {
 		req.forEach((val) => {
 
 			// check for OR values
-			if (val.includes('|')) {
+			if (val.indexOf('|') > -1) {
 
 				var error = true;
 				val = val.split('|');

@@ -11,7 +11,7 @@ module.exports = class Count {
 		}
 
 		// if type is comma separate list create array
-		if (type.includes(',')) {
+		if (type.indexOf(',') > -1) {
 			this.type = type;
 			this.typeArr = this.type.split(',');
 			this.countData = [];
