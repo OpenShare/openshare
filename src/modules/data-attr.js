@@ -75,10 +75,15 @@ module.exports = class DataAttr {
 
 			// if dynamic instance then fetch attributes again in case of updates
 			if (openShare.dynamic) {
-				this.setData(openShare, e.currentTarget);
+				this.setData(openShare, os);
 			}
 
 			openShare.share(e);
+
+			// trigger shared event
+			let sharedEvent = document.createEvent('Event');
+			sharedEvent.initEvent('OpenShare.shared', true, true);
+			os.dispatchEvent(sharedEvent);
 		});
 
 		os.setAttribute('data-open-share-node', type);

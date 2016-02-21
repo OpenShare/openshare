@@ -338,6 +338,13 @@
 	// bind to loaded event
 	document.addEventListener('OpenShare.loaded', function() {
 		console.log('Open Share loaded');
+
+		// bind to shared event on each individual node
+		[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
+			node.addEventListener('OpenShare.shared', function(e) {
+				console.log('Open Share Shared', e);
+			});
+		});
 	});
     </script>
 </body>
