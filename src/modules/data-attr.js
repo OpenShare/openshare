@@ -7,8 +7,8 @@ module.exports = class DataAttr {
 		this.OpenShare = OpenShare;
 		this.Count = Count;
 
-		document.addEventListener('open-share-init', this.init.bind(this));
-		this.init();
+		document.addEventListener('OpenShare.load', this.init.bind(this));
+		document.addEventListener('DOMContentLoaded', this.init.bind(this));
 	}
 
 	init() {
@@ -28,6 +28,11 @@ module.exports = class DataAttr {
 		// loop through count node collection
 		let countNodes = container.querySelectorAll('[data-open-share-count]:not([data-open-share-node])');
 		[].forEach.call(countNodes, this.initializeCountNode.bind(this));
+
+		// trigger completed event
+		let loadedEvent = document.createEvent('Event');
+		loadedEvent.initEvent('OpenShare.loaded', true, true);
+		document.dispatchEvent(loadedEvent);
 	}
 
 	initializeCountNode(os) {
@@ -70,10 +75,15 @@ module.exports = class DataAttr {
 
 			// if dynamic instance then fetch attributes again in case of updates
 			if (openShare.dynamic) {
-				this.setData(openShare, e.currentTarget);
+				this.setData(openShare, os);
 			}
 
 			openShare.share(e);
+
+			// trigger shared event
+			let sharedEvent = document.createEvent('Event');
+			sharedEvent.initEvent('OpenShare.shared', true, true);
+			os.dispatchEvent(sharedEvent);
 		});
 
 		os.setAttribute('data-open-share-node', type);

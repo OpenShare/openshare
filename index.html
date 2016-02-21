@@ -325,13 +325,27 @@
                 .appendChild(createOpenShareNode(data));
     }
 
-    // add open share node
-    var data = dynamicNodeData;
-    data.button = 'Dynamic Open Share!';
-    document.querySelector('.open-share-nodes')
-            .appendChild(createOpenShareNode(dynamicNodeData));
+	document.addEventListener('DOMContentLoaded', function() {
+		// add open share node
+	    var data = dynamicNodeData;
+	    data.button = 'Dynamic Open Share!';
+	    document.querySelector('.open-share-nodes')
+	            .appendChild(createOpenShareNode(dynamicNodeData));
 
-    document.dispatchEvent(new Event('open-share-init'));
+	    document.dispatchEvent(new Event('OpenShare.load'));
+	});
+
+	// bind to loaded event
+	document.addEventListener('OpenShare.loaded', function() {
+		console.log('Open Share loaded');
+
+		// bind to shared event on each individual node
+		[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
+			node.addEventListener('OpenShare.shared', function(e) {
+				console.log('Open Share Shared', e);
+			});
+		});
+	});
     </script>
 </body>
 </html>
