@@ -7,8 +7,8 @@ module.exports = class DataAttr {
 		this.OpenShare = OpenShare;
 		this.Count = Count;
 
-		document.addEventListener('open-share-init', this.init.bind(this));
-		this.init();
+		document.addEventListener('OpenShare.load', this.init.bind(this));
+		document.addEventListener('DOMContentLoaded', this.init.bind(this));
 	}
 
 	init() {
@@ -32,10 +32,7 @@ module.exports = class DataAttr {
 		// trigger completed event
 		let loadedEvent = document.createEvent('Event');
 		loadedEvent.initEvent('OpenShare.loaded', true, true);
-
-		document.addEventListener('DOMContentLoaded', function() {
-			document.dispatchEvent(loadedEvent);
-		});
+		document.dispatchEvent(loadedEvent);
 	}
 
 	initializeCountNode(os) {
