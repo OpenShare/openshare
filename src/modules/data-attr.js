@@ -28,6 +28,14 @@ module.exports = class DataAttr {
 		// loop through count node collection
 		let countNodes = container.querySelectorAll('[data-open-share-count]:not([data-open-share-node])');
 		[].forEach.call(countNodes, this.initializeCountNode.bind(this));
+
+		// trigger completed event
+		let loadedEvent = document.createEvent('Event');
+		loadedEvent.initEvent('OpenShare.loaded', true, true);
+
+		document.addEventListener('DOMContentLoaded', function() {
+			document.dispatchEvent(loadedEvent);
+		});
 	}
 
 	initializeCountNode(os) {

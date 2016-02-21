@@ -332,6 +332,11 @@
             .appendChild(createOpenShareNode(dynamicNodeData));
 
     document.dispatchEvent(new Event('open-share-init'));
+
+	// bind to loaded event
+	document.addEventListener('OpenShare.loaded', function() {
+		console.log('Open Share loaded');
+	});
     </script>
 </body>
 </html>
