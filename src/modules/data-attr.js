@@ -3,8 +3,9 @@
  */
 module.exports = class DataAttr {
 
-	constructor(OpenShare, Count) {
+	constructor(OpenShare, Transforms, Count) {
 		this.OpenShare = OpenShare;
+		this.Transforms = Transforms;
 		this.Count = Count;
 
 		document.addEventListener('OpenShare.load', this.init.bind(this));
@@ -60,7 +61,13 @@ module.exports = class DataAttr {
 			type = type.replace(group, nextChar.toUpperCase());
 		}
 
-		openShare = new this.OpenShare(type);
+		let transform = this.Transforms[type];
+
+		if (!transform) {
+			throw new Error(`Open Share: ${type} is an invalid type`);
+		}
+
+		openShare = new this.OpenShare(type, transform);
 
 		// specify if this is a dynamic instance
 		if (os.getAttribute('data-open-share-dynamic')) {
