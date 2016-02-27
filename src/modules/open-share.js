@@ -6,7 +6,7 @@ module.exports = class OpenShare {
 	constructor(type, transform) {
 		this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 		this.type = type;
-		this.transform = transform.bind(this);
+		this.transform = transform;
 		this.dynamic = false;
 
 		// capitalized type
@@ -16,7 +16,18 @@ module.exports = class OpenShare {
 	// returns function named as type set in constructor
 	// e.g twitter()
 	setData(data) {
-		return this.transform(data);
+		// if iOS user and ios data attribute defined
+		// build iOS URL scheme as single string
+		if (this.ios && data.ios) {
+			this.iosShareUrl = this.template('twitter://post?', {
+				message: this.transform(data, true)
+			});
+		} else {
+			this.shareUrl = this.template(
+				'https://twitter.com/share?',
+				this.transform(data)
+			);
+		}
 	}
 
 	// open share URL defined in individual platform functions

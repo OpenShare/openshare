@@ -5,10 +5,10 @@
 module.exports = {
 
 	// set Twitter share URL
-	twitter: function(data) {
+	twitter: function(data, ios = false) {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
-		if (this.ios && data.ios) {
+		if (ios) {
 
 			let message = ``;
 
@@ -31,12 +31,11 @@ module.exports = {
 				message += ` via ${data.via}`;
 			}
 
-			this.iosShareUrl = this.template('twitter://post?', {
-				message: message
-			});
-		}
+			return message;
 
-		this.shareUrl = this.template('https://twitter.com/share?', data);
+		} else {
+			return data;
+		}
 	},
 
 	// set Twitter retweet URL
