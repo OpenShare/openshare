@@ -1,4 +1,4 @@
-module.exports = function(OS, Transforms) {
+module.exports = function(OS, Transforms, Events) {
 
 	function OpenShare(element, data) {
 		var os = new OS(data.type, Transforms[data.type]);
@@ -14,10 +14,7 @@ module.exports = function(OS, Transforms) {
 
 			os.share(e);
 
-			// trigger shared event
-			let sharedEvent = document.createEvent('Event');
-			sharedEvent.initEvent('OpenShare.shared', true, true);
-			element.dispatchEvent(sharedEvent);
+			Events.trigger(element, 'shared');
 		});
 	}
 

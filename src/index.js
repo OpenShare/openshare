@@ -2,10 +2,11 @@
 
 	var DataAttr = require('./modules/data-attr'),
 		API = require('./modules/api'),
+		Events = require('./modules/events'),
 		OpenShare = require('./modules/open-share'),
 		Transforms = require('./modules/transforms'),
 		Count = require('./modules/count');
 
-	new DataAttr(OpenShare, Transforms, Count);
-	new API(OpenShare, Transforms);
+	DataAttr(OpenShare, Count, Transforms, Events);
+	API(OpenShare, Transforms, Events);
 })();
