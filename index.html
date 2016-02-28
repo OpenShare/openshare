@@ -287,6 +287,8 @@
         </a>
     </div>
 
+	<a href="#" data-api-example>API EXAMPLE</a>
+
     <div class="open-share-watch" data-open-share-watch>
 
     </div>
@@ -345,6 +347,14 @@
 				console.log('Open Share Shared', e);
 			});
 		});
+	});
+
+	var os1 = new OpenShare(document.querySelector('[data-api-example]'), {
+		type: 'twitter',
+		url: 'http://digitalsurgeons.com',
+		via: 'digitalsurgeons',
+		text: 'Digital Surgeons',
+		hashtags: 'forwardobsessed'
 	});
     </script>
 </body>
