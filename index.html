@@ -42,6 +42,7 @@
         display: block;
         margin: 20px auto;
         font-size: 20px;
+		font-weight: bold;
         text-align: center;
         padding: 20px;
         cursor: pointer;
@@ -123,7 +124,7 @@
     <div class="open-share-nodes">
 
 		<p>
-			<strong>Total <a href="http://digitalsurgeons.com" target="_blank">DigitalSurgeons.com</a> Shares:<strong>
+			<strong>Total <a href="http://digitalsurgeons.com" target="_blank">DigitalSurgeons.com</a> Shares:</strong>
 			<span
 				data-open-share-count="google,linkedin,reddit,pinterest"
 				data-open-share-count-url="http://www.digitalsurgeons.com"></span>
@@ -285,9 +286,27 @@
             <span class="fa fa-envelope"></span>
             Email
         </a>
-    </div>
 
-	<a href="#" data-api-example>API EXAMPLE</a>
+		<a class="open-share-link twitter" data-api-example="twitter">
+			<span class="fa fa-twitter"></span>
+			Tweet
+		</a>
+
+		<a class="open-share-link facebook" data-api-example="facebook">
+			<span class="fa fa-facebook"></span>
+			Share
+		</a>
+
+		<a class="open-share-link pinterest" data-api-example="pinterest">
+			<span class="fa fa-pinterest"></span>
+			Pin
+		</a>
+
+		<a class="open-share-link email" data-api-example="email">
+			<span class="fa fa-envelope"></span>
+			Email
+		</a>
+    </div>
 
     <div class="open-share-watch" data-open-share-watch>
 
@@ -348,14 +367,41 @@
 			});
 		});
 
-		var os1 = new OpenShare(document.querySelector('[data-api-example]'), {
-			type: 'twitter',
-			bindClick: true,
-			url: 'http://digitalsurgeons.com',
-			via: 'digitalsurgeons',
-			text: 'Digital Surgeons',
-			hashtags: 'forwardobsessed'
-		});
+		var examples = {
+			twitter: new OpenShare(document.querySelector('[data-api-example="twitter"]'), {
+				type: 'twitter',
+				bindClick: true,
+				url: 'http://digitalsurgeons.com',
+				via: 'digitalsurgeons',
+				text: 'Digital Surgeons',
+				hashtags: 'forwardobsessed'
+			}),
+
+			facebook: new OpenShare(document.querySelector('[data-api-example="facebook"]'), {
+				type: 'facebook',
+				bindClick: true,
+				link: 'http://digitalsurgeons.com',
+				picture: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
+				caption: 'Digital Surgeons',
+				description: 'forwardobsessed'
+			}),
+
+			pinterest: new OpenShare(document.querySelector('[data-api-example="pinterest"]'), {
+				type: 'pinterest',
+				bindClick: true,
+				url: 'http://digitalsurgeons.com',
+				media: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
+				description: 'Digital Surgeons'
+			}),
+
+			email: new OpenShare(document.querySelector('[data-api-example="email"]'), {
+				type: 'email',
+				bindClick: true,
+				to: 'techroom@digitalsurgeons.com',
+				subject: 'Digital Surgeons',
+				body: 'Forward Obsessed'
+			})
+		};
 	});
     </script>
 </body>
