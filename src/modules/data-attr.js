@@ -71,16 +71,11 @@ module.exports = function(OpenShare, Count, Transforms, Events) {
 
 		// open share dialog on click
 		os.addEventListener('click', (e) => {
+			share(e, os, openShare);
+		});
 
-			// if dynamic instance then fetch attributes again in case of updates
-			if (openShare.dynamic) {
-				setData(openShare, os);
-			}
-
-			openShare.share(e);
-
-			// trigger shared event
-			Events.trigger(os, 'shared');
+		os.addEventListener('OpenShare.trigger', (e) => {
+			share(e, os, openShare);
 		});
 
 		os.setAttribute('data-open-share-node', type);
@@ -97,6 +92,18 @@ module.exports = function(OpenShare, Count, Transforms, Events) {
 				childList: true
 			});
 		});
+	}
+
+	function share(e, os, openShare) {
+		// if dynamic instance then fetch attributes again in case of updates
+		if (openShare.dynamic) {
+			setData(openShare, os);
+		}
+
+		openShare.share(e);
+
+		// trigger shared event
+		Events.trigger(os, 'shared');
 	}
 
 	function setData(osInstance, osElement) {
