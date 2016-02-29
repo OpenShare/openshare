@@ -26,10 +26,10 @@ module.exports = class OpenShare {
 			});
 
 			this.mobileShareUrl = this.template(transform.url, transform.data);
-		} else {
-			let transform = this.transform(data);
-			this.shareUrl = this.template(transform.url, transform.data);
 		}
+
+		let transform = this.transform(data);
+		this.shareUrl = this.template(transform.url, transform.data);
 	}
 
 	// open share URL defined in individual platform functions
@@ -45,12 +45,12 @@ module.exports = class OpenShare {
 				var end = (new Date()).valueOf();
 
 				// if the user is still here, fall back to web
-				if (end - start > 3000) {
+				if (end - start > 1500) {
 					return;
 				}
 
 				window.open(this.shareUrl, 'OpenShare');
-			}, 2000);
+			}, 1500);
 
 			// open mailto links in same window
 		} else if (this.type === 'email') {
