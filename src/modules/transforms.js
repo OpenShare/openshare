@@ -227,6 +227,20 @@ module.exports = {
 		};
 	},
 
+	// set Flickr follow URL
+	flickr: function(data, mobile = false) {
+		// if iOS user
+		if (mobile && data.mobile) {
+			return {
+				url: `flickr://photos/${data.username}/`
+			};
+		} else {
+			return {
+				url: `http://www.flickr.com/photos/${data.username}/`
+			};
+		}
+	},
+
 	// set WhatsApp share URL
 	whatsapp: function(data) {
 		return {
