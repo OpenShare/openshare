@@ -144,6 +144,13 @@ module.exports = {
 		}
 	},
 
+	// set Snapchat follow URL
+	snapchat: function(data) {
+		return {
+			url: `snapchat://add/${data.username}/`
+		};
+	},
+
 	// set Google share URL
 	google: function(data) {
 		return {
