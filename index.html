@@ -53,6 +53,16 @@
         position: relative;
     }
 
+	.open-share-link.mobile-only {
+		display: none;
+	}
+
+	@media (max-width: 769px) {
+		.open-share-link.mobile-only {
+			display: block;
+		}
+	}
+
 	.open-share-link .fa,
 	.open-share-link [class^="socicon-"],
 	.open-share-link [class*=" socicon-"] {
@@ -243,7 +253,7 @@
             Subscribe
         </a>
 
-		<a class="open-share-link instagram"
+		<a class="open-share-link instagram mobile-only"
             data-open-share="instagram">
 
             <span class="socicon-instagram"></span>
@@ -259,7 +269,7 @@
             Follow
         </a>
 
-		<a class="open-share-link snapchat"
+		<a class="open-share-link snapchat mobile-only"
             data-open-share="snapchat"
             data-open-share-username="adam.chambaz">
 
@@ -342,7 +352,7 @@
             Follow
         </a>
 
-        <a class="open-share-link whatsapp"
+        <a class="open-share-link whatsapp mobile-only"
             data-open-share="whatsapp"
             data-open-share-text="Digital Surgeons">
 
@@ -350,7 +360,7 @@
             Send
         </a>
 
-        <a class="open-share-link sms"
+        <a class="open-share-link sms mobile-only"
             data-open-share="sms"
             data-open-share-body="Digital Surgeons">
 
