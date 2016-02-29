@@ -134,11 +134,11 @@ module.exports = {
 		// if iOS user
 		if (mobile && data.mobile) {
 			return {
-				url: `youtube:${data.video}/`
+				url: `youtube:${data.video}?`
 			};
 		} else {
 			return {
-				url: `https://www.youtube.com/watch?v=${data.video}/`
+				url: `https://www.youtube.com/watch?v=${data.video}?`
 			};
 		}
 	},
@@ -148,17 +148,24 @@ module.exports = {
 		// if iOS user
 		if (mobile && data.mobile) {
 			return {
-				url: `youtube://www.youtube.com/user/${data.user}/`
+				url: `youtube://www.youtube.com/user/${data.user}?`
 			};
 		} else {
 			return {
-				url: `https://www.youtube.com/user/${data.user}/`
+				url: `https://www.youtube.com/user/${data.user}?`
 			};
 		}
 	},
 
 	// set Instagram follow URL
-	instagram: function(data, mobile = false) {
+	instagram: function(data) {
+		return {
+			url: `instagram://camera?`
+		};
+	},
+
+	// set Instagram follow URL
+	instagramFollow: function(data, mobile = false) {
 		// if iOS user
 		if (mobile && data.mobile) {
 			return {
@@ -167,7 +174,7 @@ module.exports = {
 			};
 		} else {
 			return {
-				url: `http://www.instagram.com/${data.username}/`
+				url: `http://www.instagram.com/${data.username}?`
 			};
 		}
 	},
@@ -175,7 +182,7 @@ module.exports = {
 	// set Snapchat follow URL
 	snapchat: function(data) {
 		return {
-			url: `snapchat://add/${data.username}/`
+			url: `snapchat://add/${data.username}?`
 		};
 	},
 
@@ -232,11 +239,11 @@ module.exports = {
 		// if iOS user
 		if (mobile && data.mobile) {
 			return {
-				url: `flickr://photos/${data.username}/`
+				url: `flickr://photos/${data.username}?`
 			};
 		} else {
 			return {
-				url: `http://www.flickr.com/photos/${data.username}/`
+				url: `http://www.flickr.com/photos/${data.username}?`
 			};
 		}
 	},
