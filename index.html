@@ -9,7 +9,8 @@
 	<meta name="description" content="Open Share by Digital Surgeons">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
 
     <style>
     body {
@@ -52,12 +53,23 @@
         position: relative;
     }
 
-    .open-share-link .fa {
+	.open-share-link .fa,
+	.open-share-link [class^="socicon-"],
+	.open-share-link [class*=" socicon-"] {
         transform: translateY(-50%);
         left: 20px;
         position: absolute;
-        top: 50%;
+		font-size: 25px;
     }
+
+	.open-share-link .fa {
+		top: 49%;
+	}
+
+	.open-share-link [class^="socicon-"],
+	.open-share-link [class*=" socicon-"] {
+		top: 54%;
+	}
 
     .create-node {
         border-top: solid 1px #ccc;
@@ -82,6 +94,14 @@
 
 	.instagram {
 		background: #3f729b;
+	}
+
+	.snapchat {
+		background: #f0dc30;
+	}
+
+	.socicon-snapchat:before {
+		font-weight: 900 !important;
 	}
 
     .google {
@@ -141,7 +161,7 @@
             data-open-share-text="Digital Surgeons"
             data-open-share-hashtags="forwardobsessed">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Tweet
         </a>
 
@@ -151,7 +171,7 @@
             data-open-share-related="digitalsurgeons,chambaz,audiocrawl"
             data-open-share-mobile="true">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Retweet
         </a>
 
@@ -161,7 +181,7 @@
             data-open-share-related="digitalsurgeons,chambaz,audiocrawl"
             data-open-share-mobile="true">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Like
         </a>
 
@@ -171,7 +191,7 @@
             data-open-share-user-id="18189130"
             data-open-share-mobile="true">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Follow
         </a>
 
@@ -182,7 +202,7 @@
             data-open-share-caption="Digital Surgeons"
             data-open-share-description="Forward Obsessed">
 
-            <span class="fa fa-facebook"></span>
+            <span class="socicon-facebook"></span>
             Share
             <span data-open-share-count="facebook"
                   data-open-share-count-url="http://digitalsurgeons.com"
@@ -193,7 +213,7 @@
             data-open-share="facebook-send"
             data-open-share-link="http://digitalsurgeons.com">
 
-            <span class="fa fa-facebook"></span>
+            <span class="socicon-facebook"></span>
             Send
         </a>
 
@@ -202,7 +222,15 @@
             data-open-share-username="digitalsurgeons"
 			data-open-share-mobile="true">
 
-            <span class="fa fa-instagram"></span>
+            <span class="socicon-instagram"></span>
+            Follow
+        </a>
+
+		<a class="open-share-link snapchat"
+            data-open-share="snapchat"
+            data-open-share-username="adam.chambaz">
+
+            <span class="socicon-snapchat"></span>
             Follow
         </a>
 
@@ -210,7 +238,7 @@
             data-open-share="google"
             data-open-share-url="http://digitalsurgeons.com">
 
-            <span class="fa fa-google-plus"></span>
+            <span class="socicon-googleplus"></span>
             Share
             <span data-open-share-count="google"
                   data-open-share-count-url="http://digitalsurgeons.com"
@@ -223,7 +251,7 @@
             data-open-share-media="http://www.digitalsurgeons.com/img/about/bg_office_team.jpg"
             data-open-share-description="Digital Surgeons">
 
-            <span class="fa fa-pinterest"></span>
+            <span class="socicon-pinterest"></span>
             Pin
             <span data-open-share-count="pinterest"
                   data-open-share-count-url="http://facebook.com"
@@ -235,7 +263,7 @@
             data-open-share-url="http://digitalsurgeons.com"
             data-open-share-title="Digital Surgeons">
 
-            <span class="fa fa-linkedin"></span>
+            <span class="socicon-linkedin"></span>
             Share
             <span data-open-share-count="linkedin"
                   data-open-share-count-url="http://digitalsurgeons.com"
@@ -247,7 +275,7 @@
             data-open-share-url="http://digitalsurgeons.com"
             data-open-share-text="Digital Surgeons">
 
-            <span class="fa fa-buffer"></span>
+            <span class="socicon-buffer"></span>
             Buffer
         </a>
 
@@ -257,7 +285,7 @@
             data-open-share-title="Digital Surgeons"
             data-open-share-caption="Forward Obsessed">
 
-            <span class="fa fa-tumblr"></span>
+            <span class="socicon-tumblr"></span>
             Share
         </a>
 
@@ -266,7 +294,7 @@
             data-open-share-url="http://digitalsurgeons.com"
             data-open-share-title="Digital Surgeons">
 
-            <span class="fa fa-reddit"></span>
+            <span class="socicon-reddit"></span>
             Share
             <span data-open-share-count="reddit"
                   data-open-share-count-url="http://facebook.com"
@@ -277,7 +305,7 @@
             data-open-share="whatsapp"
             data-open-share-text="Digital Surgeons">
 
-            <span class="fa fa-whatsapp"></span>
+            <span class="socicon-whatsapp"></span>
             Send
         </a>
 
@@ -300,17 +328,17 @@
         </a>
 
 		<a class="open-share-link twitter" data-api-example="twitter">
-			<span class="fa fa-twitter"></span>
+			<span class="socicon-twitter"></span>
 			Tweet
 		</a>
 
 		<a class="open-share-link facebook" data-api-example="facebook">
-			<span class="fa fa-facebook"></span>
+			<span class="socicon-facebook"></span>
 			Share
 		</a>
 
 		<a class="open-share-link pinterest" data-api-example="pinterest">
-			<span class="fa fa-pinterest"></span>
+			<span class="socicon-pinterest"></span>
 			Pin
 		</a>
 
