@@ -18,7 +18,7 @@ module.exports = class OpenShare {
 	setData(data) {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
-		if (this.ios && data.ios) {
+		if (this.ios) {
 			let transform = this.transform(data, true);
 			this.iosShareUrl = this.template(transform.url, transform.data);
 		} else {

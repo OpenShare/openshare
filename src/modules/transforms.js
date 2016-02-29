@@ -129,6 +129,21 @@ module.exports = {
 		};
 	},
 
+	// set Instagram follow URL
+	instagram: function(data, ios = false) {
+		// if iOS user
+		if (ios) {
+			return {
+				url: 'instagram://user?',
+				data: data
+			};
+		} else {
+			return {
+				url: `http://www.instagram.com/${data.username}/`
+			};
+		}
+	},
+
 	// set Google share URL
 	google: function(data) {
 		return {

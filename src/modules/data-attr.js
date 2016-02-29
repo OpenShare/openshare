@@ -117,6 +117,7 @@ module.exports = function(OpenShare, Count, Transforms, Events) {
 			related: osElement.getAttribute('data-open-share-related'),
 			screenName: osElement.getAttribute('data-open-share-screen-name'),
 			userId: osElement.getAttribute('data-open-share-user-id'),
+			username: osElement.getAttribute('data-open-share-username'),
 			link: osElement.getAttribute('data-open-share-link'),
 			picture: osElement.getAttribute('data-open-share-picture'),
 			caption: osElement.getAttribute('data-open-share-caption'),
