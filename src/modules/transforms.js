@@ -129,6 +129,34 @@ module.exports = {
 		};
 	},
 
+	// set YouTube play URL
+	youtube: function(data, mobile = false) {
+		// if iOS user
+		if (mobile && data.mobile) {
+			return {
+				url: `youtube:${data.video}/`
+			};
+		} else {
+			return {
+				url: `https://www.youtube.com/watch?v=${data.video}/`
+			};
+		}
+	},
+
+	// set YouTube subcribe URL
+	youtubeSubscribe: function(data, mobile = false) {
+		// if iOS user
+		if (mobile && data.mobile) {
+			return {
+				url: `youtube://www.youtube.com/user/${data.user}/`
+			};
+		} else {
+			return {
+				url: `https://www.youtube.com/user/${data.user}/`
+			};
+		}
+	},
+
 	// set Instagram follow URL
 	instagram: function(data, mobile = false) {
 		// if iOS user
