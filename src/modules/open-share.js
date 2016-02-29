@@ -5,6 +5,7 @@ module.exports = class OpenShare {
 
 	constructor(type, transform) {
 		this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+		this.android = /android/.test(navigator.userAgent) && !window.MSStream;
 		this.type = type;
 		this.dynamic = false;
 		this.transform = transform;
@@ -18,9 +19,13 @@ module.exports = class OpenShare {
 	setData(data) {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
-		if (this.ios) {
-			let transform = this.transform(data, true);
-			this.iosShareUrl = this.template(transform.url, transform.data);
+		if (this.ios || this.android) {
+			let transform = this.transform(data, {
+				ios: this.ios,
+				android: this.android
+			});
+
+			this.mobileShareUrl = this.template(transform.url, transform.data);
 		} else {
 			let transform = this.transform(data);
 			this.shareUrl = this.template(transform.url, transform.data);
@@ -31,9 +36,9 @@ module.exports = class OpenShare {
 	share(e) {
 		// if iOS share URL has been set then use timeout hack
 		// test for native app and fall back to web
-		if (this.iosShareUrl) {
+		if (this.mobileShareUrl) {
 
-			window.location = this.iosShareUrl;
+			window.location = this.mobileShareUrl;
 			var start = (new Date()).valueOf();
 
 			setTimeout(() => {

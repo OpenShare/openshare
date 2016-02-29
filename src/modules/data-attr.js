@@ -112,7 +112,6 @@ module.exports = function(OpenShare, Count, Transforms, Events) {
 			text: osElement.getAttribute('data-open-share-text'),
 			via: osElement.getAttribute('data-open-share-via'),
 			hashtags: osElement.getAttribute('data-open-share-hashtags'),
-			ios: osElement.getAttribute('data-open-share-ios'),
 			tweetId: osElement.getAttribute('data-open-share-tweet-id'),
 			related: osElement.getAttribute('data-open-share-related'),
 			screenName: osElement.getAttribute('data-open-share-screen-name'),
@@ -126,7 +125,8 @@ module.exports = function(OpenShare, Count, Transforms, Events) {
 			media: osElement.getAttribute('data-open-share-media'),
 			to: osElement.getAttribute('data-open-share-to'),
 			subject: osElement.getAttribute('data-open-share-subject'),
-			body: osElement.getAttribute('data-open-share-body')
+			body: osElement.getAttribute('data-open-share-body'),
+			mobile: osElement.getAttribute('data-open-share-mobile')
 		});
 	}
 };

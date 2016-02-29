@@ -6,10 +6,10 @@
 module.exports = {
 
 	// set Twitter share URL
-	twitter: function(data, ios = false) {
+	twitter: function(data, mobile = false) {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
-		if (ios) {
+		if (mobile) {
 
 			let message = ``;
 
@@ -47,9 +47,9 @@ module.exports = {
 	},
 
 	// set Twitter retweet URL
-	twitterRetweet: function(data, ios = false) {
+	twitterRetweet: function(data, mobile = false) {
 		// if iOS user and ios data attribute defined
-		if (ios && data.ios) {
+		if (mobile && data.mobile) {
 			return {
 				url: 'twitter://status?',
 				data: {
@@ -68,9 +68,9 @@ module.exports = {
 	},
 
 	// set Twitter like URL
-	twitterLike: function(data, ios = false) {
+	twitterLike: function(data, mobile = false) {
 		// if iOS user and ios data attribute defined
-		if (ios && data.ios) {
+		if (mobile && data.mobile) {
 			return {
 				url: 'twitter://status?',
 				data: {
@@ -89,10 +89,10 @@ module.exports = {
 	},
 
 	// set Twitter follow URL
-	twitterFollow: function(data, ios = false) {
+	twitterFollow: function(data, mobile = false) {
 		// if iOS user and ios data attribute defined
-		if (ios && data.ios) {
-			let iosData = data.screenName ? {
+		if (mobile && data.mobile) {
+			let mobileData = data.screenName ? {
 				'screen_name': data.screenName
 			} : {
 				'id': data.userId
@@ -100,7 +100,7 @@ module.exports = {
 
 			return {
 				url: 'twitter://user?',
-				data: iosData
+				data: mobileData
 			};
 		}
 
@@ -130,9 +130,9 @@ module.exports = {
 	},
 
 	// set Instagram follow URL
-	instagram: function(data, ios = false) {
+	instagram: function(data, mobile = false) {
 		// if iOS user
-		if (ios) {
+		if (mobile && data.mobile) {
 			return {
 				url: 'instagram://user?',
 				data: data
@@ -201,9 +201,9 @@ module.exports = {
 	},
 
 	// set sms share URL
-	sms: function(data, ios = false) {
+	sms: function(data, mobile = false) {
 		return {
-			url: ios ? 'sms:&' : 'sms:?',
+			url: mobile ? 'sms:&' : 'sms:?',
 			data: data
 		};
 	},
