@@ -37,20 +37,20 @@ module.exports = class OpenShare {
 		// if iOS share URL has been set then use timeout hack
 		// test for native app and fall back to web
 		if (this.mobileShareUrl) {
-
-			window.location = this.mobileShareUrl;
 			var start = (new Date()).valueOf();
 
 			setTimeout(() => {
 				var end = (new Date()).valueOf();
 
 				// if the user is still here, fall back to web
-				if (end - start > 1500) {
+				if (end - start > 1600) {
 					return;
 				}
 
-				window.open(this.shareUrl, 'OpenShare');
+				window.location = this.shareUrl;
 			}, 1500);
+
+			window.location = this.mobileShareUrl;
 
 			// open mailto links in same window
 		} else if (this.type === 'email') {
