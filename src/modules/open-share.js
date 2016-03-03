@@ -5,7 +5,6 @@ module.exports = class OpenShare {
 
 	constructor(type, transform) {
 		this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-		this.android = /android/.test(navigator.userAgent) && !window.MSStream;
 		this.type = type;
 		this.dynamic = false;
 		this.transform = transform;
@@ -19,12 +18,8 @@ module.exports = class OpenShare {
 	setData(data) {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
-		if (this.ios || this.android) {
-			let transform = this.transform(data, {
-				ios: this.ios,
-				android: this.android
-			});
-
+		if (this.ios) {
+			let transform = this.transform(data, true);
 			this.mobileShareUrl = this.template(transform.url, transform.data);
 		}
 

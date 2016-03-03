@@ -6,10 +6,10 @@
 module.exports = {
 
 	// set Twitter share URL
-	twitter: function(data, mobile = false) {
+	twitter: function(data, ios = false) {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
-		if (mobile) {
+		if (ios && data.ios) {
 
 			let message = ``;
 
@@ -47,9 +47,9 @@ module.exports = {
 	},
 
 	// set Twitter retweet URL
-	twitterRetweet: function(data, mobile = false) {
+	twitterRetweet: function(data, ios = false) {
 		// if iOS user and ios data attribute defined
-		if (mobile && data.mobile) {
+		if (ios && data.ios) {
 			return {
 				url: 'twitter://status?',
 				data: {
@@ -68,9 +68,9 @@ module.exports = {
 	},
 
 	// set Twitter like URL
-	twitterLike: function(data, mobile = false) {
+	twitterLike: function(data, ios = false) {
 		// if iOS user and ios data attribute defined
-		if (mobile && data.mobile) {
+		if (ios && data.ios) {
 			return {
 				url: 'twitter://status?',
 				data: {
@@ -89,10 +89,10 @@ module.exports = {
 	},
 
 	// set Twitter follow URL
-	twitterFollow: function(data, mobile = false) {
+	twitterFollow: function(data, ios = false) {
 		// if iOS user and ios data attribute defined
-		if (mobile && data.mobile) {
-			let mobileData = data.screenName ? {
+		if (ios && data.ios) {
+			let iosData = data.screenName ? {
 				'screen_name': data.screenName
 			} : {
 				'id': data.userId
@@ -100,7 +100,7 @@ module.exports = {
 
 			return {
 				url: 'twitter://user?',
-				data: mobileData
+				data: iosData
 			};
 		}
 
@@ -130,9 +130,9 @@ module.exports = {
 	},
 
 	// set YouTube play URL
-	youtube: function(data, mobile = false) {
+	youtube: function(data, ios = false) {
 		// if iOS user
-		if (mobile && data.mobile) {
+		if (ios && data.ios) {
 			return {
 				url: `youtube:${data.video}?`
 			};
@@ -144,9 +144,9 @@ module.exports = {
 	},
 
 	// set YouTube subcribe URL
-	youtubeSubscribe: function(data, mobile = false) {
+	youtubeSubscribe: function(data, ios = false) {
 		// if iOS user
-		if (mobile && data.mobile) {
+		if (ios && data.ios) {
 			return {
 				url: `youtube://www.youtube.com/user/${data.user}?`
 			};
@@ -165,9 +165,9 @@ module.exports = {
 	},
 
 	// set Instagram follow URL
-	instagramFollow: function(data, mobile = false) {
+	instagramFollow: function(data, ios = false) {
 		// if iOS user
-		if (mobile && data.mobile) {
+		if (ios && data.ios) {
 			return {
 				url: 'instagram://user?',
 				data: data
@@ -235,9 +235,9 @@ module.exports = {
 	},
 
 	// set Flickr follow URL
-	flickr: function(data, mobile = false) {
+	flickr: function(data, ios = false) {
 		// if iOS user
-		if (mobile && data.mobile) {
+		if (ios && data.ios) {
 			return {
 				url: `flickr://photos/${data.username}?`
 			};
@@ -257,9 +257,9 @@ module.exports = {
 	},
 
 	// set sms share URL
-	sms: function(data, mobile = false) {
+	sms: function(data, ios = false) {
 		return {
-			url: mobile ? 'sms:&' : 'sms:?',
+			url: ios ? 'sms:&' : 'sms:?',
 			data: data
 		};
 	},
