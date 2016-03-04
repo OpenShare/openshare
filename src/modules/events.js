@@ -1,3 +1,6 @@
+/**
+ * Trigger custom OpenShare namespaced event
+ */
 module.exports = {
 	trigger: function(element, event) {
 		let ev = document.createEvent('Event');

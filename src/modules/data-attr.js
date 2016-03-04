@@ -128,7 +128,7 @@ module.exports = function(OpenShare, Count, Transforms, Events) {
 			to: osElement.getAttribute('data-open-share-to'),
 			subject: osElement.getAttribute('data-open-share-subject'),
 			body: osElement.getAttribute('data-open-share-body'),
-			mobile: osElement.getAttribute('data-open-share-mobile')
+			ios: osElement.getAttribute('data-open-share-ios')
 		});
 	}
 };

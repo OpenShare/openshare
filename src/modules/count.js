@@ -1,5 +1,5 @@
 /**
- * OpenShare generates a single share link
+ * Generate share count instance from one to many networks
  */
 module.exports = class Count {
 
