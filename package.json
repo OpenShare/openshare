@@ -1,6 +1,20 @@
 {
   "name": "open-share",
-  "version": "0.5.2",
+  "version": "0.6.2",
+  "description": "Social sharing for developers",
+  "main": "dist/open-share.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsurgeons/OpenShare.git"
+  },
+  "keywords": [
+    "social",
+    "share",
+    "sharing"
+  ],
+  "author": {
+    "name": "Digital Surgeons"
+  },
   "devDependencies": {
     "babel": "^5.8.23",
     "browserify": "^11.2.0",

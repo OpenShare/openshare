@@ -9,7 +9,8 @@
 	<meta name="description" content="Open Share by Digital Surgeons">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
 
     <style>
     body {
@@ -17,6 +18,7 @@
         text-transform: uppercase;
         margin: 0;
         padding: 20px;
+		text-align: center;
     }
 
     .open-share-count {
@@ -41,6 +43,7 @@
         display: block;
         margin: 20px auto;
         font-size: 20px;
+		font-weight: bold;
         text-align: center;
         padding: 20px;
         cursor: pointer;
@@ -50,12 +53,23 @@
         position: relative;
     }
 
-    .open-share-link .fa {
+	.open-share-link .fa,
+	.open-share-link [class^="socicon-"],
+	.open-share-link [class*=" socicon-"] {
         transform: translateY(-50%);
         left: 20px;
         position: absolute;
-        top: 50%;
+		font-size: 25px;
     }
+
+	.open-share-link .fa {
+		top: 49%;
+	}
+
+	.open-share-link [class^="socicon-"],
+	.open-share-link [class*=" socicon-"] {
+		top: 54%;
+	}
 
     .create-node {
         border-top: solid 1px #ccc;
@@ -77,6 +91,22 @@
     .facebook {
         background: #3b5998;
     }
+
+	.youtube {
+		background: #cd201f;
+	}
+
+	.instagram {
+		background: #3f729b;
+	}
+
+	.snapchat {
+		background: #f0dc30;
+	}
+
+	.socicon-snapchat:before {
+		font-weight: 900 !important;
+	}
 
     .google {
         background: #dc4e41;
@@ -102,6 +132,10 @@
         background: #5f99cf;
     }
 
+	.flickr {
+        background: #ff0084;
+    }
+
     .whatsapp {
         background: #73cd55;
     }
@@ -121,15 +155,21 @@
 
     <div class="open-share-nodes">
 
+		<p>
+			<strong>Total <a href="http://digitalsurgeons.com" target="_blank">DigitalSurgeons.com</a> Shares:</strong>
+			<span
+				data-open-share-count="google,linkedin,reddit,pinterest"
+				data-open-share-count-url="http://www.digitalsurgeons.com"></span>
+		</p>
+
         <a class="open-share-link twitter"
             data-open-share="twitter"
             data-open-share-url="http://digitalsurgeons.com"
             data-open-share-via="digitalsurgeons"
             data-open-share-text="Digital Surgeons"
-            data-open-share-hashtags="forwardobsessed"
-            data-open-share-ios="true">
+            data-open-share-hashtags="forwardobsessed">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Tweet
         </a>
 
@@ -139,7 +179,7 @@
             data-open-share-related="digitalsurgeons,chambaz,audiocrawl"
             data-open-share-ios="true">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Retweet
         </a>
 
@@ -149,7 +189,7 @@
             data-open-share-related="digitalsurgeons,chambaz,audiocrawl"
             data-open-share-ios="true">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Like
         </a>
 
@@ -159,7 +199,7 @@
             data-open-share-user-id="18189130"
             data-open-share-ios="true">
 
-            <span class="fa fa-twitter"></span>
+            <span class="socicon-twitter"></span>
             Follow
         </a>
 
@@ -170,10 +210,10 @@
             data-open-share-caption="Digital Surgeons"
             data-open-share-description="Forward Obsessed">
 
-            <span class="fa fa-facebook"></span>
+            <span class="socicon-facebook"></span>
             Share
             <span data-open-share-count="facebook"
-                  data-open-share-count-url="http://digitalsurgeons.com"
+                  data-open-share-count-url="https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga"
                   class="open-share-count"></span>
         </a>
 
@@ -181,15 +221,57 @@
             data-open-share="facebook-send"
             data-open-share-link="http://digitalsurgeons.com">
 
-            <span class="fa fa-facebook"></span>
+            <span class="socicon-facebook"></span>
             Send
+        </a>
+
+		<a class="open-share-link youtube"
+            data-open-share="youtube"
+            data-open-share-video="9DMuLsWzqwg"
+			data-open-share-ios="true">
+
+            <span class="socicon-youtube"></span>
+            Watch
+        </a>
+
+		<a class="open-share-link youtube"
+            data-open-share="youtubeSubscribe"
+            data-open-share-user="angularjs"
+			data-open-share-ios="true">
+
+            <span class="socicon-youtube"></span>
+            Subscribe
+        </a>
+
+		<a class="open-share-link instagram"
+            data-open-share="instagram">
+
+            <span class="socicon-instagram"></span>
+            Share
+        </a>
+
+		<a class="open-share-link instagram"
+            data-open-share="instagramFollow"
+            data-open-share-username="digitalsurgeons"
+			data-open-share-ios="true">
+
+            <span class="socicon-instagram"></span>
+            Follow
+        </a>
+
+		<a class="open-share-link snapchat"
+            data-open-share="snapchat"
+            data-open-share-username="adamsoffer">
+
+            <span class="socicon-snapchat"></span>
+            Follow
         </a>
 
         <a class="open-share-link google"
             data-open-share="google"
             data-open-share-url="http://digitalsurgeons.com">
 
-            <span class="fa fa-google-plus"></span>
+            <span class="socicon-googleplus"></span>
             Share
             <span data-open-share-count="google"
                   data-open-share-count-url="http://digitalsurgeons.com"
@@ -202,7 +284,7 @@
             data-open-share-media="http://www.digitalsurgeons.com/img/about/bg_office_team.jpg"
             data-open-share-description="Digital Surgeons">
 
-            <span class="fa fa-pinterest"></span>
+            <span class="socicon-pinterest"></span>
             Pin
             <span data-open-share-count="pinterest"
                   data-open-share-count-url="http://facebook.com"
@@ -214,7 +296,7 @@
             data-open-share-url="http://digitalsurgeons.com"
             data-open-share-title="Digital Surgeons">
 
-            <span class="fa fa-linkedin"></span>
+            <span class="socicon-linkedin"></span>
             Share
             <span data-open-share-count="linkedin"
                   data-open-share-count-url="http://digitalsurgeons.com"
@@ -226,7 +308,7 @@
             data-open-share-url="http://digitalsurgeons.com"
             data-open-share-text="Digital Surgeons">
 
-            <span class="fa fa-buffer"></span>
+            <span class="socicon-buffer"></span>
             Buffer
         </a>
 
@@ -236,7 +318,7 @@
             data-open-share-title="Digital Surgeons"
             data-open-share-caption="Forward Obsessed">
 
-            <span class="fa fa-tumblr"></span>
+            <span class="socicon-tumblr"></span>
             Share
         </a>
 
@@ -245,18 +327,26 @@
             data-open-share-url="http://digitalsurgeons.com"
             data-open-share-title="Digital Surgeons">
 
-            <span class="fa fa-reddit"></span>
+            <span class="socicon-reddit"></span>
             Share
             <span data-open-share-count="reddit"
                   data-open-share-count-url="http://facebook.com"
                   class="open-share-count"></span>
         </a>
 
+		<a class="open-share-link flickr"
+            data-open-share="flickr"
+            data-open-share-username="adam-chambaz">
+
+            <span class="socicon-flickr"></span>
+            Follow
+        </a>
+
         <a class="open-share-link whatsapp"
             data-open-share="whatsapp"
             data-open-share-text="Digital Surgeons">
 
-            <span class="fa fa-whatsapp"></span>
+            <span class="socicon-whatsapp"></span>
             Send
         </a>
 
@@ -277,6 +367,26 @@
             <span class="fa fa-envelope"></span>
             Email
         </a>
+
+		<a class="open-share-link twitter" data-api-example="twitter">
+			<span class="socicon-twitter"></span>
+			Tweet
+		</a>
+
+		<a class="open-share-link facebook" data-api-example="facebook">
+			<span class="socicon-facebook"></span>
+			Share
+		</a>
+
+		<a class="open-share-link pinterest" data-api-example="pinterest">
+			<span class="socicon-pinterest"></span>
+			Pin
+		</a>
+
+		<a class="open-share-link email" data-api-example="email">
+			<span class="fa fa-envelope"></span>
+			Email
+		</a>
     </div>
 
     <div class="open-share-watch" data-open-share-watch>
@@ -305,7 +415,7 @@
         openShare.setAttribute('data-open-share-via', data.via);
         openShare.setAttribute('data-open-share-text', data.text);
         openShare.setAttribute('data-open-share-hashtags', data.hashtags);
-        openShare.innerHTML = `<span class="fa fa-twitter"></span> ${data.button}`;
+        openShare.innerHTML = '<span class="fa fa-twitter"></span>' + data.button;
 
         return openShare;
     }
@@ -317,13 +427,65 @@
                 .appendChild(createOpenShareNode(data));
     }
 
-    // add open share node
-    var data = dynamicNodeData;
-    data.button = 'Dynamic Open Share!';
-    document.querySelector('.open-share-nodes')
-            .appendChild(createOpenShareNode(dynamicNodeData));
+	document.addEventListener('DOMContentLoaded', function() {
+		// add open share node
+	    var data = dynamicNodeData;
+	    data.button = 'Dynamic Open Share!';
+	    document.querySelector('.open-share-nodes')
+	            .appendChild(createOpenShareNode(dynamicNodeData));
 
-    document.dispatchEvent(new Event('open-share-init'));
+		var ev = document.createEvent('Event');
+		ev.initEvent('OpenShare.load', true, true);
+		document.dispatchEvent(ev);
+	});
+
+	// bind to loaded event
+	document.addEventListener('OpenShare.loaded', function() {
+		console.log('Open Share loaded');
+
+		// bind to shared event on each individual node
+		[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
+			node.addEventListener('OpenShare.shared', function(e) {
+				console.log('Open Share Shared', e);
+			});
+		});
+
+		var examples = {
+			twitter: new OpenShare(document.querySelector('[data-api-example="twitter"]'), {
+				type: 'twitter',
+				bindClick: true,
+				url: 'http://digitalsurgeons.com',
+				via: 'digitalsurgeons',
+				text: 'Digital Surgeons',
+				hashtags: 'forwardobsessed'
+			}),
+
+			facebook: new OpenShare(document.querySelector('[data-api-example="facebook"]'), {
+				type: 'facebook',
+				bindClick: true,
+				link: 'http://digitalsurgeons.com',
+				picture: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
+				caption: 'Digital Surgeons',
+				description: 'forwardobsessed'
+			}),
+
+			pinterest: new OpenShare(document.querySelector('[data-api-example="pinterest"]'), {
+				type: 'pinterest',
+				bindClick: true,
+				url: 'http://digitalsurgeons.com',
+				media: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
+				description: 'Digital Surgeons'
+			}),
+
+			email: new OpenShare(document.querySelector('[data-api-example="email"]'), {
+				type: 'email',
+				bindClick: true,
+				to: 'techroom@digitalsurgeons.com',
+				subject: 'Digital Surgeons',
+				body: 'Forward Obsessed'
+			})
+		};
+	});
     </script>
 </body>
 </html>
