@@ -1,45 +1,43 @@
 /**
  * Configure data attribute API
  */
-module.exports = class DataAttr {
+module.exports = function(OpenShare, Count, Transforms, Events) {
 
-	constructor(OpenShare, Count) {
-		this.OpenShare = OpenShare;
-		this.Count = Count;
+	document.addEventListener('OpenShare.load', init);
+	document.addEventListener('DOMContentLoaded', init);
 
-		document.addEventListener('open-share-init', this.init.bind(this));
-		this.init();
-	}
-
-	init() {
-		this.initializeNodes();
+	function init() {
+		initializeNodes();
 
 		// check for mutation observers before using, IE11 only
 		if (window.MutationObserver !== undefined) {
-			this.initializeWatcher(document.querySelectorAll('[data-open-share-watch]'));
+			initializeWatcher(document.querySelectorAll('[data-open-share-watch]'));
 		}
 	}
 
-	initializeNodes(container = document) {
+	function initializeNodes(container = document) {
 		// loop through open share node collection
 		let shareNodes = container.querySelectorAll('[data-open-share]:not([data-open-share-node])');
-		[].forEach.call(shareNodes, this.initializeShareNode.bind(this));
+		[].forEach.call(shareNodes, initializeShareNode);
 
 		// loop through count node collection
 		let countNodes = container.querySelectorAll('[data-open-share-count]:not([data-open-share-node])');
-		[].forEach.call(countNodes, this.initializeCountNode.bind(this));
+		[].forEach.call(countNodes, initializeCountNode);
+
+		// trigger completed event
+		Events.trigger(document, 'loaded');
 	}
 
-	initializeCountNode(os) {
+	function initializeCountNode(os) {
 		// initialize open share object with type attribute
 		let type = os.getAttribute('data-open-share-count'),
-			count = new this.Count(type, os.getAttribute('data-open-share-count-url'));
+			count = new Count(type, os.getAttribute('data-open-share-count-url'));
 
 		count.count(os);
 		os.setAttribute('data-open-share-node', type);
 	}
 
-	initializeShareNode(os) {
+	function initializeShareNode(os) {
 		// initialize open share object with type attribute
 		let type = os.getAttribute('data-open-share'),
 			dash = type.indexOf('-'),
@@ -55,7 +53,13 @@ module.exports = class DataAttr {
 			type = type.replace(group, nextChar.toUpperCase());
 		}
 
-		openShare = new this.OpenShare(type);
+		let transform = Transforms[type];
+
+		if (!transform) {
+			throw new Error(`Open Share: ${type} is an invalid type`);
+		}
+
+		openShare = new OpenShare(type, transform);
 
 		// specify if this is a dynamic instance
 		if (os.getAttribute('data-open-share-dynamic')) {
@@ -63,27 +67,25 @@ module.exports = class DataAttr {
 		}
 
 		// set all optional attributes on open share instance
-		this.setData(openShare, os);
+		setData(openShare, os);
 
 		// open share dialog on click
 		os.addEventListener('click', (e) => {
+			share(e, os, openShare);
+		});
 
-			// if dynamic instance then fetch attributes again in case of updates
-			if (openShare.dynamic) {
-				this.setData(openShare, e.currentTarget);
-			}
-
-			openShare.share(e);
+		os.addEventListener('OpenShare.trigger', (e) => {
+			share(e, os, openShare);
 		});
 
 		os.setAttribute('data-open-share-node', type);
 	}
 
-	initializeWatcher(watcher) {
+	function initializeWatcher(watcher) {
 		[].forEach.call(watcher, (w) => {
 			var observer = new MutationObserver((mutations) => {
 				// target will match between all mutations so just use first
-				this.initializeNodes(mutations[0].target);
+				initializeNodes(mutations[0].target);
 			});
 
 			observer.observe(w, {
@@ -92,13 +94,24 @@ module.exports = class DataAttr {
 		});
 	}
 
-	setData(osInstance, osElement) {
+	function share(e, os, openShare) {
+		// if dynamic instance then fetch attributes again in case of updates
+		if (openShare.dynamic) {
+			setData(openShare, os);
+		}
+
+		openShare.share(e);
+
+		// trigger shared event
+		Events.trigger(os, 'shared');
+	}
+
+	function setData(osInstance, osElement) {
 		osInstance.setData({
 			url: osElement.getAttribute('data-open-share-url'),
 			text: osElement.getAttribute('data-open-share-text'),
 			via: osElement.getAttribute('data-open-share-via'),
 			hashtags: osElement.getAttribute('data-open-share-hashtags'),
-			ios: osElement.getAttribute('data-open-share-ios'),
 			tweetId: osElement.getAttribute('data-open-share-tweet-id'),
 			related: osElement.getAttribute('data-open-share-related'),
 			screenName: osElement.getAttribute('data-open-share-screen-name'),
@@ -107,11 +120,15 @@ module.exports = class DataAttr {
 			picture: osElement.getAttribute('data-open-share-picture'),
 			caption: osElement.getAttribute('data-open-share-caption'),
 			description: osElement.getAttribute('data-open-share-description'),
+			user: osElement.getAttribute('data-open-share-user'),
+			video: osElement.getAttribute('data-open-share-video'),
+			username: osElement.getAttribute('data-open-share-username'),
 			title: osElement.getAttribute('data-open-share-title'),
 			media: osElement.getAttribute('data-open-share-media'),
 			to: osElement.getAttribute('data-open-share-to'),
 			subject: osElement.getAttribute('data-open-share-subject'),
-			body: osElement.getAttribute('data-open-share-body')
+			body: osElement.getAttribute('data-open-share-body'),
+			ios: osElement.getAttribute('data-open-share-ios')
 		});
 	}
 };

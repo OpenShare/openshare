@@ -3,16 +3,11 @@
  */
 module.exports = class OpenShare {
 
-	constructor(type) {
-
-		// throw error if invalid type provided
-		if (!this[type]) {
-			throw new Error(`Open Share: ${type} is an invalid type`);
-		}
-
+	constructor(type, transform) {
 		this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 		this.type = type;
 		this.dynamic = false;
+		this.transform = transform;
 
 		// capitalized type
 		this.typeCaps = type.charAt(0).toUpperCase() + type.slice(1);
@@ -21,28 +16,36 @@ module.exports = class OpenShare {
 	// returns function named as type set in constructor
 	// e.g twitter()
 	setData(data) {
-		return this[this.type](data);
+		// if iOS user and ios data attribute defined
+		// build iOS URL scheme as single string
+		if (this.ios) {
+			let transform = this.transform(data, true);
+			this.mobileShareUrl = this.template(transform.url, transform.data);
+		}
+
+		let transform = this.transform(data);
+		this.shareUrl = this.template(transform.url, transform.data);
 	}
 
 	// open share URL defined in individual platform functions
 	share(e) {
 		// if iOS share URL has been set then use timeout hack
 		// test for native app and fall back to web
-		if (this.iosShareUrl) {
-
-			window.location = this.iosShareUrl;
+		if (this.mobileShareUrl) {
 			var start = (new Date()).valueOf();
 
 			setTimeout(() => {
 				var end = (new Date()).valueOf();
 
 				// if the user is still here, fall back to web
-				if (end - start > 3000) {
+				if (end - start > 1600) {
 					return;
 				}
 
-				window.open(this.shareUrl, 'OpenShare');
-			}, 2000);
+				window.location = this.shareUrl;
+			}, 1500);
+
+			window.location = this.mobileShareUrl;
 
 			// open mailto links in same window
 		} else if (this.type === 'email') {
@@ -72,157 +75,5 @@ module.exports = class OpenShare {
 		}
 
 		return shareUrl.substr(0, shareUrl.length - 1);
-	}
-
-	// set Twitter share URL
-	twitter(data) {
-		// if iOS user and ios data attribute defined
-		// build iOS URL scheme as single string
-		if (this.ios && data.ios) {
-
-			let message = ``;
-
-			if (data.text) {
-				message += data.text;
-			}
-
-			if (data.url) {
-				message += ` - ${data.url}`;
-			}
-
-			if (data.hashtags) {
-				let tags = data.hashtags.split(',');
-				tags.forEach(function(tag) {
-					message += ` #${tag}`;
-				});
-			}
-
-			if (data.via) {
-				message += ` via ${data.via}`;
-			}
-
-			this.iosShareUrl = this.template('twitter://post?', {
-				message: message
-			});
-		}
-
-		this.shareUrl = this.template('https://twitter.com/share?', data);
-	}
-
-	// set Twitter retweet URL
-	twitterRetweet(data) {
-		// if iOS user and ios data attribute defined
-		if (this.ios && data.ios) {
-			this.iosShareUrl = this.template('twitter://status?', {
-				id: data.tweetId
-			});
-		}
-
-		this.shareUrl = this.template('https://twitter.com/intent/retweet?', {
-			tweet_id: data.tweetId,
-			related: data.related
-		});
-	}
-
-	// set Twitter like URL
-	twitterLike(data) {
-		// if iOS user and ios data attribute defined
-		if (this.ios && data.ios) {
-			this.iosShareUrl = this.template('twitter://status?', {
-				id: data.tweetId
-			});
-		}
-
-		this.shareUrl = this.template('https://twitter.com/intent/favorite?', {
-			tweet_id: data.tweetId,
-			related: data.related
-		});
-	}
-
-	// set Twitter follow URL
-	twitterFollow(data) {
-		// if iOS user and ios data attribute defined
-		if (this.ios && data.ios) {
-			let iosData = data.screenName ? {
-				'screen_name': data.screenName
-			} : {
-				'id': data.userId
-			};
-
-			this.iosShareUrl = this.template('twitter://user?', iosData);
-		}
-
-		this.shareUrl = this.template('https://twitter.com/intent/user?', {
-			screen_name: data.screenName,
-			user_id: data.userId
-		});
-	}
-
-	// set Facebook share URL
-	facebook(data) {
-		this.shareUrl = this.template('https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&', data);
-	}
-
-	// set Facebook send URL
-	facebookSend(data) {
-		this.shareUrl = this.template('https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&', data);
-	}
-
-	// set Google share URL
-	google(data) {
-		this.shareUrl = this.template('https://plus.google.com/share?', data);
-	}
-
-	// set Pinterest share URL
-	pinterest(data) {
-		this.shareUrl = this.template('https://pinterest.com/pin/create/bookmarklet/?', data);
-	}
-
-	// set LinkedIn share URL
-	linkedin(data) {
-		this.shareUrl = this.template('http://www.linkedin.com/shareArticle?', data);
-	}
-
-	// set Buffer share URL
-	buffer(data) {
-		this.shareUrl = this.template('http://bufferapp.com/add?', data);
-	}
-
-	// set Tumblr share URL
-	tumblr(data) {
-		this.shareUrl = this.template('https://www.tumblr.com/widgets/share/tool?', data);
-	}
-
-	// set Reddit share URL
-	reddit(data) {
-		this.shareUrl = this.template('http://reddit.com/submit?', data);
-	}
-
-	// set WhatsApp share URL
-	whatsapp(data) {
-		this.shareUrl = this.template('whatsapp://send?', data);
-	}
-
-	// set sms share URL
-	sms(data) {
-		this.shareUrl = this.template(this.ios ? 'sms:&' : 'sms:?', data);
-	}
-
-	// set Email share URL
-	email(data) {
-
-		var url = `mailto:`;
-
-		// if to address specified then add to URL
-		if (data.to !== null) {
-			url += `${data.to}`;
-		}
-
-		url += `?`;
-
-		this.shareUrl = this.template(url, {
-			subject: data.subject,
-			body: data.body
-		});
 	}
 };
