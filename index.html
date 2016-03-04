@@ -415,7 +415,7 @@
         openShare.setAttribute('data-open-share-via', data.via);
         openShare.setAttribute('data-open-share-text', data.text);
         openShare.setAttribute('data-open-share-hashtags', data.hashtags);
-        openShare.innerHTML = `<span class="fa fa-twitter"></span> ${data.button}`;
+        openShare.innerHTML = '<span class="fa fa-twitter"></span>' + data.button;
 
         return openShare;
     }
@@ -434,7 +434,9 @@
 	    document.querySelector('.open-share-nodes')
 	            .appendChild(createOpenShareNode(dynamicNodeData));
 
-	    document.dispatchEvent(new Event('OpenShare.load'));
+		var ev = document.createEvent('Event');
+		ev.initEvent('OpenShare.load', true, true);
+		document.dispatchEvent(ev);
 	});
 
 	// bind to loaded event
