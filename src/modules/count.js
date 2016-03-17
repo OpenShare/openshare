@@ -184,7 +184,7 @@ module.exports = class Count {
 	facebook(url) {
 		return {
 			type: 'get',
-			url: `http://graph.facebook.com/?id=${url}`,
+			url: `//graph.facebook.com/?id=${url}`,
 			transform: (xhr) => {
 				let count = JSON.parse(xhr.responseText).shares;
 				this.storeSet(this.type, count);
@@ -197,7 +197,7 @@ module.exports = class Count {
 	pinterest(url) {
 		return {
 			type: 'jsonp',
-			url: `http://api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
+			url: `//api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
 			transform: (data) => {
 				let count = data.count;
 				this.storeSet(this.type, count);
@@ -210,7 +210,7 @@ module.exports = class Count {
 	linkedin(url) {
 		return {
 			type: 'jsonp',
-			url: `http://www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
+			url: `//www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
 			transform: (data) => {
 				let count = data.count;
 				this.storeSet(this.type, count);
@@ -223,7 +223,7 @@ module.exports = class Count {
 	reddit(url) {
 		return {
 			type: 'get',
-			url: `https://www.reddit.com/api/info.json?url=${url}`,
+			url: `//www.reddit.com/api/info.json?url=${url}`,
 			transform: (xhr) => {
 				let posts = JSON.parse(xhr.responseText).data.children,
 					ups = 0;
@@ -257,7 +257,7 @@ module.exports = class Count {
 				key: 'p',
 				apiVersion: 'v1'
 			},
-			url: `https://clients6.google.com/rpc`,
+			url: `//clients6.google.com/rpc`,
 			transform: (xhr) => {
 				let count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
 				this.storeSet(this.type, count);
