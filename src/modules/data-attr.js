@@ -1,7 +1,7 @@
 /**
  * Configure data attribute API
  */
-module.exports = function(OpenShare, Count, Transforms, Events) {
+module.exports = function(OpenShare, Count, ShareTransforms, Events) {
 
 	document.addEventListener('OpenShare.load', init);
 	document.addEventListener('DOMContentLoaded', init);
@@ -53,7 +53,7 @@ module.exports = function(OpenShare, Count, Transforms, Events) {
 			type = type.replace(group, nextChar.toUpperCase());
 		}
 
-		let transform = Transforms[type];
+		let transform = ShareTransforms[type];
 
 		if (!transform) {
 			throw new Error(`Open Share: ${type} is an invalid type`);

@@ -26,8 +26,10 @@ function _startBrowserSync() {
 }
 
 function _watchFiles() {
-	gulp.watch('src/**/*.js', ['compile-js']).on('change', reload);
+	gulp.watch('src/**/*.js', ['compile']).on('change', reload);
 }
+
+gulp.task('compile', ['compile-js', 'compile-test']);
 
 gulp.task('compile-js', function() {
 	return browserify('src/browser.js')

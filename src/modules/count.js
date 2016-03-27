@@ -1,6 +1,9 @@
 /**
  * Generate share count instance from one to many networks
  */
+
+var CountTransforms = require('./count-transforms');
+
 module.exports = class Count {
 
 	constructor(type, url) {
@@ -18,22 +21,22 @@ module.exports = class Count {
 
 			// check each type supplied is valid
 			this.typeArr.forEach((t) => {
-				if (!this[t]) {
+				if (!CountTransforms[t]) {
 					throw new Error(`Open Share: ${type} is an invalid count type`);
 				}
 
-				this.countData.push(this[t](url));
+				this.countData.push(CountTransforms[t](url));
 			});
 
 		// throw error if invalid type provided
-		} else if (!this[type]) {
+		} else if (!CountTransforms[type]) {
 			throw new Error(`Open Share: ${type} is an invalid count type`);
 
 		// single count
 		// store count URL and transform function
 		} else {
 			this.type = type;
-			this.countData = this[type](url);
+			this.countData = CountTransforms[type](url);
 		}
 	}
 
@@ -98,7 +101,7 @@ module.exports = class Count {
 		// define random callback and assign transform function
 		let callback = `jsonp_${Math.random().toString().substr(-10)}`;
 		window[callback] = (data) => {
-			let count = countData.transform(data) || 0;
+			let count = countData.transform.apply(this, [data]) || 0;
 
 			if (cb && typeof cb === 'function') {
 				cb(count);
@@ -126,7 +129,7 @@ module.exports = class Count {
 				return;
 			}
 
-			let count = countData.transform(xhr) || 0;
+			let count = countData.transform.apply(this, [xhr]) || 0;
 
 			if (cb && typeof cb === 'function') {
 				cb(count);
@@ -150,7 +153,7 @@ module.exports = class Count {
 				return;
 			}
 
-			let count = countData.transform(xhr) || 0;
+			let count = countData.transform.apply(this, [xhr]) || 0;
 
 			if (cb && typeof cb === 'function') {
 				cb(count);
@@ -178,92 +181,6 @@ module.exports = class Count {
 		}
 
 		return localStorage.getItem(`OpenShare-${type}`);
-	}
-
-	// facebook count data
-	facebook(url) {
-		return {
-			type: 'get',
-			url: `//graph.facebook.com/?id=${url}`,
-			transform: (xhr) => {
-				let count = JSON.parse(xhr.responseText).shares;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
-	}
-
-	// pinterest count data
-	pinterest(url) {
-		return {
-			type: 'jsonp',
-			url: `//api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
-			transform: (data) => {
-				let count = data.count;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
-	}
-
-	// linkedin count data
-	linkedin(url) {
-		return {
-			type: 'jsonp',
-			url: `//www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
-			transform: (data) => {
-				let count = data.count;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
-	}
-
-	// reddit count data
-	reddit(url) {
-		return {
-			type: 'get',
-			url: `//www.reddit.com/api/info.json?url=${url}`,
-			transform: (xhr) => {
-				let posts = JSON.parse(xhr.responseText).data.children,
-					ups = 0;
-
-				posts.forEach((post) => {
-					ups += Number(post.data.ups);
-				});
-
-				this.storeSet(this.type, ups);
-
-				return ups;
-			}
-		};
-	}
-
-	// linkedin count data
-	google(url) {
-		return {
-			type: 'post',
-			data: {
-				method: 'pos.plusones.get',
-				id: 'p',
-				params: {
-					nolog: true,
-					id: url,
-					source: 'widget',
-					userId: '@viewer',
-					groupId: '@self'
-				},
-				jsonrpc: '2.0',
-				key: 'p',
-				apiVersion: 'v1'
-			},
-			url: `//clients6.google.com/rpc`,
-			transform: (xhr) => {
-				let count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
 	}
 
 };

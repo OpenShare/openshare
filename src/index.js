@@ -4,9 +4,9 @@ module.exports = (function() {
 		API = require('./modules/api'),
 		Events = require('./modules/events'),
 		OpenShare = require('./modules/open-share'),
-		Transforms = require('./modules/transforms'),
-		Count = require('./modules/count');
+		Count = require('./modules/count'),
+		ShareTransforms = require('./modules/share-transforms');
 
-	DataAttr(OpenShare, Count, Transforms, Events);
-	return API(OpenShare, Transforms, Events);
+	DataAttr(OpenShare, Count, ShareTransforms, Events);
+	return API(OpenShare, ShareTransforms, Events);
 })();
