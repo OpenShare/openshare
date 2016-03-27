@@ -1,14 +1,14 @@
 /**
  * Global OpenShare API to generate instances programmatically
  */
-module.exports = function(OS, Transforms, Events) {
+module.exports = function(OS, ShareTransforms, Events) {
 
 	// global OpenShare referencing internal class for instance generation
 	function OpenShare(element, data) {
 		this.element = element;
 		this.data = data;
 
-		this.os = new OS(data.type, Transforms[data.type]);
+		this.os = new OS(data.type, ShareTransforms[data.type]);
 		this.os.setData(data);
 
 		// automatically open share dialog on click
