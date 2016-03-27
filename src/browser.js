@@ -8,5 +8,5 @@ module.exports = (function() {
 		Count = require('./modules/count');
 
 	DataAttr(OpenShare, Count, Transforms, Events);
-	return API(OpenShare, Transforms, Events);
+	window.OpenShare = API(OpenShare, Transforms, Events);
 })();

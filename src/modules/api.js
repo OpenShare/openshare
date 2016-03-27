@@ -31,5 +31,5 @@ module.exports = function(OS, Transforms, Events) {
 		Events.trigger(this.element, 'shared');
 	};
 
-	window.OpenShare = OpenShare;
+	return OpenShare;
 };

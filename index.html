@@ -397,42 +397,43 @@
         <button onclick="addNode();">Create Node</button>
     </div>
 
-    <script src="dist/open-share.js"></script>
-    <script>
-    var dynamicNodeData = {
-        'url': 'http://www.digitalsurgeons.com',
-        'via': 'digitalsurgeons',
-        'text': 'Forward Obsessed',
-        'hashtags': 'forwardobsessed'
-    };
+	<!-- test browser build -->
+	<!--<script src="dist/open-share.js"></script>
+	<script>
+	var dynamicNodeData = {
+		'url': 'http://www.digitalsurgeons.com',
+		'via': 'digitalsurgeons',
+		'text': 'Forward Obsessed',
+		'hashtags': 'forwardobsessed'
+	};
 
-    function createOpenShareNode(data) {
-        var openShare = document.createElement('a');
+	function createOpenShareNode(data) {
+		var openShare = document.createElement('a');
 
-        openShare.classList.add('open-share-link', 'twitter');
-        openShare.setAttribute('data-open-share', 'twitter');
-        openShare.setAttribute('data-open-share-url', data.url);
-        openShare.setAttribute('data-open-share-via', data.via);
-        openShare.setAttribute('data-open-share-text', data.text);
-        openShare.setAttribute('data-open-share-hashtags', data.hashtags);
-        openShare.innerHTML = '<span class="fa fa-twitter"></span>' + data.button;
+		openShare.classList.add('open-share-link', 'twitter');
+		openShare.setAttribute('data-open-share', 'twitter');
+		openShare.setAttribute('data-open-share-url', data.url);
+		openShare.setAttribute('data-open-share-via', data.via);
+		openShare.setAttribute('data-open-share-text', data.text);
+		openShare.setAttribute('data-open-share-hashtags', data.hashtags);
+		openShare.innerHTML = '<span class="fa fa-twitter"></span>' + data.button;
 
-        return openShare;
-    }
+		return openShare;
+	}
 
-    function addNode() {
-        var data = dynamicNodeData;
-        data.button = 'Open Share Watcher!';
-        document.querySelector('.open-share-watch')
-                .appendChild(createOpenShareNode(data));
-    }
+	function addNode() {
+		var data = dynamicNodeData;
+		data.button = 'Open Share Watcher!';
+		document.querySelector('.open-share-watch')
+			.appendChild(createOpenShareNode(data));
+	}
 
 	document.addEventListener('DOMContentLoaded', function() {
 		// add open share node
-	    var data = dynamicNodeData;
-	    data.button = 'Dynamic Open Share!';
-	    document.querySelector('.open-share-nodes')
-	            .appendChild(createOpenShareNode(dynamicNodeData));
+		var data = dynamicNodeData;
+		data.button = 'Dynamic Open Share!';
+		document.querySelector('.open-share-nodes')
+			.appendChild(createOpenShareNode(dynamicNodeData));
 
 		var ev = document.createEvent('Event');
 		ev.initEvent('OpenShare.load', true, true);
@@ -486,6 +487,7 @@
 			})
 		};
 	});
-    </script>
+	</script>-->
+	<script src="dist/test.js"></script>
 </body>
 </html>

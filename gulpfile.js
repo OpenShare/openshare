@@ -30,9 +30,19 @@ function _watchFiles() {
 }
 
 gulp.task('compile-js', function() {
-	return browserify('src/index.js')
+	return browserify('src/browser.js')
             .bundle()
             .pipe(source('open-share.js'))
+            .pipe(buffer())
+            .pipe(babel())
+            .pipe(uglify())
+            .pipe(gulp.dest('dist'));
+});
+
+gulp.task('compile-test', function() {
+	return browserify('src/test.js')
+            .bundle()
+            .pipe(source('test.js'))
             .pipe(buffer())
             .pipe(babel())
             .pipe(uglify())
