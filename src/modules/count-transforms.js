@@ -82,7 +82,7 @@ module.exports = {
 				key: 'p',
 				apiVersion: 'v1'
 			},
-			url: `//clients6.google.com/rpc`,
+			url: `https://clients6.google.com/rpc`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
 				this.storeSet(this.type, count);
