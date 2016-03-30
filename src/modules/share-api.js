@@ -1,7 +1,12 @@
 /**
  * Global OpenShare API to generate instances programmatically
  */
-module.exports = function(OS, ShareTransforms, Events) {
+
+var OS = require('./open-share');
+var ShareTransforms = require('./share-transforms');
+var Events = require('./events');
+
+module.exports = function() {
 
 	// global OpenShare referencing internal class for instance generation
 	class OpenShare {

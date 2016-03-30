@@ -1,7 +1,13 @@
 /**
  * Configure data attribute API
  */
-module.exports = function(OpenShare, Count, ShareTransforms, Events) {
+
+var OpenShare = require('./open-share');
+var Count = require('./count');
+var ShareTransforms = require('./share-transforms');
+var Events = require('./events');
+
+module.exports = function() {
 
 	document.addEventListener('OpenShare.load', init);
 	document.addEventListener('DOMContentLoaded', init);
