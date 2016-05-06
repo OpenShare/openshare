@@ -30,8 +30,6 @@
 			.appendChild(createOpenShareNode(data));
 	}
 
-	window.addNode = addNode
-
 	document.addEventListener('DOMContentLoaded', function() {
 		// add open share node
 		var data = dynamicNodeData;

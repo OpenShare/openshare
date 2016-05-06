@@ -17,17 +17,16 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
-    "browser-sync": "^2.4.0",
     "browserify": "^11.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
-    "gulp-if": "^1.2.5",
-    "gulp-prompt": "^0.1.2",
     "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.4.1",
-    "gulp-util": "^3.0.2",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "gulp-util": "^3.0.2",
+    "browser-sync": "^2.4.0",
+    "gulp-if": "^1.2.5",
+    "gulp-prompt": "^0.1.2"
   }
 }
