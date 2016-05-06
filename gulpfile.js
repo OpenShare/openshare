@@ -11,7 +11,8 @@ var gulp = require('gulp'),
     fs = require('fs'),
     prompt = require('gulp-prompt'),
     needsPrompt = false,
-    filename = '.vhost';
+    filename = '.vhost',
+    sourcemaps = require('gulp-sourcemaps');
 
 function _startBrowserSync() {
 	// read vhost file here
@@ -36,8 +37,10 @@ gulp.task('compile-js', function() {
             .bundle()
             .pipe(source('open-share.js'))
             .pipe(buffer())
+            .pipe(sourcemaps.init({loadMaps: true}))
             .pipe(babel())
             .pipe(uglify())
+            .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest('dist'));
 });
 
@@ -46,8 +49,10 @@ gulp.task('compile-test', function() {
             .bundle()
             .pipe(source('test.js'))
             .pipe(buffer())
+            .pipe(sourcemaps.init({loadMaps: true}))
             .pipe(babel())
             .pipe(uglify())
+            .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest('dist'));
 });
 
