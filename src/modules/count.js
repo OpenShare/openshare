@@ -3,6 +3,7 @@
  */
 
 var CountTransforms = require('./count-transforms');
+var Events = require('./events');
 
 module.exports = class Count {
 
@@ -44,6 +45,7 @@ module.exports = class Count {
 	// depending on number of types
 	count(os) {
 		this.os = os;
+    	this.url = this.os.getAttribute('data-open-share-count');
 
 		if (!Array.isArray(this.countData)) {
 			this.getCount();
@@ -61,6 +63,7 @@ module.exports = class Count {
 		}
 
 		this[this.countData.type](this.countData);
+		Events.trigger(document, 'counted-' + this.url);
 	}
 
 	// fetch multiple counts and aggregate
@@ -89,6 +92,7 @@ module.exports = class Count {
 
 					this.storeSet(this.type, tot);
 					this.os.innerHTML = tot;
+					Events.trigger(document, 'counted-' + this.url);
 				}
 			});
 		});
