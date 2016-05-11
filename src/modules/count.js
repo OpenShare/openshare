@@ -63,7 +63,7 @@ module.exports = class Count {
 		}
 
 		this[this.countData.type](this.countData);
-		Events.trigger(document, 'counted-' + this.url);
+		Events.trigger(this.os, 'counted-' + this.url);
 	}
 
 	// fetch multiple counts and aggregate
@@ -92,7 +92,7 @@ module.exports = class Count {
 
 					this.storeSet(this.type, tot);
 					this.os.innerHTML = tot;
-					Events.trigger(document, 'counted-' + this.url);
+					Events.trigger(this.os, 'counted-' + this.url);
 				}
 			});
 		});

@@ -109,8 +109,9 @@ urls.forEach(function(url) {
 	if (Array.isArray(url)) {
 		url = url.join(',');
 	}
+	var shareNode = document.querySelector('[data-open-share-count="' + url + '"]');
 	document.addEventListener('OpenShare.counted-' + url, function() {
-		var shares = document.querySelector('[data-open-share-count="' + url + '"]').innerHTML;
+		var shares = shareNode.innerHTML;
 		console.log(url, 'shares: ', shares);
 	});
 });
