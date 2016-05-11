@@ -112,5 +112,5 @@ urls.forEach(function(url) {
 	document.addEventListener('OpenShare.counted-' + url, function() {
 		var shares = document.querySelector('[data-open-share-count="' + url + '"]').innerHTML;
 		console.log(url, 'shares: ', shares);
-	})
-})
+	});
+});
