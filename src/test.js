@@ -30,17 +30,34 @@ function addNode() {
 
 window.addNode = addNode;
 
-document.addEventListener('DOMContentLoaded', function() {
-	// add open share node
+function addNodeWithCount() {
 	var data = dynamicNodeData;
-	data.button = 'Dynamic Open Share!';
-	document.querySelector('.open-share-nodes')
-		.appendChild(createOpenShareNode(dynamicNodeData));
 
-	var ev = document.createEvent('Event');
-	ev.initEvent('OpenShare.load', true, true);
-	document.dispatchEvent(ev);
-});
+	var countNode = document.createElement('span');
+	countNode.classList.add('open-share-count');
+	countNode.setAttribute('data-open-share-count', 'facebook');
+	countNode.setAttribute('data-open-share-count-url', 'https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga');
+
+	var openShareNode = createOpenShareNode(data);
+	document.querySelector('.open-share-watch')
+		.appendChild(openShareNode);
+
+	openShareNode.appendChild(countNode);
+}
+
+window.addNodeWithCount = addNodeWithCount;
+
+// document.addEventListener('DOMContentLoaded', function() {
+// 	// add open share node
+// 	var data = dynamicNodeData;
+// 	data.button = 'Dynamic Open Share!';
+// 	document.querySelector('.open-share-nodes')
+// 		.appendChild(createOpenShareNode(dynamicNodeData));
+//
+// 	var ev = document.createEvent('Event');
+// 	ev.initEvent('OpenShare.load', true, true);
+// 	document.dispatchEvent(ev);
+// });
 
 // bind to loaded event
 document.addEventListener('OpenShare.loaded', function() {
