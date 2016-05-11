@@ -110,7 +110,7 @@ urls.forEach(function(url) {
 		url = url.join(',');
 	}
 	var shareNode = document.querySelector('[data-open-share-count="' + url + '"]');
-	document.addEventListener('OpenShare.counted-' + url, function() {
+	shareNode.addEventListener('OpenShare.counted-' + url, function() {
 		var shares = shareNode.innerHTML;
 		console.log(url, 'shares: ', shares);
 	});
