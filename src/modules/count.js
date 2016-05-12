@@ -99,7 +99,9 @@ module.exports = class Count {
 	// handle JSONP requests
 	jsonp(countData, cb) {
 		// define random callback and assign transform function
-		let callback = `jsonp_${Math.random().toString().substr(-10)}`;
+		let callback = Buffer(Math.random().toString(), 'base64')
+			.toString('ascii')
+			.replace(/[^a-zA-Z]/g, '');
 		window[callback] = (data) => {
 			let count = countData.transform.apply(this, [data]) || 0;
 
