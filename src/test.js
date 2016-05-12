@@ -1,4 +1,10 @@
 var OpenShare = require('./index');
+OpenShare.share();
+
+// var twitterCount = OpenShare.count({
+// 	type: 'twitter',
+// 	url: 'http://www.digitalsurgeons.com'
+// });
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
