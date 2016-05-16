@@ -65,7 +65,7 @@ module.exports = class OpenShare {
 
 		for (i in data) {
 			// only append valid properties
-			if (!data[i]) {
+			if (!data[i] || i === 'appendTo') {
 				continue;
 			}
 

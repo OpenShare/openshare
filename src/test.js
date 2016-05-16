@@ -1,16 +1,11 @@
 var OpenShare = require('./index');
-OpenShare.share();
-
-// var twitterCount = OpenShare.count({
-// 	type: 'twitter',
-// 	url: 'http://www.digitalsurgeons.com'
-// });
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
 	'via': 'digitalsurgeons',
 	'text': 'Forward Obsessed',
-	'hashtags': 'forwardobsessed'
+	'hashtags': 'forwardobsessed',
+	'button': 'Open Share Watcher!'
 };
 
 function createOpenShareNode(data) {
@@ -29,7 +24,6 @@ function createOpenShareNode(data) {
 
 function addNode() {
 	var data = dynamicNodeData;
-	data.button = 'Open Share Watcher!';
 	document.querySelector('.open-share-watch')
 		.appendChild(createOpenShareNode(data));
 }
@@ -39,19 +33,37 @@ window.addNode = addNode;
 function addNodeWithCount() {
 	var data = dynamicNodeData;
 
-	var countNode = document.createElement('span');
-	countNode.classList.add('open-share-count');
-	countNode.setAttribute('data-open-share-count', 'facebook');
-	countNode.setAttribute('data-open-share-count-url', 'https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga');
-
 	var openShareNode = createOpenShareNode(data);
-	document.querySelector('.open-share-watch')
-		.appendChild(openShareNode);
+	document.querySelector('.open-share-watch').appendChild(openShareNode);
+
+	var countNode = new OpenShare.count({
+		type: 'facebook',
+		url: 'https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga'
+	});
 
 	openShareNode.appendChild(countNode);
 }
 
 window.addNodeWithCount = addNodeWithCount;
+
+function createCountNode() {
+ 	var container = document.querySelector('.create-node.count-nodes');
+	var type = container.querySelector('input.count-type').value;
+	var url = container.querySelector('input.count-url').value;
+
+	var count = new OpenShare.count({
+		type: type,
+		url: url,
+		appendTo: document.querySelector('.open-share-watch')
+	});
+
+	count.style.position = 'relative';
+
+	container.querySelector('input.count-type').value = '';
+	container.querySelector('input.count-url').value = '';
+}
+
+window.createCountNode = createCountNode;
 
 // document.addEventListener('DOMContentLoaded', function() {
 // 	// add open share node
@@ -77,7 +89,7 @@ document.addEventListener('OpenShare.loaded', function() {
 	});
 
 	var examples = {
-		twitter: new OpenShare(document.querySelector('[data-api-example="twitter"]'), {
+		twitter: new OpenShare.share(document.querySelector('[data-api-example="twitter"]'), {
 			type: 'twitter',
 			bindClick: true,
 			url: 'http://digitalsurgeons.com',
@@ -86,7 +98,7 @@ document.addEventListener('OpenShare.loaded', function() {
 			hashtags: 'forwardobsessed'
 		}),
 
-		facebook: new OpenShare(document.querySelector('[data-api-example="facebook"]'), {
+		facebook: new OpenShare.share(document.querySelector('[data-api-example="facebook"]'), {
 			type: 'facebook',
 			bindClick: true,
 			link: 'http://digitalsurgeons.com',
@@ -95,15 +107,16 @@ document.addEventListener('OpenShare.loaded', function() {
 			description: 'forwardobsessed'
 		}),
 
-		pinterest: new OpenShare(document.querySelector('[data-api-example="pinterest"]'), {
+		pinterest: new OpenShare.share(document.querySelector('[data-api-example="pinterest"]'), {
 			type: 'pinterest',
 			bindClick: true,
 			url: 'http://digitalsurgeons.com',
 			media: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
-			description: 'Digital Surgeons'
+			description: 'Digital Surgeons',
+			appendTo: document.body
 		}),
 
-		email: new OpenShare(document.querySelector('[data-api-example="email"]'), {
+		email: new OpenShare.share(document.querySelector('[data-api-example="email"]'), {
 			type: 'email',
 			bindClick: true,
 			to: 'techroom@digitalsurgeons.com',

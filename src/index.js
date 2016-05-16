@@ -1,12 +1,10 @@
 module.exports = (function() {
-	const DataAttr = require('./modules/data-attr');
+	const DataAttr = require('./modules/data-attr')();
 	const ShareAPI = require('./modules/share-api');
-	// const CountAPI = require('./modules/count-api');
-
-	DataAttr();
+	const CountAPI = require('./modules/count-api');
 
 	return {
-		share: new ShareAPI()//,
-		//count: CountAPI()
+		share: ShareAPI(),
+		count: CountAPI()
 	};
 })();

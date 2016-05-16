@@ -27,20 +27,14 @@ module.exports = function() {
 					countNode.classList.add(cssCLass);
 				});
 			}
-		}
 
-		// public share method to trigger share programmatically
-		share(e) {
-			// if dynamic instance then fetch attributes again in case of updates
-			if (this.data.dynamic) {
-				this.os.setData(data);
+			if (appendTo) {
+				appendTo.appendChild(countNode);
 			}
 
-			this.os.share(e);
-
-			Events.trigger(this.element, 'shared');
+			return countNode;
 		}
 	}
 
-	return OpenShare;
+	return Count;
 };

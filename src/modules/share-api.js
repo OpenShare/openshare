@@ -24,6 +24,10 @@ module.exports = function() {
 					this.share();
 				});
 			}
+
+			if (data.appendTo) {
+				data.appendTo.appendChild(this.element);
+			}
 		}
 
 		// public share method to trigger share programmatically
