@@ -19,6 +19,19 @@ function createOpenShareNode(data) {
 	openShare.setAttribute('data-open-share-hashtags', data.hashtags);
 	openShare.innerHTML = '<span class="fa fa-twitter"></span>' + data.button;
 
+	var node = new OpenShare.share(null, {
+		type: 'twitter',
+		url: 'http://www.digitalsurgeons.com',
+		via: 'digitalsurgeons',
+		hashtags: 'forwardobsessed',
+		appendTo: document.querySelector('.open-share-watch'),
+		innerHTML: 'Created via OpenShareAPI',
+		element: 'div',
+		classes: ['wow', 'such', 'classes']
+	});
+
+	console.log(node);
+
 	return openShare;
 }
 
@@ -145,9 +158,27 @@ urls.forEach(function(url) {
 	if (Array.isArray(url)) {
 		url = url.join(',');
 	}
-	var shareNode = document.querySelector('[data-open-share-count="' + url + '"]');
-	shareNode.addEventListener('OpenShare.counted-' + url, function() {
-		var shares = shareNode.innerHTML;
-		console.log(url, 'shares: ', shares);
+	var countNode = document.querySelectorAll('[data-open-share-count="' + url + '"]');
+
+	[].forEach.call(countNode, function(node) {
+		node.addEventListener('OpenShare.counted-' + url, function() {
+			var counts = node.innerHTML;
+			console.log(url, 'shares: ', counts);
+		});
 	});
 });
+
+
+// urls.forEach(function(url) {
+// 	if (Array.isArray(url)) {
+// 		url = url.join(',');
+// 	}
+// 	var countNodes = document.querySelectorAll('[data-open-share-count="' + url + '"]');
+//
+// 	document.addEventListener('OpenShare.counted-' + url, function() {
+// 		countNodes.forEach(function(node) {
+// 			var counts = node.innerHTML;
+// 			console.log(url, 'shares: ', counts);
+// 		});
+// 	});
+// });
