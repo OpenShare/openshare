@@ -30,8 +30,6 @@ function createOpenShareNode(data) {
 		classes: ['wow', 'such', 'classes']
 	});
 
-	console.log(node);
-
 	return openShare;
 }
 
