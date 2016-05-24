@@ -62,8 +62,8 @@ module.exports = class Count {
 			this.os.innerHTML = count;
 		}
 
+
 		this[this.countData.type](this.countData);
-		Events.trigger(this.os, 'counted-' + this.url);
 	}
 
 	// fetch multiple counts and aggregate
@@ -92,7 +92,7 @@ module.exports = class Count {
 
 					this.storeSet(this.type, tot);
 					this.os.innerHTML = tot;
-					Events.trigger(this.os, 'counted-' + this.url);
+					// Events.trigger(this.os, 'counted-' + this.url);
 				}
 			});
 		});
@@ -112,6 +112,8 @@ module.exports = class Count {
 			} else {
 				this.os.innerHTML = count;
 			}
+
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		// append JSONP script tag to page
@@ -137,8 +139,10 @@ module.exports = class Count {
 					} else {
 						this.os.innerHTML = count;
 					}
+
+					Events.trigger(this.os, 'counted-' + this.url);
 				} else {
-					console.error('oops', countData);
+					console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
 				}
 			}
 		};
@@ -165,6 +169,7 @@ module.exports = class Count {
 			} else {
 				this.os.innerHTML = count;
 			}
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		xhr.open('POST', countData.url);

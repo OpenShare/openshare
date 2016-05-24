@@ -161,7 +161,7 @@ urls.forEach(function(url) {
 	[].forEach.call(countNode, function(node) {
 		node.addEventListener('OpenShare.counted-' + url, function() {
 			var counts = node.innerHTML;
-			console.log(url, 'shares: ', counts);
+			if (counts) console.log(url, 'shares: ', counts);
 		});
 	});
 });
