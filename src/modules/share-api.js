@@ -11,7 +11,7 @@ module.exports = function() {
 	// global OpenShare referencing internal class for instance generation
 	class OpenShare {
 
-		constructor(element, data) {
+		constructor(data, element) {
 			let node;
 			this.element = element;
 			this.data = data;
@@ -19,7 +19,7 @@ module.exports = function() {
 			this.os = new OS(data.type, ShareTransforms[data.type]);
 			this.os.setData(data);
 
-			if (element === null || data.element) {
+			if (!element || data.element) {
 				element = data.element;
 				node = document.createElement(element || 'a');
 				if (data.type) {

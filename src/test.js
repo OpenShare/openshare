@@ -19,7 +19,7 @@ function createOpenShareNode(data) {
 	openShare.setAttribute('data-open-share-hashtags', data.hashtags);
 	openShare.innerHTML = '<span class="fa fa-twitter"></span>' + data.button;
 
-	var node = new OpenShare.share(null, {
+	var node = new OpenShare.share({
 		type: 'twitter',
 		url: 'http://www.digitalsurgeons.com',
 		via: 'digitalsurgeons',
@@ -100,40 +100,40 @@ document.addEventListener('OpenShare.loaded', function() {
 	});
 
 	var examples = {
-		twitter: new OpenShare.share(document.querySelector('[data-api-example="twitter"]'), {
+		twitter: new OpenShare.share({
 			type: 'twitter',
 			bindClick: true,
 			url: 'http://digitalsurgeons.com',
 			via: 'digitalsurgeons',
 			text: 'Digital Surgeons',
 			hashtags: 'forwardobsessed'
-		}),
+		}, document.querySelector('[data-api-example="twitter"]')),
 
-		facebook: new OpenShare.share(document.querySelector('[data-api-example="facebook"]'), {
+		facebook: new OpenShare.share({
 			type: 'facebook',
 			bindClick: true,
 			link: 'http://digitalsurgeons.com',
 			picture: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
 			caption: 'Digital Surgeons',
 			description: 'forwardobsessed'
-		}),
+		}, document.querySelector('[data-api-example="facebook"]')),
 
-		pinterest: new OpenShare.share(document.querySelector('[data-api-example="pinterest"]'), {
+		pinterest: new OpenShare.share({
 			type: 'pinterest',
 			bindClick: true,
 			url: 'http://digitalsurgeons.com',
 			media: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
 			description: 'Digital Surgeons',
 			appendTo: document.body
-		}),
+		}, document.querySelector('[data-api-example="pinterest"]')),
 
-		email: new OpenShare.share(document.querySelector('[data-api-example="email"]'), {
+		email: new OpenShare.share({
 			type: 'email',
 			bindClick: true,
 			to: 'techroom@digitalsurgeons.com',
 			subject: 'Digital Surgeons',
 			body: 'Forward Obsessed'
-		})
+		}, document.querySelector('[data-api-example="email"]'))
 	};
 });
 
