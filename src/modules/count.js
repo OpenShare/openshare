@@ -128,17 +128,18 @@ module.exports = class Count {
 
 		// on success pass response to transform function
 		xhr.onreadystatechange = () => {
-			if (xhr.readyState !== XMLHttpRequest.DONE ||
-				xhr.status !== 200) {
-				return;
-			}
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					let count = countData.transform.apply(this, [xhr]) || 0;
 
-			let count = countData.transform.apply(this, [xhr]) || 0;
-
-			if (cb && typeof cb === 'function') {
-				cb(count);
-			} else {
-				this.os.innerHTML = count;
+					if (cb && typeof cb === 'function') {
+						cb(count);
+					} else {
+						this.os.innerHTML = count;
+					}
+				} else {
+					console.error('oops', countData);
+				}
 			}
 		};
 
