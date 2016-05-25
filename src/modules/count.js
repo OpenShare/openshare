@@ -3,6 +3,7 @@
  */
 
 var CountTransforms = require('./count-transforms');
+var Events = require('./events');
 
 module.exports = class Count {
 
@@ -44,6 +45,8 @@ module.exports = class Count {
 	// depending on number of types
 	count(os) {
 		this.os = os;
+    	this.url = this.os.getAttribute('data-open-share-count');
+		this.shared = this.os.getAttribute('data-open-share-count-url');
 
 		if (!Array.isArray(this.countData)) {
 			this.getCount();
@@ -54,11 +57,12 @@ module.exports = class Count {
 
 	// fetch count either AJAX or JSONP
 	getCount() {
-		var count = this.storeGet(this.type);
+		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
 			this.os.innerHTML = count;
 		}
+
 
 		this[this.countData.type](this.countData);
 	}
@@ -67,7 +71,7 @@ module.exports = class Count {
 	getCounts() {
 		this.total = [];
 
-		var count = this.storeGet(this.type);
+		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
 			this.os.innerHTML = count;
@@ -87,8 +91,9 @@ module.exports = class Count {
 						tot += t;
 					});
 
-					this.storeSet(this.type, tot);
+					this.storeSet(this.type + '-' + this.shared, tot);
 					this.os.innerHTML = tot;
+					// Events.trigger(this.os, 'counted-' + this.url);
 				}
 			});
 		});
@@ -108,6 +113,8 @@ module.exports = class Count {
 			} else {
 				this.os.innerHTML = count;
 			}
+
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		// append JSONP script tag to page
@@ -124,17 +131,20 @@ module.exports = class Count {
 
 		// on success pass response to transform function
 		xhr.onreadystatechange = () => {
-			if (xhr.readyState !== XMLHttpRequest.DONE ||
-				xhr.status !== 200) {
-				return;
-			}
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					let count = countData.transform.apply(this, [xhr]) || 0;
 
-			let count = countData.transform.apply(this, [xhr]) || 0;
+					if (cb && typeof cb === 'function') {
+						cb(count);
+					} else {
+						this.os.innerHTML = count;
+					}
 
-			if (cb && typeof cb === 'function') {
-				cb(count);
-			} else {
-				this.os.innerHTML = count;
+					Events.trigger(this.os, 'counted-' + this.url);
+				} else {
+					console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+				}
 			}
 		};
 
@@ -160,6 +170,7 @@ module.exports = class Count {
 			} else {
 				this.os.innerHTML = count;
 			}
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		xhr.open('POST', countData.url);

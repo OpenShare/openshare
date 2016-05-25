@@ -5,8 +5,12 @@ module.exports = (function() {
 		Events = require('./modules/events'),
 		OpenShare = require('./modules/open-share'),
 		ShareTransforms = require('./modules/share-transforms'),
-		Count = require('./modules/count');
+		Count = require('./modules/count'),
+		CountAPI = require('./modules/count-api');
 
 	DataAttr(OpenShare, Count, ShareTransforms, Events);
-	window.OpenShare = ShareAPI(OpenShare, ShareTransforms, Events);
+	window.OpenShare = {
+		share: ShareAPI(OpenShare, ShareTransforms, Events),
+		count: CountAPI()
+	};
 })();

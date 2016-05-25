@@ -330,7 +330,7 @@
             <span class="socicon-reddit"></span>
             Share
             <span data-open-share-count="reddit"
-                  data-open-share-count-url="http://facebook.com"
+                  data-open-share-count-url="https://flymusic.co/"
                   class="open-share-count"></span>
         </a>
 
@@ -397,9 +397,21 @@
         <button onclick="addNode();">Create Node</button>
     </div>
 
+	<div class="create-node">
+        <button onclick="addNodeWithCount();">Create Node With Count</button>
+    </div>
+
+	<h2>Create individual Count Nodes</h2>
+	<div class="create-node count-nodes">
+		<input class="count-type" placeholder="type">
+		<input class="count-url" placeholder="url">
+        <button onclick="createCountNode();">Create Count Node Only</button>
+    </div>
+
 	<!-- test browser build -->
-	<!--<script src="dist/open-share.js"></script>
+	<!-- <script src="dist/open-share.js"></script>
 	<script>
+
 	var dynamicNodeData = {
 		'url': 'http://www.digitalsurgeons.com',
 		'via': 'digitalsurgeons',
@@ -428,17 +440,53 @@
 			.appendChild(createOpenShareNode(data));
 	}
 
-	document.addEventListener('DOMContentLoaded', function() {
-		// add open share node
-		var data = dynamicNodeData;
-		data.button = 'Dynamic Open Share!';
-		document.querySelector('.open-share-nodes')
-			.appendChild(createOpenShareNode(dynamicNodeData));
+	window.addNode = addNode;
 
-		var ev = document.createEvent('Event');
-		ev.initEvent('OpenShare.load', true, true);
-		document.dispatchEvent(ev);
-	});
+	function addNodeWithCount() {
+		var data = dynamicNodeData;
+
+		var countNode = document.createElement('span');
+		countNode.classList.add('open-share-count');
+		countNode.setAttribute('data-open-share-count', 'facebook');
+		countNode.setAttribute('data-open-share-count-url', 'https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga');
+
+		var openShareNode = createOpenShareNode(data);
+		document.querySelector('.open-share-watch')
+			.appendChild(openShareNode);
+
+		openShareNode.appendChild(countNode);
+	}
+
+	window.addNodeWithCount = addNodeWithCount;
+
+	function createCountNode() {
+	 	var container = document.querySelector('.create-node.count-nodes');
+		var type = container.querySelector('input.count-type').value;
+		var url = container.querySelector('input.count-url').value;
+
+		var count = new OpenShare.count({
+			type: type,
+			url: url,
+			appendTo: document.querySelector('.open-share-watch')
+		});
+
+		count.style.position = 'relative';
+
+	}
+
+	window.createCountNode = createCountNode;
+
+	// document.addEventListener('DOMContentLoaded', function() {
+	// 	// add open share node
+	// 	var data = dynamicNodeData;
+	// 	data.button = 'Dynamic Open Share!';
+	// 	document.querySelector('.open-share-nodes')
+	// 		.appendChild(createOpenShareNode(dynamicNodeData));
+	//
+	// 	var ev = document.createEvent('Event');
+	// 	ev.initEvent('OpenShare.load', true, true);
+	// 	document.dispatchEvent(ev);
+	// });
 
 	// bind to loaded event
 	document.addEventListener('OpenShare.loaded', function() {
@@ -452,7 +500,7 @@
 		});
 
 		var examples = {
-			twitter: new OpenShare(document.querySelector('[data-api-example="twitter"]'), {
+			twitter: new OpenShare.share(document.querySelector('[data-api-example="twitter"]'), {
 				type: 'twitter',
 				bindClick: true,
 				url: 'http://digitalsurgeons.com',
@@ -461,7 +509,7 @@
 				hashtags: 'forwardobsessed'
 			}),
 
-			facebook: new OpenShare(document.querySelector('[data-api-example="facebook"]'), {
+			facebook: new OpenShare.share(document.querySelector('[data-api-example="facebook"]'), {
 				type: 'facebook',
 				bindClick: true,
 				link: 'http://digitalsurgeons.com',
@@ -470,15 +518,16 @@
 				description: 'forwardobsessed'
 			}),
 
-			pinterest: new OpenShare(document.querySelector('[data-api-example="pinterest"]'), {
+			pinterest: new OpenShare.share(document.querySelector('[data-api-example="pinterest"]'), {
 				type: 'pinterest',
 				bindClick: true,
 				url: 'http://digitalsurgeons.com',
 				media: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
-				description: 'Digital Surgeons'
+				description: 'Digital Surgeons',
+				appendTo: document.body
 			}),
 
-			email: new OpenShare(document.querySelector('[data-api-example="email"]'), {
+			email: new OpenShare.share(document.querySelector('[data-api-example="email"]'), {
 				type: 'email',
 				bindClick: true,
 				to: 'techroom@digitalsurgeons.com',
@@ -487,7 +536,33 @@
 			})
 		};
 	});
-	</script>-->
+
+	// Example of listening for counted events on individual urls or arrays of urls
+	var urls = [
+		'facebook',
+		'google',
+		'linkedin',
+		'reddit',
+		'pinterest',
+		[
+			'google',
+			'linkedin',
+			'reddit',
+			'pinterest'
+		]
+	];
+
+	urls.forEach(function(url) {
+		if (Array.isArray(url)) {
+			url = url.join(',');
+		}
+		var shareNode = document.querySelector('[data-open-share-count="' + url + '"]');
+		shareNode.addEventListener('OpenShare.counted-' + url, function() {
+			var shares = shareNode.innerHTML;
+			console.log(url, 'shares: ', shares);
+		});
+	});
+	</script> -->
 	<script src="dist/test.js"></script>
 </body>
 </html>

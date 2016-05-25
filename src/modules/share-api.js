@@ -11,19 +11,46 @@ module.exports = function() {
 	// global OpenShare referencing internal class for instance generation
 	class OpenShare {
 
-		constructor(element, data) {
+		constructor(data, element) {
+			let node;
 			this.element = element;
 			this.data = data;
 
 			this.os = new OS(data.type, ShareTransforms[data.type]);
 			this.os.setData(data);
 
-			// automatically open share dialog on click
-			if (this.data.bindClick) {
-				this.element.addEventListener('click', (e) => {
+			if (!element || data.element) {
+				element = data.element;
+				node = document.createElement(element || 'a');
+				if (data.type) {
+					node.classList.add('open-share-link', data.type);
+					node.setAttribute('data-open-share', data.type);
+				}
+				if (data.url) node.setAttribute('data-open-share-url', data.url);
+				if (data.via) node.setAttribute('data-open-share-via', data.via);
+				if (data.text) node.setAttribute('data-open-share-text', data.text);
+				if (data.hashtags) node.setAttribute('data-open-share-hashtags', data.hashtags);
+				if (data.innerHTML) node.innerHTML = data.innerHTML;
+			}
+			if (node) element = node;
+
+			if (data.bindClick) {
+				element.addEventListener('click', (e) => {
 					this.share();
 				});
 			}
+
+			if (data.appendTo) {
+				data.appendTo.appendChild(element);
+			}
+
+			if (data.classes && Array.isArray(data.classes)) {
+				data.classes.forEach(cssClass => {
+					element.classList.add(cssClass);
+				});
+			}
+
+			if (node) return node;
 		}
 
 		// public share method to trigger share programmatically

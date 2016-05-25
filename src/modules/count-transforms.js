@@ -12,7 +12,7 @@ module.exports = {
 			url: `//graph.facebook.com/?id=${url}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).shares;
-				this.storeSet(this.type, count);
+				this.storeSet(this.type + '-' + this.shared, count);
 				return count;
 			}
 		};
@@ -25,7 +25,7 @@ module.exports = {
 			url: `//api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
 			transform: function(data) {
 				let count = data.count;
-				this.storeSet(this.type, count);
+				this.storeSet(this.type + '-' + this.shared, count);
 				return count;
 			}
 		};
@@ -38,7 +38,7 @@ module.exports = {
 			url: `//www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
 			transform: function(data) {
 				let count = data.count;
-				this.storeSet(this.type, count);
+				this.storeSet(this.type + '-' + this.shared, count);
 				return count;
 			}
 		};
@@ -57,7 +57,7 @@ module.exports = {
 					ups += Number(post.data.ups);
 				});
 
-				this.storeSet(this.type, ups);
+				this.storeSet(this.type + '-' + this.shared, ups);
 
 				return ups;
 			}
@@ -85,7 +85,7 @@ module.exports = {
 			url: `https://clients6.google.com/rpc`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
-				this.storeSet(this.type, count);
+				this.storeSet(this.type + '-' + this.shared, count);
 				return count;
 			}
 		};

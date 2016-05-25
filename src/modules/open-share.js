@@ -60,12 +60,19 @@ module.exports = class OpenShare {
 	// create share URL with GET params
 	// appending valid properties to query string
 	template(url, data) {
+		let nonURLProps = [
+			'appendTo',
+			'url',
+			'innerHTML',
+			'classes'
+		];
+
 		let shareUrl = url,
 			i;
 
 		for (i in data) {
 			// only append valid properties
-			if (!data[i]) {
+			if (!data[i] || nonURLProps.indexOf(i) > -1) {
 				continue;
 			}
 
