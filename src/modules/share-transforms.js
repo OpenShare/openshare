@@ -196,6 +196,12 @@ module.exports = {
 
 	// set Google maps URL
 	googleMaps: function(data, ios = false) {
+
+		if (data.search) {
+			data.q = data.search;
+			delete data.search;
+		}
+		
 		// if iOS user and ios data attribute defined
 		if (ios && data.ios) {
 			return {
@@ -206,11 +212,6 @@ module.exports = {
 
 		if (!ios && data.ios) {
 			delete data.ios;
-		}
-
-		if (data.search) {
-			data.q = data.search;
-			delete data.search;
 		}
 
 		return {
