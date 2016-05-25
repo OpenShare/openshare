@@ -134,7 +134,15 @@ module.exports = function() {
 			to: osElement.getAttribute('data-open-share-to'),
 			subject: osElement.getAttribute('data-open-share-subject'),
 			body: osElement.getAttribute('data-open-share-body'),
-			ios: osElement.getAttribute('data-open-share-ios')
+			ios: osElement.getAttribute('data-open-share-ios'),
+			type: osElement.getAttribute('data-open-share-type'),
+			center: osElement.getAttribute('data-open-share-center'),
+			views: osElement.getAttribute('data-open-share-views'),
+			zoom: osElement.getAttribute('data-open-share-zoom'),
+			search: osElement.getAttribute('data-open-share-search'),
+			saddr: osElement.getAttribute('data-open-share-saddr'),
+			daddr: osElement.getAttribute('data-open-share-daddr'),
+			directionsmode: osElement.getAttribute('data-open-share-directionsmode')
 		});
 	}
 };

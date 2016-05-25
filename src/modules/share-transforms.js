@@ -194,6 +194,31 @@ module.exports = {
 		};
 	},
 
+	// set Google maps URL
+	googleMaps: function(data, ios = false) {
+		// if iOS user and ios data attribute defined
+		if (ios && data.ios) {
+			return {
+				url: 'comgooglemaps://?',
+				data: ios
+			};
+		}
+
+		if (!ios && data.ios) {
+			delete data.ios;
+		}
+
+		if (data.search) {
+			data.q = data.search;
+			delete data.search;
+		}
+
+		return {
+			url: 'https://maps.google.com/?',
+			data: data
+		};
+	},
+
 	// set Pinterest share URL
 	pinterest: function(data) {
 		return {
