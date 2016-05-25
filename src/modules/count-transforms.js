@@ -6,7 +6,7 @@
 module.exports = {
 
 	// facebook count data
-	facebook: function(url) {
+	facebook (url) {
 		return {
 			type: 'get',
 			url: `//graph.facebook.com/?id=${url}`,
@@ -19,7 +19,7 @@ module.exports = {
 	},
 
 	// pinterest count data
-	pinterest: function(url) {
+	pinterest (url) {
 		return {
 			type: 'jsonp',
 			url: `//api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
@@ -32,7 +32,7 @@ module.exports = {
 	},
 
 	// linkedin count data
-	linkedin: function(url) {
+	linkedin (url) {
 		return {
 			type: 'jsonp',
 			url: `//www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
@@ -45,7 +45,7 @@ module.exports = {
 	},
 
 	// reddit count data
-	reddit: function(url) {
+	reddit (url) {
 		return {
 			type: 'get',
 			url: `//www.reddit.com/api/info.json?url=${url}`,
@@ -64,8 +64,8 @@ module.exports = {
 		};
 	},
 
-	// linkedin count data
-	google: function(url) {
+	// google count data
+	google (url) {
 		return {
 			type: 'post',
 			data: {
@@ -89,6 +89,44 @@ module.exports = {
 				return count;
 			}
 		};
-	}
+	},
 
+	// github star count
+	githubStars (repo) {
+		return {
+			type: 'get',
+			url: `//api.github.com/repos/${repo}`,
+			transform: function(xhr) {
+				let count = JSON.parse(xhr.responseText).stargazers_count;
+				this.storeSet(this.type + '-' + this.shared, count);
+				return count;
+			}
+		};
+	},
+
+	// github forks count
+	githubForks (repo) {
+		return {
+			type: 'get',
+			url: `//api.github.com/repos/${repo}`,
+			transform: function(xhr) {
+				let count = JSON.parse(xhr.responseText).forks_count;
+				this.storeSet(this.type + '-' + this.shared, count);
+				return count;
+			}
+		};
+	},
+
+	// github watchers count
+	githubWatchers (repo) {
+		return {
+			type: 'get',
+			url: `//api.github.com/repos/${repo}`,
+			transform: function(xhr) {
+				let count = JSON.parse(xhr.responseText).watchers_count;
+				this.storeSet(this.type + '-' + this.shared, count);
+				return count;
+			}
+		};
+	}
 };

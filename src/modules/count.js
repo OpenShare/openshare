@@ -14,6 +14,19 @@ module.exports = class Count {
 			throw new Error(`Open Share: no url provided for count`);
 		}
 
+		// check for Github counts
+		if (type.indexOf('github') === 0) {
+			if (type === 'github-stars') {
+				type = 'githubStars';
+			} else if (type === 'github-forks') {
+				type = 'githubForks';
+			} else if (type === 'github-watchers') {
+				type = 'githubWatchers';
+			} else {
+				console.error('Invalid Github count type. Try github-stars, github-forks, or github-watchers.');
+			}
+		}
+
 		// if type is comma separate list create array
 		if (type.indexOf(',') > -1) {
 			this.type = type;
@@ -93,7 +106,6 @@ module.exports = class Count {
 
 					this.storeSet(this.type + '-' + this.shared, tot);
 					this.os.innerHTML = tot;
-					// Events.trigger(this.os, 'counted-' + this.url);
 				}
 			});
 		});

@@ -37,7 +37,9 @@ module.exports = function() {
 	function initializeCountNode(os) {
 		// initialize open share object with type attribute
 		let type = os.getAttribute('data-open-share-count'),
-			count = new Count(type, os.getAttribute('data-open-share-count-url'));
+			url = os.getAttribute('data-open-share-count-repo') ||
+				os.getAttribute('data-open-share-count-url'),
+			count = new Count(type, url);
 
 		count.count(os);
 		os.setAttribute('data-open-share-node', type);
@@ -142,7 +144,8 @@ module.exports = function() {
 			search: osElement.getAttribute('data-open-share-search'),
 			saddr: osElement.getAttribute('data-open-share-saddr'),
 			daddr: osElement.getAttribute('data-open-share-daddr'),
-			directionsmode: osElement.getAttribute('data-open-share-directionsmode')
+			directionsmode: osElement.getAttribute('data-open-share-directions-mode'),
+			repo: osElement.getAttribute('data-open-share-repo')
 		});
 	}
 };

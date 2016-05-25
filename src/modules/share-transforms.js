@@ -201,7 +201,7 @@ module.exports = {
 			data.q = data.search;
 			delete data.search;
 		}
-		
+
 		// if iOS user and ios data attribute defined
 		if (ios && data.ios) {
 			return {
@@ -308,6 +308,13 @@ module.exports = {
 				subject: data.subject,
 				body: data.body
 			}
+		};
+	},
+
+	// set Github fork URL
+	github: function(data, ios = false) {
+		return {
+			url: `https://github.com/${data.repo}?`
 		};
 	}
 };
