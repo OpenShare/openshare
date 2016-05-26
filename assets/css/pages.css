@@ -359,11 +359,11 @@ textarea {
   src: url("../fonts/proxima/ProximaNova_Light.eot?#iefix") format("embedded-opentype"), url("../fonts/proxima/ProximaNova_Light.woff") format("woff"), url("../fonts/proxima/ProximaNova_Light.ttf") format("truetype"), url("../fonts/proxima/ProximaNova_Light.svg#ProximaOpenShare") format("svg");
   font-weight: 200;
   font-style: normal; }
-.masthead__inner, .feature, .callout__inner, .footer__inner {
+.masthead__inner, .banner__inner, .feature, .callout__inner, .footer__inner {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto; }
-  .masthead__inner::after, .feature::after, .callout__inner::after, .footer__inner::after {
+  .masthead__inner::after, .banner__inner::after, .feature::after, .callout__inner::after, .footer__inner::after {
     clear: both;
     content: "";
     display: table; }
@@ -449,6 +449,23 @@ body {
   clear: left;
   padding-top: 5em;
   overflow: hidden; }
+
+.banner {
+  background: #283137;
+  color: #fff;
+  display: block;
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: .3125em 1.25em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%; }
+
+.banner__strong {
+  color: #ff933a;
+  font-weight: 600; }
 
 .btn, .btn--dark {
   background: #4f70d6;

@@ -1,6 +1,7 @@
 $white: #fff;
 $blue: #4f70d6;
 $black: #283137;
+$orange: #ff933a;
 
 $column: 5em !global;
 $gutter: 1.25em !global;
@@ -12,6 +13,7 @@ $gutter: 1.25em !global;
 @import 'base';
 @import 'header';
 @import 'masthead';
+@import 'banner';
 @import 'btn';
 @import 'cta';
 @import 'feature';
