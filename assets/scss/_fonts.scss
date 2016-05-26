@@ -1,0 +1,4 @@
+@include font-face(Proxima, '/assets/fonts/proxima/ProximaNova_ExtraBold', 800, $file-formats: eot woff ttf svg);
+@include font-face(Proxima, '/assets/fonts/proxima/ProximaNova_Semibold', 600, $file-formats: eot woff ttf svg);
+@include font-face(Proxima, '/assets/fonts/proxima/ProximaNova_Regular', 400, $file-formats: eot woff ttf svg);
+@include font-face(Proxima, '/assets/fonts/proxima/ProximaNova_Light', 200, $file-formats: eot woff ttf svg);

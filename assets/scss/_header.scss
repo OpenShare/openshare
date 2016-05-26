@@ -1,0 +1,41 @@
+%header-link {
+	color: white;
+	text-decoration: none;
+}
+
+.header {
+	@extend %row;
+}
+
+.header__logo {
+	float: left;
+	font-size: 2.25em;
+	font-weight: 200;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+}
+
+.header__logo-strong {
+	font-weight: 600;
+}
+
+.header__logo-link {
+	@extend %header-link;
+}
+
+.header__nav {
+	float: right;
+}
+
+.header__nav-list {
+	margin: 0;
+}
+
+.header__nav-item {
+	display: inline-block;
+
+}
+
+.header__nav-link {
+	@extend %header-link;
+}

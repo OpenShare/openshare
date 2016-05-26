@@ -1,0 +1,11 @@
+.masthead {
+	background: url('/assets/img/bg-masthead.jpg') no-repeat 0 0;
+	background-size: cover;
+	height: 800px;
+	padding: 10px 0;
+	width: 100%;
+}
+
+.masthead__inner {
+	@extend %outer-container;
+}
