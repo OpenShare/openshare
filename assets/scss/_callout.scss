@@ -1,0 +1,17 @@
+.callout {
+	background: url('/assets/img/bg-masthead.jpg') no-repeat 0 0;
+	background-size: cover;
+	color: $white;
+	min-height: 445px;
+	overflow: hidden;
+	padding: 10px 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.callout__heading {
+	font-size: 3em;
+	font-weight: 400;
+	margin: 2.8em 0 .5em;
+	text-transform: uppercase;
+}

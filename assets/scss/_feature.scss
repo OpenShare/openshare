@@ -1,0 +1,12 @@
+.features {
+	overflow: hidden;
+}
+
+.feature {
+	@extend %outer-container;
+}
+
+.feature__copy,
+.feature__img {
+	@include span-columns(6);
+}

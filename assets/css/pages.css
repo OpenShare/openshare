@@ -378,11 +378,11 @@ textarea {
   src: url("/assets/fonts/proxima/ProximaNova_Light.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Light.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Light.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Light.svg#ProximaOpenShare") format("svg");
   font-weight: 200;
   font-style: normal; }
-.masthead__inner {
+.masthead__inner, .feature {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto; }
-  .masthead__inner::after {
+  .masthead__inner::after, .feature::after {
     clear: both;
     content: "";
     display: table; }
@@ -460,6 +460,9 @@ body {
   margin: .555555556em 0 0;
   padding: 0 6.25em; }
 
+.masthead__ctas {
+  margin-top: 5em; }
+
 .btn, .btn--dark {
   background: #4f70d6;
   color: #fff;
@@ -475,7 +478,7 @@ body {
   background: #283137; }
 
 .ctas {
-  margin-top: 5em; }
+  overflow: hidden; }
 
 .ctas__cta {
   float: left;
@@ -487,5 +490,34 @@ body {
 
 .ctas__cta:first-child {
   margin-left: 25.42373%; }
+
+.features {
+  overflow: hidden; }
+
+.feature__copy,
+.feature__img {
+  float: left;
+  display: block;
+  margin-right: 1.69492%;
+  width: 49.15254%; }
+  .feature__copy:last-child,
+  .feature__img:last-child {
+    margin-right: 0; }
+
+.callout {
+  background: url("/assets/img/bg-masthead.jpg") no-repeat 0 0;
+  background-size: cover;
+  color: #fff;
+  min-height: 445px;
+  overflow: hidden;
+  padding: 10px 20px;
+  text-align: center;
+  width: 100%; }
+
+.callout__heading {
+  font-size: 3em;
+  font-weight: 400;
+  margin: 2.8em 0 .5em;
+  text-transform: uppercase; }
 
 /*# sourceMappingURL=pages.css.map */
