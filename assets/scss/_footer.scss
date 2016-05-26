@@ -1,0 +1,27 @@
+.footer {
+	background: $black;
+	padding: 1.7em 0 1em;
+}
+
+.footer__inner {
+	@extend %outer-container;
+}
+
+.footer__logo {
+	color: $white;
+	float: left;
+	font-size: 2.25em;
+	font-weight: 200;
+	letter-spacing: 5px;
+	margin: 0;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.footer__logo-strong {
+	font-weight: 600;
+}
+
+.footer__ds {
+	float: right;
+}

@@ -378,11 +378,11 @@ textarea {
   src: url("/assets/fonts/proxima/ProximaNova_Light.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Light.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Light.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Light.svg#ProximaOpenShare") format("svg");
   font-weight: 200;
   font-style: normal; }
-.masthead__inner, .feature {
+.masthead__inner, .feature, .footer__inner {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto; }
-  .masthead__inner::after, .feature::after {
+  .masthead__inner::after, .feature::after, .footer__inner::after {
     clear: both;
     content: "";
     display: table; }
@@ -519,5 +519,25 @@ body {
   font-weight: 400;
   margin: 2.8em 0 .5em;
   text-transform: uppercase; }
+
+.footer {
+  background: #283137;
+  padding: 1.7em 0 1em; }
+
+.footer__logo {
+  color: #fff;
+  float: left;
+  font-size: 2.25em;
+  font-weight: 200;
+  letter-spacing: 5px;
+  margin: 0;
+  text-transform: uppercase;
+  text-decoration: none; }
+
+.footer__logo-strong {
+  font-weight: 600; }
+
+.footer__ds {
+  float: right; }
 
 /*# sourceMappingURL=pages.css.map */
