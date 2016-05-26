@@ -12,6 +12,7 @@
 	font-size: 2.25em;
 	font-weight: 200;
 	letter-spacing: 5px;
+	margin: .638888889em 0 0 0;
 	text-transform: uppercase;
 }
 
@@ -25,6 +26,7 @@
 
 .header__nav {
 	float: right;
+	margin-top: 1.875em;
 }
 
 .header__nav-list {
@@ -33,7 +35,10 @@
 
 .header__nav-item {
 	display: inline-block;
-
+	font-size: 1.25em;
+	font-weight: 600;
+	margin-left: .9375em;
+	letter-spacing: 3px;
 }
 
 .header__nav-link {

@@ -336,25 +336,29 @@ textarea {
   /* 2 */ }
 
 @font-face {
-  font-family: Proxima;
-  font-style: normal;
+  font-family: 'ProximaOpenShare';
+  src: url("/assets/fonts/proxima/ProximaNova_ExtraBold.eot");
+  src: url("/assets/fonts/proxima/ProximaNova_ExtraBold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_ExtraBold.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_ExtraBold.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_ExtraBold.svg#ProximaOpenShare") format("svg");
   font-weight: 800;
-  src: url("/assets/fonts/proxima/ProximaNova_ExtraBold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_ExtraBold.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_ExtraBold.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_ExtraBold.svg#Proxima") format("svg"); }
+  font-style: normal; }
 @font-face {
-  font-family: Proxima;
-  font-style: normal;
+  font-family: 'ProximaOpenShare';
+  src: url("/assets/fonts/proxima/ProximaNova_Semibold.eot");
+  src: url("/assets/fonts/proxima/ProximaNova_Semibold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Semibold.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Semibold.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Semibold.svg#ProximaOpenShare") format("svg");
   font-weight: 600;
-  src: url("/assets/fonts/proxima/ProximaNova_Semibold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Semibold.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Semibold.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Semibold.svg#Proxima") format("svg"); }
+  font-style: normal; }
 @font-face {
-  font-family: Proxima;
-  font-style: normal;
+  font-family: 'ProximaOpenShare';
+  src: url("/assets/fonts/proxima/ProximaNova_Regular.eot");
+  src: url("/assets/fonts/proxima/ProximaNova_Regular.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Regular.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Regular.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Regular.svg#ProximaOpenShare") format("svg");
   font-weight: 400;
-  src: url("/assets/fonts/proxima/ProximaNova_Regular.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Regular.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Regular.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Regular.svg#Proxima") format("svg"); }
+  font-style: normal; }
 @font-face {
-  font-family: Proxima;
-  font-style: normal;
+  font-family: 'ProximaOpenShare';
+  src: url("/assets/fonts/proxima/ProximaNova_Light.eot");
+  src: url("/assets/fonts/proxima/ProximaNova_Light.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Light.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Light.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Light.svg#ProximaOpenShare") format("svg");
   font-weight: 200;
-  src: url("/assets/fonts/proxima/ProximaNova_Light.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/proxima/ProximaNova_Light.woff") format("woff"), url("/assets/fonts/proxima/ProximaNova_Light.ttf") format("truetype"), url("/assets/fonts/proxima/ProximaNova_Light.svg#Proxima") format("svg"); }
+  font-style: normal; }
 .masthead__inner {
   max-width: 1200px;
   margin-left: auto;
@@ -372,7 +376,8 @@ textarea {
     display: table; }
 
 body {
-  font-family: 'Proxima';
+  -webkit-font-smoothing: antialiased;
+  font-family: 'ProximaOpenShare';
   font-weight: 400; }
 
 .header__logo-link, .header__nav-link {
@@ -384,19 +389,25 @@ body {
   font-size: 2.25em;
   font-weight: 200;
   letter-spacing: 5px;
+  margin: .638888889em 0 0 0;
   text-transform: uppercase; }
 
 .header__logo-strong {
   font-weight: 600; }
 
 .header__nav {
-  float: right; }
+  float: right;
+  margin-top: 1.875em; }
 
 .header__nav-list {
   margin: 0; }
 
 .header__nav-item {
-  display: inline-block; }
+  display: inline-block;
+  font-size: 1.25em;
+  font-weight: 600;
+  margin-left: .9375em;
+  letter-spacing: 3px; }
 
 .masthead {
   background: url("/assets/img/bg-masthead.jpg") no-repeat 0 0;
