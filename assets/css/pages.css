@@ -471,6 +471,9 @@ body {
   text-transform: uppercase;
   text-decoration: none; }
 
+.btn--dark {
+  background: #283137; }
+
 .ctas {
   margin-top: 5em; }
 
