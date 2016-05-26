@@ -11,13 +11,34 @@
 	@include transform(translateY(-50%));
 	position: absolute;
 	top: 50%;
+	width: 100%;
 }
 
-.feature__copy,
-.feature__img {
-	@include span-columns(6);
+.feature__align--center {
+	@extend .feature__align;
+	text-align: center;
+}
+
+.feature__col {
 	min-height: 550px;
 	position: relative;
+}
+
+.feature__col--small {
+	@extend .feature__col;
+	@include span-columns(5);
+}
+
+.feature__col--large {
+	@extend .feature__col;
+	@include span-columns(6);
+	@include shift(1);
+}
+
+.feature__col--large-center {
+	@extend .feature__col;
+	@include span-columns(5);
+	@include shift(1.5);
 }
 
 .feature__img-tag {
