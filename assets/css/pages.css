@@ -412,8 +412,31 @@ body {
 .masthead {
   background: url("/assets/img/bg-masthead.jpg") no-repeat 0 0;
   background-size: cover;
-  height: 800px;
+  color: #fff;
+  min-height: 800px;
   padding: 10px 0;
   width: 100%; }
+
+.masthead__content {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 82.94039%;
+  margin-left: 8.5298%;
+  margin-top: 7.8125em;
+  text-align: center; }
+  .masthead__content:last-child {
+    margin-right: 0; }
+
+.masthead__heading {
+  font-size: 3.875em;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase; }
+
+.masthead__body {
+  font-size: 1.125em;
+  line-height: 1.5;
+  padding: 0 6.25em; }
 
 /*# sourceMappingURL=pages.css.map */

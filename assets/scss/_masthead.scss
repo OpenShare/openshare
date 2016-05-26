@@ -1,11 +1,32 @@
 .masthead {
 	background: url('/assets/img/bg-masthead.jpg') no-repeat 0 0;
 	background-size: cover;
-	height: 800px;
+	color: #fff;
+	min-height: 800px;
 	padding: 10px 0;
 	width: 100%;
 }
 
 .masthead__inner {
 	@extend %outer-container;
+}
+
+.masthead__content {
+	@include span-columns(10);
+	@include shift(1);
+	margin-top: 7.8125em;
+	text-align: center;
+}
+
+.masthead__heading {
+	font-size: 3.875em;
+	font-weight: 800;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.masthead__body {
+	font-size: 1.125em;
+	line-height: 1.5;
+	padding: 0 6.25em;
 }
