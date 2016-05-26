@@ -1,9 +1,11 @@
 .ctas {
-	@include span-columns(6);
-	@include shift(3);
 	margin-top: 5em;
 }
 
 .ctas__cta {
-	@include span-columns(6);
+	@include span-columns(3);
+}
+
+.ctas__cta:first-child {
+	@include shift(3);
 }
