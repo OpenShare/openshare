@@ -500,18 +500,46 @@ body {
 .features {
   overflow: hidden; }
 
+.feature {
+  position: relative; }
+
+.feature__align {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%; }
+
 .feature__copy,
 .feature__img {
   float: left;
   display: block;
   margin-right: 1.69492%;
-  width: 49.15254%; }
+  width: 49.15254%;
+  min-height: 550px;
+  position: relative; }
   .feature__copy:last-child,
   .feature__img:last-child {
     margin-right: 0; }
 
 .feature__img-tag {
   max-width: 100%; }
+
+.feature__heading {
+  font-size: 3em;
+  font-weight: 400;
+  margin-bottom: .208333333em;
+  text-transform: uppercase; }
+
+.feature__body {
+  font-size: 1.125em;
+  line-height: 1.5; }
+
+.feature__link {
+  color: #4f70d6;
+  text-decoration: none; }
 
 .callout {
   background: url("/assets/img/bg-masthead.jpg") no-repeat 0 0;

@@ -4,13 +4,39 @@
 
 .feature {
 	@extend %outer-container;
+	position: relative;
+}
+
+.feature__align {
+	@include transform(translateY(-50%));
+	position: absolute;
+	top: 50%;
 }
 
 .feature__copy,
 .feature__img {
 	@include span-columns(6);
+	min-height: 550px;
+	position: relative;
 }
 
 .feature__img-tag {
 	max-width: 100%;
+}
+
+.feature__heading {
+	font-size: 3em;
+	font-weight: 400;
+	margin-bottom: .208333333em;
+	text-transform: uppercase;
+}
+
+.feature__body {
+	font-size: 1.125em;
+	line-height: 1.5;
+}
+
+.feature__link {
+	color: $blue;
+	text-decoration: none;
 }
