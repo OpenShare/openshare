@@ -9,9 +9,13 @@
 	width: 100%;
 }
 
+.callout__inner {
+	@extend %outer-container;
+}
+
 .callout__heading {
 	font-size: 3em;
 	font-weight: 400;
-	margin: 2.8em 0 .5em;
+	margin: 2.8em 0 1em;
 	text-transform: uppercase;
 }

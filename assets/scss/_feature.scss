@@ -10,3 +10,7 @@
 .feature__img {
 	@include span-columns(6);
 }
+
+.feature__img-tag {
+	max-width: 100%;
+}

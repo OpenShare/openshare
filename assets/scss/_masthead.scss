@@ -12,10 +12,15 @@
 }
 
 .masthead__content {
+	margin-top: 7.8125em;
+	overflow: hidden;
+	text-align: center;
+}
+
+.masthead__copy {
 	@include span-columns(10);
 	@include shift(1);
-	margin-top: 7.8125em;
-	text-align: center;
+	overflow: hidden;
 }
 
 .masthead__heading {
@@ -34,5 +39,8 @@
 }
 
 .masthead__ctas {
-	margin-top: 5em;
+	@extend %row;
+	clear: left;
+	padding-top: 5em;
+	overflow: hidden;
 }
