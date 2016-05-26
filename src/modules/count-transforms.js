@@ -93,6 +93,9 @@ module.exports = {
 
 	// github star count
 	githubStars (repo) {
+		repo = repo.indexOf('github.com/') > -1 ?
+			repo.split('github.com/')[1] :
+			repo;
 		return {
 			type: 'get',
 			url: `//api.github.com/repos/${repo}`,
@@ -106,6 +109,9 @@ module.exports = {
 
 	// github forks count
 	githubForks (repo) {
+		repo = repo.indexOf('github.com/') > -1 ?
+			repo.split('github.com/')[1] :
+			repo;
 		return {
 			type: 'get',
 			url: `//api.github.com/repos/${repo}`,
@@ -119,6 +125,9 @@ module.exports = {
 
 	// github watchers count
 	githubWatchers (repo) {
+		repo = repo.indexOf('github.com/') > -1 ?
+			repo.split('github.com/')[1] :
+			repo;
 		return {
 			type: 'get',
 			url: `//api.github.com/repos/${repo}`,
@@ -128,5 +137,53 @@ module.exports = {
 				return count;
 			}
 		};
+	},
+
+	// dribbble likes count
+	dribbble (shot) {
+		shot = shot.indexOf('dribbble.com/shots') > -1 ?
+			shot.split('shots/')[1] :
+			shot;
+		const url = `https://api.dribbble.com/v1/shots/${shot}/likes`;
+		return {
+			type: 'get',
+			url: url,
+			transform: function(xhr, Events) {
+				let count = JSON.parse(xhr.responseText).length;
+
+				// at this time dribbble limits a response of 12 likes per page
+				if (count === 12) {
+					let page = 2;
+					recursiveCount(url, page, count, finalCount => {
+						this.storeSet(this.type + '-' + this.shared, finalCount);
+						this.os.innerHTML = finalCount;
+						Events.trigger(this.os, 'counted-' + this.url);
+						return finalCount;
+					});
+				} else {
+					this.storeSet(this.type + '-' + this.shared, count);
+					return count;
+				}
+			}
+		};
 	}
 };
+
+function recursiveCount (url, page, count, cb) {
+	const xhr = new XMLHttpRequest();
+	xhr.open('GET', url + '?page=' + page);
+	xhr.addEventListener('load', function () {
+		const likes = JSON.parse(this.response);
+		count += likes.length;
+
+		// dribbble like per page is 12
+		if (likes.length === 12) {
+			page++;
+			recursiveCount(url, page, count, cb);
+		}
+		else {
+			cb(count);
+		}
+	});
+	xhr.send();
+}

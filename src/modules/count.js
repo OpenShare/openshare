@@ -145,7 +145,7 @@ module.exports = class Count {
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
 				if (xhr.status === 200) {
-					let count = countData.transform.apply(this, [xhr]) || 0;
+					let count = countData.transform.apply(this, [xhr, Events]) || 0;
 
 					if (cb && typeof cb === 'function') {
 						cb(count);
