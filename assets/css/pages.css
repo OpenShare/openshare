@@ -406,7 +406,7 @@ body {
   display: inline-block;
   font-size: 1.25em;
   font-weight: 600;
-  margin-left: .9375em;
+  margin-left: 2em;
   letter-spacing: 3px; }
 
 .masthead {
@@ -432,11 +432,13 @@ body {
   font-size: 3.875em;
   font-weight: 800;
   line-height: 1;
+  margin: 0 0 .322580645em;
   text-transform: uppercase; }
 
 .masthead__body {
   font-size: 1.125em;
   line-height: 1.5;
+  margin: .555555556em 0 0;
   padding: 0 6.25em; }
 
 /*# sourceMappingURL=pages.css.map */
