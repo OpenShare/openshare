@@ -1,6 +1,10 @@
 /**
  * Generate share count instance from one to many networks
  */
+
+var CountTransforms = require('./count-transforms');
+var Events = require('./events');
+
 module.exports = class Count {
 
 	constructor(type, url) {
@@ -18,22 +22,22 @@ module.exports = class Count {
 
 			// check each type supplied is valid
 			this.typeArr.forEach((t) => {
-				if (!this[t]) {
+				if (!CountTransforms[t]) {
 					throw new Error(`Open Share: ${type} is an invalid count type`);
 				}
 
-				this.countData.push(this[t](url));
+				this.countData.push(CountTransforms[t](url));
 			});
 
 		// throw error if invalid type provided
-		} else if (!this[type]) {
+		} else if (!CountTransforms[type]) {
 			throw new Error(`Open Share: ${type} is an invalid count type`);
 
 		// single count
 		// store count URL and transform function
 		} else {
 			this.type = type;
-			this.countData = this[type](url);
+			this.countData = CountTransforms[type](url);
 		}
 	}
 
@@ -41,6 +45,8 @@ module.exports = class Count {
 	// depending on number of types
 	count(os) {
 		this.os = os;
+    	this.url = this.os.getAttribute('data-open-share-count');
+		this.shared = this.os.getAttribute('data-open-share-count-url');
 
 		if (!Array.isArray(this.countData)) {
 			this.getCount();
@@ -51,11 +57,12 @@ module.exports = class Count {
 
 	// fetch count either AJAX or JSONP
 	getCount() {
-		var count = this.storeGet(this.type);
+		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
 			this.os.innerHTML = count;
 		}
+
 
 		this[this.countData.type](this.countData);
 	}
@@ -64,7 +71,7 @@ module.exports = class Count {
 	getCounts() {
 		this.total = [];
 
-		var count = this.storeGet(this.type);
+		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
 			this.os.innerHTML = count;
@@ -84,8 +91,9 @@ module.exports = class Count {
 						tot += t;
 					});
 
-					this.storeSet(this.type, tot);
+					this.storeSet(this.type + '-' + this.shared, tot);
 					this.os.innerHTML = tot;
+					// Events.trigger(this.os, 'counted-' + this.url);
 				}
 			});
 		});
@@ -96,15 +104,17 @@ module.exports = class Count {
 	// handle JSONP requests
 	jsonp(countData, cb) {
 		// define random callback and assign transform function
-		let callback = `jsonp_${Math.random().toString().substr(-10)}`;
+		let callback = Math.random().toString(36).substring(7).replace(/[^a-zA-Z]/g, '');
 		window[callback] = (data) => {
-			let count = countData.transform(data) || 0;
+			let count = countData.transform.apply(this, [data]) || 0;
 
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
 				this.os.innerHTML = count;
 			}
+
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		// append JSONP script tag to page
@@ -121,17 +131,20 @@ module.exports = class Count {
 
 		// on success pass response to transform function
 		xhr.onreadystatechange = () => {
-			if (xhr.readyState !== XMLHttpRequest.DONE ||
-				xhr.status !== 200) {
-				return;
-			}
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					let count = countData.transform.apply(this, [xhr]) || 0;
 
-			let count = countData.transform(xhr) || 0;
+					if (cb && typeof cb === 'function') {
+						cb(count);
+					} else {
+						this.os.innerHTML = count;
+					}
 
-			if (cb && typeof cb === 'function') {
-				cb(count);
-			} else {
-				this.os.innerHTML = count;
+					Events.trigger(this.os, 'counted-' + this.url);
+				} else {
+					console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+				}
 			}
 		};
 
@@ -150,13 +163,14 @@ module.exports = class Count {
 				return;
 			}
 
-			let count = countData.transform(xhr) || 0;
+			let count = countData.transform.apply(this, [xhr]) || 0;
 
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
 				this.os.innerHTML = count;
 			}
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		xhr.open('POST', countData.url);
@@ -178,92 +192,6 @@ module.exports = class Count {
 		}
 
 		return localStorage.getItem(`OpenShare-${type}`);
-	}
-
-	// facebook count data
-	facebook(url) {
-		return {
-			type: 'get',
-			url: `http://graph.facebook.com/?id=${url}`,
-			transform: (xhr) => {
-				let count = JSON.parse(xhr.responseText).shares;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
-	}
-
-	// pinterest count data
-	pinterest(url) {
-		return {
-			type: 'jsonp',
-			url: `http://api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
-			transform: (data) => {
-				let count = data.count;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
-	}
-
-	// linkedin count data
-	linkedin(url) {
-		return {
-			type: 'jsonp',
-			url: `http://www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
-			transform: (data) => {
-				let count = data.count;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
-	}
-
-	// reddit count data
-	reddit(url) {
-		return {
-			type: 'get',
-			url: `https://www.reddit.com/api/info.json?url=${url}`,
-			transform: (xhr) => {
-				let posts = JSON.parse(xhr.responseText).data.children,
-					ups = 0;
-
-				posts.forEach((post) => {
-					ups += Number(post.data.ups);
-				});
-
-				this.storeSet(this.type, ups);
-
-				return ups;
-			}
-		};
-	}
-
-	// linkedin count data
-	google(url) {
-		return {
-			type: 'post',
-			data: {
-				method: 'pos.plusones.get',
-				id: 'p',
-				params: {
-					nolog: true,
-					id: url,
-					source: 'widget',
-					userId: '@viewer',
-					groupId: '@self'
-				},
-				jsonrpc: '2.0',
-				key: 'p',
-				apiVersion: 'v1'
-			},
-			url: `https://clients6.google.com/rpc`,
-			transform: (xhr) => {
-				let count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
-				this.storeSet(this.type, count);
-				return count;
-			}
-		};
 	}
 
 };

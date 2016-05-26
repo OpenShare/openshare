@@ -26,13 +26,25 @@ function _startBrowserSync() {
 }
 
 function _watchFiles() {
-	gulp.watch('src/**/*.js', ['compile-js']).on('change', reload);
+	gulp.watch('src/**/*.js', ['compile']).on('change', reload);
 }
 
+gulp.task('compile', ['compile-js', 'compile-test']);
+
 gulp.task('compile-js', function() {
-	return browserify('src/index.js')
+	return browserify('src/browser.js')
             .bundle()
             .pipe(source('open-share.js'))
+            .pipe(buffer())
+            .pipe(babel())
+            .pipe(uglify())
+            .pipe(gulp.dest('dist'));
+});
+
+gulp.task('compile-test', function() {
+	return browserify('src/test.js')
+            .bundle()
+            .pipe(source('test.js'))
             .pipe(buffer())
             .pipe(babel())
             .pipe(uglify())
