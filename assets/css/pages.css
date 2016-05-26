@@ -381,7 +381,7 @@ body {
   font-weight: 400; }
 
 .header__logo-link, .header__nav-link {
-  color: white;
+  color: #fff;
   text-decoration: none; }
 
 .header__logo {
@@ -440,5 +440,34 @@ body {
   line-height: 1.5;
   margin: .555555556em 0 0;
   padding: 0 6.25em; }
+
+.btn, .btn--dark {
+  background: #4f70d6;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: .78125em 0;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none; }
+
+.ctas {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  margin-left: 25.58941%;
+  margin-top: 5em; }
+  .ctas:last-child {
+    margin-right: 0; }
+
+.ctas__cta {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%; }
+  .ctas__cta:last-child {
+    margin-right: 0; }
 
 /*# sourceMappingURL=pages.css.map */

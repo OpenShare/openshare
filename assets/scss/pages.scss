@@ -1,3 +1,7 @@
+$white: #fff;
+$blue: #4f70d6;
+$black: #283137;
+
 @import '../bourbon/bourbon';
 @import '../neat/neat';
 @import 'normalize';
@@ -6,3 +10,4 @@
 @import 'header';
 @import 'masthead';
 @import 'btn';
+@import 'cta';
