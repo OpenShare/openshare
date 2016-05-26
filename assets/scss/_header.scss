@@ -5,6 +5,7 @@
 
 .header {
 	@extend %row;
+	@extend %row-padd;
 }
 
 .header__logo {

@@ -1,9 +1,24 @@
+$white: #fff;
+$blue: #4f70d6;
+$black: #283137;
+$orange: #ff933a;
+
 %outer-container {
 	@include outer-container();
 }
 
 %row {
 	@include row();
+}
+
+%row-padd {
+	padding-left: em(20);
+	padding-right: em(20);
+
+	@include media(min-width 85em) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 body {
