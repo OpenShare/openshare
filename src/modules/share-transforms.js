@@ -329,5 +329,14 @@ module.exports = {
 		return {
 			url: url
 		};
+	},
+
+	codepen (data) {
+		const url = (data.pen && data.username && data.view) ?
+			`https://codepen.io/${data.username}/${data.view}/${data.pen}?` :
+			data.url + '?';
+		return {
+			url: url
+		};
 	}
 };

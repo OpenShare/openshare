@@ -147,7 +147,9 @@ module.exports = function() {
 			daddr: osElement.getAttribute('data-open-share-daddr'),
 			directionsmode: osElement.getAttribute('data-open-share-directions-mode'),
 			repo: osElement.getAttribute('data-open-share-repo'),
-			shot: osElement.getAttribute('data-open-share-shot')
+			shot: osElement.getAttribute('data-open-share-shot'),
+			pen: osElement.getAttribute('data-open-share-pen'),
+			view: osElement.getAttribute('data-open-share-view')
 		});
 	}
 };
