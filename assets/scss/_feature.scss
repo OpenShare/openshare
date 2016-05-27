@@ -4,6 +4,7 @@
 
 .feature {
 	@extend %outer-container;
+	@extend %row-padd;
 	position: relative;
 }
 
