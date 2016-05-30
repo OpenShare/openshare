@@ -541,48 +541,54 @@ body {
 .feature {
   position: relative; }
 
-.feature__align, .feature__align--center {
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-  position: absolute;
-  top: 50%;
-  width: 100%; }
+@media screen and (min-width: 56.25em) {
+  .feature__align, .feature__align--center {
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+    width: 100%; } }
 
 .feature__align--center {
   text-align: center; }
 
 .feature__col, .feature__col--small, .feature__col--large, .feature__col--large-center {
-  min-height: 550px;
   position: relative; }
+  @media screen and (min-width: 56.25em) {
+    .feature__col, .feature__col--small, .feature__col--large, .feature__col--large-center {
+      min-height: 550px; } }
 
-.feature__col--small {
-  float: left;
-  display: block;
-  margin-right: 1.69492%;
-  width: 40.67797%; }
-  .feature__col--small:last-child {
-    margin-right: 0; }
+@media screen and (min-width: 56.25em) {
+  .feature__col--small {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 40.67797%; }
+    .feature__col--small:last-child {
+      margin-right: 0; } }
 
-.feature__col--large {
-  float: left;
-  display: block;
-  margin-right: 1.69492%;
-  width: 49.15254%;
-  margin-left: 8.47458%; }
-  .feature__col--large:last-child {
-    margin-right: 0; }
+@media screen and (min-width: 56.25em) {
+  .feature__col--large {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 49.15254%;
+    margin-left: 8.47458%; }
+    .feature__col--large:last-child {
+      margin-right: 0; } }
 
-.feature__col--large-center {
-  float: left;
-  display: block;
-  margin-right: 1.69492%;
-  width: 40.67797%;
-  margin-left: 12.71186%; }
-  .feature__col--large-center:last-child {
-    margin-right: 0; }
+@media screen and (min-width: 56.25em) {
+  .feature__col--large-center {
+    float: left;
+    display: block;
+    margin-right: 1.69492%;
+    width: 40.67797%;
+    margin-left: 12.71186%; }
+    .feature__col--large-center:last-child {
+      margin-right: 0; } }
 
 .feature__img-tag {
   max-width: 100%; }
