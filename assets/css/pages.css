@@ -659,17 +659,27 @@ body {
 .example {
   padding: 2.5em 1em;
   width: 100%; }
-  @media screen and (min-width: 50em) {
+  @media screen and (min-width: 56.25em) {
     .example {
       width: 50%; } }
-  @media screen and (min-width: 62.5em) {
-    .example {
-      width: 33.33333%; } }
 
 .example__title {
   font-size: 1.5em;
   font-weight: 600;
   text-transform: uppercase; }
+
+.example__link {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  color: #283137;
+  text-decoration: none; }
+  .example__link:hover {
+    color: #4f70d6; }
+
+.example__icon {
+  font-size: .75em;
+  margin-left: .625em; }
 
 .callout {
   background: url("../img/bg-masthead.jpg") no-repeat center center;

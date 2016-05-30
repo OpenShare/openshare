@@ -1,5 +1,4 @@
-$example-large: 62.5em;
-$example-medium: 50em;
+$example-large: 56.25em;
 
 .examples {
 	@extend %outer-container;
@@ -13,12 +12,8 @@ $example-medium: 50em;
 	padding: 2.5em 1em;
 	width: 100%;
 
-	@include media($example-medium) {
-		width: 50%;
-	}
-
 	@include media($example-large) {
-		width: 33.33333%;
+		width: 50%;
 	}
 }
 
@@ -26,4 +21,19 @@ $example-medium: 50em;
 	font-size: 1.5em;
 	font-weight: 600;
 	text-transform: uppercase;
+}
+
+.example__link {
+	@include transition(.3s);
+	color: $black;
+	text-decoration: none;
+
+	&:hover {
+		color: $blue;
+	}
+}
+
+.example__icon {
+	font-size: .75em;
+	margin-left: .625em;
 }
