@@ -1,21 +1,33 @@
 .footer {
 	background: $black;
-	padding: 1.7em 0 1.2em;
+	padding: 2.5em 0 2.3em;
+	text-align: center;
+
+	@include media($medium-screen) {
+		padding: 1.7em 0 1.2em;
+		text-align: left;
+	}
 }
 
 .footer__inner {
 	@extend %outer-container;
+	@extend %row-padd;
 }
 
 .footer__logo {
 	color: $white;
-	float: left;
+	display: block;
 	font-size: 2.25em;
 	font-weight: 200;
 	letter-spacing: 5px;
-	margin: 0;
-	text-transform: uppercase;
+	margin: 0 0 1.25em;
 	text-decoration: none;
+	text-transform: uppercase;
+
+	@include media($medium-screen) {
+		float: left;
+		margin: 0;
+	}
 }
 
 .footer__logo-strong {
@@ -23,5 +35,7 @@
 }
 
 .footer__ds {
-	float: right;
+	@include media($medium-screen) {
+		float: right;
+	}
 }
