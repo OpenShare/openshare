@@ -1,6 +1,10 @@
 $column: 5em !global;
 $gutter: 1.25em !global;
 
+$small-screen: 21.875em;
+$medium-screen: 37.5em;
+$large-screen: 56.25em;
+
 @import '../bourbon/bourbon';
 @import '../neat/neat';
 @import 'normalize';

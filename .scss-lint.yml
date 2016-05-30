@@ -1,0 +1,30 @@
+exclude:
+  - 'public_html/src/scss/base/**'
+  - 'public_html/src/scss/bourbon/**'
+  - 'public_html/src/scss/neat/**'
+
+linters:
+  Comment:
+    enabled: false
+  Indentation: # Line should be indented 4 spaces, but was indented 2 spaces
+    severity: warning
+    width: 1
+    character: tab
+  MergeableSelector:
+    enabled: false
+  SelectorFormat:
+    enabled: false
+  StringQuotes: # Prefer single quoted strings
+    enabled: true
+  SelectorDepth:
+    max_depth: 3
+  SelectorFormat:
+    convention: hyphenated_BEM
+  PlaceholderInExtend:
+    enabled: false
+  VendorPrefix:
+    enabled: false
+  ColorVariable:
+    enabled: false
+  NameFormat:
+    placeholder_convention: ^.|%

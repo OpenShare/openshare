@@ -13,7 +13,7 @@
 	font-size: 2.25em;
 	font-weight: 200;
 	letter-spacing: 5px;
-	margin: .638888889em 0 0 0;
+	margin: .638888889em 0 0;
 	text-transform: uppercase;
 }
 
@@ -26,20 +26,34 @@
 }
 
 .header__nav {
-	float: right;
+	display: none;
 	margin-top: 1.875em;
+	text-align: center;
+
+	@include media($large-screen) {
+		display: block;
+		float: right;
+		text-align: left;
+	}
 }
 
 .header__nav-list {
 	margin: 0;
+	padding: 0;
 }
 
 .header__nav-item {
-	display: inline-block;
-	font-size: 1.25em;
+	display: block;
+	font-size: 1em;
 	font-weight: 600;
-	margin-left: 2em;
 	letter-spacing: 3px;
+	margin: 0 0 1em;
+
+	@include media($large-screen) {
+		display: inline-block;
+		font-size: 1.25em;
+		margin: 0 0 0 2em;
+	}
 }
 
 .header__nav-link {

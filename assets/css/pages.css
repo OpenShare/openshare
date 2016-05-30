@@ -397,25 +397,37 @@ body {
   font-size: 2.25em;
   font-weight: 200;
   letter-spacing: 5px;
-  margin: .638888889em 0 0 0;
+  margin: .638888889em 0 0;
   text-transform: uppercase; }
 
 .header__logo-strong {
   font-weight: 600; }
 
 .header__nav {
-  float: right;
-  margin-top: 1.875em; }
+  display: none;
+  margin-top: 1.875em;
+  text-align: center; }
+  @media screen and (min-width: 56.25em) {
+    .header__nav {
+      display: block;
+      float: right;
+      text-align: left; } }
 
 .header__nav-list {
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
 
 .header__nav-item {
-  display: inline-block;
-  font-size: 1.25em;
+  display: block;
+  font-size: 1em;
   font-weight: 600;
-  margin-left: 2em;
-  letter-spacing: 3px; }
+  letter-spacing: 3px;
+  margin: 0 0 1em; }
+  @media screen and (min-width: 56.25em) {
+    .header__nav-item {
+      display: inline-block;
+      font-size: 1.25em;
+      margin: 0 0 0 2em; } }
 
 .masthead {
   background: url("../img/bg-masthead.jpg") no-repeat center center;
@@ -441,22 +453,31 @@ body {
     margin-right: 0; }
 
 .masthead__heading {
-  font-size: 3.875em;
+  font-size: 1.875em;
   font-weight: 800;
   line-height: 1;
   margin: 0 0 .322580645em;
   text-transform: uppercase; }
+  @media screen and (min-width: 21.875em) {
+    .masthead__heading {
+      font-size: 2.5em; } }
+  @media screen and (min-width: 37.5em) {
+    .masthead__heading {
+      font-size: 3.875em; } }
 
 .masthead__body {
-  font-size: 1.125em;
+  font-size: 1em;
   line-height: 1.5;
-  margin: .555555556em 0 0;
-  padding: 0 6.25em; }
+  margin: .555555556em 0 0; }
+  @media screen and (min-width: 56.25em) {
+    .masthead__body {
+      font-size: 1.125em;
+      padding: 0 6.25em; } }
 
 .masthead__ctas {
   clear: left;
-  padding-top: 5em;
-  overflow: hidden; }
+  overflow: hidden;
+  padding-top: 5em; }
 
 .banner {
   background: #283137;
@@ -493,15 +514,22 @@ body {
   overflow: hidden; }
 
 .ctas__cta {
-  float: left;
   display: block;
-  margin-right: 1.69492%;
-  width: 23.72881%; }
-  .ctas__cta:last-child {
-    margin-right: 0; }
+  float: none;
+  margin: 0 auto .625em;
+  width: 90%; }
+  @media screen and (min-width: 56.25em) {
+    .ctas__cta {
+      float: left;
+      display: block;
+      margin-right: 1.69492%;
+      width: 23.72881%; }
+      .ctas__cta:last-child {
+        margin-right: 0; } }
 
-.ctas__cta:first-child {
-  margin-left: 25.42373%; }
+@media screen and (min-width: 56.25em) {
+  .ctas__cta:first-child {
+    margin-left: 25.42373%; } }
 
 .features {
   overflow: hidden; }

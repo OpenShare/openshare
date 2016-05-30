@@ -3,9 +3,18 @@
 }
 
 .ctas__cta {
-	@include span-columns(3);
+	display: block;
+	float: none;
+	margin: 0 auto .625em;
+	width: 90%;
+
+	@include media($large-screen) {
+		@include span-columns(3);
+	}
 }
 
 .ctas__cta:first-child {
-	@include shift(3);
+	@include media($large-screen) {
+		@include shift(3);
+	}
 }
