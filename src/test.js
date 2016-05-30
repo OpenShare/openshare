@@ -92,7 +92,7 @@ window.createCountNode = createCountNode;
 // });
 
 // bind to loaded event
-document.addEventListener('OpenShare.loaded', function() {
+document.addEventListener('OpenShare.share-loaded', function() {
 	console.log('Open Share loaded');
 
 	// bind to shared event on each individual node
