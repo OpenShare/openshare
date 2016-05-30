@@ -634,17 +634,29 @@ body {
   background: url("../img/bg-masthead.jpg") no-repeat center center;
   background-size: cover;
   color: #fff;
-  min-height: 445px;
   overflow: hidden;
-  padding: 10px 20px;
+  padding: 40px 20px;
   text-align: center;
   width: 100%; }
+  @media screen and (min-width: 56.25em) {
+    .callout {
+      min-height: 445px;
+      padding: 10px 20px; } }
 
 .callout__heading {
-  font-size: 3em;
+  font-size: 1.875em;
   font-weight: 400;
-  margin: 2.8em 0 1em;
+  margin: .666666667em 0;
   text-transform: uppercase; }
+  @media screen and (min-width: 21.875em) {
+    .callout__heading {
+      font-size: 2.5em; } }
+  @media screen and (min-width: 37.5em) {
+    .callout__heading {
+      font-size: 3em; } }
+  @media screen and (min-width: 56.25em) {
+    .callout__heading {
+      margin: 2.8em 0 1em; } }
 
 .footer {
   background: #283137;
