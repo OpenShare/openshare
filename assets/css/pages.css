@@ -388,7 +388,7 @@ body {
   font-family: 'ProximaOpenShare';
   font-weight: 400; }
 
-.header__logo-link, .header__nav-link {
+.header__logo-link, .header__nav-link, .header__nav-link--active {
   color: #fff;
   text-decoration: none; }
 
@@ -428,6 +428,16 @@ body {
       display: inline-block;
       font-size: 1.25em;
       margin: 0 0 0 2em; } }
+
+.header__nav-link, .header__nav-link--active {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s; }
+  .header__nav-link:hover, .header__nav-link--active:hover {
+    color: #4f70d6; }
+
+.header__nav-link--active {
+  color: #4f70d6; }
 
 .masthead, .masthead--small {
   background: url("../img/bg-masthead.jpg") no-repeat center center;
@@ -575,6 +585,9 @@ body {
   font-weight: 600; }
 
 .btn, .btn--dark {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
   background: #4f70d6;
   color: #fff;
   font-size: 1.5em;
@@ -582,11 +595,15 @@ body {
   letter-spacing: 1px;
   padding: .78125em 0;
   text-align: center;
-  text-transform: uppercase;
-  text-decoration: none; }
+  text-decoration: none;
+  text-transform: uppercase; }
+  .btn:hover, .btn--dark:hover {
+    background: #5978d8; }
 
 .btn--dark {
   background: #283137; }
+  .btn--dark:hover {
+    background: #2d383e; }
 
 .ctas {
   overflow: hidden; }

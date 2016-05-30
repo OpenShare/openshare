@@ -58,4 +58,14 @@
 
 .header__nav-link {
 	@extend %header-link;
+	@include transition(.3s);
+
+	&:hover {
+		color: $blue;
+	}
+}
+
+.header__nav-link--active {
+	@extend .header__nav-link;
+	color: $blue;
 }

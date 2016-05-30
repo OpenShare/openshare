@@ -1,4 +1,5 @@
 .btn {
+	@include transition(.3s);
 	background: $blue;
 	color: $white;
 	font-size: 1.5em;
@@ -6,11 +7,19 @@
 	letter-spacing: 1px;
 	padding: .78125em 0;
 	text-align: center;
-	text-transform: uppercase;
 	text-decoration: none;
+	text-transform: uppercase;
+
+	&:hover {
+		background: lighten($blue, 2.5%);
+	}
 }
 
 .btn--dark {
 	@extend .btn;
 	background: $black;
+
+	&:hover {
+		background: lighten($black, 2.5%);
+	}
 }
