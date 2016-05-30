@@ -444,7 +444,7 @@ body {
       min-height: 550px; } }
 
 .masthead__content {
-  margin-top: 7.8125em;
+  margin-top: 6.25em;
   overflow: hidden;
   text-align: center; }
 
@@ -487,6 +487,71 @@ body {
   clear: left;
   overflow: hidden;
   padding-top: 2em; }
+
+.open-share-circles {
+  margin: 15em 0 1em; }
+
+.open-share-circle {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  background: #4f70d6;
+  border-radius: 3.75em;
+  color: #fff;
+  display: inline-block;
+  font-size: 1.5em;
+  height: 3.125em;
+  line-height: 3.5625em;
+  margin: 1.25em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 3.125em; }
+
+.open-share-circle .fa {
+  -webkit-transform: translateY(-4px);
+  -moz-transform: translateY(-4px);
+  -ms-transform: translateY(-4px);
+  -o-transform: translateY(-4px);
+  transform: translateY(-4px); }
+
+.open-share-circle__count {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  -webkit-transform: translate(-50%, 20px);
+  -moz-transform: translate(-50%, 20px);
+  -ms-transform: translate(-50%, 20px);
+  -o-transform: translate(-50%, 20px);
+  transform: translate(-50%, 20px);
+  background: #333;
+  font-size: 12px;
+  left: 50%;
+  line-height: 1;
+  opacity: 0;
+  padding: 10px;
+  position: absolute;
+  top: -50px; }
+  .open-share-circle__count::after {
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid #333;
+    bottom: -9px;
+    content: '';
+    display: block;
+    height: 0;
+    left: 50%;
+    position: absolute;
+    width: 0; }
+
+.open-share-circle:hover .open-share-circle__count {
+  opacity: 1;
+  transform: translate(-50%, 0); }
 
 .banner {
   background: #283137;

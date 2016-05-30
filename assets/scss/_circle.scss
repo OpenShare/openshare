@@ -1,0 +1,55 @@
+.open-share-circles {
+	margin: 15em 0 1em;
+}
+
+.open-share-circle {
+	@include transition(.3s);
+	background: #4f70d6;
+	border-radius: 3.75em;
+	color: #fff;
+	display: inline-block;
+	font-size: 1.5em;
+	height: 3.125em;
+	line-height: 3.5625em;
+	margin: 1.25em;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	width: 3.125em;
+}
+
+.open-share-circle .fa {
+	@include transform(translateY(-4px));
+}
+
+.open-share-circle__count {
+	@include transition(.3s);
+	@include transform(translate(-50%, 20px));
+	background: #333;
+	font-size: 12px;
+	left: 50%;
+	line-height: 1;
+	opacity: 0;
+	padding: 10px;
+	position: absolute;
+	top: -50px;
+
+	&::after {
+		@include transform(translateX(-50%));
+		border-left: 7px solid transparent;
+		border-right: 7px solid transparent;
+		border-top: 10px solid #333;
+		bottom: -9px;
+		content: '';
+		display: block;
+		height: 0;
+		left: 50%;
+		position: absolute;
+		width: 0;
+	}
+}
+
+.open-share-circle:hover .open-share-circle__count {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
