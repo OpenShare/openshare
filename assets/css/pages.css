@@ -483,14 +483,18 @@ body {
   background: #283137;
   color: #fff;
   display: block;
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: 600;
   letter-spacing: 1px;
+  line-height: 1.5;
   padding: .3125em 1.25em;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   width: 100%; }
+  @media screen and (min-width: 37.5em) {
+    .banner {
+      font-size: 1.5em; } }
 
 .banner__strong {
   color: #ff933a;
