@@ -441,7 +441,7 @@ body {
   min-height: 670px; }
   @media screen and (min-width: 56.25em) {
     .masthead--small {
-      min-height: 550px; } }
+      min-height: 530px; } }
 
 .masthead__content {
   margin-top: 6.25em;
@@ -502,7 +502,7 @@ body {
   font-size: 1.5em;
   height: 3.125em;
   line-height: 3.5625em;
-  margin: 1.25em;
+  margin: 1em;
   position: relative;
   text-align: center;
   text-decoration: none;
