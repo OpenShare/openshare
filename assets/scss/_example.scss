@@ -1,0 +1,29 @@
+$example-large: 62.5em;
+$example-medium: 50em;
+
+.examples {
+	@extend %outer-container;
+	@extend %row-padd;
+	@include display(flex);
+	@include flex-wrap(wrap);
+	padding-bottom: 2.5em;
+}
+
+.example {
+	padding: 2.5em 1em;
+	width: 100%;
+
+	@include media($example-medium) {
+		width: 50%;
+	}
+
+	@include media($example-large) {
+		width: 33.33333%;
+	}
+}
+
+.example__title {
+	font-size: 1.5em;
+	font-weight: 600;
+	text-transform: uppercase;
+}

@@ -359,11 +359,11 @@ textarea {
   src: url("../fonts/proxima/ProximaNova_Light.eot?#iefix") format("embedded-opentype"), url("../fonts/proxima/ProximaNova_Light.woff") format("woff"), url("../fonts/proxima/ProximaNova_Light.ttf") format("truetype"), url("../fonts/proxima/ProximaNova_Light.svg#ProximaOpenShare") format("svg");
   font-weight: 200;
   font-style: normal; }
-.masthead__inner, .banner__inner, .feature, .callout__inner, .footer__inner {
+.masthead__inner, .banner__inner, .feature, .examples, .callout__inner, .footer__inner {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto; }
-  .masthead__inner::after, .banner__inner::after, .feature::after, .callout__inner::after, .footer__inner::after {
+  .masthead__inner::after, .banner__inner::after, .feature::after, .examples::after, .callout__inner::after, .footer__inner::after {
     clear: both;
     content: "";
     display: table; }
@@ -375,11 +375,11 @@ textarea {
     content: "";
     display: table; }
 
-.header, .feature, .footer__inner {
+.header, .feature, .examples, .footer__inner {
   padding-left: 1.25em;
   padding-right: 1.25em; }
   @media screen and (min-width: 85em) {
-    .header, .feature, .footer__inner {
+    .header, .feature, .examples, .footer__inner {
       padding-left: 0;
       padding-right: 0; } }
 
@@ -438,7 +438,10 @@ body {
   width: 100%; }
 
 .masthead--small {
-  min-height: 550px; }
+  min-height: 670px; }
+  @media screen and (min-width: 56.25em) {
+    .masthead--small {
+      min-height: 550px; } }
 
 .masthead__content {
   margin-top: 7.8125em;
@@ -635,6 +638,38 @@ body {
 .feature__link {
   color: #4f70d6;
   text-decoration: none; }
+
+.examples {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-bottom: 2.5em; }
+
+.example {
+  padding: 2.5em 1em;
+  width: 100%; }
+  @media screen and (min-width: 50em) {
+    .example {
+      width: 50%; } }
+  @media screen and (min-width: 62.5em) {
+    .example {
+      width: 33.33333%; } }
+
+.example__title {
+  font-size: 1.5em;
+  font-weight: 600;
+  text-transform: uppercase; }
 
 .callout {
   background: url("../img/bg-masthead.jpg") no-repeat center center;
