@@ -3,8 +3,13 @@
 	background-size: cover;
 	color: $white;
 	min-height: 800px;
-	padding: 10px 0;
+	padding: .625em 0;
 	width: 100%;
+}
+
+.masthead--small {
+	@extend .masthead;
+	min-height: 550px;
 }
 
 .masthead__inner {
@@ -15,6 +20,10 @@
 	margin-top: 7.8125em;
 	overflow: hidden;
 	text-align: center;
+}
+
+.masthead--small .masthead__content {
+	margin-top: 6em;
 }
 
 .masthead__copy {
@@ -54,5 +63,5 @@
 	@extend %row;
 	clear: left;
 	overflow: hidden;
-	padding-top: 5em;
+	padding-top: 2em;
 }
