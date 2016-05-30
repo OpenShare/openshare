@@ -536,7 +536,11 @@ body {
     margin-left: 25.42373%; } }
 
 .features {
-  overflow: hidden; }
+  overflow: hidden;
+  text-align: center; }
+  @media screen and (min-width: 56.25em) {
+    .features {
+      text-align: left; } }
 
 .feature {
   position: relative; }
@@ -555,10 +559,12 @@ body {
 .feature__align--center {
   text-align: center; }
 
-.feature__col, .feature__col--small, .feature__col--large, .feature__col--large-center {
+.feature__col, .feature__col--small, .feature__col--large, .feature__col--large-right, .feature__col--large-center {
+  margin: 2.5em 0;
   position: relative; }
   @media screen and (min-width: 56.25em) {
-    .feature__col, .feature__col--small, .feature__col--large, .feature__col--large-center {
+    .feature__col, .feature__col--small, .feature__col--large, .feature__col--large-right, .feature__col--large-center {
+      margin: 0;
       min-height: 550px; } }
 
 @media screen and (min-width: 56.25em) {
@@ -571,14 +577,18 @@ body {
       margin-right: 0; } }
 
 @media screen and (min-width: 56.25em) {
-  .feature__col--large {
+  .feature__col--large, .feature__col--large-right {
     float: left;
     display: block;
     margin-right: 1.69492%;
     width: 49.15254%;
     margin-left: 8.47458%; }
-    .feature__col--large:last-child {
+    .feature__col--large:last-child, .feature__col--large-right:last-child {
       margin-right: 0; } }
+
+@media screen and (min-width: 56.25em) {
+  .feature__col--large-right {
+    float: right; } }
 
 @media screen and (min-width: 56.25em) {
   .feature__col--large-center {
@@ -591,17 +601,30 @@ body {
       margin-right: 0; } }
 
 .feature__img-tag {
+  margin-bottom: 2.5em;
   max-width: 100%; }
+  @media screen and (min-width: 56.25em) {
+    .feature__img-tag {
+      margin: 0; } }
 
 .feature__heading {
-  font-size: 3em;
+  font-size: 1.875em;
   font-weight: 400;
   margin-bottom: .208333333em;
   text-transform: uppercase; }
+  @media screen and (min-width: 21.875em) {
+    .feature__heading {
+      font-size: 2.5em; } }
+  @media screen and (min-width: 37.5em) {
+    .feature__heading {
+      font-size: 3em; } }
 
 .feature__body {
-  font-size: 1.125em;
+  font-size: 1em;
   line-height: 1.5; }
+  @media screen and (min-width: 56.25em) {
+    .feature__body {
+      font-size: 1.125em; } }
 
 .feature__link {
   color: #4f70d6;

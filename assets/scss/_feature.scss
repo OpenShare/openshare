@@ -1,5 +1,10 @@
 .features {
 	overflow: hidden;
+	text-align: center;
+
+	@include media($large-screen) {
+		text-align: left;
+	}
 }
 
 .feature {
@@ -23,9 +28,11 @@
 }
 
 .feature__col {
+	margin: 2.5em 0;
 	position: relative;
 
 	@include media($large-screen) {
+		margin: 0;
 		min-height: 550px;
 	}
 }
@@ -47,6 +54,14 @@
 	}
 }
 
+.feature__col--large-right {
+	@extend .feature__col--large;
+
+	@include media($large-screen) {
+		float: right;
+	}
+}
+
 .feature__col--large-center {
 	@extend .feature__col;
 
@@ -57,19 +72,36 @@
 }
 
 .feature__img-tag {
+	margin-bottom: 2.5em;
 	max-width: 100%;
+
+	@include media($large-screen) {
+		margin: 0;
+	}
 }
 
 .feature__heading {
-	font-size: 3em;
+	font-size: 1.875em;
 	font-weight: 400;
 	margin-bottom: .208333333em;
 	text-transform: uppercase;
+
+	@include media($small-screen) {
+		font-size: 2.5em;
+	}
+
+	@include media($medium-screen) {
+		font-size: 3em;
+	}
 }
 
 .feature__body {
-	font-size: 1.125em;
+	font-size: 1em;
 	line-height: 1.5;
+
+	@include media($large-screen) {
+		font-size: 1.125em;
+	}
 }
 
 .feature__link {
