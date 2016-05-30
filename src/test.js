@@ -1,4 +1,7 @@
-var OpenShare = require('./index');
+var OpenShare = {
+	share: require('./share.js'),
+	count: require('./count.js')
+};
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
