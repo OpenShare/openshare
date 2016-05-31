@@ -1,9 +1,9 @@
-var Count = require('./modules/count');
-var Events = require('./modules/events');
+var Count = require('./src/modules/count');
+var Events = require('./src/modules/events');
 
 module.exports = (function() {
 	document.addEventListener('DOMContentLoaded', init);
-	return require('./modules/count-api');
+	return require('./src/modules/count-api');
 })();
 
 function init() {

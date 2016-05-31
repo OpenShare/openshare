@@ -1,10 +1,10 @@
-var OpenShare = require('./modules/open-share');
-var ShareTransforms = require('./modules/share-transforms');
-var Events = require('./modules/events');
+var OpenShare = require('./src/modules/open-share');
+var ShareTransforms = require('./src/modules/share-transforms');
+var Events = require('./src/modules/events');
 
 module.exports = (function() {
 	document.addEventListener('DOMContentLoaded', init);
-	return require('./modules/share-api');
+	return require('./src/modules/share-api');
 })();
 
 function init() {

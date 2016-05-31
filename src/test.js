@@ -1,6 +1,6 @@
 var OpenShare = {
-	share: require('./share.js'),
-	count: require('./count.js')
+	share: require('../share.js'),
+	count: require('../count.js')
 };
 
 var dynamicNodeData = {
