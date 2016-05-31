@@ -3,7 +3,7 @@ var Events = require('./src/modules/events');
 
 module.exports = (function() {
 	document.addEventListener('DOMContentLoaded', init);
-	return require('./src/modules/count-api');
+	return require('./src/modules/count-api')();
 })();
 
 function init() {
