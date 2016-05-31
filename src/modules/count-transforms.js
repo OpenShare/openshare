@@ -156,7 +156,9 @@ module.exports = {
 					let page = 2;
 					recursiveCount(url, page, count, finalCount => {
 						this.storeSet(this.type + '-' + this.shared, finalCount);
-						this.os.innerHTML = finalCount;
+						this.os.innerHTML = finalCount > 999 ?
+							Math.round(finalCount/1000) + 'k' :
+							finalCount;
 						Events.trigger(this.os, 'counted-' + this.url);
 						return finalCount;
 					});
