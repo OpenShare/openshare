@@ -313,11 +313,19 @@ module.exports = {
 
 	// set Github fork URL
 	github (data, ios = false) {
-		const url = data.repo ?
-			`https://github.com/${data.repo}?` :
-			data.url + '?';
+		let url = data.repo ?
+			`https://github.com/${data.repo}` :
+			data.url;
+
+		if (data.issue) {
+			url += '/issues/new?title=' +
+				data.issue +
+				'&body=' + 
+				data.body;
+		}
+
 		return {
-			url: url
+			url: url + '?'
 		};
 	},
 
