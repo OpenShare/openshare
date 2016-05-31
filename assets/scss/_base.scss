@@ -26,7 +26,12 @@ $orange: #ff933a;
 }
 
 body {
-	-webkit-font-smoothing: antialiased;
 	font-family: 'ProximaOpenShare';
+	-webkit-font-smoothing: antialiased;
 	font-weight: 400;
+}
+
+a {
+	color: $blue;
+	text-decoration: none;
 }

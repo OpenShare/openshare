@@ -384,9 +384,13 @@ textarea {
       padding-right: 0; } }
 
 body {
-  -webkit-font-smoothing: antialiased;
   font-family: 'ProximaOpenShare';
+  -webkit-font-smoothing: antialiased;
   font-weight: 400; }
+
+a {
+  color: #4f70d6;
+  text-decoration: none; }
 
 .header__logo-link, .header__nav-link, .header__nav-link--active {
   color: #fff;
@@ -719,6 +723,8 @@ body {
 
 .feature__link {
   color: #4f70d6;
+  display: block;
+  margin-bottom: .625em;
   text-decoration: none; }
 
 .examples {
