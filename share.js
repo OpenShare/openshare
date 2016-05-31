@@ -129,6 +129,7 @@ function setData(osInstance, osElement) {
 		repo: osElement.getAttribute('data-open-share-repo'),
 		shot: osElement.getAttribute('data-open-share-shot'),
 		pen: osElement.getAttribute('data-open-share-pen'),
-		view: osElement.getAttribute('data-open-share-view')
+		view: osElement.getAttribute('data-open-share-view'),
+		issue: osElement.getAttribute('data-open-share-issue')
 	});
 }
