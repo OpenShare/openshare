@@ -6,7 +6,7 @@
 module.exports = {
 
 	// facebook count data
-	facebook: function(url) {
+	facebook (url) {
 		return {
 			type: 'get',
 			url: `//graph.facebook.com/?id=${url}`,
@@ -19,7 +19,7 @@ module.exports = {
 	},
 
 	// pinterest count data
-	pinterest: function(url) {
+	pinterest (url) {
 		return {
 			type: 'jsonp',
 			url: `//api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
@@ -32,7 +32,7 @@ module.exports = {
 	},
 
 	// linkedin count data
-	linkedin: function(url) {
+	linkedin (url) {
 		return {
 			type: 'jsonp',
 			url: `//www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
@@ -45,7 +45,7 @@ module.exports = {
 	},
 
 	// reddit count data
-	reddit: function(url) {
+	reddit (url) {
 		return {
 			type: 'get',
 			url: `//www.reddit.com/api/info.json?url=${url}`,
@@ -64,8 +64,8 @@ module.exports = {
 		};
 	},
 
-	// linkedin count data
-	google: function(url) {
+	// google count data
+	google (url) {
 		return {
 			type: 'post',
 			data: {
@@ -89,6 +89,101 @@ module.exports = {
 				return count;
 			}
 		};
-	}
+	},
 
+	// github star count
+	githubStars (repo) {
+		repo = repo.indexOf('github.com/') > -1 ?
+			repo.split('github.com/')[1] :
+			repo;
+		return {
+			type: 'get',
+			url: `//api.github.com/repos/${repo}`,
+			transform: function(xhr) {
+				let count = JSON.parse(xhr.responseText).stargazers_count;
+				this.storeSet(this.type + '-' + this.shared, count);
+				return count;
+			}
+		};
+	},
+
+	// github forks count
+	githubForks (repo) {
+		repo = repo.indexOf('github.com/') > -1 ?
+			repo.split('github.com/')[1] :
+			repo;
+		return {
+			type: 'get',
+			url: `//api.github.com/repos/${repo}`,
+			transform: function(xhr) {
+				let count = JSON.parse(xhr.responseText).forks_count;
+				this.storeSet(this.type + '-' + this.shared, count);
+				return count;
+			}
+		};
+	},
+
+	// github watchers count
+	githubWatchers (repo) {
+		repo = repo.indexOf('github.com/') > -1 ?
+			repo.split('github.com/')[1] :
+			repo;
+		return {
+			type: 'get',
+			url: `//api.github.com/repos/${repo}`,
+			transform: function(xhr) {
+				let count = JSON.parse(xhr.responseText).watchers_count;
+				this.storeSet(this.type + '-' + this.shared, count);
+				return count;
+			}
+		};
+	},
+
+	// dribbble likes count
+	dribbble (shot) {
+		shot = shot.indexOf('dribbble.com/shots') > -1 ?
+			shot.split('shots/')[1] :
+			shot;
+		const url = `https://api.dribbble.com/v1/shots/${shot}/likes`;
+		return {
+			type: 'get',
+			url: url,
+			transform: function(xhr, Events) {
+				let count = JSON.parse(xhr.responseText).length;
+
+				// at this time dribbble limits a response of 12 likes per page
+				if (count === 12) {
+					let page = 2;
+					recursiveCount(url, page, count, finalCount => {
+						this.storeSet(this.type + '-' + this.shared, finalCount);
+						this.os.innerHTML = finalCount;
+						Events.trigger(this.os, 'counted-' + this.url);
+						return finalCount;
+					});
+				} else {
+					this.storeSet(this.type + '-' + this.shared, count);
+					return count;
+				}
+			}
+		};
+	}
 };
+
+function recursiveCount (url, page, count, cb) {
+	const xhr = new XMLHttpRequest();
+	xhr.open('GET', url + '?page=' + page);
+	xhr.addEventListener('load', function () {
+		const likes = JSON.parse(this.response);
+		count += likes.length;
+
+		// dribbble like per page is 12
+		if (likes.length === 12) {
+			page++;
+			recursiveCount(url, page, count, cb);
+		}
+		else {
+			cb(count);
+		}
+	});
+	xhr.send();
+}
