@@ -4,7 +4,7 @@ var Events = require('./src/modules/events');
 
 module.exports = (function() {
 	document.addEventListener('DOMContentLoaded', init);
-	return require('./src/modules/share-api');
+	return require('./src/modules/share-api')();
 })();
 
 function init() {
@@ -86,7 +86,7 @@ function initializeWatcher(watcher) {
 	[].forEach.call(watcher, (w) => {
 		var observer = new MutationObserver((mutations) => {
 			// target will match between all mutations so just use first
-			initializeShareNodes(mutations[0].target);
+			initializeNodes(mutations[0].target);
 		});
 
 		observer.observe(w, {
