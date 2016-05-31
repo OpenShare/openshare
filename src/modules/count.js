@@ -73,7 +73,9 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count;
+			this.os.innerHTML = count > 999 ?
+				Math.round(count/1000) + 'k' :
+				count;
 		}
 
 
@@ -87,7 +89,9 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count;
+			this.os.innerHTML = count > 999 ?
+				Math.round(count/1000) + 'k' :
+				count;
 		}
 
 		this.countData.forEach((countData) => {
@@ -105,12 +109,16 @@ module.exports = class Count {
 					});
 
 					this.storeSet(this.type + '-' + this.shared, tot);
-					this.os.innerHTML = tot;
+					this.os.innerHTML = tot > 999 ?
+						Math.round(tot/1000) + 'k':
+						tot;
 				}
 			});
 		});
 
-		this.os.innerHTML = this.total;
+		this.os.innerHTML = this.total > 999 ?
+			Math.round(this.total/1000) + 'k':
+			this.total;
 	}
 
 	// handle JSONP requests
@@ -123,7 +131,9 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count;
+				this.os.innerHTML = count > 999 ?
+					Math.round(count/1000) + 'k' :
+					count;
 			}
 
 			Events.trigger(this.os, 'counted-' + this.url);
@@ -150,7 +160,9 @@ module.exports = class Count {
 					if (cb && typeof cb === 'function') {
 						cb(count);
 					} else {
-						this.os.innerHTML = count;
+						this.os.innerHTML = count > 999 ?
+							Math.round(count/1000) + 'k' :
+							count;
 					}
 
 					Events.trigger(this.os, 'counted-' + this.url);
@@ -180,7 +192,9 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count;
+				this.os.innerHTML = count > 999 ?
+					Math.round(count/1000) + 'k' :
+					count;
 			}
 			Events.trigger(this.os, 'counted-' + this.url);
 		};
