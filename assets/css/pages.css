@@ -588,7 +588,7 @@ a {
   color: #ff933a;
   font-weight: 600; }
 
-.btn, .btn--dark {
+.btn, .btn--pink, .btn--dark {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
@@ -601,8 +601,11 @@ a {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase; }
-  .btn:hover, .btn--dark:hover {
+  .btn:hover, .btn--pink:hover, .btn--dark:hover {
     background: #5978d8; }
+
+.btn--pink {
+  background: #ff3265; }
 
 .btn--dark {
   background: #283137; }
@@ -705,8 +708,7 @@ a {
 .feature__heading {
   font-size: 1.875em;
   font-weight: 100;
-  margin-bottom: .208333333em;
-  text-transform: uppercase; }
+  margin-bottom: .208333333em; }
   @media screen and (min-width: 21.875em) {
     .feature__heading {
       font-size: 2.5em; } }
