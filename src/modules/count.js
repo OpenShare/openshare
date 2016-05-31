@@ -14,6 +14,19 @@ module.exports = class Count {
 			throw new Error(`Open Share: no url provided for count`);
 		}
 
+		// check for Github counts
+		if (type.indexOf('github') === 0) {
+			if (type === 'github-stars') {
+				type = 'githubStars';
+			} else if (type === 'github-forks') {
+				type = 'githubForks';
+			} else if (type === 'github-watchers') {
+				type = 'githubWatchers';
+			} else {
+				console.error('Invalid Github count type. Try github-stars, github-forks, or github-watchers.');
+			}
+		}
+
 		// if type is comma separate list create array
 		if (type.indexOf(',') > -1) {
 			this.type = type;
@@ -60,7 +73,9 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count;
+			this.os.innerHTML = count > 999 ?
+				Math.round(count/1000) + 'k' :
+				count;
 		}
 
 
@@ -74,7 +89,9 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count;
+			this.os.innerHTML = count > 999 ?
+				Math.round(count/1000) + 'k' :
+				count;
 		}
 
 		this.countData.forEach((countData) => {
@@ -92,13 +109,16 @@ module.exports = class Count {
 					});
 
 					this.storeSet(this.type + '-' + this.shared, tot);
-					this.os.innerHTML = tot;
-					// Events.trigger(this.os, 'counted-' + this.url);
+					this.os.innerHTML = tot > 999 ?
+						Math.round(tot/1000) + 'k':
+						tot;
 				}
 			});
 		});
 
-		this.os.innerHTML = this.total;
+		this.os.innerHTML = this.total > 999 ?
+			Math.round(this.total/1000) + 'k':
+			this.total;
 	}
 
 	// handle JSONP requests
@@ -111,7 +131,9 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count;
+				this.os.innerHTML = count > 999 ?
+					Math.round(count/1000) + 'k' :
+					count;
 			}
 
 			Events.trigger(this.os, 'counted-' + this.url);
@@ -133,12 +155,14 @@ module.exports = class Count {
 		xhr.onreadystatechange = () => {
 			if (xhr.readyState === 4) {
 				if (xhr.status === 200) {
-					let count = countData.transform.apply(this, [xhr]) || 0;
+					let count = countData.transform.apply(this, [xhr, Events]) || 0;
 
 					if (cb && typeof cb === 'function') {
 						cb(count);
 					} else {
-						this.os.innerHTML = count;
+						this.os.innerHTML = count > 999 ?
+							Math.round(count/1000) + 'k' :
+							count;
 					}
 
 					Events.trigger(this.os, 'counted-' + this.url);
@@ -168,7 +192,9 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count;
+				this.os.innerHTML = count > 999 ?
+					Math.round(count/1000) + 'k' :
+					count;
 			}
 			Events.trigger(this.os, 'counted-' + this.url);
 		};

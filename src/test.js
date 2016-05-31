@@ -1,4 +1,7 @@
-var OpenShare = require('./index');
+var OpenShare = {
+	share: require('../share.js'),
+	count: require('../count.js')
+};
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
@@ -88,9 +91,14 @@ window.createCountNode = createCountNode;
 // 	document.dispatchEvent(ev);
 // });
 
-// bind to loaded event
-document.addEventListener('OpenShare.loaded', function() {
-	console.log('Open Share loaded');
+// bind to count loaded event
+document.addEventListener('OpenShare.count-loaded', function() {
+	console.log('OpenShare (count) loaded');
+});
+
+// bind to share loaded event
+document.addEventListener('OpenShare.share-loaded', function() {
+	console.log('OpenShare (share) loaded');
 
 	// bind to shared event on each individual node
 	[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
