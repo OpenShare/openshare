@@ -3,9 +3,7 @@ var ShareTransforms = require('./modules/share-transforms');
 var Events = require('./modules/events');
 
 module.exports = (function() {
-	document.addEventListener('OpenShare.share-load', init);
 	document.addEventListener('DOMContentLoaded', init);
-
 	return require('./modules/share-api');
 })();
 
@@ -24,7 +22,7 @@ function initializeNodes(container = document) {
 	[].forEach.call(shareNodes, initializeShareNode);
 
 	// trigger completed event
-	Events.trigger(document, 'loaded');
+	Events.trigger(document, 'share-loaded');
 }
 
 function initializeShareNode(os) {

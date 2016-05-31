@@ -2,7 +2,6 @@ var Count = require('./modules/count');
 var Events = require('./modules/events');
 
 module.exports = (function() {
-	document.addEventListener('OpenShare.load', init);
 	document.addEventListener('DOMContentLoaded', init);
 	return require('./modules/count-api');
 })();
@@ -22,7 +21,7 @@ function initializeNodes(container = document) {
 	[].forEach.call(countNodes, initializeCountNode);
 
 	// trigger completed event
-	Events.trigger(document, 'loaded');
+	Events.trigger(document, 'count-loaded');
 }
 
 function initializeCountNode(os) {

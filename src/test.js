@@ -91,9 +91,14 @@ window.createCountNode = createCountNode;
 // 	document.dispatchEvent(ev);
 // });
 
-// bind to loaded event
+// bind to count loaded event
+document.addEventListener('OpenShare.count-loaded', function() {
+	console.log('OpenShare (count) loaded');
+});
+
+// bind to share loaded event
 document.addEventListener('OpenShare.share-loaded', function() {
-	console.log('Open Share loaded');
+	console.log('OpenShare (share) loaded');
 
 	// bind to shared event on each individual node
 	[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
