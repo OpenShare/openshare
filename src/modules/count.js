@@ -73,9 +73,7 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count > 999 ?
-				Math.round(count/1000) + 'k' :
-				count;
+			countReduce(this.os, count);
 		}
 
 
@@ -89,9 +87,7 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count > 999 ?
-				Math.round(count/1000) + 'k' :
-				count;
+			countReduce(this.os, count);
 		}
 
 		this.countData.forEach((countData) => {
@@ -109,16 +105,12 @@ module.exports = class Count {
 					});
 
 					this.storeSet(this.type + '-' + this.shared, tot);
-					this.os.innerHTML = tot > 999 ?
-						Math.round(tot/1000) + 'k':
-						tot;
+					countReduce(this.os, tot);
 				}
 			});
 		});
 
-		this.os.innerHTML = this.total > 999 ?
-			Math.round(this.total/1000) + 'k':
-			this.total;
+		countReduce(this.os, this.total);
 	}
 
 	// handle JSONP requests
@@ -131,9 +123,7 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count > 999 ?
-					Math.round(count/1000) + 'k' :
-					count;
+				countReduce(this.os, count);
 			}
 
 			Events.trigger(this.os, 'counted-' + this.url);
@@ -160,9 +150,7 @@ module.exports = class Count {
 					if (cb && typeof cb === 'function') {
 						cb(count);
 					} else {
-						this.os.innerHTML = count > 999 ?
-							Math.round(count/1000) + 'k' :
-							count;
+						countReduce(this.os, count);
 					}
 
 					Events.trigger(this.os, 'counted-' + this.url);
@@ -192,9 +180,7 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count > 999 ?
-					Math.round(count/1000) + 'k' :
-					count;
+				countReduce(this.os, count);
 			}
 			Events.trigger(this.os, 'counted-' + this.url);
 		};
@@ -221,3 +207,33 @@ module.exports = class Count {
 	}
 
 };
+
+function round(x, precision) {
+	if (typeof x !== 'number') {
+		throw new TypeError('Expected value to be a number');
+	}
+
+	var exponent = precision > 0 ? 'e' : 'e-';
+	var exponentNeg = precision > 0 ? 'e-' : 'e';
+	precision = Math.abs(precision);
+
+	return Number(Math.round(x + exponent + precision) + exponentNeg + precision);
+}
+
+function thousandify (num) {
+	return round(num/1000, 1) + 'K';
+}
+
+function millionify (num) {
+	return round(num/1000000, 1) + 'M';
+}
+
+function countReduce (el, count) {
+	if (count > 999999)  {
+		el.innerHTML = millionify(count);
+	} else if (count > 999) {
+		el.innerHTML = thousandify(count);
+	} else {
+		el.innerHTML = count;
+	}
+}
