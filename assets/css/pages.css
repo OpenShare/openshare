@@ -425,7 +425,7 @@ a {
   display: block;
   font-size: 1em;
   font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
   margin: 0 0 1em; }
   @media screen and (min-width: 56.25em) {
     .header__nav-item {
@@ -704,7 +704,7 @@ a {
 
 .feature__heading {
   font-size: 1.875em;
-  font-weight: 400;
+  font-weight: 100;
   margin-bottom: .208333333em;
   text-transform: uppercase; }
   @media screen and (min-width: 21.875em) {
@@ -716,6 +716,7 @@ a {
 
 .feature__body {
   font-size: 1em;
+  font-weight: 100;
   line-height: 1.5; }
   @media screen and (min-width: 56.25em) {
     .feature__body {

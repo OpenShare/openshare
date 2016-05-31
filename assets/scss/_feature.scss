@@ -82,7 +82,7 @@
 
 .feature__heading {
 	font-size: 1.875em;
-	font-weight: 400;
+	font-weight: 100;
 	margin-bottom: .208333333em;
 	text-transform: uppercase;
 
@@ -97,6 +97,7 @@
 
 .feature__body {
 	font-size: 1em;
+	font-weight: 100;
 	line-height: 1.5;
 
 	@include media($large-screen) {
