@@ -16,6 +16,7 @@ Learn how to install and get started with OpenShare by visiting the [OpenShare G
 
 [OpenShare JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API)
 
+---
 **MIT License (MIT)**
 
 Copyright (c) 2015 Digital Surgeons
