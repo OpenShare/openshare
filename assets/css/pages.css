@@ -502,10 +502,11 @@ a {
   overflow: hidden;
   padding-top: 2em; }
 
-.open-share-circles {
+.open-share-examples {
+  height: 110px;
   margin: 15em 0 1em; }
 
-.open-share-circle {
+.open-share-example, .open-share-example--square, .open-share-example--diamond, .open-share-example--rectangle {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
@@ -522,14 +523,68 @@ a {
   text-decoration: none;
   width: 3.125em; }
 
-.open-share-circle .fa {
-  -webkit-transform: translateY(-4px);
-  -moz-transform: translateY(-4px);
-  -ms-transform: translateY(-4px);
-  -o-transform: translateY(-4px);
-  transform: translateY(-4px); }
+.open-share-example__icon {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition: 0.75s;
+  -moz-transition: 0.75s;
+  transition: 0.75s;
+  display: inline-block;
+  transform-origin: 48% 45%; }
 
-.open-share-circle__count {
+.open-share-example--square {
+  background: #94379f;
+  border-radius: 0; }
+
+.open-share-example--diamond {
+  -webkit-transform: scale(1.1) rotate(135deg) translateZ(0);
+  -moz-transform: scale(1.1) rotate(135deg) translateZ(0);
+  -ms-transform: scale(1.1) rotate(135deg) translateZ(0);
+  -o-transform: scale(1.1) rotate(135deg) translateZ(0);
+  transform: scale(1.1) rotate(135deg) translateZ(0);
+  background: #652d7f;
+  border-radius: 0; }
+  .open-share-example--diamond .open-share-example__icon {
+    transform: rotate(-135deg) translateZ(0); }
+
+.open-share-example--rectangle {
+  -webkit-transform: scale(1) rotate(0) translateZ(0);
+  -moz-transform: scale(1) rotate(0) translateZ(0);
+  -ms-transform: scale(1) rotate(0) translateZ(0);
+  -o-transform: scale(1) rotate(0) translateZ(0);
+  transform: scale(1) rotate(0) translateZ(0);
+  background: #5e7efd;
+  border-radius: 0;
+  margin: 1em .5em;
+  width: 5em; }
+  .open-share-example--rectangle .open-share-example__icon {
+    transform: rotate(0) translateZ(0); }
+
+.open-share-example--rectangle-vert {
+  -webkit-transform: scale(1) rotate(-90deg) translateZ(0);
+  -moz-transform: scale(1) rotate(-90deg) translateZ(0);
+  -ms-transform: scale(1) rotate(-90deg) translateZ(0);
+  -o-transform: scale(1) rotate(-90deg) translateZ(0);
+  transform: scale(1) rotate(-90deg) translateZ(0);
+  background: #fff;
+  margin: 1em .5em;
+  width: 3.125em; }
+  .open-share-example--rectangle-vert .open-share-example__icon {
+    -webkit-transform: rotate(90deg) translateZ(0);
+    -moz-transform: rotate(90deg) translateZ(0);
+    -ms-transform: rotate(90deg) translateZ(0);
+    -o-transform: rotate(90deg) translateZ(0);
+    transform: rotate(90deg) translateZ(0);
+    color: #4f70d6; }
+
+.open-share-examples .fa {
+  position: relative;
+  top: -4px; }
+
+.open-share-example__count {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
@@ -546,7 +601,7 @@ a {
   padding: 10px;
   position: absolute;
   top: -50px; }
-  .open-share-circle__count::after {
+  .open-share-example__count::after {
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -563,7 +618,7 @@ a {
     position: absolute;
     width: 0; }
 
-.open-share-circle:hover .open-share-circle__count {
+.open-share-example:hover .open-share-example__count, .open-share-example--square:hover .open-share-example__count, .open-share-example--diamond:hover .open-share-example__count, .open-share-example--rectangle:hover .open-share-example__count {
   opacity: 1;
   transform: translate(-50%, 0); }
 
@@ -588,7 +643,7 @@ a {
   color: #ff933a;
   font-weight: 600; }
 
-.btn, .btn--pink, .btn--dark {
+.btn, .btn--dark {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
@@ -601,11 +656,8 @@ a {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase; }
-  .btn:hover, .btn--pink:hover, .btn--dark:hover {
+  .btn:hover, .btn--dark:hover {
     background: #5978d8; }
-
-.btn--pink {
-  background: #ff3265; }
 
 .btn--dark {
   background: #283137; }

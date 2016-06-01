@@ -1,0 +1,106 @@
+.open-share-examples {
+	height: 110px;
+	margin: 15em 0 1em;
+}
+
+.open-share-example {
+	@include transition(.3s);
+	background: #4f70d6;
+	border-radius: 3.75em;
+	color: #fff;
+	display: inline-block;
+	font-size: 1.5em;
+	height: 3.125em;
+	line-height: 3.5625em;
+	margin: 1em;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	width: 3.125em;
+}
+
+.open-share-example__icon {
+	@include transform(translateZ(0));
+	@include transition(.75s);
+	display: inline-block;
+	transform-origin: 48% 45%;
+}
+
+.open-share-example--square {
+	@extend .open-share-example;
+	background: #94379f;
+	border-radius: 0;
+}
+
+.open-share-example--diamond {
+	@extend .open-share-example;
+	@include transform(scale(1.1) rotate(135deg) translateZ(0));
+	background: #652d7f;
+	border-radius: 0;
+
+	.open-share-example__icon {
+		transform: rotate(-135deg) translateZ(0);
+	}
+}
+
+.open-share-example--rectangle {
+	@extend .open-share-example;
+	@include transform(scale(1) rotate(0) translateZ(0));
+	background: #5e7efd;
+	border-radius: 0;
+	margin: 1em .5em;
+	width: 5em;
+
+	.open-share-example__icon {
+		transform: rotate(0) translateZ(0);
+	}
+}
+
+.open-share-example--rectangle-vert {
+	@include transform(scale(1) rotate(-90deg) translateZ(0));
+	background: #fff;
+	margin: 1em .5em;
+	width: 3.125em;
+
+	.open-share-example__icon {
+		@include transform(rotate(90deg) translateZ(0));
+		color: #4f70d6;
+	}
+}
+
+.open-share-examples .fa {
+	position: relative;
+	top: -4px;
+}
+
+.open-share-example__count {
+	@include transition(.3s);
+	@include transform(translate(-50%, 20px));
+	background: #333;
+	font-size: 12px;
+	left: 50%;
+	line-height: 1;
+	opacity: 0;
+	padding: 10px;
+	position: absolute;
+	top: -50px;
+
+	&::after {
+		@include transform(translateX(-50%));
+		border-left: 7px solid transparent;
+		border-right: 7px solid transparent;
+		border-top: 10px solid #333;
+		bottom: -9px;
+		content: '';
+		display: block;
+		height: 0;
+		left: 50%;
+		position: absolute;
+		width: 0;
+	}
+}
+
+.open-share-example:hover .open-share-example__count {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
