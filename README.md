@@ -12,9 +12,13 @@ Learn how to install and get started with OpenShare by visiting the [OpenShare G
 
 ##  API Reference
 
-[OpenShare Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-Data-Attributes)
+### [OpenShare Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-Data-Attributes)
 
-[OpenShare JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API)
+### [OpenShare JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API)
+
+[Share API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API#new-openshareshareoptions-element)
+
+[Count API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API#new-opensharecountoptions-element)
 
 ---
 **MIT License (MIT)**
