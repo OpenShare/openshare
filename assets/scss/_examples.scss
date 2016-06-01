@@ -52,13 +52,15 @@
 	width: 5em;
 
 	.open-share-example__icon {
-		transform: rotate(0) translateZ(0);
+		@include transform(rotate(0) translateZ(0));
 	}
 }
 
 .open-share-example--rectangle-vert {
+	@extend .open-share-example;
 	@include transform(scale(1) rotate(-90deg) translateZ(0));
 	background: #fff;
+	border-radius: 0;
 	margin: 1em .5em;
 	width: 3.125em;
 
@@ -103,4 +105,30 @@
 .open-share-example:hover .open-share-example__count {
 	opacity: 1;
 	transform: translate(-50%, 0);
+}
+
+.open-share-example--diamond {
+	.open-share-example__count {
+		@include transform(translate(0, 0) rotate(225deg));
+		left: -63%;
+	}
+
+	&:hover .open-share-example__count {
+		@include transform(translate(0, 0) rotate(225deg));
+		left: -63%;
+		top: 110%;
+	}
+}
+
+.open-share-example--rectangle-vert {
+	.open-share-example__count {
+		@include transform(translate(0, 0) rotate(90deg));
+		left: 143%;
+	}
+
+	&:hover .open-share-example__count {
+		@include transform(translate(-50%, 0) rotate(90deg));
+		left: 143%;
+		top: 32%;
+	}
 }

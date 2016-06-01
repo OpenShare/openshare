@@ -22,7 +22,7 @@ function animationLoop() {
 
                         // apply mod
                     } else {
-                        this.classList.add('open-share-example--' + mod);
+                        this.setAttribute('class', 'open-share-example--' + mod);
                     }
 
                     // bind node to setTimeout so reference doesn't change on each loop
