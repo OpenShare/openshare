@@ -1,6 +1,22 @@
 .open-share-examples {
+	display: none;
 	height: 110px;
 	margin: 15em 0 1em;
+
+	@include media(62.5em) {
+		display: block;
+	}
+}
+
+.open-share-examples--mobile {
+	@extend .open-share-examples;
+	display: block;
+	height: auto;
+	margin-top: 23em;
+
+	@include media($medium-screen) {
+		display: none;
+	}
 }
 
 .open-share-example {
@@ -17,6 +33,14 @@
 	text-align: center;
 	text-decoration: none;
 	width: 3.125em;
+}
+
+.open-share-examples--mobile .open-share-example {
+	margin: .5em 1em;
+
+	@include media(25.8125em) {
+		margin: .5em;
+	}
 }
 
 .open-share-example__icon {
@@ -70,7 +94,7 @@
 	}
 }
 
-.open-share-examples .fa {
+.open-share-example__icon.fa {
 	position: relative;
 	top: -4px;
 }

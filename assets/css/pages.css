@@ -452,15 +452,18 @@ a {
   width: 100%; }
 
 .masthead--small {
-  min-height: 670px; }
+  min-height: 900px; }
   @media screen and (min-width: 56.25em) {
     .masthead--small {
       min-height: 530px; } }
 
 .masthead__content {
-  margin-top: 6.25em;
+  margin-top: 3.5em;
   overflow: hidden;
   text-align: center; }
+  @media screen and (min-width: 37.5em) {
+    .masthead__content {
+      margin-top: 6.25em; } }
 
 .masthead--small .masthead__content {
   margin-top: 6em; }
@@ -502,9 +505,21 @@ a {
   overflow: hidden;
   padding-top: 2em; }
 
-.open-share-examples {
+.open-share-examples, .open-share-examples--mobile {
+  display: none;
   height: 110px;
   margin: 15em 0 1em; }
+  @media screen and (min-width: 62.5em) {
+    .open-share-examples, .open-share-examples--mobile {
+      display: block; } }
+
+.open-share-examples--mobile {
+  display: block;
+  height: auto;
+  margin-top: 23em; }
+  @media screen and (min-width: 37.5em) {
+    .open-share-examples--mobile {
+      display: none; } }
 
 .open-share-example, .open-share-example--square, .open-share-example--diamond, .open-share-example--rectangle, .open-share-example--rectangle-vert {
   -webkit-transition: 0.3s;
@@ -522,6 +537,12 @@ a {
   text-align: center;
   text-decoration: none;
   width: 3.125em; }
+
+.open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
+  margin: .5em 1em; }
+  @media screen and (min-width: 25.8125em) {
+    .open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
+      margin: .5em; } }
 
 .open-share-example__icon {
   -webkit-transform: translateZ(0);
@@ -585,7 +606,7 @@ a {
     transform: rotate(90deg) translateZ(0);
     color: #4f70d6; }
 
-.open-share-examples .fa {
+.open-share-example__icon.fa {
   position: relative;
   top: -4px; }
 

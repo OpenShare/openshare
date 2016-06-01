@@ -9,7 +9,7 @@
 
 .masthead--small {
 	@extend .masthead;
-	min-height: 670px;
+	min-height: 900px;
 
 	@include media($large-screen) {
 		min-height: 530px;
@@ -21,9 +21,13 @@
 }
 
 .masthead__content {
-	margin-top: 6.25em;
+	margin-top: 3.5em;
 	overflow: hidden;
 	text-align: center;
+
+	@include media($medium-screen) {
+		margin-top: 6.25em;
+	}
 }
 
 .masthead--small .masthead__content {
