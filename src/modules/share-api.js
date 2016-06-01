@@ -12,6 +12,20 @@ module.exports = function() {
 	class OpenShare {
 
 		constructor(data, element) {
+
+			let dash = data.type.indexOf('-');
+			let ogType = data.type;
+
+			// type contains a dash
+			// transform to camelcase for function reference
+			// TODO: only supports single dash, should should support multiple
+			if (dash > -1) {
+
+				let nextChar = data.type.substr(dash + 1, 1),
+					group = data.type.substr(dash, 2);
+				data.type = data.type.replace(group, nextChar.toUpperCase());
+			}
+
 			let node;
 			this.element = element;
 			this.data = data;
@@ -50,7 +64,8 @@ module.exports = function() {
 				});
 			}
 
-			if (node) return node;
+			this.element = element;
+			return element;
 		}
 
 		// public share method to trigger share programmatically
