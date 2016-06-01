@@ -41,6 +41,10 @@
 	@include media(25.8125em) {
 		margin: .5em;
 	}
+
+	.socicon-snapchat:before {
+		font-weight: 900 !important;
+	}
 }
 
 .open-share-example__icon {

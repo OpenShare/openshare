@@ -543,6 +543,8 @@ a {
   @media screen and (min-width: 25.8125em) {
     .open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
       margin: .5em; } }
+  .open-share-examples--mobile .open-share-example .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--square .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--diamond .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle-vert .socicon-snapchat:before {
+    font-weight: 900 !important; }
 
 .open-share-example__icon {
   -webkit-transform: translateZ(0);
