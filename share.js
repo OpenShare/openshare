@@ -1,5 +1,6 @@
 const initializeShareNode = require('./lib/initializeShareNode');
 const init = require('./lib/init')({
+	api: 'share',
 	selector: '[data-open-share]:not([data-open-share-node])',
 	cb: initializeShareNode
 });
