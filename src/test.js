@@ -83,7 +83,6 @@ window.createCountNode = createCountNode;
 
 new OpenShare.share({
 	type: 'googleMaps',
-	bindClick: true,
 	center: '40.765819,-73.975866',
 	view: 'traffic',
 	zoom: 14,
@@ -93,7 +92,6 @@ new OpenShare.share({
 
 new OpenShare.share({
 	type: 'twitter-follow',
-	bindClick: true,
 	screenName: 'digitalsurgeons',
 	userId: '18189130',
 	appendTo: document.body,
