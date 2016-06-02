@@ -141,7 +141,26 @@ document.addEventListener('OpenShare.share-loaded', function() {
 			to: 'techroom@digitalsurgeons.com',
 			subject: 'Digital Surgeons',
 			body: 'Forward Obsessed'
-		}, document.querySelector('[data-api-example="email"]'))
+		}, document.querySelector('[data-api-example="email"]')),
+
+		follow : new OpenShare.share({
+			type: 'twitter-follow',
+			bindClick: true,
+			screenName: 'digitalsurgeons',
+			userId: '18189130',
+			appendTo: document.body,
+			innerHTML: 'Follow Test'
+		}),
+
+		maps: new OpenShare.share({
+			type: 'googleMaps',
+			bindClick: true,
+			center: '40.765819,-73.975866',
+		    view: 'traffic',
+		    zoom: 14,
+		    appendTo: document.body,
+		    innerHTML: 'Maps'
+		})
 	};
 });
 
