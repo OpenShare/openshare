@@ -8,13 +8,15 @@ OpenShare provides straightforward, declarative, and completely customizable API
 * [Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/2.-Data-Attribute-API)
 * [JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/3.-JavaScript-API)
 
+
+---
 **Quick Start**
 
 ```
 $ npm install openshare --save
 ```
 
-```
+```html
 <a data-open-share="facebook"
 	data-open-share-link="http://digitalsurgeons.com"
 	data-open-share-caption="Digital Surgeons"
