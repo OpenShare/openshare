@@ -524,7 +524,7 @@
     </div>
 
 	<!-- test browser build -->
-	<!-- <script src="dist/open-share.js"></script>
+	<script src="dist/open-share.js"></script>
 	<script>
 
 	var dynamicNodeData = {
@@ -603,21 +603,35 @@
 
 	window.createCountNode = createCountNode;
 
-	// document.addEventListener('DOMContentLoaded', function() {
-	// 	// add open share node
-	// 	var data = dynamicNodeData;
-	// 	data.button = 'Dynamic Open Share!';
-	// 	document.querySelector('.open-share-nodes')
-	// 		.appendChild(createOpenShareNode(dynamicNodeData));
-	//
-	// 	var ev = document.createEvent('Event');
-	// 	ev.initEvent('OpenShare.load', true, true);
-	// 	document.dispatchEvent(ev);
-	// });
+	// test JS OpenShare API with dashes
 
-	// bind to loaded event
-	document.addEventListener('OpenShare.loaded', function() {
-		console.log('Open Share loaded');
+	new OpenShare.share({
+		type: 'googleMaps',
+		bindClick: true,
+		center: '40.765819,-73.975866',
+		view: 'traffic',
+		zoom: 14,
+		appendTo: document.body,
+		innerHTML: 'Maps'
+	});
+
+	new OpenShare.share({
+		type: 'twitter-follow',
+		bindClick: true,
+		screenName: 'digitalsurgeons',
+		userId: '18189130',
+		appendTo: document.body,
+		innerHTML: 'Follow Test'
+	});
+
+	// bind to count loaded event
+	document.addEventListener('OpenShare.count-loaded', function() {
+		console.log('OpenShare (count) loaded');
+	});
+
+	// bind to share loaded event
+	document.addEventListener('OpenShare.share-loaded', function() {
+		console.log('OpenShare (share) loaded');
 
 		// bind to shared event on each individual node
 		[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
@@ -692,7 +706,7 @@
 			});
 		});
 	});
-	</script> -->
-	<script src="dist/test.js"></script>
+	</script>
+	<!-- <script src="dist/test.js"></script> -->
 </body>
 </html>

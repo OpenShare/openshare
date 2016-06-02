@@ -79,17 +79,26 @@ function createCountNode() {
 
 window.createCountNode = createCountNode;
 
-// document.addEventListener('DOMContentLoaded', function() {
-// 	// add open share node
-// 	var data = dynamicNodeData;
-// 	data.button = 'Dynamic Open Share!';
-// 	document.querySelector('.open-share-nodes')
-// 		.appendChild(createOpenShareNode(dynamicNodeData));
-//
-// 	var ev = document.createEvent('Event');
-// 	ev.initEvent('OpenShare.load', true, true);
-// 	document.dispatchEvent(ev);
-// });
+// test JS OpenShare API with dashes
+
+new OpenShare.share({
+	type: 'googleMaps',
+	bindClick: true,
+	center: '40.765819,-73.975866',
+	view: 'traffic',
+	zoom: 14,
+	appendTo: document.body,
+	innerHTML: 'Maps'
+});
+
+new OpenShare.share({
+	type: 'twitter-follow',
+	bindClick: true,
+	screenName: 'digitalsurgeons',
+	userId: '18189130',
+	appendTo: document.body,
+	innerHTML: 'Follow Test'
+});
 
 // bind to count loaded event
 document.addEventListener('OpenShare.count-loaded', function() {
@@ -141,26 +150,7 @@ document.addEventListener('OpenShare.share-loaded', function() {
 			to: 'techroom@digitalsurgeons.com',
 			subject: 'Digital Surgeons',
 			body: 'Forward Obsessed'
-		}, document.querySelector('[data-api-example="email"]')),
-
-		follow : new OpenShare.share({
-			type: 'twitter-follow',
-			bindClick: true,
-			screenName: 'digitalsurgeons',
-			userId: '18189130',
-			appendTo: document.body,
-			innerHTML: 'Follow Test'
-		}),
-
-		maps: new OpenShare.share({
-			type: 'googleMaps',
-			bindClick: true,
-			center: '40.765819,-73.975866',
-		    view: 'traffic',
-		    zoom: 14,
-		    appendTo: document.body,
-		    innerHTML: 'Maps'
-		})
+		}, document.querySelector('[data-api-example="email"]'))
 	};
 });
 
@@ -192,18 +182,3 @@ urls.forEach(function(url) {
 		});
 	});
 });
-
-
-// urls.forEach(function(url) {
-// 	if (Array.isArray(url)) {
-// 		url = url.join(',');
-// 	}
-// 	var countNodes = document.querySelectorAll('[data-open-share-count="' + url + '"]');
-//
-// 	document.addEventListener('OpenShare.counted-' + url, function() {
-// 		countNodes.forEach(function(node) {
-// 			var counts = node.innerHTML;
-// 			console.log(url, 'shares: ', counts);
-// 		});
-// 	});
-// });

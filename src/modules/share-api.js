@@ -14,7 +14,6 @@ module.exports = function() {
 		constructor(data, element) {
 
 			let dash = data.type.indexOf('-');
-			let ogType = data.type;
 
 			// type contains a dash
 			// transform to camelcase for function reference
