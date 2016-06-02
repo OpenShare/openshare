@@ -1,24 +1,32 @@
 # OpenShare
 
-OpenShare is social sharing for developers. A simple wrapper around popular share APIs, zero styling, maximum flexibility and a declarative API. [Check out the example page](http://openshare.social/examples) to see it in action.
+OpenShare provides straightforward, declarative, and completely customizable API wrappers for sharing and counting on major social networks and platforms. Zero styling, maximum flexibility. But, unlike other social sharing tools, we don't retarget and profit from your users. Your data is your data — this is OpenShare.
+
+[Check out the examples](http://openshare.social/examples.html) to see OpenShare in action or [dive right into the documentation](https://github.com/dsurgeons/OpenShare/wiki).
+
+* [Getting Started](https://github.com/dsurgeons/OpenShare/wiki/1.-Getting-Started)
+* [Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/2.-Data-Attribute-API)
+* [JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/3.-JavaScript-API)
+
+
+---
+**Quick Start**
 
 ```
-npm install open-share --save
+$ npm install openshare --save
 ```
 
-## Getting Started ##
+```html
+<a data-open-share="facebook"
+	data-open-share-link="http://digitalsurgeons.com"
+	data-open-share-caption="Digital Surgeons"
+	data-open-share-description="Forward Obsessed">
+	Share
 
-Learn how to install and get started with OpenShare by visiting the [OpenShare Getting Started wiki](https://github.com/dsurgeons/OpenShare/wiki/Getting-Started).
-
-##  API Reference
-
-### [OpenShare Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-Data-Attributes)
-
-### [OpenShare JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API)
-
-[Share API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API#new-openshareshareoptions-element)
-
-[Count API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API#new-opensharecountoptions-element)
+	<span data-open-share-count="facebook"
+		  data-open-share-count-url="https://www.digitalsurgeons.com"></span>
+</a>
+```
 
 ---
 **MIT License (MIT)**
