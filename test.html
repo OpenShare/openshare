@@ -30,6 +30,7 @@
         position: absolute;
         top: 50%;
         right: 20px;
+		text-transform: none;
         transform: translateY(-50%);
     }
 
@@ -112,6 +113,10 @@
         background: #dc4e41;
     }
 
+	.maps {
+		background: #4285f4;
+	}
+
     .pinterest {
         background: #bd081c;
     }
@@ -131,6 +136,18 @@
     .reddit {
         background: #5f99cf;
     }
+
+	.codepen {
+		background: #343436;
+	}
+
+	.github {
+		background: #333333;
+	}
+
+	.dribbble {
+		background: #ea4c89;
+	}
 
 	.flickr {
         background: #ff0084;
@@ -278,6 +295,39 @@
                   class="open-share-count"></span>
         </a>
 
+		<a class="open-share-link maps"
+            data-open-share="google-maps"
+            data-open-share-center="40.765819,-73.975866"
+			data-open-share-views="traffic"
+			data-open-share-zoom="14"
+            data-open-share-ios="true">
+
+            <span class="fa fa-map-marker"></span>
+            Open Google Maps
+        </a>
+
+		<a class="open-share-link maps"
+            data-open-share="google-maps"
+            data-open-share-center="40.765819,-73.975866"
+			data-open-share-views="traffic"
+			data-open-share-zoom="14",
+			data-open-share-search="Pizza"
+            data-open-share-ios="true">
+
+            <span class="fa fa-map-marker"></span>
+            Open Google Maps Search
+        </a>
+		<a class="open-share-link maps"
+            data-open-share="google-maps"
+            data-open-share-saddr="Digital Surgeons, 1175 State St. New Haven, CT"
+			data-open-share-daddr="56 Orange St, New Haven, CT 06510",
+			data-open-share-directions-mode="transit"
+            data-open-share-ios="true">
+
+            <span class="fa fa-map-marker"></span>
+            Open Google Maps Directions
+        </a>
+
         <a class="open-share-link pinterest"
             data-open-share="pinterest"
             data-open-share-url="http://digitalsurgeons.com"
@@ -387,6 +437,71 @@
 			<span class="fa fa-envelope"></span>
 			Email
 		</a>
+
+		<a class="open-share-link github"
+            data-open-share="github"
+            data-open-share-repo="dsurgeons/OpenShare">
+
+            <span class="socicon-github"></span>
+            Fork me on Github (stars count)
+            <span data-open-share-count="github-stars"
+                  data-open-share-count-repo="dsurgeons/OpenShare"
+                  class="open-share-count"></span>
+        </a>
+
+		<a class="open-share-link github"
+            data-open-share="github"
+            data-open-share-repo="dsurgeons/OpenShare">
+
+            <span class="socicon-github"></span>
+            Fork me on Github (forks count)
+
+			<span data-open-share-count="github-forks"
+			    data-open-share-count-repo="dsurgeons/OpenShare"
+			    class="open-share-count"></span>
+        </a>
+
+		<a class="open-share-link github"
+            data-open-share="github"
+            data-open-share-url="https://github.com/dsurgeons/OpenShare">
+
+            <span class="socicon-github"></span>
+            Fork me on Github (watchers count)
+			<span data-open-share-count="github-watchers"
+			    data-open-share-count-url="https://github.com/dsurgeons/OpenShare"
+			    class="open-share-count"></span>
+        </a>
+
+		<a class="open-share-link github"
+            data-open-share="github"
+            data-open-share-repo="dsurgeons/OpenShare"
+			data-open-share-issue="Test"
+			data-open-share-body="This is a test issue. Do not submit.">
+
+            <span class="socicon-github"></span>
+            New Issue
+        </a>
+
+		<a class="open-share-link dribbble"
+            data-open-share="dribbble"
+            data-open-share-shot="2725805-Think-FWD-Event-Branding">
+
+            <span class="socicon-dribbble"></span>
+            Dribbble
+			<span data-open-share-count="dribbble"
+			    data-open-share-count-url="https://dribbble.com/shots/2725805-Think-FWD-Event-Branding"
+			    class="open-share-count"></span>
+        </a>
+
+		<a class="open-share-link codepen"
+            data-open-share="codepen"
+            data-open-share-username="jekrb"
+			data-open-share-view="pen"
+			data-open-share-pen="bNdMBZ">
+
+            <span class="fa fa-codepen"></span>
+            codepen
+        </a>
     </div>
 
     <div class="open-share-watch" data-open-share-watch>
@@ -397,14 +512,27 @@
         <button onclick="addNode();">Create Node</button>
     </div>
 
+	<div class="create-node">
+        <button onclick="addNodeWithCount();">Create Node With Count</button>
+    </div>
+
+	<h2>Create individual Count Nodes</h2>
+	<div class="create-node count-nodes">
+		<input class="count-type" placeholder="type">
+		<input class="count-url" placeholder="url">
+        <button onclick="createCountNode();">Create Count Node Only</button>
+    </div>
+
 	<!-- test browser build -->
-	<!--<script src="dist/open-share.js"></script>
+	<!-- <script src="dist/open-share.js"></script>
 	<script>
+
 	var dynamicNodeData = {
 		'url': 'http://www.digitalsurgeons.com',
 		'via': 'digitalsurgeons',
 		'text': 'Forward Obsessed',
-		'hashtags': 'forwardobsessed'
+		'hashtags': 'forwardobsessed',
+		'button': 'Open Share Watcher!'
 	};
 
 	function createOpenShareNode(data) {
@@ -418,31 +546,90 @@
 		openShare.setAttribute('data-open-share-hashtags', data.hashtags);
 		openShare.innerHTML = '<span class="fa fa-twitter"></span>' + data.button;
 
+		var node = new OpenShare.share({
+			type: 'twitter',
+			url: 'http://www.digitalsurgeons.com',
+			via: 'digitalsurgeons',
+			hashtags: 'forwardobsessed',
+			appendTo: document.querySelector('.open-share-watch'),
+			innerHTML: 'Created via OpenShareAPI',
+			element: 'div',
+			classes: ['wow', 'such', 'classes']
+		});
+
 		return openShare;
 	}
 
 	function addNode() {
 		var data = dynamicNodeData;
-		data.button = 'Open Share Watcher!';
 		document.querySelector('.open-share-watch')
 			.appendChild(createOpenShareNode(data));
 	}
 
-	document.addEventListener('DOMContentLoaded', function() {
-		// add open share node
-		var data = dynamicNodeData;
-		data.button = 'Dynamic Open Share!';
-		document.querySelector('.open-share-nodes')
-			.appendChild(createOpenShareNode(dynamicNodeData));
+	window.addNode = addNode;
 
-		var ev = document.createEvent('Event');
-		ev.initEvent('OpenShare.load', true, true);
-		document.dispatchEvent(ev);
+	function addNodeWithCount() {
+		var data = dynamicNodeData;
+
+		var openShareNode = createOpenShareNode(data);
+		document.querySelector('.open-share-watch').appendChild(openShareNode);
+
+		var countNode = new OpenShare.count({
+			type: 'facebook',
+			url: 'https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga'
+		});
+
+		openShareNode.appendChild(countNode);
+	}
+
+	window.addNodeWithCount = addNodeWithCount;
+
+	function createCountNode() {
+	 	var container = document.querySelector('.create-node.count-nodes');
+		var type = container.querySelector('input.count-type').value;
+		var url = container.querySelector('input.count-url').value;
+
+		var count = new OpenShare.count({
+			type: type,
+			url: url,
+			appendTo: document.querySelector('.open-share-watch')
+		});
+
+		count.style.position = 'relative';
+
+		container.querySelector('input.count-type').value = '';
+		container.querySelector('input.count-url').value = '';
+	}
+
+	window.createCountNode = createCountNode;
+
+	// test JS OpenShare API with dashes
+
+	new OpenShare.share({
+		type: 'googleMaps',
+		center: '40.765819,-73.975866',
+		view: 'traffic',
+		zoom: 14,
+		appendTo: document.body,
+		innerHTML: 'Maps'
 	});
 
-	// bind to loaded event
-	document.addEventListener('OpenShare.loaded', function() {
-		console.log('Open Share loaded');
+	new OpenShare.share({
+		type: 'twitter-follow',
+		screenName: 'digitalsurgeons',
+		userId: '18189130',
+		appendTo: document.body,
+		innerHTML: 'Follow Test'
+	});
+
+	// bind to count loaded event
+	document.addEventListener('OpenShare.count-loaded', function() {
+		console.log('OpenShare (count) loaded');
+	});
+
+	// bind to share loaded event
+	document.addEventListener('OpenShare.share-loaded', function() {
+		console.log('OpenShare (share) loaded');
 
 		// bind to shared event on each individual node
 		[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
@@ -452,42 +639,72 @@
 		});
 
 		var examples = {
-			twitter: new OpenShare(document.querySelector('[data-api-example="twitter"]'), {
+			twitter: new OpenShare.share({
 				type: 'twitter',
 				bindClick: true,
 				url: 'http://digitalsurgeons.com',
 				via: 'digitalsurgeons',
 				text: 'Digital Surgeons',
 				hashtags: 'forwardobsessed'
-			}),
+			}, document.querySelector('[data-api-example="twitter"]')),
 
-			facebook: new OpenShare(document.querySelector('[data-api-example="facebook"]'), {
+			facebook: new OpenShare.share({
 				type: 'facebook',
 				bindClick: true,
 				link: 'http://digitalsurgeons.com',
 				picture: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
 				caption: 'Digital Surgeons',
 				description: 'forwardobsessed'
-			}),
+			}, document.querySelector('[data-api-example="facebook"]')),
 
-			pinterest: new OpenShare(document.querySelector('[data-api-example="pinterest"]'), {
+			pinterest: new OpenShare.share({
 				type: 'pinterest',
 				bindClick: true,
 				url: 'http://digitalsurgeons.com',
 				media: 'http://www.digitalsurgeons.com/img/about/bg_office_team.jpg',
-				description: 'Digital Surgeons'
-			}),
+				description: 'Digital Surgeons',
+				appendTo: document.body
+			}, document.querySelector('[data-api-example="pinterest"]')),
 
-			email: new OpenShare(document.querySelector('[data-api-example="email"]'), {
+			email: new OpenShare.share({
 				type: 'email',
 				bindClick: true,
 				to: 'techroom@digitalsurgeons.com',
 				subject: 'Digital Surgeons',
 				body: 'Forward Obsessed'
-			})
+			}, document.querySelector('[data-api-example="email"]'))
 		};
 	});
-	</script>-->
+
+	// Example of listening for counted events on individual urls or arrays of urls
+	var urls = [
+		'facebook',
+		'google',
+		'linkedin',
+		'reddit',
+		'pinterest',
+		[
+			'google',
+			'linkedin',
+			'reddit',
+			'pinterest'
+		]
+	];
+
+	urls.forEach(function(url) {
+		if (Array.isArray(url)) {
+			url = url.join(',');
+		}
+		var countNode = document.querySelectorAll('[data-open-share-count="' + url + '"]');
+
+		[].forEach.call(countNode, function(node) {
+			node.addEventListener('OpenShare.counted-' + url, function() {
+				var counts = node.innerHTML;
+				if (counts) console.log(url, 'shares: ', counts);
+			});
+		});
+	});
+	</script> -->
 	<script src="dist/test.js"></script>
 </body>
 </html>

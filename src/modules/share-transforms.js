@@ -180,22 +180,48 @@ module.exports = {
 	},
 
 	// set Snapchat follow URL
-	snapchat: function(data) {
+	snapchat (data) {
 		return {
 			url: `snapchat://add/${data.username}?`
 		};
 	},
 
 	// set Google share URL
-	google: function(data) {
+	google (data) {
 		return {
 			url: 'https://plus.google.com/share?',
 			data: data
 		};
 	},
 
+	// set Google maps URL
+	googleMaps (data, ios = false) {
+
+		if (data.search) {
+			data.q = data.search;
+			delete data.search;
+		}
+
+		// if iOS user and ios data attribute defined
+		if (ios && data.ios) {
+			return {
+				url: 'comgooglemaps://?',
+				data: ios
+			};
+		}
+
+		if (!ios && data.ios) {
+			delete data.ios;
+		}
+
+		return {
+			url: 'https://maps.google.com/?',
+			data: data
+		};
+	},
+
 	// set Pinterest share URL
-	pinterest: function(data) {
+	pinterest (data) {
 		return {
 			url: 'https://pinterest.com/pin/create/bookmarklet/?',
 			data: data
@@ -203,7 +229,7 @@ module.exports = {
 	},
 
 	// set LinkedIn share URL
-	linkedin: function(data) {
+	linkedin (data) {
 		return {
 			url: 'http://www.linkedin.com/shareArticle?',
 			data: data
@@ -211,7 +237,7 @@ module.exports = {
 	},
 
 	// set Buffer share URL
-	buffer: function(data) {
+	buffer (data) {
 		return {
 			url: 'http://bufferapp.com/add?',
 			data: data
@@ -219,7 +245,7 @@ module.exports = {
 	},
 
 	// set Tumblr share URL
-	tumblr: function(data) {
+	tumblr (data) {
 		return {
 			url: 'https://www.tumblr.com/widgets/share/tool?',
 			data: data
@@ -227,7 +253,7 @@ module.exports = {
 	},
 
 	// set Reddit share URL
-	reddit: function(data) {
+	reddit (data) {
 		return {
 			url: 'http://reddit.com/submit?',
 			data: data
@@ -235,7 +261,7 @@ module.exports = {
 	},
 
 	// set Flickr follow URL
-	flickr: function(data, ios = false) {
+	flickr (data, ios = false) {
 		// if iOS user
 		if (ios && data.ios) {
 			return {
@@ -249,7 +275,7 @@ module.exports = {
 	},
 
 	// set WhatsApp share URL
-	whatsapp: function(data) {
+	whatsapp (data) {
 		return {
 			url: 'whatsapp://send?',
 			data: data
@@ -257,7 +283,7 @@ module.exports = {
 	},
 
 	// set sms share URL
-	sms: function(data, ios = false) {
+	sms (data, ios = false) {
 		return {
 			url: ios ? 'sms:&' : 'sms:?',
 			data: data
@@ -265,7 +291,7 @@ module.exports = {
 	},
 
 	// set Email share URL
-	email: function(data) {
+	email (data) {
 
 		var url = `mailto:`;
 
@@ -282,6 +308,43 @@ module.exports = {
 				subject: data.subject,
 				body: data.body
 			}
+		};
+	},
+
+	// set Github fork URL
+	github (data, ios = false) {
+		let url = data.repo ?
+			`https://github.com/${data.repo}` :
+			data.url;
+
+		if (data.issue) {
+			url += '/issues/new?title=' +
+				data.issue +
+				'&body=' + 
+				data.body;
+		}
+
+		return {
+			url: url + '?'
+		};
+	},
+
+	// set Dribbble share URL
+	dribbble (data, ios = false) {
+		const url = data.shot ?
+			`https://dribbble.com/shots/${data.shot}?` :
+			data.url + '?';
+		return {
+			url: url
+		};
+	},
+
+	codepen (data) {
+		const url = (data.pen && data.username && data.view) ?
+			`https://codepen.io/${data.username}/${data.view}/${data.pen}?` :
+			data.url + '?';
+		return {
+			url: url
 		};
 	}
 };

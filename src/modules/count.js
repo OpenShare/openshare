@@ -2,7 +2,9 @@
  * Generate share count instance from one to many networks
  */
 
-var CountTransforms = require('./count-transforms');
+const CountTransforms = require('./count-transforms');
+const Events = require('./events');
+const countReduce = require('../../lib/countReduce');
 
 module.exports = class Count {
 
@@ -11,6 +13,19 @@ module.exports = class Count {
 		// throw error if no url provided
 		if (!url) {
 			throw new Error(`Open Share: no url provided for count`);
+		}
+
+		// check for Github counts
+		if (type.indexOf('github') === 0) {
+			if (type === 'github-stars') {
+				type = 'githubStars';
+			} else if (type === 'github-forks') {
+				type = 'githubForks';
+			} else if (type === 'github-watchers') {
+				type = 'githubWatchers';
+			} else {
+				console.error('Invalid Github count type. Try github-stars, github-forks, or github-watchers.');
+			}
 		}
 
 		// if type is comma separate list create array
@@ -44,6 +59,8 @@ module.exports = class Count {
 	// depending on number of types
 	count(os) {
 		this.os = os;
+    	this.url = this.os.getAttribute('data-open-share-count');
+		this.shared = this.os.getAttribute('data-open-share-count-url');
 
 		if (!Array.isArray(this.countData)) {
 			this.getCount();
@@ -54,11 +71,12 @@ module.exports = class Count {
 
 	// fetch count either AJAX or JSONP
 	getCount() {
-		var count = this.storeGet(this.type);
+		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count;
+			countReduce(this.os, count);
 		}
+
 
 		this[this.countData.type](this.countData);
 	}
@@ -67,10 +85,10 @@ module.exports = class Count {
 	getCounts() {
 		this.total = [];
 
-		var count = this.storeGet(this.type);
+		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			this.os.innerHTML = count;
+			countReduce(this.os, count);
 		}
 
 		this.countData.forEach((countData) => {
@@ -87,27 +105,29 @@ module.exports = class Count {
 						tot += t;
 					});
 
-					this.storeSet(this.type, tot);
-					this.os.innerHTML = tot;
+					this.storeSet(this.type + '-' + this.shared, tot);
+					countReduce(this.os, tot);
 				}
 			});
 		});
 
-		this.os.innerHTML = this.total;
+		countReduce(this.os, this.total);
 	}
 
 	// handle JSONP requests
 	jsonp(countData, cb) {
 		// define random callback and assign transform function
-		let callback = `jsonp_${Math.random().toString().substr(-10)}`;
+		let callback = Math.random().toString(36).substring(7).replace(/[^a-zA-Z]/g, '');
 		window[callback] = (data) => {
 			let count = countData.transform.apply(this, [data]) || 0;
 
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count;
+				countReduce(this.os, count);
 			}
+
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		// append JSONP script tag to page
@@ -124,17 +144,20 @@ module.exports = class Count {
 
 		// on success pass response to transform function
 		xhr.onreadystatechange = () => {
-			if (xhr.readyState !== XMLHttpRequest.DONE ||
-				xhr.status !== 200) {
-				return;
-			}
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					let count = countData.transform.apply(this, [xhr, Events]) || 0;
 
-			let count = countData.transform.apply(this, [xhr]) || 0;
+					if (cb && typeof cb === 'function') {
+						cb(count);
+					} else {
+						countReduce(this.os, count);
+					}
 
-			if (cb && typeof cb === 'function') {
-				cb(count);
-			} else {
-				this.os.innerHTML = count;
+					Events.trigger(this.os, 'counted-' + this.url);
+				} else {
+					console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+				}
 			}
 		};
 
@@ -158,8 +181,9 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				this.os.innerHTML = count;
+				countReduce(this.os, count);
 			}
+			Events.trigger(this.os, 'counted-' + this.url);
 		};
 
 		xhr.open('POST', countData.url);

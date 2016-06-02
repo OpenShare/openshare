@@ -1,12 +1,10 @@
 module.exports = (function() {
+	const DataAttr = require('./modules/data-attr')();
+	const ShareAPI = require('./modules/share-api');
+	const CountAPI = require('./modules/count-api');
 
-	var DataAttr = require('./modules/data-attr'),
-		API = require('./modules/api'),
-		Events = require('./modules/events'),
-		OpenShare = require('./modules/open-share'),
-		Count = require('./modules/count'),
-		ShareTransforms = require('./modules/share-transforms');
-
-	DataAttr(OpenShare, Count, ShareTransforms, Events);
-	return API(OpenShare, ShareTransforms, Events);
+	return {
+		share: ShareAPI(),
+		count: CountAPI()
+	};
 })();

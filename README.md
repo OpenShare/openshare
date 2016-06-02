@@ -1,165 +1,34 @@
 # OpenShare
 
-OpenShare is social sharing for developers. A simple wrapper around popular share APIs, zero styling, maximum flexibility and a declarative API. [Check out the example page](http://dsurgeons.github.io/OpenShare/) to see it in action.
+OpenShare provides straightforward, declarative, and completely customizable API wrappers for sharing and counting on major social networks and platforms. Zero styling, maximum flexibility. But, unlike other social sharing tools, we don't retarget and profit from your users. Your data is your data — this is OpenShare.
+
+[Check out the examples](http://openshare.social/examples.html) to see OpenShare in action or [dive right into the documentation](https://github.com/dsurgeons/OpenShare/wiki).
+
+* [Getting Started](https://github.com/dsurgeons/OpenShare/wiki/1.-Getting-Started)
+* [Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/2.-Data-Attribute-API)
+* [JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/3.-JavaScript-API)
 
 
-## Installation ##
+---
+**Quick Start**
 
-To get started, install the [Bower](http://bower.io/) package or directly download open-share.js and include in your page or as part of a build process. And that's it! Everything else is expressed using data-attributes directly within your HTML, read on for more.
+```
+$ npm install openshare --save
+```
 
-	# install package with Bower
-	$ bower install --save open-share
+```html
+<a data-open-share="facebook"
+	data-open-share-link="http://digitalsurgeons.com"
+	data-open-share-caption="Digital Surgeons"
+	data-open-share-description="Forward Obsessed">
+	Share
 
-## Implementation
+	<span data-open-share-count="facebook"
+		  data-open-share-count-url="https://www.digitalsurgeons.com"></span>
+</a>
+```
 
-All OpenShare instances are created directly in the DOM using data attributes, here's a basic Facebook share.
-
-	<button data-open-share="facebook"
-			data-open-share-link="http://digitalsurgeons.com">
-		
-		Share on Facebook
-		
-	</button>
-
-When clicked, this button will open a [Facebook Feed Dialog](https://developers.facebook.com/docs/sharing/reference/feed-dialog/v2.5) in a new window using the information specified in the open-share data attributes. For a full list of attribute options read on.
-
-## API Reference
-
-Here is the complete OpenShare API reference. Each OpenShare instance will be initialized with `data-open-share="{platform}"`.
-
-### Facebook ####
-
-Initialize an OpenShare Facebook instance with `data-open-share="facebook"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-link           | Required
-| data-open-share-picture        | 
-| data-open-share-caption        | 
-| data-open-share-description    |
-| data-open-share-dynamic        | Fetch new attribute values on every share			
-
-### Twitter ####
-
-Initialize an OpenShare Twitter instance with `data-open-share="twitter"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-text           | 
-| data-open-share-via            | Username without @
-| data-open-share-hashtags       | Comma separated
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-
-### Google ####
-
-Initialize an OpenShare Google instance with `data-open-share="google"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-### Pinterest ####
-
-Initialize an OpenShare Pinterest instance with `data-open-share="pinterest"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-media          | Required. URL of image to pin
-| data-open-share-url            | URL to share with image
-| data-open-share-description    |		
-| data-open-share-dynamic        | Fetch new attribute values on every share	
-
-### LinkedIn ####
-
-Initialize an OpenShare LinkedIn instance with `data-open-share="linkedIn"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-title          | 
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-### Buffer ####
-
-Initialize an OpenShare Buffer instance with `data-open-share="buffer"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-text           |
-| data-open-share-dynamic        | Fetch new attribute values on every share	
-
-
-### Tumblr ####
-
-Initialize an OpenShare Tubmlr instance with `data-open-share="tumblr"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-title          |
-| data-open-share-caption        |
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-### Reddit ####
-
-Initialize an OpenShare Reddit instance with `data-open-share="reddit"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-### Digg ####
-
-Initialize an OpenShare Digg instance with `data-open-share="digg"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-### StumbleUpon ####
-
-Initialize an OpenShare Twitter instance with `data-open-share="digg"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-### Delicious ####
-
-Initialize an OpenShare Twitter instance with `data-open-share="digg"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-url            | Required
-| data-open-share-title          |
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-### Email ####
-
-Initialize an OpenShare Email instance with `data-open-share="email"` and customize with the following.
-
-| Attribute                      | Notes
-| ------------------------------ | ----------------------------
-| data-open-share-to             | Required. Email address
-| data-open-share-subject        | 
-| data-open-share-body           |
-| data-open-share-dynamic        | Fetch new attribute values on every share
-
-## Browser Support ##
-
-OpenShare supports all major browsers including IE9+.
-
-
+---
 **MIT License (MIT)**
 
 Copyright (c) 2015 Digital Surgeons
