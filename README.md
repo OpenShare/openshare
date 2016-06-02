@@ -1,24 +1,12 @@
 # OpenShare
 
-OpenShare is social sharing for developers. A simple wrapper around popular share APIs, zero styling, maximum flexibility and a declarative API. [Check out the example page](http://openshare.social/examples) to see it in action.
+OpenShare provides straightforward, declarative, and completely customizable API wrappers for sharing and counting on major social networks and platforms, with no predefined styles. But, unlike other social sharing tools, we don't retarget and profit from your users. Your data is your data — this is OpenShare.
 
-```
-npm install open-share --save
-```
+[Check out the examples](http://openshare.social/examples.html) to see OpenShare in action or [dive right into the documentation](https://github.com/dsurgeons/OpenShare/wiki).
 
-## Getting Started ##
-
-Learn how to install and get started with OpenShare by visiting the [OpenShare Getting Started wiki](https://github.com/dsurgeons/OpenShare/wiki/Getting-Started).
-
-##  API Reference
-
-### [OpenShare Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-Data-Attributes)
-
-### [OpenShare JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API)
-
-[Share API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API#new-openshareshareoptions-element)
-
-[Count API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API#new-opensharecountoptions-element)
+* [Getting Started](https://github.com/dsurgeons/OpenShare/wiki/Getting-Started)
+* [Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-Data-Attributes)
+* [JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API)
 
 ---
 **MIT License (MIT)**
