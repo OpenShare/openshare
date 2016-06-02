@@ -2,8 +2,9 @@
  * Generate share count instance from one to many networks
  */
 
-var CountTransforms = require('./count-transforms');
-var Events = require('./events');
+const CountTransforms = require('./count-transforms');
+const Events = require('./events');
+const countReduce = require('../../lib/countReduce');
 
 module.exports = class Count {
 
@@ -207,33 +208,3 @@ module.exports = class Count {
 	}
 
 };
-
-function round(x, precision) {
-	if (typeof x !== 'number') {
-		throw new TypeError('Expected value to be a number');
-	}
-
-	var exponent = precision > 0 ? 'e' : 'e-';
-	var exponentNeg = precision > 0 ? 'e-' : 'e';
-	precision = Math.abs(precision);
-
-	return Number(Math.round(x + exponent + precision) + exponentNeg + precision);
-}
-
-function thousandify (num) {
-	return round(num/1000, 1) + 'K';
-}
-
-function millionify (num) {
-	return round(num/1000000, 1) + 'M';
-}
-
-function countReduce (el, count) {
-	if (count > 999999)  {
-		el.innerHTML = millionify(count);
-	} else if (count > 999) {
-		el.innerHTML = thousandify(count);
-	} else {
-		el.innerHTML = count;
-	}
-}

@@ -13,6 +13,8 @@ module.exports = function() {
 
 		constructor(data, element) {
 
+			if (!data.bindClick) data.bindClick = true;
+
 			let dash = data.type.indexOf('-');
 
 			// type contains a dash
