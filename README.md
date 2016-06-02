@@ -4,9 +4,27 @@ OpenShare provides straightforward, declarative, and completely customizable API
 
 [Check out the examples](http://openshare.social/examples.html) to see OpenShare in action or [dive right into the documentation](https://github.com/dsurgeons/OpenShare/wiki).
 
-* [Getting Started](https://github.com/dsurgeons/OpenShare/wiki/Getting-Started)
-* [Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-Data-Attributes)
-* [JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/Documentation:-JavaScript-API)
+* [Getting Started](https://github.com/dsurgeons/OpenShare/wiki/1.-Getting-Started)
+* [Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/2.-Data-Attribute-API)
+* [JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/3.-JavaScript-API)
+
+**Quick Start**
+
+```
+$ npm install openshare --save
+```
+
+```
+<a data-open-share="facebook"
+	data-open-share-link="http://digitalsurgeons.com"
+	data-open-share-caption="Digital Surgeons"
+	data-open-share-description="Forward Obsessed">
+	Share
+
+	<span data-open-share-count="facebook"
+		  data-open-share-count-url="https://www.digitalsurgeons.com"></span>
+</a>
+```
 
 ---
 **MIT License (MIT)**
