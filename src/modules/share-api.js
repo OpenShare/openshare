@@ -35,11 +35,8 @@ module.exports = function() {
 				if (data.type) {
 					node.classList.add('open-share-link', data.type);
 					node.setAttribute('data-open-share', data.type);
+					node.setAttribute('data-open-share-node', data.type);
 				}
-				if (data.url) node.setAttribute('data-open-share-url', data.url);
-				if (data.via) node.setAttribute('data-open-share-via', data.via);
-				if (data.text) node.setAttribute('data-open-share-text', data.text);
-				if (data.hashtags) node.setAttribute('data-open-share-hashtags', data.hashtags);
 				if (data.innerHTML) node.innerHTML = data.innerHTML;
 			}
 			if (node) element = node;
