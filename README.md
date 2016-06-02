@@ -11,7 +11,7 @@ OpenShare provides straightforward, declarative, and completely customizable API
 **Quick Start**
 
 ```
-$ npm install openshare
+$ npm install openshare --save
 ```
 
 ```
