@@ -1,6 +1,6 @@
 {
   "name": "open-share",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "description": "Social sharing for developers",
   "main": "src/index.js",
   "repository": {
