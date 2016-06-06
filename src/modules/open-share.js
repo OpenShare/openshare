@@ -62,7 +62,6 @@ module.exports = class OpenShare {
 	template(url, data) {
 		let nonURLProps = [
 			'appendTo',
-			'url',
 			'innerHTML',
 			'classes'
 		];
