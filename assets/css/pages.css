@@ -397,12 +397,15 @@ a {
   text-decoration: none; }
 
 .header__logo {
-  float: left;
   font-size: 2.25em;
   font-weight: 200;
   letter-spacing: 5px;
   margin: .638888889em 0 0;
+  text-align: center;
   text-transform: uppercase; }
+  @media screen and (min-width: 56.25em) {
+    .header__logo {
+      float: left; } }
 
 .header__logo-strong {
   font-weight: 600; }
