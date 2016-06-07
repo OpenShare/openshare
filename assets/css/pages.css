@@ -394,8 +394,8 @@ a {
 
 .burger-icon {
   position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 9px;
+  margin-bottom: 9px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -403,7 +403,7 @@ a {
   .burger-icon, .burger-icon::before, .burger-icon::after {
     display: block;
     width: 25px;
-    height: 5px;
+    height: 4px;
     background-color: #fff;
     -webkit-transition-property: background-color, -webkit-transform;
     -moz-transition-property: background-color, -moz-transform;
@@ -419,9 +419,9 @@ a {
     position: absolute;
     content: ""; }
   .burger-icon::before {
-    top: -10px; }
+    top: -9px; }
   .burger-icon::after {
-    top: 10px; }
+    top: 9px; }
   @media screen and (min-width: 56.25em) {
     .burger-icon {
       display: none; } }
@@ -429,17 +429,17 @@ a {
 .burger-icon.active {
   background-color: transparent; }
 .burger-icon.active::before {
-  -webkit-transform: translateY(10px) rotate(45deg);
-  -moz-transform: translateY(10px) rotate(45deg);
-  -ms-transform: translateY(10px) rotate(45deg);
-  -o-transform: translateY(10px) rotate(45deg);
-  transform: translateY(10px) rotate(45deg); }
+  -webkit-transform: translateY(9px) rotate(45deg);
+  -moz-transform: translateY(9px) rotate(45deg);
+  -ms-transform: translateY(9px) rotate(45deg);
+  -o-transform: translateY(9px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg); }
 .burger-icon.active::after {
-  -webkit-transform: translateY(-10px) rotate(-45deg);
-  -moz-transform: translateY(-10px) rotate(-45deg);
-  -ms-transform: translateY(-10px) rotate(-45deg);
-  -o-transform: translateY(-10px) rotate(-45deg);
-  transform: translateY(-10px) rotate(-45deg); }
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+  -moz-transform: translateY(-9px) rotate(-45deg);
+  -ms-transform: translateY(-9px) rotate(-45deg);
+  -o-transform: translateY(-9px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg); }
 
 .header__logo-link, .header__nav-link, .header__nav-link--active {
   color: #fff;
