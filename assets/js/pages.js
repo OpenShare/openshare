@@ -1,7 +1,14 @@
 'use strict';
 
 var openShareNodes = document.querySelectorAll('.open-share-examples [data-open-share]'),
-    animationMods = ['square', 'diamond', 'rectangle', 'rectangle-vert', ''];
+    animationMods = ['square', 'diamond', 'rectangle', 'rectangle-vert', ''],
+	burger = document.querySelector('.burger-icon'),
+	nav = document.querySelector('.header__nav');
+
+burger.addEventListener('click', function() {
+	burger.classList.toggle('active');
+	nav.classList.toggle('active');
+});
 
 function animationLoop() {
     // loop through each animation modifier

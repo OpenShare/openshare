@@ -9,7 +9,6 @@
 }
 
 .header__logo {
-	// float: left;
 	font-size: 2.25em;
 	font-weight: 200;
 	letter-spacing: 5px;
@@ -39,6 +38,10 @@
 		display: block;
 		float: right;
 		text-align: left;
+	}
+
+	&.active {
+		display: block;
 	}
 }
 

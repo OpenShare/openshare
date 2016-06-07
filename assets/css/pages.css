@@ -392,6 +392,55 @@ a {
   color: #4f70d6;
   text-decoration: none; }
 
+.burger-icon {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .burger-icon, .burger-icon::before, .burger-icon::after {
+    display: block;
+    width: 25px;
+    height: 5px;
+    background-color: #fff;
+    -webkit-transition-property: background-color, -webkit-transform;
+    -moz-transition-property: background-color, -moz-transform;
+    -o-transition-property: background-color, -o-transform;
+    transition-property: background-color, transform;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s; }
+  .burger-icon {
+    display: inline-block; }
+  .burger-icon::before, .burger-icon::after {
+    position: absolute;
+    content: ""; }
+  .burger-icon::before {
+    top: -10px; }
+  .burger-icon::after {
+    top: 10px; }
+  @media screen and (min-width: 56.25em) {
+    .burger-icon {
+      display: none; } }
+
+.burger-icon.active {
+  background-color: transparent; }
+.burger-icon.active::before {
+  -webkit-transform: translateY(10px) rotate(45deg);
+  -moz-transform: translateY(10px) rotate(45deg);
+  -ms-transform: translateY(10px) rotate(45deg);
+  -o-transform: translateY(10px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg); }
+.burger-icon.active::after {
+  -webkit-transform: translateY(-10px) rotate(-45deg);
+  -moz-transform: translateY(-10px) rotate(-45deg);
+  -ms-transform: translateY(-10px) rotate(-45deg);
+  -o-transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-10px) rotate(-45deg); }
+
 .header__logo-link, .header__nav-link, .header__nav-link--active {
   color: #fff;
   text-decoration: none; }
@@ -419,6 +468,8 @@ a {
       display: block;
       float: right;
       text-align: left; } }
+  .header__nav.active {
+    display: block; }
 
 .header__nav-list {
   margin: 0;
