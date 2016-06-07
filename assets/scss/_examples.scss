@@ -14,7 +14,11 @@
 	height: auto;
 	margin-top: 23em;
 
-	@include media($medium-screen) {
+	@include media(59.5em) {
+		margin-top: 20em;
+	};
+
+	@include media(62.5em) {
 		display: none;
 	}
 }

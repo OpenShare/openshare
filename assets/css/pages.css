@@ -571,7 +571,10 @@ a {
   display: block;
   height: auto;
   margin-top: 23em; }
-  @media screen and (min-width: 37.5em) {
+  @media screen and (min-width: 59.5em) {
+    .open-share-examples--mobile {
+      margin-top: 20em; } }
+  @media screen and (min-width: 62.5em) {
     .open-share-examples--mobile {
       display: none; } }
 
