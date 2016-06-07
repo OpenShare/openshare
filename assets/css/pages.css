@@ -811,6 +811,8 @@ a {
 
 .feature {
   position: relative; }
+  .feature:first-of-type .feature__img-tag {
+    margin-bottom: 0; }
 
 @media screen and (min-width: 56.25em) {
   .feature__align, .feature__align--center {

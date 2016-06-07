@@ -11,6 +11,10 @@
 	@extend %outer-container;
 	@extend %row-padd;
 	position: relative;
+
+	&:first-of-type .feature__img-tag {
+	    margin-bottom: 0;
+	}
 }
 
 .feature__align {
