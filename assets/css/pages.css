@@ -594,6 +594,8 @@ a {
   text-align: center;
   text-decoration: none;
   width: 3.125em; }
+  .open-share-example:hover, .open-share-example--square:hover, .open-share-example--diamond:hover, .open-share-example--rectangle:hover, .open-share-example--rectangle-vert:hover {
+    cursor: pointer; }
 
 .open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
   margin: .5em 1em; }
