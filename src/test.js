@@ -47,15 +47,23 @@ window.addNode = addNode;
 function addNodeWithCount() {
 	var data = dynamicNodeData;
 
-	var openShareNode = createOpenShareNode(data);
-	document.querySelector('.open-share-watch').appendChild(openShareNode);
-
-	var countNode = new OpenShare.count({
+	new OpenShare.count({
 		type: 'facebook',
-		url: 'https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga'
+		url: 'https://www.digitalsurgeons.com/'
+	}, function (node) {
+		var os = new OpenShare.share({
+		  type: 'twitter',
+		  url: 'http://www.digitalsurgeons.com',
+		  via: 'digitalsurgeons',
+		  hashtags: 'forwardobsessed',
+		  innerHTML: 'Created via OpenShareAPI',
+		  element: 'div',
+		  classes: ['wow', 'such', 'classes']
+	  });
+		document.querySelector('.create-node.w-count')
+		  .appendChild(os);
+		  os.appendChild(node);
 	});
-
-	openShareNode.appendChild(countNode);
 }
 
 window.addNodeWithCount = addNodeWithCount;

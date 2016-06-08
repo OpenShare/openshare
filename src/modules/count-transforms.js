@@ -158,7 +158,9 @@ module.exports = {
 					let page = 2;
 					recursiveCount(url, page, count, finalCount => {
 						this.storeSet(this.type + '-' + this.shared, finalCount);
-						if (this.appendTo) this.appendTo.appendChild(this.os);
+						if (this.appendTo && typeof this.appendTo !== 'function') {
+							this.appendTo.appendChild(this.os);
+						}
 						countReduce(this.os, finalCount, this.cb);
 						Events.trigger(this.os, 'counted-' + this.url);
 						return finalCount;

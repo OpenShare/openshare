@@ -12,7 +12,7 @@ module.exports = function() {
 		constructor({
 			type,
 			url,
-			appendTo,
+			appendTo = false,
 			element,
 			classes}, cb) {
 			var countNode = document.createElement(element || 'span');
@@ -29,7 +29,7 @@ module.exports = function() {
 			}
 
 			if (appendTo) {
-				return new count(type, url).count(countNode, appendTo, cb);
+				return new count(type, url).count(countNode, cb, appendTo);
 			}
 
 			return new count(type, url).count(countNode, cb);
