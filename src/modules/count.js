@@ -57,7 +57,7 @@ module.exports = class Count {
 
 	// handle calling getCount / getCounts
 	// depending on number of types
-	count(os, appendTo, cb) {
+	count(os, cb, appendTo) {
 		this.os = os;
 		this.appendTo = appendTo;
 		this.cb = cb;
@@ -76,7 +76,9 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			if (this.appendTo) this.appendTo.appendChild(this.os);
+			if (this.appendTo && typeof this.appendTo !== 'function') {
+				this.appendTo.appendChild(this.os);
+			}
 			countReduce(this.os, count);
 		}
 
@@ -91,9 +93,8 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
-			if (this.appendTo) {
+			if (this.appendTo  && typeof this.appendTo !== 'function') {
 				this.appendTo.appendChild(this.os);
-				countReduce(this.os, count);
 			}
 			countReduce(this.os, count);
 		}
@@ -113,13 +114,17 @@ module.exports = class Count {
 					});
 
 					this.storeSet(this.type + '-' + this.shared, tot);
-					if (this.appendTo) this.appendTo.appendChild(this.os);
+					if (this.appendTo  && typeof this.appendTo !== 'function') {
+						this.appendTo.appendChild(this.os);
+					}
 					countReduce(this.os, tot);
 				}
 			});
 		});
 
-		if (this.appendTo) this.appendTo.appendChild(this.os);
+		if (this.appendTo  && typeof this.appendTo !== 'function') {
+			this.appendTo.appendChild(this.os);
+		}
 		countReduce(this.os, this.total);
 	}
 
@@ -133,7 +138,9 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				if (this.appendTo) this.appendTo.appendChild(this.os);
+				if (this.appendTo  && typeof this.appendTo !== 'function') {
+					this.appendTo.appendChild(this.os);
+				}
 				countReduce(this.os, count, this.cb);
 			}
 
@@ -161,7 +168,9 @@ module.exports = class Count {
 					if (cb && typeof cb === 'function') {
 						cb(count);
 					} else {
-						if (this.appendTo) this.appendTo.appendChild(this.os);
+						if (this.appendTo && typeof this.appendTo !== 'function') {
+							this.appendTo.appendChild(this.os);
+						}
 						countReduce(this.os, count, this.cb);
 					}
 
@@ -192,7 +201,9 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				if (this.appendTo) this.appendTo.appendChild(this.os);
+				if (this.appendTo && typeof this.appendTo !== 'function') {
+					this.appendTo.appendChild(this.os);
+				}
 				countReduce(this.os, count, this.cb);
 			}
 			Events.trigger(this.os, 'counted-' + this.url);
