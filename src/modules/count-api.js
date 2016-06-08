@@ -14,7 +14,7 @@ module.exports = function() {
 			url,
 			appendTo,
 			element,
-			classes}) {
+			classes}, cb) {
 			var countNode = document.createElement(element || 'span');
 
 			countNode.setAttribute('data-open-share-count', type);
@@ -29,10 +29,10 @@ module.exports = function() {
 			}
 
 			if (appendTo) {
-				appendTo.appendChild(countNode);
+				return new count(type, url).count(countNode, appendTo, cb);
 			}
 
-			return countNode;
+			return new count(type, url).count(countNode, cb);
 		}
 	}
 

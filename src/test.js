@@ -65,13 +65,15 @@ function createCountNode() {
 	var type = container.querySelector('input.count-type').value;
 	var url = container.querySelector('input.count-url').value;
 
-	var count = new OpenShare.count({
+	new OpenShare.count({
 		type: type,
 		url: url,
-		appendTo: document.querySelector('.open-share-watch')
+		appendTo: container,
+		classes: ['test']
+	}, function (node) {
+		node.style.position = 'relative';
 	});
 
-	count.style.position = 'relative';
 
 	container.querySelector('input.count-type').value = '';
 	container.querySelector('input.count-url').value = '';
