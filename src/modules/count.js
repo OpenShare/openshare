@@ -57,8 +57,10 @@ module.exports = class Count {
 
 	// handle calling getCount / getCounts
 	// depending on number of types
-	count(os) {
+	count(os, appendTo, cb) {
 		this.os = os;
+		this.appendTo = appendTo;
+		this.cb = cb;
     	this.url = this.os.getAttribute('data-open-share-count');
 		this.shared = this.os.getAttribute('data-open-share-count-url');
 
@@ -74,6 +76,7 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
+			if (this.appendTo) this.appendTo.appendChild(this.os);
 			countReduce(this.os, count);
 		}
 
@@ -88,6 +91,10 @@ module.exports = class Count {
 		var count = this.storeGet(this.type + '-' + this.shared);
 
 		if (count) {
+			if (this.appendTo) {
+				this.appendTo.appendChild(this.os);
+				countReduce(this.os, count);
+			}
 			countReduce(this.os, count);
 		}
 
@@ -106,11 +113,13 @@ module.exports = class Count {
 					});
 
 					this.storeSet(this.type + '-' + this.shared, tot);
+					if (this.appendTo) this.appendTo.appendChild(this.os);
 					countReduce(this.os, tot);
 				}
 			});
 		});
 
+		if (this.appendTo) this.appendTo.appendChild(this.os);
 		countReduce(this.os, this.total);
 	}
 
@@ -124,7 +133,8 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				countReduce(this.os, count);
+				if (this.appendTo) this.appendTo.appendChild(this.os);
+				countReduce(this.os, count, this.cb);
 			}
 
 			Events.trigger(this.os, 'counted-' + this.url);
@@ -151,7 +161,8 @@ module.exports = class Count {
 					if (cb && typeof cb === 'function') {
 						cb(count);
 					} else {
-						countReduce(this.os, count);
+						if (this.appendTo) this.appendTo.appendChild(this.os);
+						countReduce(this.os, count, this.cb);
 					}
 
 					Events.trigger(this.os, 'counted-' + this.url);
@@ -181,7 +192,8 @@ module.exports = class Count {
 			if (cb && typeof cb === 'function') {
 				cb(count);
 			} else {
-				countReduce(this.os, count);
+				if (this.appendTo) this.appendTo.appendChild(this.os);
+				countReduce(this.os, count, this.cb);
 			}
 			Events.trigger(this.os, 'counted-' + this.url);
 		};
