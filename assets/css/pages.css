@@ -422,6 +422,11 @@ a {
     top: -9px; }
   .burger-icon::after {
     top: 9px; }
+  @media screen and (min-width: 415px) {
+    .burger-icon {
+      position: absolute;
+      top: 39px;
+      right: 30px; } }
   @media screen and (min-width: 56.25em) {
     .burger-icon {
       display: none; } }
@@ -446,12 +451,15 @@ a {
   text-decoration: none; }
 
 .header__logo {
-  font-size: 2.25em;
+  font-size: 2em;
   font-weight: 200;
   letter-spacing: 5px;
   margin: .638888889em 0 0;
   text-align: center;
   text-transform: uppercase; }
+  @media screen and (min-width: 333px) {
+    .header__logo {
+      font-size: 2.25em; } }
   @media screen and (min-width: 56.25em) {
     .header__logo {
       float: left; } }

@@ -9,12 +9,16 @@
 }
 
 .header__logo {
-	font-size: 2.25em;
+	font-size: 2em;
 	font-weight: 200;
 	letter-spacing: 5px;
 	margin: .638888889em 0 0;
 	text-align: center;
 	text-transform: uppercase;
+
+	@include media(333px) {
+		font-size: 2.25em;
+	};
 
 	@include media($large-screen) {
 		float: left;
