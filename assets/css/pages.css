@@ -757,7 +757,7 @@ a {
   color: #fff;
   display: block;
   font-size: 1.3em;
-  padding: 1.25em;
+  padding: 1.5em 1.25em;
   text-align: center;
   width: 100%; }
   @media screen and (min-width: 37.5em) {
