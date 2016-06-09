@@ -750,7 +750,10 @@ a {
   top: 32%; }
 
 .banner {
-  background: #283137;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  background: #4f70d6;
   color: #fff;
   display: block;
   font-size: 1em;
@@ -766,9 +769,18 @@ a {
     .banner {
       font-size: 1.5em; } }
 
-.banner__strong {
-  color: #ff933a;
-  font-weight: 600; }
+.banner__body {
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  transition: 0.3s;
+  border-bottom: solid 2px #4f70d6;
+  display: inline-block; }
+
+.banner:hover {
+  background: #834c96;
+  color: #fff; }
+  .banner:hover .banner__body {
+    border-color: #fff; }
 
 .btn, .btn--dark {
   -webkit-transition: 0.3s;

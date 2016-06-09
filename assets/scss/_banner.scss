@@ -1,5 +1,6 @@
 .banner {
-	background: $black;
+	@include transition(.3s);
+	background: $blue;
 	color: $white;
 	display: block;
 	font-size: 1em;
@@ -21,7 +22,17 @@
 	@extend %outer-container;
 }
 
-.banner__strong {
-	color: $orange;
-	font-weight: 600;
+.banner__body {
+	@include transition(.3s);
+	border-bottom: solid 2px $blue;
+	display: inline-block;
+}
+
+.banner:hover {
+	background: #834c96;
+	color: $white;
+
+	.banner__body {
+		border-color: $white;
+	}
 }
