@@ -830,7 +830,7 @@ a {
   background: #834c96;
   display: block;
   font-size: .75em;
-  padding: .75em 1.25em;
+  padding: .8em 1.25em;
   width: 100%; }
   @media screen and (min-width: 37.5em) {
     .btn--small-pink {
