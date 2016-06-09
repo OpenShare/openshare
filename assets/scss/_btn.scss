@@ -1,11 +1,13 @@
 .btn {
 	@include transition(.3s);
 	background: $blue;
+	border: 0;
 	color: $white;
-	font-size: 1.5em;
+	cursor: pointer;
 	font-weight: 600;
 	letter-spacing: 1px;
-	padding: .78125em 0;
+	outline: none;
+	padding: .78125em 1.25em;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -21,5 +23,23 @@
 
 	&:hover {
 		background: lighten($black, 2.5%);
+	}
+}
+
+.btn--small-pink {
+	@extend .btn;
+	background: $pink;
+	display: block;
+	font-size: .75em;
+	padding: .75em 1.25em;
+	width: 100%;
+
+	@include media($medium-screen) {
+		display: inline-block;
+		width: auto;
+	}
+
+	&:hover {
+		background: lighten($pink, 2.5%);
 	}
 }

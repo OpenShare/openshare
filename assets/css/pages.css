@@ -756,14 +756,9 @@ a {
   background: #4f70d6;
   color: #fff;
   display: block;
-  font-size: 1em;
-  font-weight: 600;
-  letter-spacing: 1px;
-  line-height: 1.5;
-  padding: .3125em 1.25em;
+  font-size: 1.3em;
+  padding: 1.25em;
   text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
   width: 100%; }
   @media screen and (min-width: 37.5em) {
     .banner {
@@ -774,28 +769,55 @@ a {
   -moz-transition: 0.3s;
   transition: 0.3s;
   border-bottom: solid 2px #4f70d6;
-  display: inline-block; }
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  margin: 0 0 .3125em;
+  text-decoration: none;
+  text-transform: uppercase; }
 
-.banner:hover {
-  background: #834c96;
-  color: #fff; }
-  .banner:hover .banner__body {
-    border-color: #fff; }
+.banner__sub {
+  font-size: .625em;
+  font-style: italic;
+  margin: 0 0 3.333333333em; }
 
-.btn, .btn--dark {
+.banner__sub-note {
+  display: block; }
+  @media screen and (min-width: 37.5em) {
+    .banner__sub-note {
+      display: inline; } }
+
+.banner__input {
+  border: 0;
+  color: #666;
+  display: block;
+  font-size: .75em;
+  margin: 0 auto .625em;
+  outline: none;
+  padding: .75em 1em;
+  width: 100%; }
+  @media screen and (min-width: 37.5em) {
+    .banner__input {
+      display: inline-block;
+      width: 40%; } }
+
+.btn, .btn--dark, .btn--small-pink {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
   background: #4f70d6;
+  border: 0;
   color: #fff;
-  font-size: 1.5em;
+  cursor: pointer;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: .78125em 0;
+  outline: none;
+  padding: .78125em 1.25em;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase; }
-  .btn:hover, .btn--dark:hover {
+  .btn:hover, .btn--dark:hover, .btn--small-pink:hover {
     background: #5978d8; }
 
 .btn--dark {
@@ -803,12 +825,26 @@ a {
   .btn--dark:hover {
     background: #2d383e; }
 
+.btn--small-pink {
+  background: #834c96;
+  display: block;
+  font-size: .75em;
+  padding: .75em 1.25em;
+  width: 100%; }
+  @media screen and (min-width: 37.5em) {
+    .btn--small-pink {
+      display: inline-block;
+      width: auto; } }
+  .btn--small-pink:hover {
+    background: #8a509e; }
+
 .ctas {
   overflow: hidden; }
 
 .ctas__cta {
   display: block;
   float: none;
+  font-size: 1.5em;
   margin: 0 auto .625em;
   width: 90%; }
   @media screen and (min-width: 56.25em) {

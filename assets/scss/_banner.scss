@@ -3,14 +3,9 @@
 	background: $blue;
 	color: $white;
 	display: block;
-	font-size: 1em;
-	font-weight: 600;
-	letter-spacing: 1px;
-	line-height: 1.5;
-	padding: .3125em 1.25em;
+	font-size: 1.3em;
+	padding: 1.25em;
 	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
 	width: 100%;
 
 	@include media($medium-screen) {
@@ -26,13 +21,40 @@
 	@include transition(.3s);
 	border-bottom: solid 2px $blue;
 	display: inline-block;
+	font-weight: 600;
+	letter-spacing: 1px;
+	line-height: 1.5;
+	margin: 0 0 .3125em;
+	text-decoration: none;
+	text-transform: uppercase;
 }
 
-.banner:hover {
-	background: #834c96;
-	color: $white;
+.banner__sub {
+	font-size: .625em;
+	font-style: italic;
+	margin: 0 0 3.333333333em;
+}
 
-	.banner__body {
-		border-color: $white;
+.banner__sub-note {
+	display: block;
+
+	@include media($medium-screen) {
+		display: inline;
+	}
+}
+
+.banner__input {
+	border: 0;
+	color: #666;
+	display: block;
+	font-size: .75em;
+	margin: 0 auto .625em;
+	outline: none;
+	padding: .75em 1em;
+	width: 100%;
+
+	@include media($medium-screen) {
+		display: inline-block;
+		width: 40%;
 	}
 }
