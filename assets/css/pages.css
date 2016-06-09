@@ -753,7 +753,7 @@ a {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
-  background: #4f70d6;
+  background: #283137;
   color: #fff;
   display: block;
   font-size: 1.3em;
@@ -768,7 +768,6 @@ a {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
-  border-bottom: solid 2px #4f70d6;
   display: inline-block;
   font-weight: 600;
   letter-spacing: 1px;
@@ -827,7 +826,7 @@ a {
     background: #2d383e; }
 
 .btn--small-pink {
-  background: #834c96;
+  background: #94379f;
   display: block;
   font-size: .75em;
   padding: .8em 1.25em;
@@ -837,7 +836,7 @@ a {
       display: inline-block;
       width: auto; } }
   .btn--small-pink:hover {
-    background: #8a509e; }
+    background: #9d3aa8; }
 
 .ctas {
   overflow: hidden; }

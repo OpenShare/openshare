@@ -1,6 +1,6 @@
 .banner {
 	@include transition(.3s);
-	background: $blue;
+	background: $black;
 	color: $white;
 	display: block;
 	font-size: 1.3em;
@@ -19,7 +19,6 @@
 
 .banner__body {
 	@include transition(.3s);
-	border-bottom: solid 2px $blue;
 	display: inline-block;
 	font-weight: 600;
 	letter-spacing: 1px;
