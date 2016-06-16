@@ -776,6 +776,10 @@ a {
   text-decoration: none;
   text-transform: uppercase; }
 
+.banner__emphasis {
+  color: #ff933a;
+  font-weight: 600; }
+
 .banner__sub {
   font-size: .625em;
   font-style: italic;

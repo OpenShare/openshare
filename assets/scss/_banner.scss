@@ -28,6 +28,11 @@
 	text-transform: uppercase;
 }
 
+.banner__emphasis {
+	color: $orange;
+	font-weight: 600;
+}
+
 .banner__sub {
 	font-size: .625em;
 	font-style: italic;
