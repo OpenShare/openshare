@@ -1,4 +1,5 @@
 const countReduce = require('../../lib/countReduce');
+const storeCount = require('../../lib/storeCount');
 
 /**
  * Object of transform functions for each openshare api
@@ -14,8 +15,7 @@ module.exports = {
 			url: `//graph.facebook.com/?id=${url}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).shares;
-				this.storeSet(this.type + '-' + this.shared, count);
-				return count;
+				return storeCount(this, count);
 			}
 		};
 	},
@@ -27,8 +27,7 @@ module.exports = {
 			url: `//api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
 			transform: function(data) {
 				let count = data.count;
-				this.storeSet(this.type + '-' + this.shared, count);
-				return count;
+				return storeCount(this, count);
 			}
 		};
 	},
@@ -40,8 +39,7 @@ module.exports = {
 			url: `//www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
 			transform: function(data) {
 				let count = data.count;
-				this.storeSet(this.type + '-' + this.shared, count);
-				return count;
+				return storeCount(this, count);
 			}
 		};
 	},
@@ -59,9 +57,7 @@ module.exports = {
 					ups += Number(post.data.ups);
 				});
 
-				this.storeSet(this.type + '-' + this.shared, ups);
-
-				return ups;
+				return storeCount(this, ups);
 			}
 		};
 	},
@@ -87,8 +83,7 @@ module.exports = {
 			url: `https://clients6.google.com/rpc`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
-				this.storeSet(this.type + '-' + this.shared, count);
-				return count;
+				return storeCount(this, count);
 			}
 		};
 	},
@@ -103,8 +98,7 @@ module.exports = {
 			url: `//api.github.com/repos/${repo}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).stargazers_count;
-				this.storeSet(this.type + '-' + this.shared, count);
-				return count;
+				return storeCount(this, count);
 			}
 		};
 	},
@@ -119,8 +113,7 @@ module.exports = {
 			url: `//api.github.com/repos/${repo}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).forks_count;
-				this.storeSet(this.type + '-' + this.shared, count);
-				return count;
+				return storeCount(this, count);
 			}
 		};
 	},
@@ -135,8 +128,7 @@ module.exports = {
 			url: `//api.github.com/repos/${repo}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).watchers_count;
-				this.storeSet(this.type + '-' + this.shared, count);
-				return count;
+				return storeCount(this, count);
 			}
 		};
 	},
@@ -157,17 +149,15 @@ module.exports = {
 				if (count === 12) {
 					let page = 2;
 					recursiveCount(url, page, count, finalCount => {
-						this.storeSet(this.type + '-' + this.shared, finalCount);
 						if (this.appendTo && typeof this.appendTo !== 'function') {
 							this.appendTo.appendChild(this.os);
 						}
 						countReduce(this.os, finalCount, this.cb);
 						Events.trigger(this.os, 'counted-' + this.url);
-						return finalCount;
+						return storeCount(this, finalCount);
 					});
 				} else {
-					this.storeSet(this.type + '-' + this.shared, count);
-					return count;
+					return storeCount(this, count);
 				}
 			}
 		};

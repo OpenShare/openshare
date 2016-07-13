@@ -5,6 +5,7 @@
 const CountTransforms = require('./count-transforms');
 const Events = require('./events');
 const countReduce = require('../../lib/countReduce');
+const storeCount = require('../../lib/storeCount');
 
 module.exports = class Count {
 
@@ -99,10 +100,13 @@ module.exports = class Count {
 			countReduce(this.os, count);
 		}
 
+        let len = this.countData.length;
+
 		this.countData.forEach((countData) => {
 
 			this[countData.type](countData, (num) => {
 				this.total.push(num);
+				console.log(this.total);
 
 				// total counts length now equals type array length
 				// so aggregate, store and insert into DOM
@@ -113,11 +117,13 @@ module.exports = class Count {
 						tot += t;
 					});
 
-					this.storeSet(this.type + '-' + this.shared, tot);
+					// this.storeSet(this.type + '-' + this.shared, tot);
 					if (this.appendTo  && typeof this.appendTo !== 'function') {
 						this.appendTo.appendChild(this.os);
 					}
-					countReduce(this.os, tot);
+
+					// tot = storeCount(this, tot);
+					countReduce(this.os, storeCount(this, tot));
 				}
 			});
 		});
@@ -125,6 +131,7 @@ module.exports = class Count {
 		if (this.appendTo  && typeof this.appendTo !== 'function') {
 			this.appendTo.appendChild(this.os);
 		}
+
 		countReduce(this.os, this.total);
 	}
 

@@ -1,7 +1,16 @@
 var OpenShare = {
 	share: require('../share.js'),
-	count: require('../count.js')
+	count: require('../count.js'),
+	analytics: require('../analytics.js')
 };
+
+OpenShare.analytics('tagManager', function () {
+  // do tagManager things
+});
+
+OpenShare.analytics('ga', function () {
+  // do ga things
+});
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
