@@ -320,7 +320,7 @@ module.exports = {
 		if (data.issue) {
 			url += '/issues/new?title=' +
 				data.issue +
-				'&body=' + 
+				'&body=' +
 				data.body;
 		}
 
@@ -345,6 +345,12 @@ module.exports = {
 			data.url + '?';
 		return {
 			url: url
+		};
+	},
+
+	paypal (data) {
+		return {
+			data: data
 		};
 	}
 };
