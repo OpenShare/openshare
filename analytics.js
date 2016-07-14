@@ -10,6 +10,8 @@ module.exports = function (type, cb) {
    });
 };
 
+let count = 5;
+
 function checkIfAnalyticsLoaded(type, cb) {
   if (window._gaq && window._gaq._getTracker) {
 	  if (cb) cb();
@@ -37,7 +39,10 @@ function checkIfAnalyticsLoaded(type, cb) {
 		}
   	});
   }
-  else setTimeout(500, checkIfAnalyticsLoaded(cb));
+  else {
+	  if (!--count) return;
+	  setTimeout(500, checkIfAnalyticsLoaded(cb));
+  }
 }
 
 function setTagManager (cb) {

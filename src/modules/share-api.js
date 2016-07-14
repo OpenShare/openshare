@@ -57,8 +57,21 @@ module.exports = function() {
 				});
 			}
 
-			if (ShareTransforms[data.type].toLowerCase() === 'paypal') {
-				const paypalButton = `<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			if (data.type.toLowerCase() === 'paypal') {
+				const action = data.sandbox ?
+				   "https://www.sandbox.paypal.com/cgi-bin/webscr" :
+				   "https://www.paypal.com/cgi-bin/webscr";
+
+				const buyGIF = data.sandbox ?
+					"https://www.sandbox.paypal.com/en_US/i/btn/btn_buynow_LG.gif" :
+					"https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif";
+
+				const pixelGIF = data.sandbox ?
+					"https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" :
+					"https://www.paypalobjects.com/en_US/i/scr/pixel.gif";
+
+
+				const paypalButton = `<form action=${action} method="post" target="_blank">
 
 				  <!-- Saved buttons use the "secure click" command -->
 				  <input type="hidden" name="cmd" value="_s-xclick">
@@ -68,10 +81,10 @@ module.exports = function() {
 
 				  <!-- Saved buttons display an appropriate button image. -->
 				  <input type="image" name="submit"
-				    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+				    src=${buyGIF}
 				    alt="PayPal - The safer, easier way to pay online">
 				  <img alt="" width="1" height="1"
-				    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+				    src=${pixelGIF} >
 
 				</form>`;
 
@@ -94,8 +107,8 @@ module.exports = function() {
 				this.os.setData(data);
 			}
 
-			if (ShareTransforms[this.data.type].toLowerCase() === 'paypal') {
-				this.paypal.click();
+			if (this.data.type.toLowerCase() === 'paypal') {
+				this.paypal.submit();
 			} else this.os.share(e);
 
 			Events.trigger(this.element, 'shared');

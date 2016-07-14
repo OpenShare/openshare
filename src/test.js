@@ -117,6 +117,15 @@ new OpenShare.share({
 	innerHTML: 'Follow Test'
 });
 
+// test PayPal
+new OpenShare.share({
+	type: 'paypal',
+	buttonId: '2P3RJYEFL7Z62',
+	sandbox: true,
+	appendTo: document.body,
+	innerHTML: 'PayPal Test'
+});
+
 // bind to count loaded event
 document.addEventListener('OpenShare.count-loaded', function() {
 	console.log('OpenShare (count) loaded');

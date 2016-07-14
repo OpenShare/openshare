@@ -7,7 +7,7 @@ module.exports = (function() {
 		ShareTransforms = require('./modules/share-transforms'),
 		Count = require('./modules/count'),
 		CountAPI = require('./modules/count-api'),
-		analyticsAPI = require('./module/analytics-api');
+		analyticsAPI = require('../analytics');
 
 	DataAttr(OpenShare, Count, ShareTransforms, Events);
 	window.OpenShare = {
