@@ -45,6 +45,7 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 				});
 			}
 		});
+
 	}
 	else {
 		  if (count) {
@@ -62,12 +63,38 @@ function setTagManager (cb) {
 	window.dataLayer = window.dataLayer || [];
 
 	listen(onShareTagManger);
+
+	getCounts(function(e) {
+		const count = e.target ?
+		  e.target.innerHTML :
+		  e.innerHTML;
+
+		const platform = e.target ?
+		   e.target.getAttribute('data-open-share') :
+		   e.getAttribute('data-open-share');
+
+		window.dataLayer.push({
+			'event' : 'OpenShare Count',
+			'platform': platform,
+			'resource': count,
+			'activity': 'count'
+		});
+	});
 }
 
 function listen (cb) {
 	// bind to shared event on each individual node
 	[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
 		node.addEventListener('OpenShare.shared', cb);
+	});
+}
+
+function getCounts (cb) {
+	var countNode = document.querySelectorAll('[data-open-share-count]');
+
+	[].forEach.call(countNode, function(node) {
+		if (node.textContent) cb(node);
+		else node.addEventListener('OpenShare.counted-' + node.getAttribute('data-open-share-count-url'), cb);
 	});
 }
 
