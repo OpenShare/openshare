@@ -14,7 +14,6 @@ module.exports = function (type, cb) {
 
 function checkIfAnalyticsLoaded(type, cb, count) {
 	count--;
-	console.log('count:', count);
 	if (window._gaq && window._gaq._getTracker) {
 		  console.log('ga found', cb);
 		  if (cb) cb();
