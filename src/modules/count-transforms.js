@@ -166,7 +166,7 @@ module.exports = {
 	twitter (url) {
 		return {
 			type: 'get',
-			url: `//api.openshare.social/jobs?url=${url}`,
+			url: `//api.openshare.social/job?url=${url}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).count;
 				return storeCount(this, count);
