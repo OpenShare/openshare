@@ -2,8 +2,6 @@ module.exports = function (type, cb) {
    let count = 10;
 
    document.addEventListener('DOMContentLoaded', function () {
-       // TODO: check for type and cb, throw errors if missing.
-
 	   const isGA = type === 'ga' || type === 'ga-social';
 	   const isTagManager = type === 'tagManager';
 
@@ -15,7 +13,6 @@ module.exports = function (type, cb) {
 function checkIfAnalyticsLoaded(type, cb, count) {
 	count--;
 	if (window.ga) {
-		  console.log('ga found', cb);
 		  if (cb) cb();
 		  // bind to shared event on each individual node
 		  listen(function (e) {
@@ -49,10 +46,9 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 	}
 	else {
 		  if (count) {
-			  setTimeout(function () {
-			  console.log('no ga, re-run');
-			  checkIfAnalyticsLoaded(type, cb, count);
-		  }, 5000);
+			setTimeout(function () {
+				checkIfAnalyticsLoaded(type, cb, count);
+			}, 5000);
   		}
 	}
 }
