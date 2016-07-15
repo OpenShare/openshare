@@ -19,12 +19,12 @@ module.exports = class OpenShare {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
 		if (this.ios) {
-			let transform = this.transform(data, true);
-			this.mobileShareUrl = this.template(transform.url, transform.data);
+			this.transformData = this.transform(data, true);
+			this.mobileShareUrl = this.template(this.transformData.url, this.transformData.data);
 		}
 
-		let transform = this.transform(data);
-		this.shareUrl = this.template(transform.url, transform.data);
+		this.transformData = this.transform(data);
+		this.shareUrl = this.template(this.transformData.url, this.transformData.data);
 	}
 
 	// open share URL defined in individual platform functions
@@ -47,13 +47,29 @@ module.exports = class OpenShare {
 
 			window.location = this.mobileShareUrl;
 
-			// open mailto links in same window
+		// open mailto links in same window
 		} else if (this.type === 'email') {
 			window.location = this.shareUrl;
 
-			// open social share URLs in new window
+		// open social share URLs in new window
 		} else {
-			window.open(this.shareUrl, 'OpenShare');
+			let windowOptions = '';
+
+			// if popup object present then set window dimensions / position
+			if(this.transformData.popup) {
+
+				// popup size
+				let {width, height} = this.transformData.popup;
+
+				// center popup
+				let top = (window.outerHeight / 2) - height / 2,
+				 	left = (window.outerWidth / 2) - width / 2;
+
+				// build up options string
+				windowOptions += `width=${this.transformData.popup.width},height=${this.transformData.popup.height},top=${top},left=${left}`;
+			}
+
+			window.open(this.shareUrl, 'OpenShare', windowOptions);
 		}
 	}
 

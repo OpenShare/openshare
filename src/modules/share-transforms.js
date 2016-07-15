@@ -42,7 +42,11 @@ module.exports = {
 
 		return {
 			url: 'https://twitter.com/share?',
-			data: data
+			data: data,
+			popup: {
+				width: 700,
+				height: 296
+			}
 		};
 	},
 
