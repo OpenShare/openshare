@@ -4,17 +4,17 @@ var OpenShare = {
 	analytics: require('../analytics.js')
 };
 
-OpenShare.analytics('tagManager', function () {
-  console.log('tag manager loaded');
-});
-
-OpenShare.analytics('event', function () {
-  console.log('google analytics loaded');
-});
-
-OpenShare.analytics('social', function () {
-  console.log('google analytics loaded');
-});
+// OpenShare.analytics('tagManager', function () {
+//   console.log('tag manager loaded');
+// });
+//
+// OpenShare.analytics('event', function () {
+//   console.log('google analytics loaded');
+// });
+//
+// OpenShare.analytics('social', function () {
+//   console.log('google analytics loaded');
+// });
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',

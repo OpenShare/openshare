@@ -1,14 +1,14 @@
 module.exports = function (type, cb) {
    let count = 10;
 
-   document.addEventListener('DOMContentLoaded', function () {
+   // document.addEventListener('DOMContentLoaded', function () {
 
 	   const isGA = type === 'event' || type === 'social';
 	   const isTagManager = type === 'tagManager';
 
 	   if (isGA) checkIfAnalyticsLoaded(type, cb, count);
 	   if (isTagManager) setTagManager(cb);
-   });
+   // });
 };
 
 function checkIfAnalyticsLoaded(type, cb, count) {
