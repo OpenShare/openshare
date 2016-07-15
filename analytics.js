@@ -3,7 +3,7 @@ module.exports = function (type, cb) {
 
    document.addEventListener('DOMContentLoaded', function () {
 
-	   const isGA = type === 'ga' || type === 'ga-social';
+	   const isGA = type === 'event' || type === 'social';
 	   const isTagManager = type === 'tagManager';
 
 	   if (isGA) checkIfAnalyticsLoaded(type, cb, count);
@@ -25,7 +25,7 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 				e.target.getAttribute('data-open-share-search') ||
 				e.target.getAttribute('data-open-share-body');
 
-			if (type === 'ga') {
+			if (type === 'event') {
 				ga('send', 'event', {
 					eventCategory: 'OpenShare Click',
 					eventAction: platform,
@@ -34,7 +34,7 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 				});
 			}
 
-			if (type === 'ga-social') {
+			if (type === 'social') {
 				ga('send', {
 					hitType: 'social',
 					socialNetwork: platform,

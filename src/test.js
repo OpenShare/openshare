@@ -8,11 +8,11 @@ OpenShare.analytics('tagManager', function () {
   console.log('tag manager loaded');
 });
 
-OpenShare.analytics('ga', function () {
+OpenShare.analytics('event', function () {
   console.log('google analytics loaded');
 });
 
-OpenShare.analytics('ga-social', function () {
+OpenShare.analytics('social', function () {
   console.log('google analytics loaded');
 });
 
