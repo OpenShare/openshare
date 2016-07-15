@@ -42,7 +42,11 @@ module.exports = {
 
 		return {
 			url: 'https://twitter.com/share?',
-			data: data
+			data: data,
+			popup: {
+				width: 700,
+				height: 296
+			}
 		};
 	},
 
@@ -63,6 +67,10 @@ module.exports = {
 			data: {
 				tweet_id: data.tweetId,
 				related: data.related
+			},
+			popup: {
+				width: 700,
+				height: 296
 			}
 		};
 	},
@@ -84,6 +92,10 @@ module.exports = {
 			data: {
 				tweet_id: data.tweetId,
 				related: data.related
+			},
+			popup: {
+				width: 700,
+				height: 296
 			}
 		};
 	},
@@ -109,6 +121,10 @@ module.exports = {
 			data: {
 				screen_name: data.screenName,
 				user_id: data.userId
+			},
+			popup: {
+				width: 700,
+				height: 296
 			}
 		};
 	},
@@ -117,7 +133,11 @@ module.exports = {
 	facebook: function(data) {
 		return {
 			url: 'https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&',
-			data: data
+			data: data,
+			popup: {
+				width: 560,
+				height: 593
+			}
 		};
 	},
 
@@ -125,7 +145,11 @@ module.exports = {
 	facebookSend: function(data) {
 		return {
 			url: 'https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&',
-			data: data
+			data: data,
+			popup: {
+				width: 980,
+				height: 596
+			}
 		};
 	},
 
@@ -138,7 +162,11 @@ module.exports = {
 			};
 		} else {
 			return {
-				url: `https://www.youtube.com/watch?v=${data.video}?`
+				url: `https://www.youtube.com/watch?v=${data.video}?`,
+				popup: {
+					width: 1086,
+					height: 608
+				}
 			};
 		}
 	},

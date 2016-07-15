@@ -2,6 +2,7 @@ module.exports = function (type, cb) {
    let count = 10;
 
    document.addEventListener('DOMContentLoaded', function () {
+
 	   const isGA = type === 'ga' || type === 'ga-social';
 	   const isTagManager = type === 'tagManager';
 
