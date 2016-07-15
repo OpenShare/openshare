@@ -162,7 +162,11 @@ module.exports = {
 			};
 		} else {
 			return {
-				url: `https://www.youtube.com/watch?v=${data.video}?`
+				url: `https://www.youtube.com/watch?v=${data.video}?`,
+				popup: {
+					width: 1086,
+					height: 608
+				}
 			};
 		}
 	},
