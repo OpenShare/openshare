@@ -1,7 +1,20 @@
 var OpenShare = {
 	share: require('../share.js'),
-	count: require('../count.js')
+	count: require('../count.js'),
+	analytics: require('../analytics.js')
 };
+
+OpenShare.analytics('tagManager', function () {
+  console.log('tag manager loaded');
+});
+
+OpenShare.analytics('ga', function () {
+  console.log('google analytics loaded');
+});
+
+OpenShare.analytics('ga-social', function () {
+  console.log('google analytics loaded');
+});
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
@@ -106,6 +119,15 @@ new OpenShare.share({
 	userId: '18189130',
 	appendTo: document.body,
 	innerHTML: 'Follow Test'
+});
+
+// test PayPal
+new OpenShare.share({
+	type: 'paypal',
+	buttonId: '2P3RJYEFL7Z62',
+	sandbox: true,
+	appendTo: document.body,
+	innerHTML: 'PayPal Test'
 });
 
 // bind to count loaded event

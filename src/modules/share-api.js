@@ -57,6 +57,45 @@ module.exports = function() {
 				});
 			}
 
+			if (data.type.toLowerCase() === 'paypal') {
+				const action = data.sandbox ?
+				   "https://www.sandbox.paypal.com/cgi-bin/webscr" :
+				   "https://www.paypal.com/cgi-bin/webscr";
+
+				const buyGIF = data.sandbox ?
+					"https://www.sandbox.paypal.com/en_US/i/btn/btn_buynow_LG.gif" :
+					"https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif";
+
+				const pixelGIF = data.sandbox ?
+					"https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" :
+					"https://www.paypalobjects.com/en_US/i/scr/pixel.gif";
+
+
+				const paypalButton = `<form action=${action} method="post" target="_blank">
+
+				  <!-- Saved buttons use the "secure click" command -->
+				  <input type="hidden" name="cmd" value="_s-xclick">
+
+				  <!-- Saved buttons are identified by their button IDs -->
+				  <input type="hidden" name="hosted_button_id" value="${data.buttonId}">
+
+				  <!-- Saved buttons display an appropriate button image. -->
+				  <input type="image" name="submit"
+				    src=${buyGIF}
+				    alt="PayPal - The safer, easier way to pay online">
+				  <img alt="" width="1" height="1"
+				    src=${pixelGIF} >
+
+				</form>`;
+
+				const hiddenDiv = document.createElement('div');
+				hiddenDiv.style.display = 'none';
+				hiddenDiv.innerHTML = paypalButton;
+				document.body.appendChild(hiddenDiv);
+
+				this.paypal = hiddenDiv.querySelector('form');
+			}
+
 			this.element = element;
 			return element;
 		}
@@ -68,7 +107,9 @@ module.exports = function() {
 				this.os.setData(data);
 			}
 
-			this.os.share(e);
+			if (this.data.type.toLowerCase() === 'paypal') {
+				this.paypal.submit();
+			} else this.os.share(e);
 
 			Events.trigger(this.element, 'shared');
 		}

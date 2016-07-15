@@ -5,6 +5,7 @@
 const CountTransforms = require('./count-transforms');
 const Events = require('./events');
 const countReduce = require('../../lib/countReduce');
+const storeCount = require('../../lib/storeCount');
 
 module.exports = class Count {
 
@@ -81,8 +82,6 @@ module.exports = class Count {
 			}
 			countReduce(this.os, count);
 		}
-
-
 		this[this.countData.type](this.countData);
 	}
 
@@ -99,7 +98,7 @@ module.exports = class Count {
 			countReduce(this.os, count);
 		}
 
-		this.countData.forEach((countData) => {
+		this.countData.forEach(countData => {
 
 			this[countData.type](countData, (num) => {
 				this.total.push(num);
@@ -113,10 +112,22 @@ module.exports = class Count {
 						tot += t;
 					});
 
-					this.storeSet(this.type + '-' + this.shared, tot);
 					if (this.appendTo  && typeof this.appendTo !== 'function') {
 						this.appendTo.appendChild(this.os);
 					}
+
+					const local = Number(this.storeGet(this.type + '-' + this.shared));
+					if (local > tot) {
+						const latestCount = Number(this.storeGet(this.type + '-' + this.shared + '-latestCount'));
+						this.storeSet(this.type + '-' + this.shared + '-latestCount', tot);
+
+						tot = isNumeric(latestCount) && latestCount > 0 ?
+							tot += local - latestCount :
+							tot += local;
+
+					}
+					this.storeSet(this.type + '-' + this.shared, tot);
+
 					countReduce(this.os, tot);
 				}
 			});
@@ -125,7 +136,6 @@ module.exports = class Count {
 		if (this.appendTo  && typeof this.appendTo !== 'function') {
 			this.appendTo.appendChild(this.os);
 		}
-		countReduce(this.os, this.total);
 	}
 
 	// handle JSONP requests
@@ -231,3 +241,7 @@ module.exports = class Count {
 	}
 
 };
+
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
