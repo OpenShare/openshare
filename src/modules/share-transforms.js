@@ -180,7 +180,11 @@ module.exports = {
 			};
 		} else {
 			return {
-				url: `https://www.youtube.com/user/${data.user}?`
+				url: `https://www.youtube.com/user/${data.user}?`,
+				popup: {
+					width: 880,
+					height: 350
+				}
 			};
 		}
 	},
@@ -202,7 +206,11 @@ module.exports = {
 			};
 		} else {
 			return {
-				url: `http://www.instagram.com/${data.username}?`
+				url: `http://www.instagram.com/${data.username}?`,
+				popup: {
+					width: 980,
+					height: 655
+				}
 			};
 		}
 	},
@@ -218,7 +226,11 @@ module.exports = {
 	google (data) {
 		return {
 			url: 'https://plus.google.com/share?',
-			data: data
+			data: data,
+			popup: {
+				width: 495,
+				height: 815
+			}
 		};
 	},
 
@@ -244,7 +256,11 @@ module.exports = {
 
 		return {
 			url: 'https://maps.google.com/?',
-			data: data
+			data: data,
+			popup: {
+				width: 800,
+				height: 600
+			}
 		};
 	},
 
@@ -252,7 +268,11 @@ module.exports = {
 	pinterest (data) {
 		return {
 			url: 'https://pinterest.com/pin/create/bookmarklet/?',
-			data: data
+			data: data,
+			popup: {
+				width: 745,
+				height: 620
+			}
 		};
 	},
 
@@ -260,7 +280,11 @@ module.exports = {
 	linkedin (data) {
 		return {
 			url: 'http://www.linkedin.com/shareArticle?',
-			data: data
+			data: data,
+			popup: {
+				width: 780,
+				height: 492
+			}
 		};
 	},
 
@@ -268,7 +292,11 @@ module.exports = {
 	buffer (data) {
 		return {
 			url: 'http://bufferapp.com/add?',
-			data: data
+			data: data,
+			popup: {
+				width: 745,
+				height: 345
+			}
 		};
 	},
 
@@ -276,7 +304,11 @@ module.exports = {
 	tumblr (data) {
 		return {
 			url: 'https://www.tumblr.com/widgets/share/tool?',
-			data: data
+			data: data,
+			popup: {
+				width: 540,
+				height: 940
+			}
 		};
 	},
 
@@ -284,7 +316,11 @@ module.exports = {
 	reddit (data) {
 		return {
 			url: 'http://reddit.com/submit?',
-			data: data
+			data: data,
+			popup: {
+				width: 860,
+				height: 880
+			}
 		};
 	},
 
@@ -297,7 +333,11 @@ module.exports = {
 			};
 		} else {
 			return {
-				url: `http://www.flickr.com/photos/${data.username}?`
+				url: `http://www.flickr.com/photos/${data.username}?`,
+				popup: {
+					width: 600,
+					height: 650
+				}
 			};
 		}
 	},
@@ -353,7 +393,11 @@ module.exports = {
 		}
 
 		return {
-			url: url + '?'
+			url: url + '?',
+			popup: {
+				width: 1020,
+				height: 323
+			}
 		};
 	},
 
@@ -363,7 +407,11 @@ module.exports = {
 			`https://dribbble.com/shots/${data.shot}?` :
 			data.url + '?';
 		return {
-			url: url
+			url: url,
+			popup: {
+				width: 440,
+				height: 640
+			}
 		};
 	},
 
@@ -372,7 +420,11 @@ module.exports = {
 			`https://codepen.io/${data.username}/${data.view}/${data.pen}?` :
 			data.url + '?';
 		return {
-			url: url
+			url: url,
+			popup: {
+				width: 1200,
+				height: 800
+			}
 		};
 	},
 
