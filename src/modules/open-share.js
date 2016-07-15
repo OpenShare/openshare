@@ -53,23 +53,14 @@ module.exports = class OpenShare {
 
 		// open social share URLs in new window
 		} else {
-			let windowOptions = '';
+			let windowOptions = false;
 
 			// if popup object present then set window dimensions / position
 			if(this.popup && this.transformData.popup) {
-
-				// popup size
-				let {width, height} = this.transformData.popup;
-
-				// center popup
-				let top = Math.round((screen.height / 2) - height / 2),
-				 	left = Math.round((screen.width / 2) - width / 2);
-
-				// build up options string
-				windowOptions += `width=${width},height=${height},top=${top},left=${left}`;
+				windowOptions = this.transformData.popup;
 			}
 
-			window.open(this.shareUrl, 'OpenShare', windowOptions);
+			this.openWindow(this.shareUrl, windowOptions);
 		}
 	}
 
@@ -97,5 +88,21 @@ module.exports = class OpenShare {
 		}
 
 		return shareUrl.substr(0, shareUrl.length - 1);
+	}
+
+	// center popup window supporting dual screens
+	openWindow(url, options) {
+		let dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left,
+			dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top,
+			width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width,
+			height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height,
+			left = ((width / 2) - (options.width / 2)) + dualScreenLeft,
+			top = ((height / 2) - (options.height / 2)) + dualScreenTop,
+			newWindow = window.open(url, 'OpenShare', `width=${options.width}, height=${options.height}, top=${top}, left=${left}`);
+
+		// Puts focus on the newWindow
+		if (window.focus) {
+			newWindow.focus();
+		}
 	}
 };
