@@ -14,7 +14,7 @@ module.exports = function (type, cb) {
 
 function checkIfAnalyticsLoaded(type, cb, count) {
 	count--;
-	if (window._gaq && window._gaq._getTracker) {
+	if (window.ga) {
 		  console.log('ga found', cb);
 		  if (cb) cb();
 		  // bind to shared event on each individual node
