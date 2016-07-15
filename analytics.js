@@ -2,8 +2,6 @@ module.exports = function (type, cb) {
    let count = 10;
 
    document.addEventListener('DOMContentLoaded', function () {
-       // TODO: check for type and cb, throw errors if missing.
-
 	   const isGA = type === 'ga' || type === 'ga-social';
 	   const isTagManager = type === 'tagManager';
 
@@ -15,7 +13,6 @@ module.exports = function (type, cb) {
 function checkIfAnalyticsLoaded(type, cb, count) {
 	count--;
 	if (window.ga) {
-		  console.log('ga found', cb);
 		  if (cb) cb();
 		  // bind to shared event on each individual node
 		  listen(function (e) {
@@ -45,13 +42,13 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 				});
 			}
 		});
+
 	}
 	else {
 		  if (count) {
-			  setTimeout(function () {
-			  console.log('no ga, re-run');
-			  checkIfAnalyticsLoaded(type, cb, count);
-		  }, 5000);
+			setTimeout(function () {
+				checkIfAnalyticsLoaded(type, cb, count);
+			}, 5000);
   		}
 	}
 }
@@ -62,12 +59,38 @@ function setTagManager (cb) {
 	window.dataLayer = window.dataLayer || [];
 
 	listen(onShareTagManger);
+
+	getCounts(function(e) {
+		const count = e.target ?
+		  e.target.innerHTML :
+		  e.innerHTML;
+
+		const platform = e.target ?
+		   e.target.getAttribute('data-open-share') :
+		   e.getAttribute('data-open-share');
+
+		window.dataLayer.push({
+			'event' : 'OpenShare Count',
+			'platform': platform,
+			'resource': count,
+			'activity': 'count'
+		});
+	});
 }
 
 function listen (cb) {
 	// bind to shared event on each individual node
 	[].forEach.call(document.querySelectorAll('[data-open-share]'), function(node) {
 		node.addEventListener('OpenShare.shared', cb);
+	});
+}
+
+function getCounts (cb) {
+	var countNode = document.querySelectorAll('[data-open-share-count]');
+
+	[].forEach.call(countNode, function(node) {
+		if (node.textContent) cb(node);
+		else node.addEventListener('OpenShare.counted-' + node.getAttribute('data-open-share-count-url'), cb);
 	});
 }
 
