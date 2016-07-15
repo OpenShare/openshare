@@ -20,7 +20,12 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 		  // bind to shared event on each individual node
 		  listen(function (e) {
 			const platform = e.target.getAttribute('data-open-share');
-			const target = e.target.getAttribute('data-open-share-link') || e.target.getAttribute('data-open-share-url');
+			const target = e.target.getAttribute('data-open-share-link') ||
+				e.target.getAttribute('data-open-share-url') ||
+				e.target.getAttribute('data-open-share-username') ||
+			    e.target.getAttribute('data-open-share-center') ||
+				e.target.getAttribute('data-open-share-search') ||
+				e.target.getAttribute('data-open-share-body');
 
 			if (type === 'ga') {
 				ga('send', 'event', {
