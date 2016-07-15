@@ -5,11 +5,15 @@ var OpenShare = {
 };
 
 OpenShare.analytics('tagManager', function () {
-  // do tagManager things
+  console.log('tag manager loaded');
 });
 
 OpenShare.analytics('ga', function () {
-  // do ga things
+  console.log('google analytics loaded');
+});
+
+OpenShare.analytics('ga-social', function () {
+  console.log('google analytics loaded');
 });
 
 var dynamicNodeData = {

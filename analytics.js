@@ -1,48 +1,51 @@
 module.exports = function (type, cb) {
+   let count = 10;
+
    document.addEventListener('DOMContentLoaded', function () {
        // TODO: check for type and cb, throw errors if missing.
 
 	   const isGA = type === 'ga' || type === 'ga-social';
 	   const isTagManager = type === 'tagManager';
 
-	   if (isGA) checkIfAnalyticsLoaded(type, cb);
+	   if (isGA) checkIfAnalyticsLoaded(type, cb, count);
 	   if (isTagManager) setTagManager(cb);
    });
 };
 
-let count = 5;
+function checkIfAnalyticsLoaded(type, cb, count) {
+	count--;
+	console.log('count:', count);
+	if (window._gaq && window._gaq._getTracker) {
+		  console.log('ga found', cb);
+		  if (cb) cb();
+		  // bind to shared event on each individual node
+		  listen(function (e) {
+			const platform = e.target.getAttribute('data-open-share');
+			const target = e.target.getAttribute('data-open-share-link') || e.target.getAttribute('data-open-share-url');
 
-function checkIfAnalyticsLoaded(type, cb) {
-  if (window._gaq && window._gaq._getTracker) {
-	  if (cb) cb();
-	  // bind to shared event on each individual node
-	  listen(function (e) {
-		const platform = e.target.getAttribute('data-open-share');
-		const target = e.target.getAttribute('data-open-share-link');
+			if (type === 'ga') {
+				ga('send', 'event', {
+					eventCategory: 'OpenShare Click',
+					eventAction: platform,
+					eventLabel: target,
+					transport: 'beacon'
+				});
+			}
 
-		if (type === 'ga') {
-			ga('send', 'event', {
-				eventCategory: 'OpenShare Click',
-				eventAction: platform,
-				eventLabel: target,
-				transport: 'beacon'
-			});
-		}
-
-		if (type === 'ga-social') {
-			ga('send', {
-				hitType: 'social',
-				socialNetwork: platform,
-				socialAction: 'like', //share, like, plus, follow, pin(?)
-				socialTarget: target //resource shared
-			});
-		}
-  	});
-  }
-  else {
-	  if (!--count) return;
-	  setTimeout(500, checkIfAnalyticsLoaded(cb));
-  }
+			if (type === 'ga-social') {
+				ga('send', {
+					hitType: 'social',
+					socialNetwork: platform,
+					socialAction: 'share',
+					socialTarget: target
+				});
+			}
+		});
+	}
+	else {
+	  console.log('no ga, re-run');
+	  if (count) setTimeout(checkIfAnalyticsLoaded(type, cb, count), 5000);
+	}
 }
 
 function setTagManager (cb) {
@@ -62,12 +65,12 @@ function listen (cb) {
 
 function onShareTagManger (e) {
 	const platform = e.target.getAttribute('data-open-share');
-	const target = e.target.getAttribute('data-open-share-link');
+	const target = e.target.getAttribute('data-open-share-link') || e.target.getAttribute('data-open-share-url');
 
 	window.dataLayer.push({
 		'event' : 'OpenShare Share',
 		'platform': platform,
-		'resource': 'http://some.content/to/be/shared',
+		'resource': target,
 		'activity': 'share'
 	});
 }
