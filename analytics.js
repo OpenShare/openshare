@@ -42,8 +42,12 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 		});
 	}
 	else {
-	  console.log('no ga, re-run');
-	  if (count) setTimeout(checkIfAnalyticsLoaded(type, cb, count), 5000);
+		  if (count) {
+			  setTimeout(function () {
+			  console.log('no ga, re-run');
+			  checkIfAnalyticsLoaded(type, cb, count);
+		  }, 5000);
+  		}
 	}
 }
 
