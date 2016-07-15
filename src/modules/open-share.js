@@ -56,17 +56,21 @@ module.exports = class OpenShare {
 			let windowOptions = '';
 
 			// if popup object present then set window dimensions / position
-			if(this.transformData.popup) {
+			if(this.popup && this.transformData.popup) {
 
 				// popup size
 				let {width, height} = this.transformData.popup;
 
 				// center popup
-				let top = (window.outerHeight / 2) - height / 2,
-				 	left = (window.outerWidth / 2) - width / 2;
+				let top = Math.round((window.outerHeight / 2) - height / 2),
+				 	left = Math.round((window.outerWidth / 2) - width / 2);
+
+				console.log(top, left);
 
 				// build up options string
-				windowOptions += `width=${this.transformData.popup.width},height=${this.transformData.popup.height},top=${top},left=${left}`;
+				windowOptions += `width=${width},height=${height},top=${top},left=${left}`;
+
+				console.log(windowOptions);
 			}
 
 			window.open(this.shareUrl, 'OpenShare', windowOptions);
