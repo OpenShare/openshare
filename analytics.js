@@ -49,7 +49,7 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 		  if (count) {
 			  setTimeout(function () {
 			  checkIfAnalyticsLoaded(type, cb, count);
-		  }, 5000);
+		  }, 1000);
   		}
 	}
 }
@@ -67,8 +67,8 @@ function setTagManager (cb) {
 		  e.innerHTML;
 
 		const platform = e.target ?
-		   e.target.getAttribute('data-open-share') :
-		   e.getAttribute('data-open-share');
+		   e.target.getAttribute('data-open-share-count-url') :
+		   e.getAttribute('data-open-share-count-url');
 
 		window.dataLayer.push({
 			'event' : 'OpenShare Count',
@@ -97,7 +97,12 @@ function getCounts (cb) {
 
 function onShareTagManger (e) {
 	const platform = e.target.getAttribute('data-open-share');
-	const target = e.target.getAttribute('data-open-share-link') || e.target.getAttribute('data-open-share-url');
+	const target = e.target.getAttribute('data-open-share-link') ||
+		e.target.getAttribute('data-open-share-url') ||
+		e.target.getAttribute('data-open-share-username') ||
+		e.target.getAttribute('data-open-share-center') ||
+		e.target.getAttribute('data-open-share-search') ||
+		e.target.getAttribute('data-open-share-body');
 
 	window.dataLayer.push({
 		'event' : 'OpenShare Share',
