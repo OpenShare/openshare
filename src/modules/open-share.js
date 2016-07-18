@@ -19,12 +19,12 @@ module.exports = class OpenShare {
 		// if iOS user and ios data attribute defined
 		// build iOS URL scheme as single string
 		if (this.ios) {
-			let transform = this.transform(data, true);
-			this.mobileShareUrl = this.template(transform.url, transform.data);
+			this.transformData = this.transform(data, true);
+			this.mobileShareUrl = this.template(this.transformData.url, this.transformData.data);
 		}
 
-		let transform = this.transform(data);
-		this.shareUrl = this.template(transform.url, transform.data);
+		this.transformData = this.transform(data);
+		this.shareUrl = this.template(this.transformData.url, this.transformData.data);
 	}
 
 	// open share URL defined in individual platform functions
@@ -47,13 +47,20 @@ module.exports = class OpenShare {
 
 			window.location = this.mobileShareUrl;
 
-			// open mailto links in same window
+		// open mailto links in same window
 		} else if (this.type === 'email') {
 			window.location = this.shareUrl;
 
-			// open social share URLs in new window
+		// open social share URLs in new window
 		} else {
-			window.open(this.shareUrl, 'OpenShare');
+			let windowOptions = false;
+
+			// if popup object present then set window dimensions / position
+			if(this.popup && this.transformData.popup) {
+				windowOptions = this.transformData.popup;
+			}
+
+			this.openWindow(this.shareUrl, windowOptions);
 		}
 	}
 
@@ -81,5 +88,21 @@ module.exports = class OpenShare {
 		}
 
 		return shareUrl.substr(0, shareUrl.length - 1);
+	}
+
+	// center popup window supporting dual screens
+	openWindow(url, options) {
+		let dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left,
+			dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top,
+			width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width,
+			height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height,
+			left = ((width / 2) - (options.width / 2)) + dualScreenLeft,
+			top = ((height / 2) - (options.height / 2)) + dualScreenTop,
+			newWindow = window.open(url, 'OpenShare', `width=${options.width}, height=${options.height}, top=${top}, left=${left}`);
+
+		// Puts focus on the newWindow
+		if (window.focus) {
+			newWindow.focus();
+		}
 	}
 };

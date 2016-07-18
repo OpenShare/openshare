@@ -3,3 +3,4 @@ node_modules
 .jshintrc
 .vhost
 .sass-cache
+npm-debug.log
