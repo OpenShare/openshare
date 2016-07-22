@@ -48,7 +48,7 @@ module.exports = {
 	reddit (url) {
 		return {
 			type: 'get',
-			url: `//www.reddit.com/api/info.json?url=${url}`,
+			url: `https://www.reddit.com/api/info.json?url=${url}`,
 			transform: function(xhr) {
 				let posts = JSON.parse(xhr.responseText).data.children,
 					ups = 0;
@@ -166,7 +166,7 @@ module.exports = {
 	twitter (url) {
 		return {
 			type: 'get',
-			url: `//api.openshare.social/job?url=${url}`,
+			url: `https://api.openshare.social/job?url=${url}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).count;
 				return storeCount(this, count);
