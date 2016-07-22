@@ -91,7 +91,7 @@
 	border-radius: 0;
 
 	.open-share-example__icon {
-		transform: rotate(-135deg) translateZ(0);
+		@include transform(rotate(-135deg) translateZ(0));
 	}
 }
 
@@ -156,8 +156,8 @@
 }
 
 .open-share-example:hover .open-share-example__count {
+	@include transform(translate(-50%, 0));
 	opacity: 1;
-	transform: translate(-50%, 0);
 }
 
 .open-share-example--diamond {

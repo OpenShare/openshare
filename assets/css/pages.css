@@ -652,6 +652,10 @@ a {
   background: #652d7f;
   border-radius: 0; }
   .open-share-example--diamond .open-share-example__icon {
+    -webkit-transform: rotate(-135deg) translateZ(0);
+    -moz-transform: rotate(-135deg) translateZ(0);
+    -ms-transform: rotate(-135deg) translateZ(0);
+    -o-transform: rotate(-135deg) translateZ(0);
     transform: rotate(-135deg) translateZ(0); }
 
 .open-share-example--rectangle {
@@ -729,8 +733,12 @@ a {
     width: 0; }
 
 .open-share-example:hover .open-share-example__count, .open-share-example--counts:hover .open-share-example__count, .open-share-example--square:hover .open-share-example__count, .open-share-example--diamond:hover .open-share-example__count, .open-share-example--rectangle:hover .open-share-example__count, .open-share-example--rectangle-vert:hover .open-share-example__count {
-  opacity: 1;
-  transform: translate(-50%, 0); }
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  opacity: 1; }
 
 .open-share-example--diamond .open-share-example__count {
   -webkit-transform: translate(0, 0) rotate(225deg);
