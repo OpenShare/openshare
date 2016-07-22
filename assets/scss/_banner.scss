@@ -18,12 +18,16 @@
 	@extend %outer-container;
 }
 
+.banner__counts {
+	margin: 1.5em 0 1.5em;
+}
+
 .banner__title {
 	@include transition(.3s);
 	font-weight: 600;
 	letter-spacing: 1px;
 	line-height: 1.3;
-	margin: 0 0 .3125em;
+	margin: 0 0 .6em;
 	text-decoration: none;
 	text-transform: uppercase;
 }

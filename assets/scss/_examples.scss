@@ -47,7 +47,6 @@
 	@extend .open-share-example;
 	height: 2em;
 	line-height: 2.3em;
-	margin: 2em 0 1em;
 	width: 2em;
 
 	.open-share-example__icon {
@@ -132,7 +131,7 @@
 	@include transition(.3s);
 	@include transform(translate(-50%, 20px));
 	background: #333;
-	font-size: .5em;
+	font-size: 12px;
 	left: 50%;
 	line-height: 1;
 	opacity: 0;
