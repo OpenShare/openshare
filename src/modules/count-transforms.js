@@ -12,7 +12,7 @@ module.exports = {
 	facebook (url) {
 		return {
 			type: 'get',
-			url: `//graph.facebook.com/?id=${url}`,
+			url: `https://graph.facebook.com/?id=${url}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).shares;
 				return storeCount(this, count);
@@ -24,7 +24,7 @@ module.exports = {
 	pinterest (url) {
 		return {
 			type: 'jsonp',
-			url: `//api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
+			url: `https://api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
 			transform: function(data) {
 				let count = data.count;
 				return storeCount(this, count);
@@ -36,7 +36,7 @@ module.exports = {
 	linkedin (url) {
 		return {
 			type: 'jsonp',
-			url: `//www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
+			url: `https://www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
 			transform: function(data) {
 				let count = data.count;
 				return storeCount(this, count);
@@ -48,7 +48,7 @@ module.exports = {
 	reddit (url) {
 		return {
 			type: 'get',
-			url: `//www.reddit.com/api/info.json?url=${url}`,
+			url: `https://www.reddit.com/api/info.json?url=${url}`,
 			transform: function(xhr) {
 				let posts = JSON.parse(xhr.responseText).data.children,
 					ups = 0;
@@ -95,7 +95,7 @@ module.exports = {
 			repo;
 		return {
 			type: 'get',
-			url: `//api.github.com/repos/${repo}`,
+			url: `https://api.github.com/repos/${repo}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).stargazers_count;
 				return storeCount(this, count);
@@ -110,7 +110,7 @@ module.exports = {
 			repo;
 		return {
 			type: 'get',
-			url: `//api.github.com/repos/${repo}`,
+			url: `https://api.github.com/repos/${repo}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).forks_count;
 				return storeCount(this, count);
@@ -125,7 +125,7 @@ module.exports = {
 			repo;
 		return {
 			type: 'get',
-			url: `//api.github.com/repos/${repo}`,
+			url: `https://api.github.com/repos/${repo}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).watchers_count;
 				return storeCount(this, count);
@@ -166,7 +166,7 @@ module.exports = {
 	twitter (url) {
 		return {
 			type: 'get',
-			url: `//api.openshare.social/job?url=${url}`,
+			url: `https://api.openshare.social/job?url=${url}`,
 			transform: function(xhr) {
 				let count = JSON.parse(xhr.responseText).count;
 				return storeCount(this, count);
