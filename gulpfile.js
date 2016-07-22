@@ -11,7 +11,8 @@ var gulp = require('gulp'),
     fs = require('fs'),
     prompt = require('gulp-prompt'),
     needsPrompt = false,
-    filename = '.vhost';
+    filename = '.vhost',
+	pump = require('pump');
 
 function _startBrowserSync() {
 	// read vhost file here
@@ -31,24 +32,32 @@ function _watchFiles() {
 
 gulp.task('compile', ['compile-js', 'compile-test']);
 
-gulp.task('compile-js', function() {
-	return browserify('src/browser.js')
-            .bundle()
-            .pipe(source('open-share.js'))
-            .pipe(buffer())
-            .pipe(babel())
-            .pipe(uglify())
-            .pipe(gulp.dest('dist'));
+gulp.task('compile-js', function(cb) {
+	pump([
+		browserify('src/browser.js')
+            .bundle(),
+            source('open-share.js'),
+            buffer(),
+			babel({
+            	presets: ['es2015']
+        	}),
+            uglify(),
+            gulp.dest('dist')
+		], cb);
 });
 
-gulp.task('compile-test', function() {
-	return browserify('src/test.js')
-            .bundle()
-            .pipe(source('test.js'))
-            .pipe(buffer())
-            .pipe(babel())
-            .pipe(uglify())
-            .pipe(gulp.dest('dist'));
+gulp.task('compile-test', function(cb) {
+	pump([
+		browserify('src/test.js')
+            .bundle(),
+            source('test.js'),
+            buffer(),
+			babel({
+            	presets: ['es2015']
+        	}),
+            uglify(),
+            gulp.dest('dist')
+		], cb);
 });
 
 gulp.task('watch', function() {
