@@ -43,15 +43,11 @@
 	}
 }
 
-.banner__body--no-emp {
-	font-style: normal;
-}
-
-.banner__sub-note {
-	display: block;
+.banner__break {
+	display: none;
 
 	@include media($medium-screen) {
-		display: inline;
+		display: block;
 	}
 }
 

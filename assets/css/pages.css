@@ -606,12 +606,12 @@ a {
     cursor: pointer; }
 
 .open-share-example--counts {
-  width: 2em;
-  line-height: 2.3em;
   height: 2em;
-  margin: 2em 0 1em; }
+  line-height: 2.3em;
+  margin: 2em 0 1em;
+  width: 2em; }
   .open-share-example--counts .open-share-example__icon {
-    font-size: 0.8em; }
+    font-size: .8em; }
   .open-share-example--counts .open-share-example__count {
     -webkit-transform: translate(-50%, 0);
     -moz-transform: translate(-50%, 0);
@@ -625,7 +625,7 @@ a {
   @media screen and (min-width: 25.8125em) {
     .open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--counts, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
       margin: .5em; } }
-  .open-share-examples--mobile .open-share-example .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--counts .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--square .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--diamond .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle-vert .socicon-snapchat:before {
+  .open-share-examples--mobile .open-share-example .socicon-snapchat::before, .open-share-examples--mobile .open-share-example--counts .socicon-snapchat::before, .open-share-examples--mobile .open-share-example--square .socicon-snapchat::before, .open-share-examples--mobile .open-share-example--diamond .socicon-snapchat::before, .open-share-examples--mobile .open-share-example--rectangle .socicon-snapchat::before, .open-share-examples--mobile .open-share-example--rectangle-vert .socicon-snapchat::before {
     font-weight: 900 !important; }
 
 .open-share-example__icon {
@@ -704,13 +704,14 @@ a {
   -o-transform: translate(-50%, 20px);
   transform: translate(-50%, 20px);
   background: #333;
-  font-size: 12px;
+  font-size: .5em;
   left: 50%;
   line-height: 1;
   opacity: 0;
   padding: 10px;
   position: absolute;
-  top: -50px; }
+  top: -50px;
+  width: 2.916666667em; }
   .open-share-example__count::after {
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
@@ -745,8 +746,8 @@ a {
   -ms-transform: translate(0, 0) rotate(225deg);
   -o-transform: translate(0, 0) rotate(225deg);
   transform: translate(0, 0) rotate(225deg);
-  left: -63%;
-  top: 110%; }
+  left: -53%;
+  top: 109%; }
 
 .open-share-example--rectangle-vert .open-share-example__count {
   -webkit-transform: translate(0, 0) rotate(90deg);
@@ -802,14 +803,11 @@ a {
   .banner__body:last-child {
     margin-bottom: 0; }
 
-.banner__body--no-emp {
-  font-style: normal; }
-
-.banner__sub-note {
-  display: block; }
+.banner__break {
+  display: none; }
   @media screen and (min-width: 37.5em) {
-    .banner__sub-note {
-      display: inline; } }
+    .banner__break {
+      display: block; } }
 
 .banner__input {
   border: 0;
