@@ -1,7 +1,8 @@
 .banner {
 	@include transition(.3s);
-	background: $black;
-	color: $white;
+	background: #eee;
+	border-bottom: solid 1px #ededed;
+	color: $black;
 	display: block;
 	font-size: 1.3em;
 	padding: 1.5em 1.25em;
@@ -17,9 +18,8 @@
 	@extend %outer-container;
 }
 
-.banner__body {
+.banner__title {
 	@include transition(.3s);
-	display: inline-block;
 	font-weight: 600;
 	letter-spacing: 1px;
 	line-height: 1.3;
@@ -28,16 +28,23 @@
 	text-transform: uppercase;
 }
 
-.banner__emphasis {
+.banner__title-emphasis {
 	color: $orange;
 	font-weight: 600;
 }
 
-.banner__sub {
-	font-size: .625em;
+.banner__body {
+	font-size: .8em;
 	font-style: italic;
 	line-height: 1.3;
-	margin: 0 0 3.333333333em;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.banner__body--no-emp {
+	font-style: normal;
 }
 
 .banner__sub-note {

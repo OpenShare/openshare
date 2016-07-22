@@ -586,7 +586,7 @@ a {
     .open-share-examples--mobile {
       display: none; } }
 
-.open-share-example, .open-share-example--square, .open-share-example--diamond, .open-share-example--rectangle, .open-share-example--rectangle-vert {
+.open-share-example, .open-share-example--counts, .open-share-example--square, .open-share-example--diamond, .open-share-example--rectangle, .open-share-example--rectangle-vert {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
@@ -602,15 +602,30 @@ a {
   text-align: center;
   text-decoration: none;
   width: 3.125em; }
-  .open-share-example:hover, .open-share-example--square:hover, .open-share-example--diamond:hover, .open-share-example--rectangle:hover, .open-share-example--rectangle-vert:hover {
+  .open-share-example:hover, .open-share-example--counts:hover, .open-share-example--square:hover, .open-share-example--diamond:hover, .open-share-example--rectangle:hover, .open-share-example--rectangle-vert:hover {
     cursor: pointer; }
 
-.open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
+.open-share-example--counts {
+  width: 2em;
+  line-height: 2.3em;
+  height: 2em;
+  margin: 2em 0 1em; }
+  .open-share-example--counts .open-share-example__icon {
+    font-size: 0.8em; }
+  .open-share-example--counts .open-share-example__count {
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    opacity: 1; }
+
+.open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--counts, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
   margin: .5em 1em; }
   @media screen and (min-width: 25.8125em) {
-    .open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
+    .open-share-examples--mobile .open-share-example, .open-share-examples--mobile .open-share-example--counts, .open-share-examples--mobile .open-share-example--square, .open-share-examples--mobile .open-share-example--diamond, .open-share-examples--mobile .open-share-example--rectangle, .open-share-examples--mobile .open-share-example--rectangle-vert {
       margin: .5em; } }
-  .open-share-examples--mobile .open-share-example .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--square .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--diamond .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle-vert .socicon-snapchat:before {
+  .open-share-examples--mobile .open-share-example .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--counts .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--square .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--diamond .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle .socicon-snapchat:before, .open-share-examples--mobile .open-share-example--rectangle-vert .socicon-snapchat:before {
     font-weight: 900 !important; }
 
 .open-share-example__icon {
@@ -713,7 +728,7 @@ a {
     position: absolute;
     width: 0; }
 
-.open-share-example:hover .open-share-example__count, .open-share-example--square:hover .open-share-example__count, .open-share-example--diamond:hover .open-share-example__count, .open-share-example--rectangle:hover .open-share-example__count, .open-share-example--rectangle-vert:hover .open-share-example__count {
+.open-share-example:hover .open-share-example__count, .open-share-example--counts:hover .open-share-example__count, .open-share-example--square:hover .open-share-example__count, .open-share-example--diamond:hover .open-share-example__count, .open-share-example--rectangle:hover .open-share-example__count, .open-share-example--rectangle-vert:hover .open-share-example__count {
   opacity: 1;
   transform: translate(-50%, 0); }
 
@@ -753,8 +768,9 @@ a {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
-  background: #283137;
-  color: #fff;
+  background: #eee;
+  border-bottom: solid 1px #ededed;
+  color: #283137;
   display: block;
   font-size: 1.3em;
   padding: 1.5em 1.25em;
@@ -764,11 +780,10 @@ a {
     .banner {
       font-size: 1.5em; } }
 
-.banner__body {
+.banner__title {
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   transition: 0.3s;
-  display: inline-block;
   font-weight: 600;
   letter-spacing: 1px;
   line-height: 1.3;
@@ -776,15 +791,19 @@ a {
   text-decoration: none;
   text-transform: uppercase; }
 
-.banner__emphasis {
+.banner__title-emphasis {
   color: #ff933a;
   font-weight: 600; }
 
-.banner__sub {
-  font-size: .625em;
+.banner__body {
+  font-size: .8em;
   font-style: italic;
-  line-height: 1.3;
-  margin: 0 0 3.333333333em; }
+  line-height: 1.3; }
+  .banner__body:last-child {
+    margin-bottom: 0; }
+
+.banner__body--no-emp {
+  font-style: normal; }
 
 .banner__sub-note {
   display: block; }

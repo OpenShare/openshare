@@ -43,6 +43,23 @@
 	}
 }
 
+.open-share-example--counts {
+	@extend .open-share-example;
+	width: 2em;
+	line-height: 2.3em;
+	height: 2em;
+	margin: 2em 0 1em;
+
+	.open-share-example__icon {
+		font-size: 0.8em;
+	}
+
+	.open-share-example__count {
+		@include transform(translate(-50%, 0));
+		opacity: 1;
+	}
+}
+
 .open-share-examples--mobile .open-share-example {
 	margin: .5em 1em;
 
