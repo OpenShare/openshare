@@ -16,15 +16,15 @@
     ]
   },
   "scripts": {
-    "watch:js": "watchify src/browser.js -o dist/openshare.js -dv",
+	"watch:js": "watchify src/browser.js -o dist/openshare.js -dv",
 	"watch:test": "watchify src/test.js -o dist/test.js -dv",
-    "build:js": "browserify src/browser.js -g uglifyify | uglifyjs -cm > dist/openshare.js",
+	"build:js": "browserify src/browser.js -g uglifyify | uglifyjs -cm > dist/openshare.js",
 	"build:test": "browserify src/test.js -g uglifyify | uglifyjs -cm > dist/test.js",
 	"watch": "npm run watch:js & npm run watch:test",
-    "dev": "npm run watch & npm run test",
+	"dev": "npm run watch & npm run test",
 	"build": "npm run build:js & npm run build:test",
-    "production": "npm run build & npm run test",
-    "test": "opn http://0.0.0.0:8000/test.html && ecstatic ."
+	"production": "npm run build & npm run test",
+	"test": "opn http://0.0.0.0:8000/test.html && ecstatic ."
   },
   "repository": {
     "type": "git",
