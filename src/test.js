@@ -212,3 +212,20 @@ urls.forEach(function(url) {
 		});
 	});
 });
+
+// test twitter count js api
+new OpenShare.count({
+	type: 'twitter',
+	url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
+	key: 'osAPIKey'
+}, function (node) {
+	var os = new OpenShare.share({
+	  type: 'twitter',
+	  url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
+	  via: 'digitalsurgeons',
+	  hashtags: 'forwardobsessed, blockchain',
+	  appendTo: document.body,
+	  innerHTML: 'BLOCKCHAIN'
+	});
+	os.appendChild(node);
+});

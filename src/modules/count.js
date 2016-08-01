@@ -64,6 +64,7 @@ module.exports = class Count {
 		this.cb = cb;
     	this.url = this.os.getAttribute('data-open-share-count');
 		this.shared = this.os.getAttribute('data-open-share-count-url');
+		this.key = this.os.getAttribute('data-key');
 
 		if (!Array.isArray(this.countData)) {
 			this.getCount();
@@ -190,7 +191,7 @@ module.exports = class Count {
 				}
 			}
 		};
-
+		countData.url = this.key ? countData.url + this.key : countData.url; 
 		xhr.open('GET', countData.url);
 		xhr.send();
 	}

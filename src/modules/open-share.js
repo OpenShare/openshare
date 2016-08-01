@@ -53,14 +53,12 @@ module.exports = class OpenShare {
 
 		// open social share URLs in new window
 		} else {
-			let windowOptions = false;
-
 			// if popup object present then set window dimensions / position
 			if(this.popup && this.transformData.popup) {
-				windowOptions = this.transformData.popup;
+				this.openWindow(this.shareUrl, this.transformData.popup);
 			}
 
-			this.openWindow(this.shareUrl, windowOptions);
+			window.open(this.shareUrl);
 		}
 	}
 
