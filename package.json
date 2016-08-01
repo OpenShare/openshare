@@ -1,6 +1,6 @@
 {
-  "name": "open-share",
-  "version": "1.2.3-0",
+  "name": "openshare",
+  "version": "1.2.3",
   "description": "Social sharing for developers",
   "main": "src/index.js",
   "browserify": {
@@ -14,6 +14,17 @@
         }
       ]
     ]
+  },
+  "scripts": {
+    "watch:js": "watchify src/browser.js -o dist/openshare.js -dv",
+	"watch:test": "watchify src/test.js -o dist/test.js -dv",
+    "build:js": "browserify src/browser.js -g uglifyify | uglifyjs -cm > dist/openshare.js",
+	"build:test": "browserify src/test.js -g uglifyify | uglifyjs -cm > dist/test.js",
+	"watch": "npm run watch:js & npm run watch:test",
+    "dev": "npm run watch & npm run test",
+	"build": "npm run build:js & npm run build:test",
+    "production": "npm run build & npm run test",
+    "test": "opn http://0.0.0.0:8000/test.html && ecstatic ."
   },
   "repository": {
     "type": "git",
@@ -31,17 +42,12 @@
     "babel": "^5.8.23",
     "babel-preset-es2015": "^6.9.0",
     "babelify": "^7.3.0",
-    "browser-sync": "^2.4.0",
     "browserify": "^11.2.0",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.2",
-    "gulp-if": "^1.2.5",
-    "gulp-prompt": "^0.1.2",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.4",
-    "gulp-util": "^3.0.2",
-    "pump": "^1.0.1",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "ecstatic": "^1.4.1",
+    "node-sass": "^3.8.0",
+    "opn-cli": "^3.1.0",
+    "uglify-js": "^2.7.0",
+    "uglifyify": "^3.0.2",
+    "watchify": "^3.7.0"
   }
 }
