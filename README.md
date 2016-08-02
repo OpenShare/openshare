@@ -13,7 +13,7 @@ OpenShare provides straightforward, declarative, and completely customizable API
 **Quick Start**
 
 ```
-$ npm install open-share --save
+$ npm install openshare --save
 ```
 
 ```html
