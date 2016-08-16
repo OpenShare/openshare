@@ -55,7 +55,7 @@ module.exports = class OpenShare {
 		} else {
 			// if popup object present then set window dimensions / position
 			if(this.popup && this.transformData.popup) {
-				this.openWindow(this.shareUrl, this.transformData.popup);
+				return this.openWindow(this.shareUrl, this.transformData.popup);
 			}
 
 			window.open(this.shareUrl);
