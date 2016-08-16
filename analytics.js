@@ -1,18 +1,12 @@
 module.exports = function (type, cb) {
-   let count = 10;
+	const isGA = type === 'event' || type === 'social';
+	const isTagManager = type === 'tagManager';
 
-   // document.addEventListener('DOMContentLoaded', function () {
-
-	   const isGA = type === 'event' || type === 'social';
-	   const isTagManager = type === 'tagManager';
-
-	   if (isGA) checkIfAnalyticsLoaded(type, cb, count);
-	   if (isTagManager) setTagManager(cb);
-   // });
+	if (isGA) checkIfAnalyticsLoaded(type, cb);
+	if (isTagManager) setTagManager(cb);
 };
 
-function checkIfAnalyticsLoaded(type, cb, count) {
-	count--;
+function checkIfAnalyticsLoaded(type, cb) {
 	if (window.ga) {
 		  if (cb) cb();
 		  // bind to shared event on each individual node
@@ -46,37 +40,40 @@ function checkIfAnalyticsLoaded(type, cb, count) {
 
 	}
 	else {
-		  if (count) {
-			  setTimeout(function () {
-			  checkIfAnalyticsLoaded(type, cb, count);
-		  }, 1000);
-  		}
+		setTimeout(function () {
+			checkIfAnalyticsLoaded(type, cb);
+	  	}, 1000);
 	}
 }
 
 function setTagManager (cb) {
-	if (cb) cb();
 
-	window.dataLayer = window.dataLayer || [];
+	if (window.dataLayer && window.dataLayer[0]['gtm.start']) {
+		if (cb) cb();
 
-	listen(onShareTagManger);
+		listen(onShareTagManger);
 
-	getCounts(function(e) {
-		const count = e.target ?
-		  e.target.innerHTML :
-		  e.innerHTML;
+		getCounts(function(e) {
+			const count = e.target ?
+			  e.target.innerHTML :
+			  e.innerHTML;
 
-		const platform = e.target ?
-		   e.target.getAttribute('data-open-share-count-url') :
-		   e.getAttribute('data-open-share-count-url');
+			const platform = e.target ?
+			   e.target.getAttribute('data-open-share-count-url') :
+			   e.getAttribute('data-open-share-count-url');
 
-		window.dataLayer.push({
-			'event' : 'OpenShare Count',
-			'platform': platform,
-			'resource': count,
-			'activity': 'count'
+			window.dataLayer.push({
+				'event' : 'OpenShare Count',
+				'platform': platform,
+				'resource': count,
+				'activity': 'count'
+			});
 		});
-	});
+	} else {
+		setTimeout(function () {
+			setTagManager(cb);
+		}, 1000);
+	}
 }
 
 function listen (cb) {
