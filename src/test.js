@@ -4,17 +4,17 @@ var OpenShare = {
 	analytics: require('../analytics.js')
 };
 
-// OpenShare.analytics('tagManager', function () {
-//   console.log('tag manager loaded');
-// });
-//
-// OpenShare.analytics('event', function () {
-//   console.log('google analytics loaded');
-// });
-//
-// OpenShare.analytics('social', function () {
-//   console.log('google analytics loaded');
-// });
+OpenShare.analytics('tagManager', function () {
+  console.log('tag manager loaded');
+});
+
+OpenShare.analytics('event', function () {
+  console.log('google analytics events loaded');
+});
+
+OpenShare.analytics('social', function () {
+  console.log('google analytics social loaded');
+});
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
@@ -217,7 +217,7 @@ urls.forEach(function(url) {
 new OpenShare.count({
 	type: 'twitter',
 	url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
-	key: 'osAPIKey'
+	key: 'dstweets'
 }, function (node) {
 	var os = new OpenShare.share({
 	  type: 'twitter',

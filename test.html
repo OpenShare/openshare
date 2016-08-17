@@ -191,7 +191,7 @@
             Tweet
 			<span data-open-share-count="twitter"
                   data-open-share-count-url="http://openshare.social"
-				  data-key="osapiKey"
+				  data-open-share-key="dstweets"
                   class="open-share-count"></span>
         </a>
 
@@ -531,8 +531,20 @@
     </div>
 
 	<!-- test browser build -->
-	<!-- <script src="dist/open-share.js"></script>
+	<script src="dist/openshare.js"></script>
 	<script>
+
+	OpenShare.analytics('tagManager', function () {
+	  console.log('tag manager loaded');
+	});
+
+	OpenShare.analytics('event', function () {
+	  console.log('google analytics events loaded');
+	});
+
+	OpenShare.analytics('social', function () {
+	  console.log('google analytics social loaded');
+	});
 
 	var dynamicNodeData = {
 		'url': 'http://www.digitalsurgeons.com',
@@ -578,15 +590,23 @@
 	function addNodeWithCount() {
 		var data = dynamicNodeData;
 
-		var openShareNode = createOpenShareNode(data);
-		document.querySelector('.open-share-watch').appendChild(openShareNode);
-
-		var countNode = new OpenShare.count({
+		new OpenShare.count({
 			type: 'facebook',
-			url: 'https://www.digitalsurgeons.com/thoughts/strategy/podcast-killed-the-video-star-how-podcast-advertising-builds-authentic-enga'
+			url: 'https://www.digitalsurgeons.com/'
+		}, function (node) {
+			var os = new OpenShare.share({
+			  type: 'twitter',
+			  url: 'http://www.digitalsurgeons.com',
+			  via: 'digitalsurgeons',
+			  hashtags: 'forwardobsessed',
+			  innerHTML: 'Created via OpenShareAPI',
+			  element: 'div',
+			  classes: ['wow', 'such', 'classes']
+		  });
+			document.querySelector('.create-node.w-count')
+			  .appendChild(os);
+			  os.appendChild(node);
 		});
-
-		openShareNode.appendChild(countNode);
 	}
 
 	window.addNodeWithCount = addNodeWithCount;
@@ -596,13 +616,15 @@
 		var type = container.querySelector('input.count-type').value;
 		var url = container.querySelector('input.count-url').value;
 
-		var count = new OpenShare.count({
+		new OpenShare.count({
 			type: type,
 			url: url,
-			appendTo: document.querySelector('.open-share-watch')
+			appendTo: container,
+			classes: ['test']
+		}, function (node) {
+			node.style.position = 'relative';
 		});
 
-		count.style.position = 'relative';
 
 		container.querySelector('input.count-type').value = '';
 		container.querySelector('input.count-url').value = '';
@@ -627,6 +649,15 @@
 		userId: '18189130',
 		appendTo: document.body,
 		innerHTML: 'Follow Test'
+	});
+
+	// test PayPal
+	new OpenShare.share({
+		type: 'paypal',
+		buttonId: '2P3RJYEFL7Z62',
+		sandbox: true,
+		appendTo: document.body,
+		innerHTML: 'PayPal Test'
 	});
 
 	// bind to count loaded event
@@ -711,8 +742,26 @@
 			});
 		});
 	});
-	</script> -->
-	<script data-open-share-analytics='event,social,tagManager' src="dist/test.js"></script>
+
+	// test twitter count js api
+	new OpenShare.count({
+		type: 'twitter',
+		url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
+		key: 'dstweets'
+	}, function (node) {
+		var os = new OpenShare.share({
+		  type: 'twitter',
+		  url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
+		  via: 'digitalsurgeons',
+		  hashtags: 'forwardobsessed, blockchain',
+		  appendTo: document.body,
+		  innerHTML: 'BLOCKCHAIN'
+		});
+		os.appendChild(node);
+	});
+	</script>
+	<!-- <script data-open-share-analytics='event,social,tagManager' src="dist/test.js"></script>-->
+	<!-- <script src='dist/test.js'></script> -->
 
 	<script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

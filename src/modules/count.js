@@ -64,7 +64,7 @@ module.exports = class Count {
 		this.cb = cb;
     	this.url = this.os.getAttribute('data-open-share-count');
 		this.shared = this.os.getAttribute('data-open-share-count-url');
-		this.key = this.os.getAttribute('data-key');
+		this.key = this.os.getAttribute('data-open-share-key');
 
 		if (!Array.isArray(this.countData)) {
 			this.getCount();
@@ -187,11 +187,13 @@ module.exports = class Count {
 
 					Events.trigger(this.os, 'counted-' + this.url);
 				} else {
-					console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+					if (countData.url.toLowerCase().indexOf('https://api.openshare.social/job?') === 0) {
+						console.error('Please sign up for Twitter counts at https://openshare.social/twitter/auth');
+					} else console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
 				}
 			}
 		};
-		countData.url = this.key ? countData.url + this.key : countData.url; 
+		countData.url = this.key ? countData.url + this.key : countData.url;
 		xhr.open('GET', countData.url);
 		xhr.send();
 	}

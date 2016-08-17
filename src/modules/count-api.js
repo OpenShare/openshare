@@ -21,8 +21,8 @@ module.exports = function() {
 
 			countNode.setAttribute('data-open-share-count', type);
 			countNode.setAttribute('data-open-share-count-url', url);
-			if (key) countNode.setAttribute('data-key', key);
-			
+			if (key) countNode.setAttribute('data-open-share-key', key);
+
 			countNode.classList.add('open-share-count');
 
 			if (classes && Array.isArray(classes)) {
