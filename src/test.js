@@ -4,17 +4,17 @@ var OpenShare = {
 	analytics: require('../analytics.js')
 };
 
-// OpenShare.analytics('tagManager', function () {
-//   console.log('tag manager loaded');
-// });
-//
-// OpenShare.analytics('event', function () {
-//   console.log('google analytics loaded');
-// });
-//
-// OpenShare.analytics('social', function () {
-//   console.log('google analytics loaded');
-// });
+OpenShare.analytics('tagManager', function () {
+  console.log('tag manager loaded');
+});
+
+OpenShare.analytics('event', function () {
+  console.log('google analytics events loaded');
+});
+
+OpenShare.analytics('social', function () {
+  console.log('google analytics social loaded');
+});
 
 var dynamicNodeData = {
 	'url': 'http://www.digitalsurgeons.com',
@@ -211,4 +211,21 @@ urls.forEach(function(url) {
 			if (counts) console.log(url, 'shares: ', counts);
 		});
 	});
+});
+
+// test twitter count js api
+new OpenShare.count({
+	type: 'twitter',
+	url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
+	key: 'dstweets'
+}, function (node) {
+	var os = new OpenShare.share({
+	  type: 'twitter',
+	  url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
+	  via: 'digitalsurgeons',
+	  hashtags: 'forwardobsessed, blockchain',
+	  appendTo: document.body,
+	  innerHTML: 'BLOCKCHAIN'
+	});
+	os.appendChild(node);
 });

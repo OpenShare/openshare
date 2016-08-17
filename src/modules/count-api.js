@@ -14,11 +14,14 @@ module.exports = function() {
 			url,
 			appendTo = false,
 			element,
-			classes}, cb) {
+			classes,
+			key = null
+		}, cb) {
 			var countNode = document.createElement(element || 'span');
 
 			countNode.setAttribute('data-open-share-count', type);
 			countNode.setAttribute('data-open-share-count-url', url);
+			if (key) countNode.setAttribute('data-open-share-key', key);
 
 			countNode.classList.add('open-share-count');
 
