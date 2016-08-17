@@ -64,7 +64,7 @@ module.exports = class Count {
 		this.cb = cb;
     	this.url = this.os.getAttribute('data-open-share-count');
 		this.shared = this.os.getAttribute('data-open-share-count-url');
-		this.key = this.os.getAttribute('data-key');
+		this.key = this.os.getAttribute('data-open-share-key');
 
 		if (!Array.isArray(this.countData)) {
 			this.getCount();

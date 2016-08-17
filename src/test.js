@@ -217,7 +217,7 @@ urls.forEach(function(url) {
 new OpenShare.count({
 	type: 'twitter',
 	url: 'https://www.digitalsurgeons.com/thoughts/technology/the-blockchain-revolution/',
-	key: 'osAPIKey'
+	key: 'dstweets'
 }, function (node) {
 	var os = new OpenShare.share({
 	  type: 'twitter',
