@@ -7,6 +7,9 @@ OpenShare provides straightforward, declarative, and completely customizable API
 * [Getting Started](https://github.com/dsurgeons/OpenShare/wiki/1.-Getting-Started)
 * [Data Attribute API](https://github.com/dsurgeons/OpenShare/wiki/2.-Data-Attribute-API)
 * [JavaScript API](https://github.com/dsurgeons/OpenShare/wiki/3.-JavaScript-API)
+* [Automated Analytics Integrations](https://github.com/dsurgeons/OpenShare/wiki/4.-Automated-Analytics-Integrations)
+* [Contributing](https://github.com/dsurgeons/OpenShare/wiki/5.-Contributing)
+* [Examples](http://openshare.social/examples.html)
 
 
 ---
