@@ -14,7 +14,7 @@ module.exports = {
 			type: 'get',
 			url: `https://graph.facebook.com/?id=${url}`,
 			transform: function(xhr) {
-				let count = JSON.parse(xhr.responseText).shares;
+				let count = JSON.parse(xhr.responseText).share.share_count;
 				return storeCount(this, count);
 			}
 		};
