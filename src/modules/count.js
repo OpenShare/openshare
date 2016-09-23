@@ -193,7 +193,11 @@ module.exports = class Count {
 				}
 			}
 		};
-		countData.url = this.key ? countData.url + this.key : countData.url;
+
+		countData.url = countData.url.startsWith('https://api.openshare.social/job?') && this.key ?
+			countData.url + this.key :
+			countData.url;
+
 		xhr.open('GET', countData.url);
 		xhr.send();
 	}
