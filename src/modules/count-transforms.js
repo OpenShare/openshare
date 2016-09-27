@@ -14,7 +14,10 @@ module.exports = {
 			type: 'get',
 			url: `https://graph.facebook.com/?id=${url}`,
 			transform: function(xhr) {
-				let count = JSON.parse(xhr.responseText).share.share_count;
+				const fb = JSON.parse(xhr.responseText);
+
+				let count = fb.share.share_count || 0;
+
 				return storeCount(this, count);
 			}
 		};
