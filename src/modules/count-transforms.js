@@ -16,7 +16,7 @@ module.exports = {
 			transform: function(xhr) {
 				const fb = JSON.parse(xhr.responseText);
 
-				let count = fb.share.share_count || 0;
+				let count = fb.share && fb.share.share_count || 0;
 
 				return storeCount(this, count);
 			}

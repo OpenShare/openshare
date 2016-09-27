@@ -1,6 +1,6 @@
 {
   "name": "openshare",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Social sharing for developers",
   "main": "src/index.js",
   "browserify": {
