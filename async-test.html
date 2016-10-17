@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Open Share</title>
+
+    <meta name="description" content="Open Share by Digital Surgeons">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Helvetica';
+            text-transform: uppercase;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .open-share-count {
+            background: #333;
+            color: #fff;
+            display: inline-block;
+            font-size: 12px;
+            padding: 5px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            text-transform: none;
+            transform: translateY(-50%);
+        }
+
+        .open-share-title {
+            font-size: 40px;
+            text-align: center;
+            margin: 0 0 30px;
+        }
+
+        .open-share-link {
+            display: block;
+            margin: 20px auto;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            background: #34495e;
+            color: #ffffff;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .open-share-link .fa,
+        .open-share-link [class^="socicon-"],
+        .open-share-link [class*=" socicon-"] {
+            transform: translateY(-50%);
+            left: 20px;
+            position: absolute;
+            font-size: 25px;
+        }
+
+        .open-share-link .fa {
+            top: 49%;
+        }
+
+        .open-share-link [class^="socicon-"],
+        .open-share-link [class*=" socicon-"] {
+            top: 54%;
+        }
+
+        .create-node {
+            border-top: solid 1px #ccc;
+            padding: 30px 0 10px;
+            margin-top: 75px;
+            text-align: center;
+        }
+
+        .create-node button {
+            padding: 10px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .twitter {
+            background: #55acee;
+        }
+
+        .facebook {
+            background: #3b5998;
+        }
+
+        .youtube {
+            background: #cd201f;
+        }
+
+        .instagram {
+            background: #3f729b;
+        }
+
+        .snapchat {
+            background: #f0dc30;
+        }
+
+        .socicon-snapchat:before {
+            font-weight: 900 !important;
+        }
+
+        .google {
+            background: #dc4e41;
+        }
+
+        .maps {
+            background: #4285f4;
+        }
+
+        .pinterest {
+            background: #bd081c;
+        }
+
+        .linkedin {
+            background: #0077b5;
+        }
+
+        .buffer {
+            background: #323b43;
+        }
+
+        .tumblr {
+            background: #35465c;
+        }
+
+        .reddit {
+            background: #5f99cf;
+        }
+
+        .codepen {
+            background: #343436;
+        }
+
+        .github {
+            background: #333333;
+        }
+
+        .dribbble {
+            background: #ea4c89;
+        }
+
+        .flickr {
+            background: #ff0084;
+        }
+
+        .whatsapp {
+            background: #73cd55;
+        }
+
+        .sms {
+            background: #68c12a;
+        }
+
+        .email {
+            background: #cccccc;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="open-share-link twitter"
+        data-open-share="twitter"
+        data-open-share-url="http://digitalsurgeons.com"
+        data-open-share-via="digitalsurgeons"
+        data-open-share-text="Digital Surgeons"
+        data-open-share-hashtags="forwardobsessed"
+        data-open-share-popup="true">
+
+        <span class="socicon-twitter"></span>
+        Tweet
+        <span data-open-share-count="twitter"
+              data-open-share-count-url="http://openshare.social"
+              data-open-share-key="dstweets"
+              class="open-share-count"></span>
+    </a>
+    <button type="button" class="open-share-link facebook" data-open-share="facebook" data-open-share-link="https://google.com">Share</button>
+
+    <script async src='./dist/openshare.js'></script>
+</body>
+
+</html>
