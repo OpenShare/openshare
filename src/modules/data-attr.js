@@ -1,9 +1,9 @@
-import init from '../../lib/init';
+import Init from '../../lib/init';
 import share from '../../lib/initializeShareNode';
 import count from '../../lib/initializeCountNode';
 
-export default () => {//eslint-disable-line
-  document.addEventListener('DOMContentLoaded', init({
+function init() {
+  Init({
     selector: {
       share: '[data-open-share]:not([data-open-share-node])',
       count: '[data-open-share-count]:not([data-open-share-node])',
@@ -12,5 +12,15 @@ export default () => {//eslint-disable-line
       share,
       count,
     },
-  }));
+  })();
+}
+export default () => {
+  if (document.readyState === 'complete') {
+    return init();
+  }
+  document.addEventListener('readystatechange', () => {
+    if (document.readyState === 'complete') {
+      init();
+    }
+  }, false);
 };
