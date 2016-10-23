@@ -1,12 +1,12 @@
-module.exports = (function () { //eslint-disable-line
-  const DataAttr = require('./modules/data-attr')(); // eslint-disable-line
-  const ShareAPI = require('./modules/share-api');
-  const CountAPI = require('./modules/count-api');
-  const analyticsAPI = require('../analytics');
+import attr from './modules/data-attr';
+import ShareAPI from './modules/share-api';
+import CountAPI from './modules/count-api';
+import analyticsAPI from '../analytics';
 
-  return {
-    share: ShareAPI(),
-    count: CountAPI(),
-    analytics: analyticsAPI,
-  };
-}());
+const DataAttr = attr(); // eslint-disable-line
+
+export default {
+  share: ShareAPI(),
+  count: CountAPI(),
+  analytics: analyticsAPI,
+};

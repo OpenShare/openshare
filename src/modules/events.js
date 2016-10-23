@@ -1,7 +1,7 @@
 /**
  * Trigger custom OpenShare namespaced event
  */
-module.exports = {
+export default {
   trigger(element, event) {
     const ev = document.createEvent('Event');
     ev.initEvent(`OpenShare.${event}`, true, true);

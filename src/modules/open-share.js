@@ -1,7 +1,7 @@
 /**
  * OpenShare generates a single share link
  */
-module.exports = class OpenShare {
+export default class OpenShare {
 
   constructor(type, transform) {
     this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -103,4 +103,4 @@ module.exports = class OpenShare {
       newWindow.focus();
     }
   }
-};
+}

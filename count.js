@@ -1,4 +1,4 @@
-module.exports = (function () { // eslint-disable-line
+export default () => {
   document.addEventListener('DOMContentLoaded', require('./lib/init')({
     api: 'count',
     selector: '[data-open-share-count]:not([data-open-share-node])',
@@ -6,4 +6,4 @@ module.exports = (function () { // eslint-disable-line
   }));
 
   return require('./src/modules/count-api')();
-}());
+};

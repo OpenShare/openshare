@@ -1,12 +1,11 @@
-const countReduce = require('../../lib/countReduce');
-const storeCount = require('../../lib/storeCount');
-
+import countReduce from '../../lib/countReduce';
+import storeCount from '../../lib/storeCount';
 /**
  * Object of transform functions for each openshare api
  * Transform functions passed into OpenShare instance when instantiated
  * Return object containing URL and key/value args
  */
-module.exports = {
+export default {
 
   // facebook count data
   facebook(url) {

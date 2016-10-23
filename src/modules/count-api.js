@@ -2,9 +2,9 @@
  * count API
  */
 
-const count = require('./count');
+import count from './count';
 
-module.exports = function () { //eslint-disable-line
+export default () => { //eslint-disable-line
   // global OpenShare referencing internal class for instance generation
   class Count {
 

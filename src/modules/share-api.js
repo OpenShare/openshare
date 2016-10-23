@@ -1,13 +1,12 @@
 /**
  * Global OpenShare API to generate instances programmatically
  */
+import OS from './open-share';
+import ShareTransforms from './share-transforms';
+import Events from './events';
+import dashToCamel from '../../lib/dashToCamel';
 
-const OS = require('./open-share');
-const ShareTransforms = require('./share-transforms');
-const Events = require('./events');
-const dashToCamel = require('../../lib/dashToCamel');
-
-module.exports = function () {//eslint-disable-line
+export default () => {
   // global OpenShare referencing internal class for instance generation
   class OpenShare {
 

@@ -3,7 +3,7 @@
  * Transform functions passed into OpenShare instance when instantiated
  * Return object containing URL and key/value args
  */
-module.exports = {
+export default {
 
   // set Twitter share URL
   twitter(data, ios = false) {

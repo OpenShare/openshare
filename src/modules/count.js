@@ -2,12 +2,16 @@
  * Generate share count instance from one to many networks
  */
 
-const CountTransforms = require('./count-transforms');
-const Events = require('./events');
-const countReduce = require('../../lib/countReduce');
-const storeCount = require('../../lib/storeCount'); // eslint-disable-line no-unused-vars
+import CountTransforms from './count-transforms';
+import Events from './events';
+import countReduce from '../../lib/countReduce';
+import storeCount from '../../lib/storeCount'; // eslint-disable-line no-unused-vars
 
-module.exports = class Count {
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+class Count {
   constructor(type, url) {
     // throw error if no url provided
     if (!url) {
@@ -243,8 +247,6 @@ module.exports = class Count {
     return localStorage.getItem(`OpenShare-${type}`);
   }
 
-};
-
-function isNumeric(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+export default Count;
