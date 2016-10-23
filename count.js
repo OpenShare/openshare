@@ -1,18 +1,21 @@
+import Init from './lib/init';
+import cb from './lib/initializeCountNode';
+
 function init() {
-    require('./lib/init')({
-        api: 'count',
-        selector: '[data-open-share-count]:not([data-open-share-node])',
-        cb: require('./lib/initializeCountNode')
-    })();
+  Init({
+    api: 'count',
+    selector: '[data-open-share-count]:not([data-open-share-node])',
+    cb,
+  })();
 }
-module.exports = function() {
-    if (document.readyState === "complete") {
-        init();
+export default () => {
+  if (document.readyState === 'complete') {
+    init();
+  }
+  document.addEventListener('readystatechange', () => {
+    if (document.readyState === 'complete') {
+      init();
     }
-    document.addEventListener("readystatechange", function() {
-        if (document.readyState === "complete") {
-            init();
-        }
-    },false);
-    return require('./src/modules/count-api')();
+  }, false);
+  return require('./src/modules/count-api')();
 };

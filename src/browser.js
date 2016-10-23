@@ -1,18 +1,18 @@
-module.exports = (function() {
+import DataAttr from './modules/data-attr';
+import ShareAPI from './modules/share-api';
+import Events from './modules/events';
+import OpenShare from './modules/open-share';
+import ShareTransforms from './modules/share-transforms';
+import Count from './modules/count';
+import CountAPI from './modules/count-api';
+import analyticsAPI from '../analytics';
 
-	var DataAttr = require('./modules/data-attr'),
-		ShareAPI = require('./modules/share-api'),
-		Events = require('./modules/events'),
-		OpenShare = require('./modules/open-share'),
-		ShareTransforms = require('./modules/share-transforms'),
-		Count = require('./modules/count'),
-		CountAPI = require('./modules/count-api'),
-		analyticsAPI = require('../analytics');
-
-	DataAttr(OpenShare, Count, ShareTransforms, Events);
-	window.OpenShare = {
-		share: ShareAPI(OpenShare, ShareTransforms, Events),
-		count: CountAPI(),
-		analytics: analyticsAPI
-	};
-})();
+const browser = () => {
+  DataAttr(OpenShare, Count, ShareTransforms, Events);
+  window.OpenShare = {
+    share: ShareAPI(OpenShare, ShareTransforms, Events),
+    count: CountAPI(),
+    analytics: analyticsAPI,
+  };
+};
+export default browser();

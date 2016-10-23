@@ -2,42 +2,41 @@
  * count API
  */
 
-var count = require('./count');
+import count from './count';
 
-module.exports = function() {
+export default () => { //eslint-disable-line
+  // global OpenShare referencing internal class for instance generation
+  class Count {
 
-	// global OpenShare referencing internal class for instance generation
-	class Count {
+    constructor({
+      type,
+      url,
+      appendTo = false,
+      element,
+      classes,
+      key = null,
+    }, cb) {
+      const countNode = document.createElement(element || 'span');
 
-		constructor({
-			type,
-			url,
-			appendTo = false,
-			element,
-			classes,
-			key = null
-		}, cb) {
-			var countNode = document.createElement(element || 'span');
+      countNode.setAttribute('data-open-share-count', type);
+      countNode.setAttribute('data-open-share-count-url', url);
+      if (key) countNode.setAttribute('data-open-share-key', key);
 
-			countNode.setAttribute('data-open-share-count', type);
-			countNode.setAttribute('data-open-share-count-url', url);
-			if (key) countNode.setAttribute('data-open-share-key', key);
+      countNode.classList.add('open-share-count');
 
-			countNode.classList.add('open-share-count');
+      if (classes && Array.isArray(classes)) {
+        classes.forEach((cssCLass) => {
+          countNode.classList.add(cssCLass);
+        });
+      }
 
-			if (classes && Array.isArray(classes)) {
-				classes.forEach(cssCLass => {
-					countNode.classList.add(cssCLass);
-				});
-			}
+      if (appendTo) {
+        return new count(type, url).count(countNode, cb, appendTo);
+      }
 
-			if (appendTo) {
-				return new count(type, url).count(countNode, cb, appendTo);
-			}
+      return new count(type, url).count(countNode, cb);
+    }
+  }
 
-			return new count(type, url).count(countNode, cb);
-		}
-	}
-
-	return Count;
+  return Count;
 };
