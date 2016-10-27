@@ -2,7 +2,7 @@
   "name": "openshare",
   "version": "1.4.6",
   "description": "Social sharing for developers",
-  "main": "src/index.js",
+  "main": "dist/openshare.js",
   "browserify": {
     "transform": [
       [
@@ -25,7 +25,8 @@
     "build": "npm run build:js & npm run build:test",
     "production": "npm run build & npm run test",
     "test": "opn http://0.0.0.0:8000/test.html && ecstatic .",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "prepublish": "npm run build:js"
   },
   "repository": {
     "type": "git",
