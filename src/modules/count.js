@@ -187,9 +187,9 @@ class Count {
 
           Events.trigger(this.os, `counted-${this.url}`);
         } else if (countData.url.toLowerCase().indexOf('https://api.openshare.social/job?') === 0) {
-          console.error('Please sign up for Twitter counts at https://openshare.social/twitter/auth');
+          console.warn('Please sign up for Twitter counts at https://openshare.social/twitter/auth');
         } else {
-          console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+          console.warn('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
         }
       }
     };

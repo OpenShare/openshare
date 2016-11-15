@@ -170,7 +170,7 @@ export default {
       type: 'get',
       url: `https://api.openshare.social/job?url=${url}&key=`,
       transform(xhr) {
-        const count = JSON.parse(xhr.responseText).count;
+        const count = JSON.parse(xhr.responseText).count || 0;
         return storeCount(this, count);
       },
     };
