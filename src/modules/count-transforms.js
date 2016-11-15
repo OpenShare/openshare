@@ -15,7 +15,7 @@ export default {
       transform(xhr) {
         const fb = JSON.parse(xhr.responseText);
 
-        const count = fb.share && fb.share.share_count || 0;
+        const count = (fb.share && fb.share.share_count) || 0;
 
         return storeCount(this, count);
       },
