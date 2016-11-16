@@ -120,12 +120,13 @@ class Count {
 
           const local = Number(this.storeGet(`${this.type}-${this.shared}`));
           if (local > tot) {
-            const latestCount = Number(this.storeGet(`${this.type}-${this.shared}-latestCount`));
-            this.storeSet(`${this.type}-${this.shared}-latestCount`, tot);
-
-            tot = isNumeric(latestCount) && latestCount > 0 ?
-            tot += local - latestCount :
-            tot += local;
+            // const latestCount = Number(this.storeGet(`${this.type}-${this.shared}-latestCount`));
+            // this.storeSet(`${this.type}-${this.shared}-latestCount`, tot);
+            //
+            // tot = isNumeric(latestCount) && latestCount > 0 ?
+            // tot += local - latestCount :
+            // tot += local;
+            tot = local;
           }
           this.storeSet(`${this.type}-${this.shared}`, tot);
 
@@ -186,10 +187,35 @@ class Count {
           }
 
           Events.trigger(this.os, `counted-${this.url}`);
+          return;
         } else if (countData.url.toLowerCase().indexOf('https://api.openshare.social/job?') === 0) {
-          console.error('Please sign up for Twitter counts at https://openshare.social/twitter/auth');
+          console.warn('Please sign up for Twitter counts at https://openshare.social/twitter/auth');
+          const count = 0;
+
+          if (cb && typeof cb === 'function') {
+            cb(count);
+          } else {
+            if (this.appendTo && typeof this.appendTo !== 'function') {
+              this.appendTo.appendChild(this.os);
+            }
+            countReduce(this.os, count, this.cb);
+          }
+
+          Events.trigger(this.os, `counted-${this.url}`);
         } else {
-          console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+          console.warn('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+          const count = 0;
+
+          if (cb && typeof cb === 'function') {
+            cb(count);
+          } else {
+            if (this.appendTo && typeof this.appendTo !== 'function') {
+              this.appendTo.appendChild(this.os);
+            }
+            countReduce(this.os, count, this.cb);
+          }
+
+          Events.trigger(this.os, `counted-${this.url}`);
         }
       }
     };
