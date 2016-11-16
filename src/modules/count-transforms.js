@@ -28,7 +28,7 @@ export default {
       type: 'jsonp',
       url: `https://api.pinterest.com/v1/urls/count.json?callback=?&url=${url}`,
       transform(data) {
-        const count = data.count;
+        const count = data.count || 0;
         return storeCount(this, count);
       },
     };
@@ -40,7 +40,7 @@ export default {
       type: 'jsonp',
       url: `https://www.linkedin.com/countserv/count/share?url=${url}&format=jsonp&callback=?`,
       transform(data) {
-        const count = data.count;
+        const count = data.count || 0;
         return storeCount(this, count);
       },
     };
@@ -52,12 +52,15 @@ export default {
       type: 'get',
       url: `https://www.reddit.com/api/info.json?url=${url}`,
       transform(xhr) {
-        const posts = JSON.parse(xhr.responseText).data.children;
+        const reddit = JSON.parse(xhr.responseText);
+        const posts = (reddit.data && reddit.data.children) || null;
         let ups = 0;
 
-        posts.forEach((post) => {
-          ups += Number(post.data.ups);
-        });
+        if (posts) {
+          posts.forEach((post) => {
+            ups += Number(post.data.ups);
+          });
+        }
 
         return storeCount(this, ups);
       },
@@ -84,7 +87,11 @@ export default {
       },
       url: 'https://clients6.google.com/rpc',
       transform(xhr) {
-        const count = JSON.parse(xhr.responseText).result.metadata.globalCounts.count;
+        const google = JSON.parse(xhr.responseText);
+        const count = (google.result
+          && google.result.metadata
+          && google.result.metadata.globalCounts
+          && google.result.metadata.globalCounts.count) || 0;
         return storeCount(this, count);
       },
     };
@@ -99,7 +106,7 @@ export default {
       type: 'get',
       url: `https://api.github.com/repos/${repo}`,
       transform(xhr) {
-        const count = JSON.parse(xhr.responseText).stargazers_count;
+        const count = JSON.parse(xhr.responseText).stargazers_count || 0;
         return storeCount(this, count);
       },
     };
@@ -114,7 +121,7 @@ export default {
       type: 'get',
       url: `https://api.github.com/repos/${repo}`,
       transform(xhr) {
-        const count = JSON.parse(xhr.responseText).forks_count;
+        const count = JSON.parse(xhr.responseText).forks_count || 0;
         return storeCount(this, count);
       },
     };
@@ -129,7 +136,7 @@ export default {
       type: 'get',
       url: `https://api.github.com/repos/${repo}`,
       transform(xhr) {
-        const count = JSON.parse(xhr.responseText).watchers_count;
+        const count = JSON.parse(xhr.responseText).watchers_count || 0;
         return storeCount(this, count);
       },
     };

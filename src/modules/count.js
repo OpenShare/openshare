@@ -186,6 +186,7 @@ class Count {
           }
 
           Events.trigger(this.os, `counted-${this.url}`);
+          return;
         } else if (countData.url.toLowerCase().indexOf('https://api.openshare.social/job?') === 0) {
           console.warn('Please sign up for Twitter counts at https://openshare.social/twitter/auth');
           const count = 0;
@@ -198,9 +199,11 @@ class Count {
             }
             countReduce(this.os, count, this.cb);
           }
+
+          Events.trigger(this.os, `counted-${this.url}`);
         } else {
           console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
-          const count = countData.transform.apply(this, [xhr, Events]) || 0;
+          const count = 0;
 
           if (cb && typeof cb === 'function') {
             cb(count);
@@ -210,6 +213,8 @@ class Count {
             }
             countReduce(this.os, count, this.cb);
           }
+
+          Events.trigger(this.os, `counted-${this.url}`);
         }
       }
     };
