@@ -120,12 +120,13 @@ class Count {
 
           const local = Number(this.storeGet(`${this.type}-${this.shared}`));
           if (local > tot) {
-            const latestCount = Number(this.storeGet(`${this.type}-${this.shared}-latestCount`));
-            this.storeSet(`${this.type}-${this.shared}-latestCount`, tot);
-
-            tot = isNumeric(latestCount) && latestCount > 0 ?
-            tot += local - latestCount :
-            tot += local;
+            // const latestCount = Number(this.storeGet(`${this.type}-${this.shared}-latestCount`));
+            // this.storeSet(`${this.type}-${this.shared}-latestCount`, tot);
+            //
+            // tot = isNumeric(latestCount) && latestCount > 0 ?
+            // tot += local - latestCount :
+            // tot += local;
+            tot = local;
           }
           this.storeSet(`${this.type}-${this.shared}`, tot);
 
@@ -202,7 +203,7 @@ class Count {
 
           Events.trigger(this.os, `counted-${this.url}`);
         } else {
-          console.error('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+          console.warn('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
           const count = 0;
 
           if (cb && typeof cb === 'function') {
