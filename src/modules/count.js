@@ -46,6 +46,15 @@ class Count {
         this.countData.push(CountTransforms[t](url));
       });
 
+      const count = this.storeGet(`${this.type}-${this.shared}`);
+
+      if (count) {
+        if (this.appendTo && typeof this.appendTo !== 'function') {
+          this.appendTo.appendChild(this.os);
+        }
+        countReduce(this.os, count);
+      }
+
       // throw error if invalid type provided
     } else if (!CountTransforms[type]) {
       throw new Error(`Open Share: ${type} is an invalid count type`);
