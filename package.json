@@ -19,7 +19,8 @@
   "scripts": {
     "watch:js": "watchify src/browser.js -o dist/openshare.js -dv",
     "watch:test": "watchify src/test.js -o dist/test.js -dv",
-    "build:js": "browserify src/browser.js -g uglifyify | uglifyjs -cm > dist/openshare.js",
+    "build:js": "browserify src/browser.js > dist/openshare.js",
+    "build:min:js": "browserify src/browser.js -g uglifyify | uglifyjs -cm > dist/openshare.min.js",
     "build:test": "browserify src/test.js -g uglifyify | uglifyjs -cm > dist/test.js",
     "watch": "npm run watch:js & npm run watch:test",
     "dev": "npm run watch & npm run test",
