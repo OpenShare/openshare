@@ -38,9 +38,7 @@
     "share",
     "sharing"
   ],
-  "author": {
-    "name": "Digital Surgeons"
-  },
+  "author": "Digital Surgeons",
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.8.23",
@@ -60,5 +58,17 @@
     "uglify-js": "^2.7.0",
     "uglifyify": "^3.0.2",
     "watchify": "^3.7.0"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenShare/openshare/issues"
+  },
+  "homepage": "https://github.com/OpenShare/openshare#readme",
+  "dependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.3.0",
+    "rollupify": "^0.3.5"
   }
 }
