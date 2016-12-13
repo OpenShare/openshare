@@ -1,1 +1,1657 @@
-!function t(e,a,n){function r(i,u){if(!a[i]){if(!e[i]){var s="function"==typeof require&&require;if(!u&&s)return s(i,!0);if(o)return o(i,!0);var d=new Error("Cannot find module '"+i+"'");throw d.code="MODULE_NOT_FOUND",d}var c=a[i]={exports:{}};e[i][0].call(c.exports,function(t){var a=e[i][1][t];return r(a?a:t)},c,c.exports,t,e,a,n)}return a[i].exports}for(var o="function"==typeof require&&require,i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,a){"use strict";function n(t,e){window.ga?(e&&e(),o(function(e){var a=e.target.getAttribute("data-open-share"),n=e.target.getAttribute("data-open-share-link")||e.target.getAttribute("data-open-share-url")||e.target.getAttribute("data-open-share-username")||e.target.getAttribute("data-open-share-center")||e.target.getAttribute("data-open-share-search")||e.target.getAttribute("data-open-share-body");"event"===t&&ga("send","event",{eventCategory:"OpenShare Click",eventAction:a,eventLabel:n,transport:"beacon"}),"social"===t&&ga("send",{hitType:"social",socialNetwork:a,socialAction:"share",socialTarget:n})})):setTimeout(function(){n(t,e)},1e3)}function r(t){window.dataLayer&&window.dataLayer[0]["gtm.start"]?(t&&t(),o(u),i(function(t){var e=t.target?t.target.innerHTML:t.innerHTML,a=t.target?t.target.getAttribute("data-open-share-count-url"):t.getAttribute("data-open-share-count-url");window.dataLayer.push({event:"OpenShare Count",platform:a,resource:e,activity:"count"})})):setTimeout(function(){r(t)},1e3)}function o(t){[].forEach.call(document.querySelectorAll("[data-open-share]"),function(e){e.addEventListener("OpenShare.shared",t)})}function i(t){var e=document.querySelectorAll("[data-open-share-count]");[].forEach.call(e,function(e){e.textContent?t(e):e.addEventListener("OpenShare.counted-"+e.getAttribute("data-open-share-count-url"),t)})}function u(t){var e=t.target.getAttribute("data-open-share"),a=t.target.getAttribute("data-open-share-link")||t.target.getAttribute("data-open-share-url")||t.target.getAttribute("data-open-share-username")||t.target.getAttribute("data-open-share-center")||t.target.getAttribute("data-open-share-search")||t.target.getAttribute("data-open-share-body");window.dataLayer.push({event:"OpenShare Share",platform:e,resource:a,activity:"share"})}e.exports=function(t,e){var a="event"===t||"social"===t,o="tagManager"===t;a&&n(t,e),o&&r(e)}},{}],2:[function(t,e,a){"use strict";function n(t,e){if("number"!=typeof t)throw new TypeError("Expected value to be a number");var a=e>0?"e":"e-",n=e>0?"e-":"e";return e=Math.abs(e),Number(Math.round(t+a+e)+n+e)}function r(t){return n(t/1e3,1)+"K"}function o(t){return n(t/1e6,1)+"M"}function i(t,e,a){e>999999?(t.innerHTML=o(e),a&&"function"==typeof a&&a(t)):e>999?(t.innerHTML=r(e),a&&"function"==typeof a&&a(t)):(t.innerHTML=e,a&&"function"==typeof a&&a(t))}Object.defineProperty(a,"__esModule",{value:!0}),a.default=i},{}],3:[function(t,e,a){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.default=function(t,e){var a=e.substr(t+1,1),n=e.substr(t,2);return e=e.replace(n,a.toUpperCase())}},{}],4:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t){return function(){var e=(0,i.default)({api:t.api||null,container:t.container||document,selector:t.selector,cb:t.cb});e(),void 0!==window.MutationObserver&&(0,s.default)(document.querySelectorAll("[data-open-share-watch]"),e)}}Object.defineProperty(a,"__esModule",{value:!0}),a.default=r;var o=t("./initializeNodes"),i=n(o),u=t("./initializeWatcher"),s=n(u)},{"./initializeNodes":6,"./initializeWatcher":8}],5:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t){var e=t.getAttribute("data-open-share-count"),a=t.getAttribute("data-open-share-count-repo")||t.getAttribute("data-open-share-count-shot")||t.getAttribute("data-open-share-count-url"),n=new i.default(e,a);n.count(t),t.setAttribute("data-open-share-node",e)}Object.defineProperty(a,"__esModule",{value:!0}),a.default=r;var o=t("../src/modules/count"),i=n(o)},{"../src/modules/count":15}],6:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t){return function(){if(o(),t.api){var e=t.container.querySelectorAll(t.selector);[].forEach.call(e,t.cb),u.default.trigger(document,t.api+"-loaded")}else{var a=t.container.querySelectorAll(t.selector.share);[].forEach.call(a,t.cb.share),u.default.trigger(document,"share-loaded");var n=t.container.querySelectorAll(t.selector.count);[].forEach.call(n,t.cb.count),u.default.trigger(document,"count-loaded")}}}function o(){if(document.querySelector("[data-open-share-analytics]")){var t=document.querySelector("[data-open-share-analytics]").getAttribute("data-open-share-analytics");if(t.indexOf(",")>-1){var e=t.split(",");e.forEach(function(t){return(0,d.default)(t)})}else(0,d.default)(t)}}Object.defineProperty(a,"__esModule",{value:!0}),a.default=r;var i=t("../src/modules/events"),u=n(i),s=t("../analytics"),d=n(s)},{"../analytics":1,"../src/modules/events":17}],7:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t){var e=t.getAttribute("data-open-share"),a=e.indexOf("-");a>-1&&(e=(0,f.default)(a,e));var n=i.default[e];if(!n)throw new Error("Open Share: "+e+" is an invalid type");var r=new s.default(e,n);t.getAttribute("data-open-share-dynamic")&&(r.dynamic=!0),t.getAttribute("data-open-share-popup")&&(r.popup=!0),(0,c.default)(r,t),t.addEventListener("click",function(e){(0,p.default)(e,t,r)}),t.addEventListener("OpenShare.trigger",function(e){(0,p.default)(e,t,r)}),t.setAttribute("data-open-share-node",e)}Object.defineProperty(a,"__esModule",{value:!0}),a.default=r;var o=t("../src/modules/share-transforms"),i=n(o),u=t("../src/modules/open-share"),s=n(u),d=t("./setData"),c=n(d),l=t("./share"),p=n(l),h=t("./dashToCamel"),f=n(h)},{"../src/modules/open-share":18,"../src/modules/share-transforms":20,"./dashToCamel":3,"./setData":9,"./share":10}],8:[function(t,e,a){"use strict";function n(t,e){[].forEach.call(t,function(t){var a=new MutationObserver(function(t){e(t[0].target)});a.observe(t,{childList:!0})})}Object.defineProperty(a,"__esModule",{value:!0}),a.default=n},{}],9:[function(t,e,a){"use strict";function n(t,e){t.setData({url:e.getAttribute("data-open-share-url"),text:e.getAttribute("data-open-share-text"),via:e.getAttribute("data-open-share-via"),hashtags:e.getAttribute("data-open-share-hashtags"),tweetId:e.getAttribute("data-open-share-tweet-id"),related:e.getAttribute("data-open-share-related"),screenName:e.getAttribute("data-open-share-screen-name"),userId:e.getAttribute("data-open-share-user-id"),link:e.getAttribute("data-open-share-link"),picture:e.getAttribute("data-open-share-picture"),caption:e.getAttribute("data-open-share-caption"),description:e.getAttribute("data-open-share-description"),user:e.getAttribute("data-open-share-user"),video:e.getAttribute("data-open-share-video"),username:e.getAttribute("data-open-share-username"),title:e.getAttribute("data-open-share-title"),media:e.getAttribute("data-open-share-media"),to:e.getAttribute("data-open-share-to"),subject:e.getAttribute("data-open-share-subject"),body:e.getAttribute("data-open-share-body"),ios:e.getAttribute("data-open-share-ios"),type:e.getAttribute("data-open-share-type"),center:e.getAttribute("data-open-share-center"),views:e.getAttribute("data-open-share-views"),zoom:e.getAttribute("data-open-share-zoom"),search:e.getAttribute("data-open-share-search"),saddr:e.getAttribute("data-open-share-saddr"),daddr:e.getAttribute("data-open-share-daddr"),directionsmode:e.getAttribute("data-open-share-directions-mode"),repo:e.getAttribute("data-open-share-repo"),shot:e.getAttribute("data-open-share-shot"),pen:e.getAttribute("data-open-share-pen"),view:e.getAttribute("data-open-share-view"),issue:e.getAttribute("data-open-share-issue"),buttonId:e.getAttribute("data-open-share-buttonId"),popUp:e.getAttribute("data-open-share-popup"),key:e.getAttribute("data-open-share-key")})}Object.defineProperty(a,"__esModule",{value:!0}),a.default=n},{}],10:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t,e,a){a.dynamic&&(0,s.default)(a,e),a.share(t),i.default.trigger(e,"shared")}Object.defineProperty(a,"__esModule",{value:!0}),a.default=r;var o=t("../src/modules/events"),i=n(o),u=t("./setData"),s=n(u)},{"../src/modules/events":17,"./setData":9}],11:[function(t,e,a){"use strict";function n(t){return!isNaN(parseFloat(t))&&isFinite(t)}Object.defineProperty(a,"__esModule",{value:!0}),a.default=function(t,e){var a=t.type.indexOf(",")>-1,r=Number(t.storeGet(t.type+"-"+t.shared));if(r>e&&!a){var o=Number(t.storeGet(t.type+"-"+t.shared+"-latestCount"));t.storeSet(t.type+"-"+t.shared+"-latestCount",e),e=e+=n(o)&&o>0?r-o:r}return a||t.storeSet(t.type+"-"+t.shared,e),e}},{}],12:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(a,"__esModule",{value:!0});var r=t("./modules/data-attr"),o=n(r),i=t("./modules/share-api"),u=n(i),s=t("./modules/events"),d=n(s),c=t("./modules/open-share"),l=n(c),p=t("./modules/share-transforms"),h=n(p),f=t("./modules/count"),b=n(f),g=t("./modules/count-api"),m=n(g),v=t("../analytics"),w=n(v),y=function(){(0,o.default)(l.default,b.default,h.default,d.default),window.OpenShare={share:(0,u.default)(l.default,h.default,d.default),count:(0,m.default)(),analytics:w.default}};a.default=y()},{"../analytics":1,"./modules/count":15,"./modules/count-api":13,"./modules/data-attr":16,"./modules/events":17,"./modules/open-share":18,"./modules/share-api":19,"./modules/share-transforms":20}],13:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(a,"__esModule",{value:!0});var o=t("./count"),i=n(o);a.default=function(){var t=function t(e,a){var n=e.type,o=e.url,u=e.appendTo,s=void 0!==u&&u,d=e.element,c=e.classes,l=e.key,p=void 0===l?null:l;r(this,t);var h=document.createElement(d||"span");return h.setAttribute("data-open-share-count",n),h.setAttribute("data-open-share-count-url",o),p&&h.setAttribute("data-open-share-key",p),h.classList.add("open-share-count"),c&&Array.isArray(c)&&c.forEach(function(t){h.classList.add(t)}),s?new i.default(n,o).count(h,a,s):new i.default(n,o).count(h,a)};return t}},{"./count":15}],14:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t,e,a,n){var o=new XMLHttpRequest;o.open("GET",t+"?page="+e),o.addEventListener("load",function(){var o=JSON.parse(this.response);a+=o.length,12===o.length?(e++,r(t,e,a,n)):n(a)}),o.send()}Object.defineProperty(a,"__esModule",{value:!0});var o=t("../../lib/countReduce"),i=n(o),u=t("../../lib/storeCount"),s=n(u);a.default={facebook:function(t){return{type:"get",url:"https://graph.facebook.com/?id="+t,transform:function(t){var e=JSON.parse(t.responseText),a=e.share&&e.share.share_count||0;return(0,s.default)(this,a)}}},pinterest:function(t){return{type:"jsonp",url:"https://api.pinterest.com/v1/urls/count.json?callback=?&url="+t,transform:function(t){var e=t.count||0;return(0,s.default)(this,e)}}},linkedin:function(t){return{type:"jsonp",url:"https://www.linkedin.com/countserv/count/share?url="+t+"&format=jsonp&callback=?",transform:function(t){var e=t.count||0;return(0,s.default)(this,e)}}},reddit:function(t){return{type:"get",url:"https://www.reddit.com/api/info.json?url="+t,transform:function(t){var e=JSON.parse(t.responseText),a=e.data&&e.data.children||null,n=0;return a&&a.forEach(function(t){n+=Number(t.data.ups)}),(0,s.default)(this,n)}}},google:function(t){return{type:"post",data:{method:"pos.plusones.get",id:"p",params:{nolog:!0,id:t,source:"widget",userId:"@viewer",groupId:"@self"},jsonrpc:"2.0",key:"p",apiVersion:"v1"},url:"https://clients6.google.com/rpc",transform:function(t){var e=JSON.parse(t.responseText),a=e.result&&e.result.metadata&&e.result.metadata.globalCounts&&e.result.metadata.globalCounts.count||0;return(0,s.default)(this,a)}}},githubStars:function(t){return t=t.indexOf("github.com/")>-1?t.split("github.com/")[1]:t,{type:"get",url:"https://api.github.com/repos/"+t,transform:function(t){var e=JSON.parse(t.responseText).stargazers_count||0;return(0,s.default)(this,e)}}},githubForks:function(t){return t=t.indexOf("github.com/")>-1?t.split("github.com/")[1]:t,{type:"get",url:"https://api.github.com/repos/"+t,transform:function(t){var e=JSON.parse(t.responseText).forks_count||0;return(0,s.default)(this,e)}}},githubWatchers:function(t){return t=t.indexOf("github.com/")>-1?t.split("github.com/")[1]:t,{type:"get",url:"https://api.github.com/repos/"+t,transform:function(t){var e=JSON.parse(t.responseText).watchers_count||0;return(0,s.default)(this,e)}}},dribbble:function(t){t=t.indexOf("dribbble.com/shots")>-1?t.split("shots/")[1]:t;var e="https://api.dribbble.com/v1/shots/"+t+"/likes";return{type:"get",url:e,transform:function(t,a){var n=this,o=JSON.parse(t.responseText).length;if(12!==o)return(0,s.default)(this,o);var u=2;r(e,u,o,function(t){return n.appendTo&&"function"!=typeof n.appendTo&&n.appendTo.appendChild(n.os),(0,i.default)(n.os,t,n.cb),a.trigger(n.os,"counted-"+n.url),(0,s.default)(n,t)})}}},twitter:function(t){return{type:"get",url:"https://api.openshare.social/job?url="+t+"&key=",transform:function(t){var e=JSON.parse(t.responseText).count||0;return(0,s.default)(this,e)}}}}},{"../../lib/countReduce":2,"../../lib/storeCount":11}],15:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(a,"__esModule",{value:!0});var o=function(){function t(t,e){for(var a=0;a<e.length;a++){var n=e[a];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,a,n){return a&&t(e.prototype,a),n&&t(e,n),e}}(),i=t("./count-transforms"),u=n(i),s=t("./events"),d=n(s),c=t("../../lib/countReduce"),l=n(c),p=t("../../lib/storeCount"),h=(n(p),function(){function t(e,a){var n=this;if(r(this,t),!a)throw new Error("Open Share: no url provided for count");if(0===e.indexOf("github")&&("github-stars"===e?e="githubStars":"github-forks"===e?e="githubForks":"github-watchers"===e?e="githubWatchers":console.error("Invalid Github count type. Try github-stars, github-forks, or github-watchers.")),e.indexOf(",")>-1)this.type=e,this.typeArr=this.type.split(","),this.countData=[],this.typeArr.forEach(function(t){if(!u.default[t])throw new Error("Open Share: "+e+" is an invalid count type");n.countData.push(u.default[t](a))});else{if(!u.default[e])throw new Error("Open Share: "+e+" is an invalid count type");this.type=e,this.countData=u.default[e](a)}}return o(t,[{key:"count",value:function(t,e,a){this.os=t,this.appendTo=a,this.cb=e,this.url=this.os.getAttribute("data-open-share-count"),this.shared=this.os.getAttribute("data-open-share-count-url"),this.key=this.os.getAttribute("data-open-share-key"),Array.isArray(this.countData)?this.getCounts():this.getCount()}},{key:"getCount",value:function(){var t=this.storeGet(this.type+"-"+this.shared);t&&(this.appendTo&&"function"!=typeof this.appendTo&&this.appendTo.appendChild(this.os),(0,l.default)(this.os,t)),this[this.countData.type](this.countData)}},{key:"getCounts",value:function(){var t=this;this.total=[];var e=this.storeGet(this.type+"-"+this.shared);e&&(this.appendTo&&"function"!=typeof this.appendTo&&this.appendTo.appendChild(this.os),(0,l.default)(this.os,e)),this.countData.forEach(function(e){t[e.type](e,function(e){if(t.total.push(e),t.total.length===t.typeArr.length){var a=0;t.total.forEach(function(t){a+=t}),t.appendTo&&"function"!=typeof t.appendTo&&t.appendTo.appendChild(t.os);var n=Number(t.storeGet(t.type+"-"+t.shared));n>a&&(a=n),t.storeSet(t.type+"-"+t.shared,a),(0,l.default)(t.os,a)}})}),this.appendTo&&"function"!=typeof this.appendTo&&this.appendTo.appendChild(this.os)}},{key:"jsonp",value:function(t,e){var a=this,n=Math.random().toString(36).substring(7).replace(/[^a-zA-Z]/g,"");window[n]=function(n){var r=t.transform.apply(a,[n])||0;e&&"function"==typeof e?e(r):(a.appendTo&&"function"!=typeof a.appendTo&&a.appendTo.appendChild(a.os),(0,l.default)(a.os,r,a.cb)),d.default.trigger(a.os,"counted-"+a.url)};var r=document.createElement("script");r.src=t.url.replace("callback=?","callback="+n),document.getElementsByTagName("head")[0].appendChild(r)}},{key:"get",value:function(t,e){var a=this,n=new XMLHttpRequest;n.onreadystatechange=function(){if(4===n.readyState){if(200===n.status){var r=t.transform.apply(a,[n,d.default])||0;return e&&"function"==typeof e?e(r):(a.appendTo&&"function"!=typeof a.appendTo&&a.appendTo.appendChild(a.os),(0,l.default)(a.os,r,a.cb)),void d.default.trigger(a.os,"counted-"+a.url)}if(0===t.url.toLowerCase().indexOf("https://api.openshare.social/job?")){console.warn("Please sign up for Twitter counts at https://openshare.social/twitter/auth");var o=0;e&&"function"==typeof e?e(o):(a.appendTo&&"function"!=typeof a.appendTo&&a.appendTo.appendChild(a.os),(0,l.default)(a.os,o,a.cb)),d.default.trigger(a.os,"counted-"+a.url)}else{console.warn("Failed to get API data from",t.url,". Please use the latest version of OpenShare.");var i=0;e&&"function"==typeof e?e(i):(a.appendTo&&"function"!=typeof a.appendTo&&a.appendTo.appendChild(a.os),(0,l.default)(a.os,i,a.cb)),d.default.trigger(a.os,"counted-"+a.url)}}},t.url=t.url.startsWith("https://api.openshare.social/job?")&&this.key?t.url+this.key:t.url,n.open("GET",t.url),n.send()}},{key:"post",value:function(t,e){var a=this,n=new XMLHttpRequest;n.onreadystatechange=function(){if(n.readyState===XMLHttpRequest.DONE&&200===n.status){var r=t.transform.apply(a,[n])||0;e&&"function"==typeof e?e(r):(a.appendTo&&"function"!=typeof a.appendTo&&a.appendTo.appendChild(a.os),(0,l.default)(a.os,r,a.cb)),d.default.trigger(a.os,"counted-"+a.url)}},n.open("POST",t.url),n.setRequestHeader("Content-Type","application/json;charset=UTF-8"),n.send(JSON.stringify(t.data))}},{key:"storeSet",value:function(t){var e=arguments.length<=1||void 0===arguments[1]?0:arguments[1];window.localStorage&&t&&localStorage.setItem("OpenShare-"+t,e)}},{key:"storeGet",value:function(t){if(window.localStorage&&t)return localStorage.getItem("OpenShare-"+t)}}]),t}());a.default=h},{"../../lib/countReduce":2,"../../lib/storeCount":11,"./count-transforms":14,"./events":17}],16:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(){(0,i.default)({selector:{share:"[data-open-share]:not([data-open-share-node])",count:"[data-open-share-count]:not([data-open-share-node])"},cb:{share:s.default,count:c.default}})()}Object.defineProperty(a,"__esModule",{value:!0});var o=t("../../lib/init"),i=n(o),u=t("../../lib/initializeShareNode"),s=n(u),d=t("../../lib/initializeCountNode"),c=n(d);a.default=function(){return"complete"===document.readyState?r():void document.addEventListener("readystatechange",function(){"complete"===document.readyState&&r()},!1)}},{"../../lib/init":4,"../../lib/initializeCountNode":5,"../../lib/initializeShareNode":7}],17:[function(t,e,a){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.default={trigger:function(t,e){var a=document.createEvent("Event");a.initEvent("OpenShare."+e,!0,!0),t.dispatchEvent(a)}}},{}],18:[function(t,e,a){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(a,"__esModule",{value:!0});var r=function(){function t(t,e){for(var a=0;a<e.length;a++){var n=e[a];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,a,n){return a&&t(e.prototype,a),n&&t(e,n),e}}(),o=function(){function t(e,a){n(this,t),this.ios=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream,this.type=e,this.dynamic=!1,this.transform=a,this.typeCaps=e.charAt(0).toUpperCase()+e.slice(1)}return r(t,[{key:"setData",value:function(t){this.ios&&(this.transformData=this.transform(t,!0),this.mobileShareUrl=this.template(this.transformData.url,this.transformData.data)),this.transformData=this.transform(t),this.shareUrl=this.template(this.transformData.url,this.transformData.data)}},{key:"share",value:function(){var t=this;if(this.mobileShareUrl)!function(){var e=(new Date).valueOf();setTimeout(function(){var a=(new Date).valueOf();a-e>1600||(window.location=t.shareUrl)},1500),window.location=t.mobileShareUrl}();else if("email"===this.type)window.location=this.shareUrl;else{if(this.popup&&this.transformData.popup)return this.openWindow(this.shareUrl,this.transformData.popup);window.open(this.shareUrl)}}},{key:"template",value:function(t,e){var a=["appendTo","innerHTML","classes"],n=t,r=void 0;for(r in e)!e[r]||a.indexOf(r)>-1||(e[r]=encodeURIComponent(e[r]),n+=r+"="+e[r]+"&");return n.substr(0,n.length-1)}},{key:"openWindow",value:function(t,e){var a=void 0!==window.screenLeft?window.screenLeft:screen.left,n=void 0!==window.screenTop?window.screenTop:screen.top,r=window.innerWidth?window.innerWidth:document.documentElement.clientWidth?document.documentElement.clientWidth:screen.width,o=window.innerHeight?window.innerHeight:document.documentElement.clientHeight?document.documentElement.clientHeight:screen.height,i=r/2-e.width/2+a,u=o/2-e.height/2+n,s=window.open(t,"OpenShare","width="+e.width+", height="+e.height+", top="+u+", left="+i);window.focus&&s.focus()}}]),t}();a.default=o},{}],19:[function(t,e,a){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function r(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(a,"__esModule",{value:!0});var o=function(){function t(t,e){for(var a=0;a<e.length;a++){var n=e[a];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,a,n){return a&&t(e.prototype,a),n&&t(e,n),e}}(),i=t("./open-share"),u=n(i),s=t("./share-transforms"),d=n(s),c=t("./events"),l=n(c),p=t("../../lib/dashToCamel"),h=n(p);a.default=function(){var t=function(){function t(e,a){var n=this;r(this,t),e.bindClick||(e.bindClick=!0);var o=e.type.indexOf("-");o>-1&&(e.type=(0,h.default)(o,e.type));var i=void 0;if(this.element=a,this.data=e,this.os=new u.default(e.type,d.default[e.type]),this.os.setData(e),a&&!e.element||(a=e.element,i=document.createElement(a||"a"),e.type&&(i.classList.add("open-share-link",e.type),i.setAttribute("data-open-share",e.type),i.setAttribute("data-open-share-node",e.type)),e.innerHTML&&(i.innerHTML=e.innerHTML)),i&&(a=i),e.bindClick&&a.addEventListener("click",function(){n.share()}),e.appendTo&&e.appendTo.appendChild(a),e.classes&&Array.isArray(e.classes)&&e.classes.forEach(function(t){a.classList.add(t)}),"paypal"===e.type.toLowerCase()){var s=e.sandbox?"https://www.sandbox.paypal.com/cgi-bin/webscr":"https://www.paypal.com/cgi-bin/webscr",c=e.sandbox?"https://www.sandbox.paypal.com/en_US/i/btn/btn_buynow_LG.gif":"https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif",l=e.sandbox?"https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif":"https://www.paypalobjects.com/en_US/i/scr/pixel.gif",p="<form action="+s+' method="post" target="_blank">\n\n        <!-- Saved buttons use the "secure click" command -->\n        <input type="hidden" name="cmd" value="_s-xclick">\n\n        <!-- Saved buttons are identified by their button IDs -->\n        <input type="hidden" name="hosted_button_id" value="'+e.buttonId+'">\n\n        <!-- Saved buttons display an appropriate button image. -->\n        <input type="image" name="submit"\n        src='+c+'\n        alt="PayPal - The safer, easier way to pay online">\n        <img alt="" width="1" height="1"\n        src='+l+" >\n\n        </form>",f=document.createElement("div");f.style.display="none",f.innerHTML=p,document.body.appendChild(f),this.paypal=f.querySelector("form")}return this.element=a,a}return o(t,[{key:"share",value:function(t){this.data.dynamic&&this.os.setData(data),"paypal"===this.data.type.toLowerCase()?this.paypal.submit():this.os.share(t),l.default.trigger(this.element,"shared")}}]),t}();return t}},{"../../lib/dashToCamel":3,"./events":17,"./open-share":18,"./share-transforms":20}],20:[function(t,e,a){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.default={twitter:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];if(e&&t.ios){var a="";if(t.text&&(a+=t.text),t.url&&(a+=" - "+t.url),t.hashtags){var n=t.hashtags.split(",");n.forEach(function(t){a+=" #"+t})}return t.via&&(a+=" via "+t.via),{url:"twitter://post?",data:{message:a}}}return{url:"https://twitter.com/share?",data:t,popup:{width:700,height:296}}},twitterRetweet:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return e&&t.ios?{url:"twitter://status?",data:{id:t.tweetId}}:{url:"https://twitter.com/intent/retweet?",data:{tweet_id:t.tweetId,related:t.related},popup:{width:700,height:296}}},twitterLike:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return e&&t.ios?{url:"twitter://status?",data:{id:t.tweetId}}:{url:"https://twitter.com/intent/favorite?",data:{tweet_id:t.tweetId,related:t.related},popup:{width:700,height:296}}},twitterFollow:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];if(e&&t.ios){var a=t.screenName?{screen_name:t.screenName}:{id:t.userId};return{url:"twitter://user?",data:a}}return{url:"https://twitter.com/intent/user?",data:{screen_name:t.screenName,user_id:t.userId},popup:{width:700,height:296}}},facebook:function(t){return{url:"https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&",data:t,popup:{width:560,height:593}}},facebookSend:function(t){return{url:"https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&",data:t,popup:{width:980,height:596}}},youtube:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return e&&t.ios?{url:"youtube:"+t.video+"?"}:{url:"https://www.youtube.com/watch?v="+t.video+"?",popup:{width:1086,height:608}}},youtubeSubscribe:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return e&&t.ios?{url:"youtube://www.youtube.com/user/"+t.user+"?"}:{url:"https://www.youtube.com/user/"+t.user+"?",popup:{width:880,height:350}}},instagram:function(){return{url:"instagram://camera?"}},instagramFollow:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return e&&t.ios?{url:"instagram://user?",data:t}:{url:"http://www.instagram.com/"+t.username+"?",popup:{width:980,height:655}}},snapchat:function(t){return{url:"snapchat://add/"+t.username+"?"}},google:function(t){return{url:"https://plus.google.com/share?",data:t,popup:{width:495,height:815}}},googleMaps:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return t.search&&(t.q=t.search,delete t.search),e&&t.ios?{url:"comgooglemaps://?",data:e}:(!e&&t.ios&&delete t.ios,{url:"https://maps.google.com/?",data:t,popup:{width:800,height:600}})},pinterest:function(t){return{url:"https://pinterest.com/pin/create/bookmarklet/?",data:t,popup:{width:745,height:620}}},linkedin:function(t){return{url:"http://www.linkedin.com/shareArticle?",data:t,popup:{width:780,height:492}}},buffer:function(t){return{url:"http://bufferapp.com/add?",data:t,popup:{width:745,height:345}}},tumblr:function(t){return{url:"https://www.tumblr.com/widgets/share/tool?",data:t,popup:{width:540,height:940}}},reddit:function(t){return{url:"http://reddit.com/submit?",data:t,popup:{width:860,height:880}}},flickr:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return e&&t.ios?{url:"flickr://photos/"+t.username+"?"}:{url:"http://www.flickr.com/photos/"+t.username+"?",popup:{width:600,height:650}}},whatsapp:function(t){return{url:"whatsapp://send?",data:t}},sms:function(t){var e=!(arguments.length<=1||void 0===arguments[1])&&arguments[1];return{url:e?"sms:&":"sms:?",data:t}},email:function(t){var e="mailto:";return null!==t.to&&(e+=""+t.to),e+="?",{url:e,data:{subject:t.subject,body:t.body}}},github:function(t){var e=(!(arguments.length<=1||void 0===arguments[1])&&arguments[1],t.repo?"https://github.com/"+t.repo:t.url);return t.issue&&(e+="/issues/new?title="+t.issue+"&body="+t.body),{url:e+"?",popup:{width:1020,height:323}}},dribbble:function(t){var e=(!(arguments.length<=1||void 0===arguments[1])&&arguments[1],t.shot?"https://dribbble.com/shots/"+t.shot+"?":t.url+"?");return{url:e,popup:{width:440,height:640}}},codepen:function(t){var e=t.pen&&t.username&&t.view?"https://codepen.io/"+t.username+"/"+t.view+"/"+t.pen+"?":t.url+"?";return{url:e,popup:{width:1200,height:800}}},paypal:function(t){return{data:t}}}},{}]},{},[12]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+/**
+ * Trigger custom OpenShare namespaced event
+ */
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Events = {
+  trigger: function trigger(element, event) {
+    var ev = document.createEvent('Event');
+    ev.initEvent('OpenShare.' + event, true, true);
+    element.dispatchEvent(ev);
+  }
+};
+
+var analytics = function analytics(type, cb) {
+  // eslint-disable-line
+  var isGA = type === 'event' || type === 'social';
+  var isTagManager = type === 'tagManager';
+
+  if (isGA) checkIfAnalyticsLoaded(type, cb);
+  if (isTagManager) setTagManager(cb);
+};
+
+function checkIfAnalyticsLoaded(type, cb) {
+  if (window.ga) {
+    if (cb) cb();
+    // bind to shared event on each individual node
+    listen(function (e) {
+      var platform = e.target.getAttribute('data-open-share');
+      var target = e.target.getAttribute('data-open-share-link') || e.target.getAttribute('data-open-share-url') || e.target.getAttribute('data-open-share-username') || e.target.getAttribute('data-open-share-center') || e.target.getAttribute('data-open-share-search') || e.target.getAttribute('data-open-share-body');
+
+      if (type === 'event') {
+        ga('send', 'event', { // eslint-disable-line no-undef
+          eventCategory: 'OpenShare Click',
+          eventAction: platform,
+          eventLabel: target,
+          transport: 'beacon'
+        });
+      }
+
+      if (type === 'social') {
+        ga('send', { // eslint-disable-line no-undef
+          hitType: 'social',
+          socialNetwork: platform,
+          socialAction: 'share',
+          socialTarget: target
+        });
+      }
+    });
+  } else {
+    setTimeout(function () {
+      checkIfAnalyticsLoaded(type, cb);
+    }, 1000);
+  }
+}
+
+function setTagManager(cb) {
+  if (window.dataLayer && window.dataLayer[0]['gtm.start']) {
+    if (cb) cb();
+
+    listen(onShareTagManger);
+
+    getCounts(function (e) {
+      var count = e.target ? e.target.innerHTML : e.innerHTML;
+
+      var platform = e.target ? e.target.getAttribute('data-open-share-count-url') : e.getAttribute('data-open-share-count-url');
+
+      window.dataLayer.push({
+        event: 'OpenShare Count',
+        platform: platform,
+        resource: count,
+        activity: 'count'
+      });
+    });
+  } else {
+    setTimeout(function () {
+      setTagManager(cb);
+    }, 1000);
+  }
+}
+
+function listen(cb) {
+  // bind to shared event on each individual node
+  [].forEach.call(document.querySelectorAll('[data-open-share]'), function (node) {
+    node.addEventListener('OpenShare.shared', cb);
+  });
+}
+
+function getCounts(cb) {
+  var countNode = document.querySelectorAll('[data-open-share-count]');
+
+  [].forEach.call(countNode, function (node) {
+    if (node.textContent) cb(node);else node.addEventListener('OpenShare.counted-' + node.getAttribute('data-open-share-count-url'), cb);
+  });
+}
+
+function onShareTagManger(e) {
+  var platform = e.target.getAttribute('data-open-share');
+  var target = e.target.getAttribute('data-open-share-link') || e.target.getAttribute('data-open-share-url') || e.target.getAttribute('data-open-share-username') || e.target.getAttribute('data-open-share-center') || e.target.getAttribute('data-open-share-search') || e.target.getAttribute('data-open-share-body');
+
+  window.dataLayer.push({
+    event: 'OpenShare Share',
+    platform: platform,
+    resource: target,
+    activity: 'share'
+  });
+}
+
+function initializeNodes(opts) {
+  // loop through open share node collection
+  return function () {
+    // check for analytics
+    checkAnalytics();
+
+    if (opts.api) {
+      var nodes = opts.container.querySelectorAll(opts.selector);
+      [].forEach.call(nodes, opts.cb);
+
+      // trigger completed event
+      Events.trigger(document, opts.api + '-loaded');
+    } else {
+      // loop through open share node collection
+      var shareNodes = opts.container.querySelectorAll(opts.selector.share);
+      [].forEach.call(shareNodes, opts.cb.share);
+
+      // trigger completed event
+      Events.trigger(document, 'share-loaded');
+
+      // loop through count node collection
+      var countNodes = opts.container.querySelectorAll(opts.selector.count);
+      [].forEach.call(countNodes, opts.cb.count);
+
+      // trigger completed event
+      Events.trigger(document, 'count-loaded');
+    }
+  };
+}
+
+function checkAnalytics() {
+  // check for analytics
+  if (document.querySelector('[data-open-share-analytics]')) {
+    var provider = document.querySelector('[data-open-share-analytics]').getAttribute('data-open-share-analytics');
+
+    if (provider.indexOf(',') > -1) {
+      var providers = provider.split(',');
+      providers.forEach(function (p) {
+        return analytics(p);
+      });
+    } else analytics(provider);
+  }
+}
+
+function initializeWatcher(watcher, fn) {
+  [].forEach.call(watcher, function (w) {
+    var observer = new MutationObserver(function (mutations) {
+      // target will match between all mutations so just use first
+      fn(mutations[0].target);
+    });
+
+    observer.observe(w, {
+      childList: true
+    });
+  });
+}
+
+function init$1(opts) {
+  return function () {
+    var initNodes = initializeNodes({
+      api: opts.api || null,
+      container: opts.container || document,
+      selector: opts.selector,
+      cb: opts.cb
+    });
+
+    initNodes();
+
+    // check for mutation observers before using, IE11 only
+    if (window.MutationObserver !== undefined) {
+      initializeWatcher(document.querySelectorAll('[data-open-share-watch]'), initNodes);
+    }
+  };
+}
+
+/**
+ * Object of transform functions for each openshare api
+ * Transform functions passed into OpenShare instance when instantiated
+ * Return object containing URL and key/value args
+ */
+var ShareTransforms = {
+
+  // set Twitter share URL
+  twitter: function twitter(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user and ios data attribute defined
+    // build iOS URL scheme as single string
+    if (ios && data.ios) {
+      var message = '';
+
+      if (data.text) {
+        message += data.text;
+      }
+
+      if (data.url) {
+        message += ' - ' + data.url;
+      }
+
+      if (data.hashtags) {
+        var tags = data.hashtags.split(',');
+        tags.forEach(function (tag) {
+          message += ' #' + tag;
+        });
+      }
+
+      if (data.via) {
+        message += ' via ' + data.via;
+      }
+
+      return {
+        url: 'twitter://post?',
+        data: {
+          message: message
+        }
+      };
+    }
+
+    return {
+      url: 'https://twitter.com/share?',
+      data: data,
+      popup: {
+        width: 700,
+        height: 296
+      }
+    };
+  },
+
+
+  // set Twitter retweet URL
+  twitterRetweet: function twitterRetweet(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user and ios data attribute defined
+    if (ios && data.ios) {
+      return {
+        url: 'twitter://status?',
+        data: {
+          id: data.tweetId
+        }
+      };
+    }
+
+    return {
+      url: 'https://twitter.com/intent/retweet?',
+      data: {
+        tweet_id: data.tweetId,
+        related: data.related
+      },
+      popup: {
+        width: 700,
+        height: 296
+      }
+    };
+  },
+
+
+  // set Twitter like URL
+  twitterLike: function twitterLike(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user and ios data attribute defined
+    if (ios && data.ios) {
+      return {
+        url: 'twitter://status?',
+        data: {
+          id: data.tweetId
+        }
+      };
+    }
+
+    return {
+      url: 'https://twitter.com/intent/favorite?',
+      data: {
+        tweet_id: data.tweetId,
+        related: data.related
+      },
+      popup: {
+        width: 700,
+        height: 296
+      }
+    };
+  },
+
+
+  // set Twitter follow URL
+  twitterFollow: function twitterFollow(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user and ios data attribute defined
+    if (ios && data.ios) {
+      var iosData = data.screenName ? {
+        screen_name: data.screenName
+      } : {
+        id: data.userId
+      };
+
+      return {
+        url: 'twitter://user?',
+        data: iosData
+      };
+    }
+
+    return {
+      url: 'https://twitter.com/intent/user?',
+      data: {
+        screen_name: data.screenName,
+        user_id: data.userId
+      },
+      popup: {
+        width: 700,
+        height: 296
+      }
+    };
+  },
+
+
+  // set Facebook share URL
+  facebook: function facebook(data) {
+    return {
+      url: 'https://www.facebook.com/dialog/feed?app_id=961342543922322&redirect_uri=http://facebook.com&',
+      data: data,
+      popup: {
+        width: 560,
+        height: 593
+      }
+    };
+  },
+
+
+  // set Facebook send URL
+  facebookSend: function facebookSend(data) {
+    return {
+      url: 'https://www.facebook.com/dialog/send?app_id=961342543922322&redirect_uri=http://facebook.com&',
+      data: data,
+      popup: {
+        width: 980,
+        height: 596
+      }
+    };
+  },
+
+
+  // set YouTube play URL
+  youtube: function youtube(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user
+    if (ios && data.ios) {
+      return {
+        url: 'youtube:' + data.video + '?'
+      };
+    }
+
+    return {
+      url: 'https://www.youtube.com/watch?v=' + data.video + '?',
+      popup: {
+        width: 1086,
+        height: 608
+      }
+    };
+  },
+
+
+  // set YouTube subcribe URL
+  youtubeSubscribe: function youtubeSubscribe(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user
+    if (ios && data.ios) {
+      return {
+        url: 'youtube://www.youtube.com/user/' + data.user + '?'
+      };
+    }
+
+    return {
+      url: 'https://www.youtube.com/user/' + data.user + '?',
+      popup: {
+        width: 880,
+        height: 350
+      }
+    };
+  },
+
+
+  // set Instagram follow URL
+  instagram: function instagram() {
+    return {
+      url: 'instagram://camera?'
+    };
+  },
+
+
+  // set Instagram follow URL
+  instagramFollow: function instagramFollow(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user
+    if (ios && data.ios) {
+      return {
+        url: 'instagram://user?',
+        data: data
+      };
+    }
+
+    return {
+      url: 'http://www.instagram.com/' + data.username + '?',
+      popup: {
+        width: 980,
+        height: 655
+      }
+    };
+  },
+
+
+  // set Snapchat follow URL
+  snapchat: function snapchat(data) {
+    return {
+      url: 'snapchat://add/' + data.username + '?'
+    };
+  },
+
+
+  // set Google share URL
+  google: function google(data) {
+    return {
+      url: 'https://plus.google.com/share?',
+      data: data,
+      popup: {
+        width: 495,
+        height: 815
+      }
+    };
+  },
+
+
+  // set Google maps URL
+  googleMaps: function googleMaps(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    if (data.search) {
+      data.q = data.search;
+      delete data.search;
+    }
+
+    // if iOS user and ios data attribute defined
+    if (ios && data.ios) {
+      return {
+        url: 'comgooglemaps://?',
+        data: ios
+      };
+    }
+
+    if (!ios && data.ios) {
+      delete data.ios;
+    }
+
+    return {
+      url: 'https://maps.google.com/?',
+      data: data,
+      popup: {
+        width: 800,
+        height: 600
+      }
+    };
+  },
+
+
+  // set Pinterest share URL
+  pinterest: function pinterest(data) {
+    return {
+      url: 'https://pinterest.com/pin/create/bookmarklet/?',
+      data: data,
+      popup: {
+        width: 745,
+        height: 620
+      }
+    };
+  },
+
+
+  // set LinkedIn share URL
+  linkedin: function linkedin(data) {
+    return {
+      url: 'http://www.linkedin.com/shareArticle?',
+      data: data,
+      popup: {
+        width: 780,
+        height: 492
+      }
+    };
+  },
+
+
+  // set Buffer share URL
+  buffer: function buffer(data) {
+    return {
+      url: 'http://bufferapp.com/add?',
+      data: data,
+      popup: {
+        width: 745,
+        height: 345
+      }
+    };
+  },
+
+
+  // set Tumblr share URL
+  tumblr: function tumblr(data) {
+    return {
+      url: 'https://www.tumblr.com/widgets/share/tool?',
+      data: data,
+      popup: {
+        width: 540,
+        height: 940
+      }
+    };
+  },
+
+
+  // set Reddit share URL
+  reddit: function reddit(data) {
+    return {
+      url: 'http://reddit.com/submit?',
+      data: data,
+      popup: {
+        width: 860,
+        height: 880
+      }
+    };
+  },
+
+
+  // set Flickr follow URL
+  flickr: function flickr(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    // if iOS user
+    if (ios && data.ios) {
+      return {
+        url: 'flickr://photos/' + data.username + '?'
+      };
+    }
+    return {
+      url: 'http://www.flickr.com/photos/' + data.username + '?',
+      popup: {
+        width: 600,
+        height: 650
+      }
+    };
+  },
+
+
+  // set WhatsApp share URL
+  whatsapp: function whatsapp(data) {
+    return {
+      url: 'whatsapp://send?',
+      data: data
+    };
+  },
+
+
+  // set sms share URL
+  sms: function sms(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+    return {
+      url: ios ? 'sms:&' : 'sms:?',
+      data: data
+    };
+  },
+
+
+  // set Email share URL
+  email: function email(data) {
+    var url = 'mailto:';
+
+    // if to address specified then add to URL
+    if (data.to !== null) {
+      url += '' + data.to;
+    }
+
+    url += '?';
+
+    return {
+      url: url,
+      data: {
+        subject: data.subject,
+        body: data.body
+      }
+    };
+  },
+
+
+  // set Github fork URL
+  github: function github(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+    // eslint-disable-line no-unused-vars
+    var url = data.repo ? 'https://github.com/' + data.repo : data.url;
+
+    if (data.issue) {
+      url += '/issues/new?title=' + data.issue + '&body=' + data.body;
+    }
+
+    return {
+      url: url + '?',
+      popup: {
+        width: 1020,
+        height: 323
+      }
+    };
+  },
+
+
+  // set Dribbble share URL
+  dribbble: function dribbble(data) {
+    var ios = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+    // eslint-disable-line no-unused-vars
+    var url = data.shot ? 'https://dribbble.com/shots/' + data.shot + '?' : data.url + '?';
+    return {
+      url: url,
+      popup: {
+        width: 440,
+        height: 640
+      }
+    };
+  },
+  codepen: function codepen(data) {
+    var url = data.pen && data.username && data.view ? 'https://codepen.io/' + data.username + '/' + data.view + '/' + data.pen + '?' : data.url + '?';
+    return {
+      url: url,
+      popup: {
+        width: 1200,
+        height: 800
+      }
+    };
+  },
+  paypal: function paypal(data) {
+    return {
+      data: data
+    };
+  }
+};
+
+/**
+ * OpenShare generates a single share link
+ */
+
+var OpenShare = function () {
+  function OpenShare(type, transform) {
+    _classCallCheck(this, OpenShare);
+
+    this.ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    this.type = type;
+    this.dynamic = false;
+    this.transform = transform;
+
+    // capitalized type
+    this.typeCaps = type.charAt(0).toUpperCase() + type.slice(1);
+  }
+
+  // returns function named as type set in constructor
+  // e.g twitter()
+
+
+  _createClass(OpenShare, [{
+    key: 'setData',
+    value: function setData(data) {
+      // if iOS user and ios data attribute defined
+      // build iOS URL scheme as single string
+      if (this.ios) {
+        this.transformData = this.transform(data, true);
+        this.mobileShareUrl = this.template(this.transformData.url, this.transformData.data);
+      }
+
+      this.transformData = this.transform(data);
+      this.shareUrl = this.template(this.transformData.url, this.transformData.data);
+    }
+
+    // open share URL defined in individual platform functions
+
+  }, {
+    key: 'share',
+    value: function share() {
+      var _this = this;
+
+      // if iOS share URL has been set then use timeout hack
+      // test for native app and fall back to web
+      if (this.mobileShareUrl) {
+        (function () {
+          var start = new Date().valueOf();
+
+          setTimeout(function () {
+            var end = new Date().valueOf();
+
+            // if the user is still here, fall back to web
+            if (end - start > 1600) {
+              return;
+            }
+
+            window.location = _this.shareUrl;
+          }, 1500);
+
+          window.location = _this.mobileShareUrl;
+
+          // open mailto links in same window
+        })();
+      } else if (this.type === 'email') {
+        window.location = this.shareUrl;
+
+        // open social share URLs in new window
+      } else {
+        // if popup object present then set window dimensions / position
+        if (this.popup && this.transformData.popup) {
+          return this.openWindow(this.shareUrl, this.transformData.popup);
+        }
+
+        window.open(this.shareUrl);
+      }
+    }
+
+    // create share URL with GET params
+    // appending valid properties to query string
+
+  }, {
+    key: 'template',
+    value: function template(url, data) {
+      //eslint-disable-line
+      var nonURLProps = ['appendTo', 'innerHTML', 'classes'];
+
+      var shareUrl = url,
+          i = void 0;
+
+      for (i in data) {
+        // only append valid properties
+        if (!data[i] || nonURLProps.indexOf(i) > -1) {
+          continue; //eslint-disable-line
+        }
+
+        // append URL encoded GET param to share URL
+        data[i] = encodeURIComponent(data[i]);
+        shareUrl += i + '=' + data[i] + '&';
+      }
+
+      return shareUrl.substr(0, shareUrl.length - 1);
+    }
+
+    // center popup window supporting dual screens
+
+  }, {
+    key: 'openWindow',
+    value: function openWindow(url, options) {
+      //eslint-disable-line
+      var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left,
+          dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top,
+          width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width,
+          //eslint-disable-line
+      height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height,
+          //eslint-disable-line
+      left = width / 2 - options.width / 2 + dualScreenLeft,
+          top = height / 2 - options.height / 2 + dualScreenTop,
+          newWindow = window.open(url, 'OpenShare', 'width=' + options.width + ', height=' + options.height + ', top=' + top + ', left=' + left);
+
+      // Puts focus on the newWindow
+      if (window.focus) {
+        newWindow.focus();
+      }
+    }
+  }]);
+
+  return OpenShare;
+}();
+
+function setData(osInstance, osElement) {
+  osInstance.setData({
+    url: osElement.getAttribute('data-open-share-url'),
+    text: osElement.getAttribute('data-open-share-text'),
+    via: osElement.getAttribute('data-open-share-via'),
+    hashtags: osElement.getAttribute('data-open-share-hashtags'),
+    tweetId: osElement.getAttribute('data-open-share-tweet-id'),
+    related: osElement.getAttribute('data-open-share-related'),
+    screenName: osElement.getAttribute('data-open-share-screen-name'),
+    userId: osElement.getAttribute('data-open-share-user-id'),
+    link: osElement.getAttribute('data-open-share-link'),
+    picture: osElement.getAttribute('data-open-share-picture'),
+    caption: osElement.getAttribute('data-open-share-caption'),
+    description: osElement.getAttribute('data-open-share-description'),
+    user: osElement.getAttribute('data-open-share-user'),
+    video: osElement.getAttribute('data-open-share-video'),
+    username: osElement.getAttribute('data-open-share-username'),
+    title: osElement.getAttribute('data-open-share-title'),
+    media: osElement.getAttribute('data-open-share-media'),
+    to: osElement.getAttribute('data-open-share-to'),
+    subject: osElement.getAttribute('data-open-share-subject'),
+    body: osElement.getAttribute('data-open-share-body'),
+    ios: osElement.getAttribute('data-open-share-ios'),
+    type: osElement.getAttribute('data-open-share-type'),
+    center: osElement.getAttribute('data-open-share-center'),
+    views: osElement.getAttribute('data-open-share-views'),
+    zoom: osElement.getAttribute('data-open-share-zoom'),
+    search: osElement.getAttribute('data-open-share-search'),
+    saddr: osElement.getAttribute('data-open-share-saddr'),
+    daddr: osElement.getAttribute('data-open-share-daddr'),
+    directionsmode: osElement.getAttribute('data-open-share-directions-mode'),
+    repo: osElement.getAttribute('data-open-share-repo'),
+    shot: osElement.getAttribute('data-open-share-shot'),
+    pen: osElement.getAttribute('data-open-share-pen'),
+    view: osElement.getAttribute('data-open-share-view'),
+    issue: osElement.getAttribute('data-open-share-issue'),
+    buttonId: osElement.getAttribute('data-open-share-buttonId'),
+    popUp: osElement.getAttribute('data-open-share-popup'),
+    key: osElement.getAttribute('data-open-share-key')
+  });
+}
+
+function share(e, os, openShare) {
+  // if dynamic instance then fetch attributes again in case of updates
+  if (openShare.dynamic) {
+    setData(openShare, os);
+  }
+
+  openShare.share(e);
+
+  // trigger shared event
+  Events.trigger(os, 'shared');
+}
+
+// type contains a dash
+// transform to camelcase for function reference
+// TODO: only supports single dash, should should support multiple
+var dashToCamel = function dashToCamel(dash, type) {
+  var nextChar = type.substr(dash + 1, 1);
+  var group = type.substr(dash, 2);
+
+  type = type.replace(group, nextChar.toUpperCase());
+  return type;
+};
+
+function initializeShareNode(os) {
+  // initialize open share object with type attribute
+  var type = os.getAttribute('data-open-share');
+  var dash = type.indexOf('-');
+
+  if (dash > -1) {
+    type = dashToCamel(dash, type);
+  }
+
+  var transform = ShareTransforms[type];
+
+  if (!transform) {
+    throw new Error('Open Share: ' + type + ' is an invalid type');
+  }
+
+  var openShare = new OpenShare(type, transform);
+
+  // specify if this is a dynamic instance
+  if (os.getAttribute('data-open-share-dynamic')) {
+    openShare.dynamic = true;
+  }
+
+  // specify if this is a popup instance
+  if (os.getAttribute('data-open-share-popup')) {
+    openShare.popup = true;
+  }
+
+  // set all optional attributes on open share instance
+  setData(openShare, os);
+
+  // open share dialog on click
+  os.addEventListener('click', function (e) {
+    share(e, os, openShare);
+  });
+
+  os.addEventListener('OpenShare.trigger', function (e) {
+    share(e, os, openShare);
+  });
+
+  os.setAttribute('data-open-share-node', type);
+}
+
+function round(x, precision) {
+  if (typeof x !== 'number') {
+    throw new TypeError('Expected value to be a number');
+  }
+
+  var exponent = precision > 0 ? 'e' : 'e-';
+  var exponentNeg = precision > 0 ? 'e-' : 'e';
+  precision = Math.abs(precision);
+
+  return Number(Math.round(x + exponent + precision) + exponentNeg + precision);
+}
+
+function thousandify(num) {
+  return round(num / 1000, 1) + 'K';
+}
+
+function millionify(num) {
+  return round(num / 1000000, 1) + 'M';
+}
+
+function countReduce(el, count, cb) {
+  if (count > 999999) {
+    el.innerHTML = millionify(count);
+    if (cb && typeof cb === 'function') cb(el);
+  } else if (count > 999) {
+    el.innerHTML = thousandify(count);
+    if (cb && typeof cb === 'function') cb(el);
+  } else {
+    el.innerHTML = count;
+    if (cb && typeof cb === 'function') cb(el);
+  }
+}
+
+/*
+   Sometimes social platforms get confused and drop share counts.
+   In this module we check if the returned count is less than the count in
+   localstorage.
+   If the local count is greater than the returned count,
+   we store the local count + the returned count.
+   Otherwise, store the returned count.
+*/
+
+var storeCount = function storeCount(t, count) {
+  var isArr = t.type.indexOf(',') > -1;
+  var local = Number(t.storeGet(t.type + '-' + t.shared));
+
+  if (local > count && !isArr) {
+    var latestCount = Number(t.storeGet(t.type + '-' + t.shared + '-latestCount'));
+    t.storeSet(t.type + '-' + t.shared + '-latestCount', count);
+
+    count = isNumeric$1(latestCount) && latestCount > 0 ? count += local - latestCount : count += local;
+  }
+
+  if (!isArr) t.storeSet(t.type + '-' + t.shared, count);
+  return count;
+};
+
+function isNumeric$1(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/**
+ * Object of transform functions for each openshare api
+ * Transform functions passed into OpenShare instance when instantiated
+ * Return object containing URL and key/value args
+ */
+var CountTransforms = {
+
+  // facebook count data
+  facebook: function facebook(url) {
+    return {
+      type: 'get',
+      url: 'https://graph.facebook.com/?id=' + url,
+      transform: function transform(xhr) {
+        var fb = JSON.parse(xhr.responseText);
+
+        var count = fb.share && fb.share.share_count || 0;
+
+        return storeCount(this, count);
+      }
+    };
+  },
+
+
+  // pinterest count data
+  pinterest: function pinterest(url) {
+    return {
+      type: 'jsonp',
+      url: 'https://api.pinterest.com/v1/urls/count.json?callback=?&url=' + url,
+      transform: function transform(data) {
+        var count = data.count || 0;
+        return storeCount(this, count);
+      }
+    };
+  },
+
+
+  // linkedin count data
+  linkedin: function linkedin(url) {
+    return {
+      type: 'jsonp',
+      url: 'https://www.linkedin.com/countserv/count/share?url=' + url + '&format=jsonp&callback=?',
+      transform: function transform(data) {
+        var count = data.count || 0;
+        return storeCount(this, count);
+      }
+    };
+  },
+
+
+  // reddit count data
+  reddit: function reddit(url) {
+    return {
+      type: 'get',
+      url: 'https://www.reddit.com/api/info.json?url=' + url,
+      transform: function transform(xhr) {
+        var reddit = JSON.parse(xhr.responseText);
+        var posts = reddit.data && reddit.data.children || null;
+        var ups = 0;
+
+        if (posts) {
+          posts.forEach(function (post) {
+            ups += Number(post.data.ups);
+          });
+        }
+
+        return storeCount(this, ups);
+      }
+    };
+  },
+
+
+  // google count data
+  google: function google(url) {
+    return {
+      type: 'post',
+      data: {
+        method: 'pos.plusones.get',
+        id: 'p',
+        params: {
+          nolog: true,
+          id: url,
+          source: 'widget',
+          userId: '@viewer',
+          groupId: '@self'
+        },
+        jsonrpc: '2.0',
+        key: 'p',
+        apiVersion: 'v1'
+      },
+      url: 'https://clients6.google.com/rpc',
+      transform: function transform(xhr) {
+        var google = JSON.parse(xhr.responseText);
+        var count = google.result && google.result.metadata && google.result.metadata.globalCounts && google.result.metadata.globalCounts.count || 0;
+        return storeCount(this, count);
+      }
+    };
+  },
+
+
+  // github star count
+  githubStars: function githubStars(repo) {
+    repo = repo.indexOf('github.com/') > -1 ? repo.split('github.com/')[1] : repo;
+    return {
+      type: 'get',
+      url: 'https://api.github.com/repos/' + repo,
+      transform: function transform(xhr) {
+        var count = JSON.parse(xhr.responseText).stargazers_count || 0;
+        return storeCount(this, count);
+      }
+    };
+  },
+
+
+  // github forks count
+  githubForks: function githubForks(repo) {
+    repo = repo.indexOf('github.com/') > -1 ? repo.split('github.com/')[1] : repo;
+    return {
+      type: 'get',
+      url: 'https://api.github.com/repos/' + repo,
+      transform: function transform(xhr) {
+        var count = JSON.parse(xhr.responseText).forks_count || 0;
+        return storeCount(this, count);
+      }
+    };
+  },
+
+
+  // github watchers count
+  githubWatchers: function githubWatchers(repo) {
+    repo = repo.indexOf('github.com/') > -1 ? repo.split('github.com/')[1] : repo;
+    return {
+      type: 'get',
+      url: 'https://api.github.com/repos/' + repo,
+      transform: function transform(xhr) {
+        var count = JSON.parse(xhr.responseText).watchers_count || 0;
+        return storeCount(this, count);
+      }
+    };
+  },
+
+
+  // dribbble likes count
+  dribbble: function dribbble(shot) {
+    shot = shot.indexOf('dribbble.com/shots') > -1 ? shot.split('shots/')[1] : shot;
+    var url = 'https://api.dribbble.com/v1/shots/' + shot + '/likes';
+    return {
+      type: 'get',
+      url: url,
+      transform: function transform(xhr, Events) {
+        var _this2 = this;
+
+        var count = JSON.parse(xhr.responseText).length;
+
+        // at this time dribbble limits a response of 12 likes per page
+        if (count === 12) {
+          var page = 2;
+          recursiveCount(url, page, count, function (finalCount) {
+            if (_this2.appendTo && typeof _this2.appendTo !== 'function') {
+              _this2.appendTo.appendChild(_this2.os);
+            }
+            countReduce(_this2.os, finalCount, _this2.cb);
+            Events.trigger(_this2.os, 'counted-' + _this2.url);
+            return storeCount(_this2, finalCount);
+          });
+        } else {
+          return storeCount(this, count);
+        }
+      }
+    };
+  },
+  twitter: function twitter(url) {
+    return {
+      type: 'get',
+      url: 'https://api.openshare.social/job?url=' + url + '&key=',
+      transform: function transform(xhr) {
+        var count = JSON.parse(xhr.responseText).count || 0;
+        return storeCount(this, count);
+      }
+    };
+  }
+};
+
+function recursiveCount(url, page, count, cb) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url + '?page=' + page);
+  xhr.addEventListener('load', function () {
+    //eslint-disable-line
+    var likes = JSON.parse(this.response);
+    count += likes.length;
+
+    // dribbble like per page is 12
+    if (likes.length === 12) {
+      page++;
+      recursiveCount(url, page, count, cb);
+    } else {
+      cb(count);
+    }
+  });
+  xhr.send();
+}
+
+/**
+ * Generate share count instance from one to many networks
+ */
+
+var Count = function () {
+  function Count(type, url) {
+    var _this3 = this;
+
+    _classCallCheck(this, Count);
+
+    // throw error if no url provided
+    if (!url) {
+      throw new Error('Open Share: no url provided for count');
+    }
+
+    // check for Github counts
+    if (type.indexOf('github') === 0) {
+      if (type === 'github-stars') {
+        type = 'githubStars';
+      } else if (type === 'github-forks') {
+        type = 'githubForks';
+      } else if (type === 'github-watchers') {
+        type = 'githubWatchers';
+      } else {
+        console.error('Invalid Github count type. Try github-stars, github-forks, or github-watchers.');
+      }
+    }
+
+    // if type is comma separate list create array
+    if (type.indexOf(',') > -1) {
+      this.type = type;
+      this.typeArr = this.type.split(',');
+      this.countData = [];
+
+      // check each type supplied is valid
+      this.typeArr.forEach(function (t) {
+        if (!CountTransforms[t]) {
+          throw new Error('Open Share: ' + type + ' is an invalid count type');
+        }
+
+        _this3.countData.push(CountTransforms[t](url));
+      });
+
+      var count = this.storeGet(this.type + '-' + this.shared);
+
+      if (count) {
+        if (this.appendTo && typeof this.appendTo !== 'function') {
+          this.appendTo.appendChild(this.os);
+        }
+        countReduce(this.os, count);
+      }
+
+      // throw error if invalid type provided
+    } else if (!CountTransforms[type]) {
+      throw new Error('Open Share: ' + type + ' is an invalid count type');
+
+      // single count
+      // store count URL and transform function
+    } else {
+      this.type = type;
+      this.countData = CountTransforms[type](url);
+    }
+  }
+
+  // handle calling getCount / getCounts
+  // depending on number of types
+
+
+  _createClass(Count, [{
+    key: 'count',
+    value: function count(os, cb, appendTo) {
+      this.os = os;
+      this.appendTo = appendTo;
+      this.cb = cb;
+      this.url = this.os.getAttribute('data-open-share-count');
+      this.shared = this.os.getAttribute('data-open-share-count-url');
+      this.key = this.os.getAttribute('data-open-share-key');
+
+      if (!Array.isArray(this.countData)) {
+        this.getCount();
+      } else {
+        this.getCounts();
+      }
+    }
+
+    // fetch count either AJAX or JSONP
+
+  }, {
+    key: 'getCount',
+    value: function getCount() {
+      var count = this.storeGet(this.type + '-' + this.shared);
+
+      if (count) {
+        if (this.appendTo && typeof this.appendTo !== 'function') {
+          this.appendTo.appendChild(this.os);
+        }
+        countReduce(this.os, count);
+      }
+      this[this.countData.type](this.countData);
+    }
+
+    // fetch multiple counts and aggregate
+
+  }, {
+    key: 'getCounts',
+    value: function getCounts() {
+      var _this4 = this;
+
+      this.total = [];
+
+      var count = this.storeGet(this.type + '-' + this.shared);
+
+      if (count) {
+        if (this.appendTo && typeof this.appendTo !== 'function') {
+          this.appendTo.appendChild(this.os);
+        }
+        countReduce(this.os, count);
+      }
+
+      this.countData.forEach(function (countData) {
+        _this4[countData.type](countData, function (num) {
+          _this4.total.push(num);
+
+          // total counts length now equals type array length
+          // so aggregate, store and insert into DOM
+          if (_this4.total.length === _this4.typeArr.length) {
+            var tot = 0;
+
+            _this4.total.forEach(function (t) {
+              tot += t;
+            });
+
+            if (_this4.appendTo && typeof _this4.appendTo !== 'function') {
+              _this4.appendTo.appendChild(_this4.os);
+            }
+
+            var local = Number(_this4.storeGet(_this4.type + '-' + _this4.shared));
+            if (local > tot) {
+              // const latestCount = Number(this.storeGet(`${this.type}-${this.shared}-latestCount`));
+              // this.storeSet(`${this.type}-${this.shared}-latestCount`, tot);
+              //
+              // tot = isNumeric(latestCount) && latestCount > 0 ?
+              // tot += local - latestCount :
+              // tot += local;
+              tot = local;
+            }
+            _this4.storeSet(_this4.type + '-' + _this4.shared, tot);
+
+            countReduce(_this4.os, tot);
+          }
+        });
+      });
+
+      if (this.appendTo && typeof this.appendTo !== 'function') {
+        this.appendTo.appendChild(this.os);
+      }
+    }
+
+    // handle JSONP requests
+
+  }, {
+    key: 'jsonp',
+    value: function jsonp(countData, cb) {
+      var _this5 = this;
+
+      // define random callback and assign transform function
+      var callback = Math.random().toString(36).substring(7).replace(/[^a-zA-Z]/g, '');
+      window[callback] = function (data) {
+        var count = countData.transform.apply(_this5, [data]) || 0;
+
+        if (cb && typeof cb === 'function') {
+          cb(count);
+        } else {
+          if (_this5.appendTo && typeof _this5.appendTo !== 'function') {
+            _this5.appendTo.appendChild(_this5.os);
+          }
+          countReduce(_this5.os, count, _this5.cb);
+        }
+
+        Events.trigger(_this5.os, 'counted-' + _this5.url);
+      };
+
+      // append JSONP script tag to page
+      var script = document.createElement('script');
+      script.src = countData.url.replace('callback=?', 'callback=' + callback);
+      document.getElementsByTagName('head')[0].appendChild(script);
+
+      return;
+    }
+
+    // handle AJAX GET request
+
+  }, {
+    key: 'get',
+    value: function get(countData, cb) {
+      var _this6 = this;
+
+      var xhr = new XMLHttpRequest();
+
+      // on success pass response to transform function
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var count = countData.transform.apply(_this6, [xhr, Events]) || 0;
+
+            if (cb && typeof cb === 'function') {
+              cb(count);
+            } else {
+              if (_this6.appendTo && typeof _this6.appendTo !== 'function') {
+                _this6.appendTo.appendChild(_this6.os);
+              }
+              countReduce(_this6.os, count, _this6.cb);
+            }
+
+            Events.trigger(_this6.os, 'counted-' + _this6.url);
+            return;
+          } else if (countData.url.toLowerCase().indexOf('https://api.openshare.social/job?') === 0) {
+            console.warn('Please sign up for Twitter counts at https://openshare.social/twitter/auth');
+            var _count = 0;
+
+            if (cb && typeof cb === 'function') {
+              cb(_count);
+            } else {
+              if (_this6.appendTo && typeof _this6.appendTo !== 'function') {
+                _this6.appendTo.appendChild(_this6.os);
+              }
+              countReduce(_this6.os, _count, _this6.cb);
+            }
+
+            Events.trigger(_this6.os, 'counted-' + _this6.url);
+          } else {
+            console.warn('Failed to get API data from', countData.url, '. Please use the latest version of OpenShare.');
+            var _count2 = 0;
+
+            if (cb && typeof cb === 'function') {
+              cb(_count2);
+            } else {
+              if (_this6.appendTo && typeof _this6.appendTo !== 'function') {
+                _this6.appendTo.appendChild(_this6.os);
+              }
+              countReduce(_this6.os, _count2, _this6.cb);
+            }
+
+            Events.trigger(_this6.os, 'counted-' + _this6.url);
+          }
+        }
+      };
+
+      countData.url = countData.url.startsWith('https://api.openshare.social/job?') && this.key ? countData.url + this.key : countData.url;
+
+      xhr.open('GET', countData.url);
+      xhr.send();
+    }
+
+    // handle AJAX POST request
+
+  }, {
+    key: 'post',
+    value: function post(countData, cb) {
+      var _this7 = this;
+
+      var xhr = new XMLHttpRequest();
+
+      // on success pass response to transform function
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState !== XMLHttpRequest.DONE || xhr.status !== 200) {
+          return;
+        }
+
+        var count = countData.transform.apply(_this7, [xhr]) || 0;
+
+        if (cb && typeof cb === 'function') {
+          cb(count);
+        } else {
+          if (_this7.appendTo && typeof _this7.appendTo !== 'function') {
+            _this7.appendTo.appendChild(_this7.os);
+          }
+          countReduce(_this7.os, count, _this7.cb);
+        }
+        Events.trigger(_this7.os, 'counted-' + _this7.url);
+      };
+
+      xhr.open('POST', countData.url);
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhr.send(JSON.stringify(countData.data));
+    }
+  }, {
+    key: 'storeSet',
+    value: function storeSet(type) {
+      var count = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+      //eslint-disable-line
+      if (!window.localStorage || !type) {
+        return;
+      }
+
+      localStorage.setItem('OpenShare-' + type, count);
+    }
+  }, {
+    key: 'storeGet',
+    value: function storeGet(type) {
+      //eslint-disable-line
+      if (!window.localStorage || !type) {
+        return;
+      }
+
+      return localStorage.getItem('OpenShare-' + type);
+    }
+  }]);
+
+  return Count;
+}();
+
+function initializeCountNode(os) {
+  // initialize open share object with type attribute
+  var type = os.getAttribute('data-open-share-count');
+  var url = os.getAttribute('data-open-share-count-repo') || os.getAttribute('data-open-share-count-shot') || os.getAttribute('data-open-share-count-url');
+  var count = new Count(type, url);
+
+  count.count(os);
+  os.setAttribute('data-open-share-node', type);
+}
+
+function init() {
+  init$1({
+    selector: {
+      share: '[data-open-share]:not([data-open-share-node])',
+      count: '[data-open-share-count]:not([data-open-share-node])'
+    },
+    cb: {
+      share: initializeShareNode,
+      count: initializeCountNode
+    }
+  })();
+}
+var DataAttr = function DataAttr() {
+  if (document.readyState === 'complete') {
+    return init();
+  }
+  document.addEventListener('readystatechange', function () {
+    if (document.readyState === 'complete') {
+      init();
+    }
+  }, false);
+};
+
+/**
+ * Global OpenShare API to generate instances programmatically
+ */
+var ShareAPI = function ShareAPI() {
+  // global OpenShare referencing internal class for instance generation
+  var OpenShare$$1 = function () {
+    function OpenShare$$1(data, element) {
+      var _this8 = this;
+
+      _classCallCheck(this, OpenShare$$1);
+
+      if (!data.bindClick) data.bindClick = true;
+
+      var dash = data.type.indexOf('-');
+
+      if (dash > -1) {
+        data.type = dashToCamel(dash, data.type);
+      }
+
+      var node = void 0;
+      this.element = element;
+      this.data = data;
+
+      this.os = new OpenShare(data.type, ShareTransforms[data.type]);
+      this.os.setData(data);
+
+      if (!element || data.element) {
+        element = data.element;
+        node = document.createElement(element || 'a');
+        if (data.type) {
+          node.classList.add('open-share-link', data.type);
+          node.setAttribute('data-open-share', data.type);
+          node.setAttribute('data-open-share-node', data.type);
+        }
+        if (data.innerHTML) node.innerHTML = data.innerHTML;
+      }
+      if (node) element = node;
+
+      if (data.bindClick) {
+        element.addEventListener('click', function () {
+          _this8.share();
+        });
+      }
+
+      if (data.appendTo) {
+        data.appendTo.appendChild(element);
+      }
+
+      if (data.classes && Array.isArray(data.classes)) {
+        data.classes.forEach(function (cssClass) {
+          element.classList.add(cssClass);
+        });
+      }
+
+      if (data.type.toLowerCase() === 'paypal') {
+        var action = data.sandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
+
+        var buyGIF = data.sandbox ? 'https://www.sandbox.paypal.com/en_US/i/btn/btn_buynow_LG.gif' : 'https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif';
+
+        var pixelGIF = data.sandbox ? 'https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif' : 'https://www.paypalobjects.com/en_US/i/scr/pixel.gif';
+
+        var paypalButton = '<form action=' + action + ' method="post" target="_blank">\n\n        <!-- Saved buttons use the "secure click" command -->\n        <input type="hidden" name="cmd" value="_s-xclick">\n\n        <!-- Saved buttons are identified by their button IDs -->\n        <input type="hidden" name="hosted_button_id" value="' + data.buttonId + '">\n\n        <!-- Saved buttons display an appropriate button image. -->\n        <input type="image" name="submit"\n        src=' + buyGIF + '\n        alt="PayPal - The safer, easier way to pay online">\n        <img alt="" width="1" height="1"\n        src=' + pixelGIF + ' >\n\n        </form>';
+
+        var hiddenDiv = document.createElement('div');
+        hiddenDiv.style.display = 'none';
+        hiddenDiv.innerHTML = paypalButton;
+        document.body.appendChild(hiddenDiv);
+
+        this.paypal = hiddenDiv.querySelector('form');
+      }
+
+      this.element = element;
+      return element;
+    }
+
+    // public share method to trigger share programmatically
+
+
+    _createClass(OpenShare$$1, [{
+      key: 'share',
+      value: function share(e) {
+        // if dynamic instance then fetch attributes again in case of updates
+        if (this.data.dynamic) {
+          //eslint-disable-next-line
+          this.os.setData(data); // data is not defined
+        }
+
+        if (this.data.type.toLowerCase() === 'paypal') {
+          this.paypal.submit();
+        } else this.os.share(e);
+
+        Events.trigger(this.element, 'shared');
+      }
+    }]);
+
+    return OpenShare$$1;
+  }();
+
+  return OpenShare$$1;
+};
+
+/**
+ * count API
+ */
+
+var CountAPI = function CountAPI() {
+  //eslint-disable-line
+  // global OpenShare referencing internal class for instance generation
+  var Count$$1 = function Count$$1(_ref, cb) {
+    var type = _ref.type;
+    var url = _ref.url;
+    var _ref$appendTo = _ref.appendTo;
+    var appendTo = _ref$appendTo === undefined ? false : _ref$appendTo;
+    var element = _ref.element;
+    var classes = _ref.classes;
+    var _ref$key = _ref.key;
+    var key = _ref$key === undefined ? null : _ref$key;
+
+    _classCallCheck(this, Count$$1);
+
+    var countNode = document.createElement(element || 'span');
+
+    countNode.setAttribute('data-open-share-count', type);
+    countNode.setAttribute('data-open-share-count-url', url);
+    if (key) countNode.setAttribute('data-open-share-key', key);
+
+    countNode.classList.add('open-share-count');
+
+    if (classes && Array.isArray(classes)) {
+      classes.forEach(function (cssCLass) {
+        countNode.classList.add(cssCLass);
+      });
+    }
+
+    if (appendTo) {
+      return new Count(type, url).count(countNode, cb, appendTo);
+    }
+
+    return new Count(type, url).count(countNode, cb);
+  };
+
+  return Count$$1;
+};
+
+var browser = function browser() {
+  DataAttr(OpenShare, Count, ShareTransforms, Events);
+  window.OpenShare = {
+    share: ShareAPI(OpenShare, ShareTransforms, Events),
+    count: CountAPI(),
+    analytics: analytics
+  };
+};
+var browser_js = browser();
+
+module.exports = browser_js;
+
+},{}]},{},[1]);

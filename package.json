@@ -1,10 +1,11 @@
 {
   "name": "openshare",
-  "version": "1.4.9",
+  "version": "1.4.10",
   "description": "Social sharing for developers",
   "main": "dist/openshare.js",
   "browserify": {
     "transform": [
+      "rollupify",
       [
         "babelify",
         {
@@ -18,7 +19,8 @@
   "scripts": {
     "watch:js": "watchify src/browser.js -o dist/openshare.js -dv",
     "watch:test": "watchify src/test.js -o dist/test.js -dv",
-    "build:js": "browserify src/browser.js -g uglifyify | uglifyjs -cm > dist/openshare.js",
+    "build:js": "browserify src/browser.js > dist/openshare.js",
+    "build:min:js": "browserify src/browser.js -g uglifyify | uglifyjs -cm > dist/openshare.min.js",
     "build:test": "browserify src/test.js -g uglifyify | uglifyjs -cm > dist/test.js",
     "watch": "npm run watch:js & npm run watch:test",
     "dev": "npm run watch & npm run test",
@@ -37,9 +39,7 @@
     "share",
     "sharing"
   ],
-  "author": {
-    "name": "Digital Surgeons"
-  },
+  "author": "Digital Surgeons",
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.8.23",
@@ -55,8 +55,21 @@
     "eslint-plugin-react": "^6.3.0",
     "node-sass": "^3.8.0",
     "opn-cli": "^3.1.0",
+    "rollupify": "^0.3.5",
     "uglify-js": "^2.7.0",
     "uglifyify": "^3.0.2",
     "watchify": "^3.7.0"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenShare/openshare/issues"
+  },
+  "homepage": "https://github.com/OpenShare/openshare#readme",
+  "dependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.3.0",
+    "rollupify": "^0.3.5"
   }
 }

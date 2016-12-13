@@ -1,10 +1,10 @@
-module.exports = function (type, cb) {// eslint-disable-line
+export default function (type, cb) {// eslint-disable-line
   const isGA = type === 'event' || type === 'social';
   const isTagManager = type === 'tagManager';
 
   if (isGA) checkIfAnalyticsLoaded(type, cb);
   if (isTagManager) setTagManager(cb);
-};
+}
 
 function checkIfAnalyticsLoaded(type, cb) {
   if (window.ga) {
